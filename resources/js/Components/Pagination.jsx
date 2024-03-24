@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Pagination({ jadwals }) {
+export default function Pagination({ jadwals, users }) {
     const links = jadwals.links;
     const currentPage = jadwals.current_page;
     const lastPage = jadwals.last_page;

@@ -182,7 +182,7 @@ const Jadwal = ({ jadwals }) => {
                                 <tr key={i}>
                                     <th
                                         scope="row"
-                                        className=" py-4  text-midnight font-medium whitespace-nowrap dark:text-black"
+                                        className=" py-4  text-midnight bg-silver font-medium whitespace-nowrap dark:text-black"
                                     >
                                         {jadwal.tanggal}
                                     </th>

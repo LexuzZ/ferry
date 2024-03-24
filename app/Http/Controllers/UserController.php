@@ -14,16 +14,13 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
-        // $jumlah_user = User::all()->count();
-        // return Inertia::render('Dashboard',[
-        //     'jumlah_user' => $jumlah_user 
-        // ]);
-
         $userCount = User::count();
-       
-
         return Inertia::render('Dashboard', ['userCount' => $userCount]);
+    }
+
+    public function userlist()
+    {
+        return Inertia::render('User', ['users' => User::latest()->paginate(5)]);
     }
 
     /**

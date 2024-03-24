@@ -1,39 +1,47 @@
 import AdminLayout from "@/Layouts/AdminLayout";
 import React from "react";
-
+import { ImUsers } from "react-icons/im";
 
 export default function Dashboard({ userCount }) {
     return (
         <AdminLayout>
-            <div className="p-4 border-2 border-gray bg-bermuda  rounded-lg dark:border-gray mt-7">
+            <div className="p-4  bg-silver text-midnight rounded-lg  mt-7">
                 <div className="grid grid-cols-3 gap-4 mb-4">
-                    <div className="max-w-sm p-6 bg-gray  rounded-lg shadow dark:bg-gray-800 ">
-                        {/* <LiaUserCheckSolid /> */}
-                        <h5 className="mb-2 text-2xl font-bold tracking-tight text-bermuda dark:text-bermuda">
-                            Jumlah User : {userCount}
-                        </h5>
+                    <div className="max-w-sm p-6 bg-bermuda  rounded-lg shadow dark:bg-bermuda">
+                        <div className="flex items-center justify-start px-4 mb-4">
+                            <ImUsers size={80}/>
 
-                        <a
-                            href="#"
-                            className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-bermuda bg-gray rounded-lg hover:bg-blue focus:ring-4 focus:outline-none focus:ring-blue dark:bg-blue dark:hover:bg-navy dark:focus:ring-blue"
-                        >
-                            Data User
-                            <svg
-                                className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
-                                aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 14 10"
+                            <h5 className="flex justify-end items-center mx-4   tracking-tight text-midnight ">
+                                Jumlah Pengguna 
+                            </h5>
+                            <tr></tr>
+                            <div className="font-bold flex justify-end text-midnight text-2xl">
+                            {userCount}
+                            </div>
+                        </div>
+                        <div className="flex items-center justify-center">
+                            <a
+                                href="/user"
+                                className="inline-flex items-center justify-center px-3 py-2 text-sm font-medium text-center text-bermuda bg-gray rounded-lg hover:bg-blue focus:ring-4 focus:outline-none focus:ring-blue dark:bg-blue dark:hover:bg-navy dark:focus:ring-blue"
                             >
-                                <path
-                                    stroke="currentColor"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M1 5h12m0 0L9 1m4 4L9 9"
-                                />
-                            </svg>
-                        </a>
+                                Data User
+                                <svg
+                                    className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
+                                    aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 14 10"
+                                >
+                                    <path
+                                        stroke="currentColor"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={2}
+                                        d="M1 5h12m0 0L9 1m4 4L9 9"
+                                    />
+                                </svg>
+                            </a>
+                        </div>
                     </div>
 
                     <div className="flex items-center justify-center h-24 rounded bg-gray dark:bg-gray">

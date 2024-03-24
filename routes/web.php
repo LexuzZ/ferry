@@ -39,8 +39,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::inertia('/dashboard', 'Dashboard')->name('dashboard');
         Route::post('/jadwal', [JadwalController::class, 'store'])->name('jadwal.store');
         Route::get('/jadwal', [JadwalController::class, 'index'])->name('index.store');
-
         Route::get('/dashboard', [UserController::class, 'index'])->name('user.count');
+        Route::get('/user', [UserController::class, 'userlist'])->name('user.store');
     });
     Route::group(['middleware' => 'checkRole:user'], function () {
         Route::inertia('/userDashboard', 'UserDashboard')->name('userDashboard');
