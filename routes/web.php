@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\RedirectAuthenticatedUsersController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RuteController;
 use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -38,7 +39,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['middleware' => 'checkRole:admin'], function () {
         Route::inertia('/dashboard', 'Dashboard')->name('dashboard');
         Route::post('/jadwal', [JadwalController::class, 'store'])->name('jadwal.store');
+        Route::post('/rute', [RuteController::class, 'store'])->name('rute.store');
         Route::get('/jadwal', [JadwalController::class, 'index'])->name('index.store');
+        Route::get('/rute', [RuteController::class, 'index'])->name('index.store');
         Route::get('/dashboard', [UserController::class, 'index'])->name('user.count');
         Route::get('/user', [UserController::class, 'userlist'])->name('user.store');
     });
