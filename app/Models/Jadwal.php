@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Jadwal extends Model
 {
     use HasFactory;
-    protected $fillable = [ 'tanggal', 'tiba', 'keberangkatan'];
+    protected $fillable = ['rute_id', 'tanggal', 'tiba', 'keberangkatan'];
     public function rutes(){
-        return $this->belongsTo(Rute::class);
+        return $this->hasMany(Rute::class);
     }
     public function kapals(){
         return $this->belongsTo(Kapal::class);

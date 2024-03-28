@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('rutes', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('jadwal_id');
             $table->string('asal');
             $table->string('tujuan');
             $table->timestamps();

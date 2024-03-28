@@ -5,9 +5,11 @@ import React from "react";
 import "../../../resources/css/action.css";
 
 const Jadwal = ({ jadwals }) => {
-    const { flash, errors } = usePage().props;
+    const { flash, errors, rutes } = usePage().props;
 
     const { data, setData, reset } = useForm({
+        asal: "",
+        tujuan: "",
         tanggal: "",
         tiba: "",
         keberangkatan: "",
@@ -49,6 +51,64 @@ const Jadwal = ({ jadwals }) => {
             <div className="flex items-center justify-center">
                 <div className="w-full max-w-sm p-4 bg-bermuda border border-gray rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray dark:border-gray">
                     <form className="max-w-md mx-auto" onSubmit={storeInfo}>
+                        <select
+                            onChange={(e) => setData("asal", e.target.value)}
+                            className="bg-gray-50 border border-gray-300 text-midnight mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray  dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        >
+                            <option value="">-Pilih-</option>
+                            {jadwals.map((jadwal) => (
+                                <option value="">
+                                    {jadwal.rutes.map((rute) => (
+                                        <option value={rute.id}>
+                                            {rute.asal}
+                                        </option>
+                                    ))}
+                                </option>
+                            ))}
+                        </select>
+                        <select
+                            onChange={(e) => setData("tujuan", e.target.value)}
+                            className="bg-gray-50 border border-gray-300 text-midnight mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray  dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        >
+                            <option value="" selected>
+                                -pilih-
+                            </option>
+                            {jadwals.map((jadwal) => (
+                                <option value="">
+                                    {jadwal.rutes.map((rute) => (
+                                        <option value={rute.id}>
+                                            {rute.tujuan}
+                                        </option>
+                                    ))}
+                                </option>
+                            ))}
+                        </select>
+                        <label
+                            for="default"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                        >
+                            Default select
+                        </label>
+                        <select
+                            id="default"
+                            className="bg-gray-50 border border-gray-300 text-midnight mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray  dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        >
+                            {jadwals.map((jadwal) => {
+                                return (
+                                    <>
+                                        <option value="" selected></option>
+                                        {jadwal.rutes.map((rute) => {
+                                            <option value={rute.id}>{rute.asal}</option>
+                                        })}
+                                    </>
+                                );
+                            })}
+                            {/* <option selected>Choose a country</option>
+                            
+                            <option value="CA">Canada</option>
+                            <option value="FR">France</option>
+                            <option value="DE">Germany</option> */}
+                        </select>
                         <div>
                             <label
                                 for="default-search"
@@ -149,11 +209,6 @@ const Jadwal = ({ jadwals }) => {
                             Save
                         </button>
                     </form>
-                    {/* {errors.nama_kapal && (
-                    <p className="text-red-800 text-sm mt-2">
-                        {errors.nama_kapal}
-                    </p>
-                )} */}
                 </div>
             </div>
 
@@ -161,6 +216,14 @@ const Jadwal = ({ jadwals }) => {
                 <table className="w-full text-sm text-center rtl:text-right text-midnight">
                     <thead className="text-xs text-midnight uppercase bg-gray font-bold">
                         <tr>
+                            <th scope="col" className="px-6 py-3">
+                                Asal
+                            </th>
+
+                            <th scope="col" className="px-6 py-3">
+                                Tujuan
+                            </th>
+
                             <th scope="col" className="px-6 py-3">
                                 Tanggal
                             </th>
@@ -177,9 +240,16 @@ const Jadwal = ({ jadwals }) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {jadwals.data.map((jadwal, i) => {
+                        {jadwals.map((jadwal, i) => {
                             return (
                                 <tr key={i}>
+                                    {jadwal.rutes.map((rute) => (
+                                        <th key={rute.id}>{rute.asal}</th>
+                                    ))}
+                                    {jadwal.rutes.map((rute) => (
+                                        <th key={rute.id}>{rute.tujuan}</th>
+                                    ))}
+
                                     <th
                                         scope="row"
                                         className=" py-4  text-midnight bg-silver font-medium whitespace-nowrap dark:text-black"
@@ -259,11 +329,17 @@ const Jadwal = ({ jadwals }) => {
                     </tbody>
                 </table>
             </div>
+            <div>
+                <ul>
+                    {rutes &&
+                        rutes.map((rute) => <li key={rute.id}>{rute.asal}</li>)}
+                </ul>
+            </div>
 
-            <div className="mt-4 flex justify-center">
+            {/* <div className="mt-4 flex justify-center">
                 {" "}
                 <Pagination jadwals={jadwals} />
-            </div>
+            </div> */}
         </AdminLayout>
     );
 };

@@ -8,7 +8,8 @@ const AdminLayout = ({ children }) => {
     const { auth, jumlah_user } = usePage().props;
     return (
         <>
-            <nav className="fixed top-0 z-50 w-full bg-white border-b border-gray-200 bg-navy dark:border-gray-700">
+            {/* endnav */}
+            <nav className="fixed top-0 z-50 w-full  border-b border-gray-200 bg-navy dark:border-gray-700">
                 <div className="px-3 py-3 lg:px-5 lg:pl-3">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center justify-start rtl:justify-end">
@@ -78,7 +79,7 @@ const AdminLayout = ({ children }) => {
             </nav>
             <aside
                 id="logo-sidebar"
-                className="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-navy sm:translate-x-0 bg-navy dark:border-gray-700"
+                className="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full  border-r border-navy sm:translate-x-0 bg-navy"
                 aria-label="Sidebar"
             >
                 <div className="h-full px-3 pb-4 overflow-y-auto">
@@ -99,7 +100,7 @@ const AdminLayout = ({ children }) => {
                                     <path d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z" />
                                 </svg>
                                 <span className="ms-3">
-                                    Dashboard {jumlah_user}
+                                    Dashboard 
                                 </span>
                             </a>
                         </li>
@@ -139,7 +140,6 @@ const AdminLayout = ({ children }) => {
                                 <span className="flex-1 ms-3 whitespace-nowrap">
                                     Rute
                                 </span>
-                                
                             </a>
                         </li>
                         <li>
@@ -211,7 +211,7 @@ const AdminLayout = ({ children }) => {
                 </div>
             </aside>
             <main className="mt-10">
-                <div className="p-4 sm:ml-64 bg-bermuda">{children}</div>
+                <div className="p-4 sm:ml-64 bg-silver">{children}</div>
             </main>
         </>
     );

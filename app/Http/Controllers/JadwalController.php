@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Jadwal;
+use App\Models\Rute;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -14,9 +15,13 @@ class JadwalController extends Controller
      */
     public function index()
     {
-        
-        return Inertia::render('Jadwal',[
-            'jadwals' => Jadwal::latest()->paginate(2)
+        $jadwals = Jadwal::with('rutes')->get();
+
+        return Inertia::render('Jadwal', [
+            'jadwals' =>  $jadwals
+
+
+
         ]);
     }
 
@@ -35,13 +40,15 @@ class JadwalController extends Controller
     {
         //
         $data = $request->validate([
+            'asal' => 'required',
+            'tujuan' => 'required',
             'tanggal' => 'required',
             'tiba' => 'required',
             'keberangkatan' => 'required',
-            
-        ],[
+
+        ], [
             'tanggal.required' => "tanggal tidak boleh kosong",
-            
+
         ]);
         Jadwal::create($data);
         return back()->with('message', 'Info Jadwal berhasil disimpan');

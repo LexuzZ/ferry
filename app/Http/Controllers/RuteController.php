@@ -34,6 +34,7 @@ class RuteController extends Controller
     {
         //
         $data = $request->validate([
+            'jadwal_id' => 'required',
             'asal' => 'required',
             'tujuan' => 'required',
 

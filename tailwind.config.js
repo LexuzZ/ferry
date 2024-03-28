@@ -29,11 +29,12 @@ export default {
             'tahiti': '#3ab7bf',
             'silver': '#ecebff',
             'sea': '#419197',
-            'bermuda': '#F5FCCD',
+            'white': '#ffffff',
             'navy': '#124076',
             'red': '#FF1818',
             'blue': '#2E99B0',
             'green': '#3CB29A',
+            'grey': '#CCD3CA',
           },
     },
 

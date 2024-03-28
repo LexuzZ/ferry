@@ -3,7 +3,7 @@ import Pagination from "@/Components/Pagination";
 import React from "react";
 import { ImUsers } from "react-icons/im";
 import { Head, Link, router, useForm, usePage } from "@inertiajs/react";
-
+import "../../../resources/css/tables.css";
 export default function User({ users, jadwals }) {
     const { data } = usePage().props;
 

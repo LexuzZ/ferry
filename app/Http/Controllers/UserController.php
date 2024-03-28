@@ -15,12 +15,20 @@ class UserController extends Controller
     public function index()
     {
         $userCount = User::count();
-        return Inertia::render('Dashboard', ['userCount' => $userCount]);
+        return Inertia::render('Dashboard', [
+            'userCount' => $userCount,
+
+        ]);
     }
+    // public function roles()
+    // {
+    //    $roles = User::all();
+    //     return Inertia::render('Dashboard', ['roles' => $roles]);
+    // }
 
     public function userlist()
     {
-        return Inertia::render('User', ['users' => User::latest()->paginate(5)]);
+        return Inertia::render('User', ['users' => User::latest()->paginate(10)]);
     }
 
     /**
