@@ -14,8 +14,9 @@ class RuteController extends Controller
     public function index()
     {
         //
+        $rutes = Rute::with('jadwals')->get();
         return Inertia::render('Rute', [
-            'rutes' => Rute::latest()->paginate(2)
+            'rutes' => $rutes
         ]);
     }
 
@@ -33,7 +34,7 @@ class RuteController extends Controller
     public function store(Request $request)
     {
         //
-        $data = $request->validate([
+         $request->validate([
             'jadwal_id' => 'required',
             'asal' => 'required',
             'tujuan' => 'required',
@@ -43,7 +44,7 @@ class RuteController extends Controller
             'asal.required' => "asal tidak boleh kosong",
 
         ]);
-        Rute::create($data);
+        Rute::create($request->all());
         return back()->with('message', 'Tambah Rute berhasil disimpan');
     }
 
@@ -77,5 +78,8 @@ class RuteController extends Controller
     public function destroy(string $id)
     {
         //
+        $rute = Rute::findOrFail($id); // mencari data berdasarkan id
+        $rute->delete();
+        return back()->with('message', 'Info Jadwal berhasil dihapus');
     }
 }

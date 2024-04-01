@@ -211,7 +211,7 @@ const AdminLayout = ({ children }) => {
                 </div>
             </aside>
             <main className="mt-10">
-                <div className="p-4 sm:ml-64 bg-silver">{children}</div>
+                <div className="p-4 sm:ml-64 bg-grey">{children}</div>
             </main>
         </>
     );

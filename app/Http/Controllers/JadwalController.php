@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Jadwal;
 use App\Models\Rute;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class JadwalController extends Controller
 {
@@ -16,12 +16,8 @@ class JadwalController extends Controller
     public function index()
     {
         $jadwals = Jadwal::with('rutes')->get();
-
         return Inertia::render('Jadwal', [
             'jadwals' =>  $jadwals
-
-
-
         ]);
     }
 
@@ -31,6 +27,7 @@ class JadwalController extends Controller
     public function create()
     {
         //
+
     }
 
     /**
@@ -39,19 +36,23 @@ class JadwalController extends Controller
     public function store(Request $request)
     {
         //
-        $data = $request->validate([
-            'asal' => 'required',
-            'tujuan' => 'required',
+        $request->validate([
+            
             'tanggal' => 'required',
             'tiba' => 'required',
             'keberangkatan' => 'required',
 
         ], [
-            'tanggal.required' => "tanggal tidak boleh kosong",
+            'required' => "data ini tidak boleh kosong",
+
 
         ]);
-        Jadwal::create($data);
+        Jadwal::create($request->all());
         return back()->with('message', 'Info Jadwal berhasil disimpan');
+        // return Inertia::render('Jadwals/Show', [
+        //     'post' => $comment->post,
+        //     'comments' => $comment->post->comments,
+        // ])
     }
 
     /**
@@ -81,8 +82,11 @@ class JadwalController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Jadwal $id)
     {
         //
+
+        $id->delete();
+        return back()->with('message', 'Info Jadwal berhasil dihapus');
     }
 }

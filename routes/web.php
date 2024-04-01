@@ -40,10 +40,13 @@ Route::group(['middleware' => 'auth'], function () {
         Route::inertia('/dashboard', 'Dashboard')->name('dashboard');
         Route::post('/jadwal', [JadwalController::class, 'store'])->name('jadwal.store');
         Route::post('/rute', [RuteController::class, 'store'])->name('rute.store');
-        Route::get('/jadwal', [JadwalController::class, 'index'])->name('index.store');
+        Route::get('/jadwal', [JadwalController::class, 'index'])->name('jadwal.index');
+        Route::delete('/jadwal/{id}', [JadwalController::class, 'destroy'])->name('jadwal.destroy');
         Route::get('/rute', [RuteController::class, 'index'])->name('index.store');
+        Route::delete('/rute/{id}', [RuteController::class, 'destroy'])->name('jadwal.destroy');
         Route::get('/dashboard', [UserController::class, 'index'])->name('user.count');
         Route::get('/user', [UserController::class, 'userlist'])->name('user.store');
+        Route::post('/rutes', [RuteController::class, 'store'])->name('rutes.store');
     });
     Route::group(['middleware' => 'checkRole:user'], function () {
         Route::inertia('/userDashboard', 'UserDashboard')->name('userDashboard');
