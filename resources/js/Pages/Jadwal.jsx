@@ -1,4 +1,3 @@
-import Pagination from "@/Components/Pagination";
 import AdminLayout from "@/Layouts/AdminLayout";
 import { Head, Link, router, useForm, usePage } from "@inertiajs/react";
 import React from "react";
@@ -9,7 +8,6 @@ const Jadwal = () => {
     const { flash, errors, jadwals, rutes } = usePage().props;
 
     const { data, setData, reset } = useForm({
-       
         asal: "",
         tujuan: "",
         tanggal: "",
@@ -56,8 +54,6 @@ const Jadwal = () => {
             <div className="flex items-center justify-center">
                 <div className="w-full max-w-sm p-4 bg-bermuda border border-gray rounded-lg shadow sm:p-6 md:p-8 dark:bg-grey dark:border-gray">
                     <form className="max-w-md mx-auto" onSubmit={storeInfo}>
-                       
-
                         {/* <div>
                             <label
                                 for="email"
@@ -223,7 +219,7 @@ const Jadwal = () => {
                     <thead className="text-xs text-midnight uppercase bg-gray font-bold">
                         <tr>
                             <th scope="col" className="px-6 py-3">
-                                ID
+                                Nama Kapal
                             </th>
                             <th scope="col" className="px-6 py-3">
                                 Asal
@@ -243,7 +239,7 @@ const Jadwal = () => {
                                 keberangkatan
                             </th>
 
-                            <th scope="col" className=" py-3">
+                            <th scope="col" className="px-6 py-3">
                                 Action
                             </th>
                         </tr>
@@ -252,7 +248,10 @@ const Jadwal = () => {
                         {jadwals.map((jadwal, i) => {
                             return (
                                 <tr key={i}>
-                                    <th>{jadwal.id}</th>
+                                    {jadwal.kapals.map((kapal, i) => (
+                                        <th key={i}>{kapal.nama_kapal}</th>
+                                    ))}
+
                                     {jadwal.rutes.map((rute, i) => (
                                         <th key={i}>{rute.asal}</th>
                                     ))}
@@ -262,7 +261,7 @@ const Jadwal = () => {
 
                                     <th
                                         scope="row"
-                                        className=" py-4  text-midnight bg-silver font-medium whitespace-nowrap dark:text-black"
+                                        className=" py-4  text-midnight  font-medium whitespace-nowrap dark:text-black"
                                     >
                                         {jadwal.tanggal}
                                     </th>

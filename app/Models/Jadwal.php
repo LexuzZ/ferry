@@ -13,7 +13,7 @@ class Jadwal extends Model
         return $this->hasMany(Rute::class);
     }
     public function kapals(){
-        return $this->belongsTo(Kapal::class);
+        return $this->hasMany(Kapal::class);
     }
 
 }

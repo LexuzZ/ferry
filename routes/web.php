@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\RedirectAuthenticatedUsersController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JadwalController;
+use App\Http\Controllers\KapalController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RuteController;
 use App\Http\Controllers\UserController;
@@ -39,14 +40,15 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['middleware' => 'checkRole:admin'], function () {
         Route::inertia('/dashboard', 'Dashboard')->name('dashboard');
         Route::post('/jadwal', [JadwalController::class, 'store'])->name('jadwal.store');
-        Route::post('/rute', [RuteController::class, 'store'])->name('rute.store');
         Route::get('/jadwal', [JadwalController::class, 'index'])->name('jadwal.index');
+        Route::get('/kapal', [KapalController::class, 'index'])->name('kapals.index');
         Route::delete('/jadwal/{id}', [JadwalController::class, 'destroy'])->name('jadwal.destroy');
-        Route::get('/rute', [RuteController::class, 'index'])->name('index.store');
+        Route::get('/rute', [RuteController::class, 'index'])->name('rute.index');
         Route::delete('/rute/{id}', [RuteController::class, 'destroy'])->name('jadwal.destroy');
         Route::get('/dashboard', [UserController::class, 'index'])->name('user.count');
         Route::get('/user', [UserController::class, 'userlist'])->name('user.store');
-        Route::post('/rutes', [RuteController::class, 'store'])->name('rutes.store');
+        Route::post('/rute', [RuteController::class, 'store'])->name('rutes.store');
+        Route::post('/kapal', [KapalController::class, 'store'])->name('kapals.store');
     });
     Route::group(['middleware' => 'checkRole:user'], function () {
         Route::inertia('/userDashboard', 'UserDashboard')->name('userDashboard');

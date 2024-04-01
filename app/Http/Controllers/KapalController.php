@@ -2,22 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Jadwal;
-use App\Models\Rute;
+use App\Models\Kapal;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
-use RealRashid\SweetAlert\Facades\Alert;
 
-class JadwalController extends Controller
+class KapalController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $jadwals = Jadwal::with('rutes', 'kapals')->get();
-        return Inertia::render('Jadwal', [
-            'jadwals' =>  $jadwals
+        //
+        $kapals = Kapal::with('jadwals')->get();
+        return Inertia::render('Kapal', [
+            'kapals' => $kapals
         ]);
     }
 
@@ -27,7 +26,6 @@ class JadwalController extends Controller
     public function create()
     {
         //
-
     }
 
     /**
@@ -37,22 +35,18 @@ class JadwalController extends Controller
     {
         //
         $request->validate([
-            
-            'tanggal' => 'required',
-            'tiba' => 'required',
-            'keberangkatan' => 'required',
+
+            'nama_kapal' => 'required',
+            'jadwal_id' => 'required',
+
+
 
         ], [
-            'required' => "data ini tidak boleh kosong",
-
+            'nama_kapal.required' => "nama kapal tidak boleh kosong",
 
         ]);
-        Jadwal::create($request->all());
-        return back()->with('message', 'Info Jadwal berhasil disimpan');
-        // return Inertia::render('Jadwals/Show', [
-        //     'post' => $comment->post,
-        //     'comments' => $comment->post->comments,
-        // ])
+        Kapal::create($request->all());
+        return back()->with('message', 'Tambah Kapal berhasil disimpan');
     }
 
     /**
@@ -82,11 +76,8 @@ class JadwalController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Jadwal $id)
+    public function destroy(string $id)
     {
         //
-
-        $id->delete();
-        return back()->with('message', 'Info Jadwal berhasil dihapus');
     }
 }

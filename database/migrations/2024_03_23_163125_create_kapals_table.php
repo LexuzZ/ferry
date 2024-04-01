@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('kapals', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('jadwal_id')->constrained()->onDelete('cascade');
             $table->string('nama_kapal');
-            $table->boolean('is_complete')->default(false);
+            
+            // $table->boolean('is_complete')->default(false);
             $table->timestamps();
         });
     }
