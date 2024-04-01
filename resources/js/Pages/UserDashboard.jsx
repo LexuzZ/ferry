@@ -3,14 +3,14 @@ import { Head } from "@inertiajs/react";
 import { Link, usePage } from "@inertiajs/react";
 import React from "react";
 
-export default function Dashboard() {
+export default function userDashboard() {
     const { auth } = usePage().props;
     return (
-        <UserLayout>
+        <UserLayout user={auth.user}>
             <div className="py-12">
                 <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
                     <div className="overflow-hidden bg-blue-950 shadow-sm sm:rounded-lg">
-                        <div className="p-6 bg-cyan-50 border-b text-black">
+                        <div className="p-6 bg-cyan-50 border-b text-midnight font-serif">
                             You're logged in as {auth.user.role}!
                         </div>
                     </div>

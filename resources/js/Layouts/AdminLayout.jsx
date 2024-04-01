@@ -5,7 +5,7 @@ import { Dropdown, DropdownItem } from "flowbite-react";
 
 const AdminLayout = ({ children }) => {
     const { component } = usePage();
-    const { auth, jumlah_user } = usePage().props;
+    const { auth } = usePage().props;
     return (
         <>
             {/* endnav */}
@@ -62,11 +62,11 @@ const AdminLayout = ({ children }) => {
                                                 Profile
                                             </DropdownItem>
                                             <DropdownItem
-                                                href={route("logout")}
-                                                method="post"
-                                                as="button"
+                                               href={route("logout")}
+                                               method="post"
+                                               as="button"
                                             >
-                                                {/* <FontAwesomeIcon icon="right-from-bracket" /> */}
+            
                                                 Log Out
                                             </DropdownItem>
                                         </div>
@@ -181,7 +181,7 @@ const AdminLayout = ({ children }) => {
                             </a>
                         </li>
                         <li>
-                            <a
+                            <Link
                                 href={route("logout")}
                                 method="post"
                                 as="button"
@@ -205,7 +205,7 @@ const AdminLayout = ({ children }) => {
                                 <span className="flex-1 ms-3 whitespace-nowrap">
                                     Log Out
                                 </span>
-                            </a>
+                            </Link>
                         </li>
                     </ul>
                 </div>

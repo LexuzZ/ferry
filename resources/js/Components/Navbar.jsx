@@ -2,9 +2,9 @@ import { Link } from "@inertiajs/react";
 
 const Navbar = ({ user }) => {
     return (
-        <div className="navbar bg-blue-950">
+        <div className="navbar bg-navy">
             <div className="flex-1">
-                <a className="text-cyan-50 text-xl">
+                <a className="text-white text-xl">
                     PT Damai Lautan Nusantara
                 </a>
             </div>
@@ -13,13 +13,13 @@ const Navbar = ({ user }) => {
                     <div
                         tabIndex={0}
                         role="button"
-                        className=" text-cyan-50 btn btn-ghost rounded-btn"
+                        className=" text-white btn btn-ghost rounded-btn"
                     >
                         Menu
                     </div>
                     <ul
                         tabIndex={0}
-                        className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content text-cyan-50 bg-blue-950 rounded-box w-52"
+                        className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content text-midnight bg-silver font-bold rounded-box w-52"
                     >
                         {!user ? (
                             <>

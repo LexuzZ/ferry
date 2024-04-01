@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Rute;
+use App\Models\Jadwal;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-class RuteController extends Controller
+class JadwalUserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,9 @@ class RuteController extends Controller
     public function index()
     {
         //
-        $rutes = Rute::with('jadwals')->get();
-        return Inertia::render('Rute', [
-            'rutes' => $rutes
+        $userJadwals = Jadwal::with('rutes', 'kapals')->get();
+        return Inertia::render('UserJadwal', [
+            'userJadwals' =>  $userJadwals
         ]);
     }
 
@@ -34,18 +34,6 @@ class RuteController extends Controller
     public function store(Request $request)
     {
         //
-        $request->validate([
-            'jadwal_id' => 'required',
-            'asal' => 'required',
-            'tujuan' => 'required',
-
-
-        ], [
-            'asal.required' => "asal tidak boleh kosong",
-
-        ]);
-        Rute::create($request->all());
-        return back()->with('message', 'Tambah Rute berhasil disimpan');
     }
 
     /**
@@ -78,8 +66,5 @@ class RuteController extends Controller
     public function destroy(string $id)
     {
         //
-        $rute = Rute::findOrFail($id); // mencari data berdasarkan id
-        $rute->delete();
-        return back()->with('message', 'Info Jadwal berhasil dihapus');
     }
 }

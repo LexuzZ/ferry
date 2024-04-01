@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\RedirectAuthenticatedUsersController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JadwalController;
+use App\Http\Controllers\JadwalUserController;
 use App\Http\Controllers\KapalController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RuteController;
@@ -33,10 +34,7 @@ Route::get('welcome', function () {
 Route::get('/', [HomeController::class, 'index']);
 
 Route::group(['middleware' => 'auth'], function () {
-
-
     Route::get("/redirectAuthenticatedUsers", [RedirectAuthenticatedUsersController::class, "home"])->name('redirectAuthenticatedUsers');
-
     Route::group(['middleware' => 'checkRole:admin'], function () {
         Route::inertia('/dashboard', 'Dashboard')->name('dashboard');
         Route::post('/jadwal', [JadwalController::class, 'store'])->name('jadwal.store');
@@ -52,6 +50,10 @@ Route::group(['middleware' => 'auth'], function () {
     });
     Route::group(['middleware' => 'checkRole:user'], function () {
         Route::inertia('/userDashboard', 'UserDashboard')->name('userDashboard');
+    });
+    Route::group(['middleware' => 'checkRole:user'], function () {
+        Route::inertia('/userDashboard', 'UserDashboard')->name('userDashboard');
+        Route::get('/userJadwal', [JadwalUserController::class, 'index'])->name('jadwal.user');
     });
 });
 

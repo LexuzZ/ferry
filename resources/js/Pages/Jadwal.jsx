@@ -219,18 +219,18 @@ const Jadwal = () => {
                     <thead className="text-xs text-midnight uppercase bg-gray font-bold">
                         <tr>
                             <th scope="col" className="px-6 py-3">
+                                Tanggal
+                            </th>
+                            <th scope="col" className="px-6 py-3">
                                 Nama Kapal
                             </th>
+
                             <th scope="col" className="px-6 py-3">
                                 Asal
                             </th>
 
                             <th scope="col" className="px-6 py-3">
                                 Tujuan
-                            </th>
-
-                            <th scope="col" className="px-6 py-3">
-                                Tanggal
                             </th>
                             <th scope="col" className="px-6 py-3">
                                 tiba
@@ -248,6 +248,12 @@ const Jadwal = () => {
                         {jadwals.map((jadwal, i) => {
                             return (
                                 <tr key={i}>
+                                    <th
+                                        scope="row"
+                                        className=" py-4  text-midnight  font-medium whitespace-nowrap dark:text-black"
+                                    >
+                                        {jadwal.tanggal}
+                                    </th>
                                     {jadwal.kapals.map((kapal, i) => (
                                         <th key={i}>{kapal.nama_kapal}</th>
                                     ))}
@@ -259,12 +265,6 @@ const Jadwal = () => {
                                         <th key={i}>{rute.tujuan}</th>
                                     ))}
 
-                                    <th
-                                        scope="row"
-                                        className=" py-4  text-midnight  font-medium whitespace-nowrap dark:text-black"
-                                    >
-                                        {jadwal.tanggal}
-                                    </th>
                                     <th
                                         scope="row"
                                         className=" py-4  text-midnight font-medium whitespace-nowrap dark:text-black"
