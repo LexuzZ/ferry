@@ -40,17 +40,13 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/jadwal', [JadwalController::class, 'store'])->name('jadwal.store');
         Route::get('/jadwal', [JadwalController::class, 'index'])->name('jadwal.index');
         Route::get('/kapal', [KapalController::class, 'index'])->name('kapals.index');
-        Route::delete('/jadwal/{id}', [JadwalController::class, 'destroy'])->name('jadwal.destroy');
         Route::get('/rute', [RuteController::class, 'index'])->name('rute.index');
-        Route::delete('/rute/{id}', [RuteController::class, 'destroy'])->name('jadwal.destroy');
         Route::get('/dashboard', [UserController::class, 'index'])->name('user.count');
         Route::get('/user', [UserController::class, 'userlist'])->name('user.store');
         Route::post('/rute', [RuteController::class, 'store'])->name('rutes.store');
         Route::post('/kapal', [KapalController::class, 'store'])->name('kapals.store');
     });
-    Route::group(['middleware' => 'checkRole:user'], function () {
-        Route::inertia('/userDashboard', 'UserDashboard')->name('userDashboard');
-    });
+
     Route::group(['middleware' => 'checkRole:user'], function () {
         Route::inertia('/userDashboard', 'UserDashboard')->name('userDashboard');
         Route::get('/userJadwal', [JadwalUserController::class, 'index'])->name('jadwal.user');

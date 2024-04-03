@@ -1,51 +1,55 @@
-import { useState } from "react";
-import ApplicationLogo from "@/Components/ApplicationLogo";
+import { Link, usePage } from "@inertiajs/react";
+import React from "react";
+import { RiAdminFill } from "react-icons/ri";
 import Dropdown from "@/Components/Dropdown";
 import NavLink from "@/Components/NavLink";
-import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
-import { Link, usePage } from "@inertiajs/react";
 
-export default function UserLayout({ user, header, children }) {
+
+export default function UserLayout({ children }) {
     const { auth } = usePage().props;
-    const [showingNavigationDropdown, setShowingNavigationDropdown] =
-        useState(false);
 
     return (
-        <UserLayout>
- <div className="min-h-screen bg-cyan-50">
-            <nav className=" bg-navy border-b border-gray-100 dark:border-gray-700">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="flex justify-between h-16">
-                        <div className="flex">
-                            <div className="shrink-0 flex items-center">
-                                <NavLink href="/">
-                                    <div className=" text-white"></div>
-                                    {/* <ApplicationLogo className="block h-9 w-auto fill-current text-gray-200" /> */}
-                                    Homepage
-                                </NavLink>
-                            </div>
-
-                            <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex text-white">
-                                <NavLink
-                                    href={route("redirectAuthenticatedUsers")}
-                                    active={route().current(
-                                        "redirectAuthenticatedUsers"
-                                    )}
+        <>
+        <div className="min-h-screen bg-grey">
+        <nav className="fixed top-0 z-50 w-full  border-b border-gray-200 bg-navy dark:border-gray-700">
+                <div className="px-3 py-3 lg:px-5 lg:pl-3">
+                    <div className="flex items-center justify-between">
+                        <div className="flex items-center justify-start rtl:justify-end">
+                            <button
+                                data-drawer-target="logo-sidebar"
+                                data-drawer-toggle="logo-sidebar"
+                                aria-controls="logo-sidebar"
+                                type="button"
+                                className="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                            >
+                                <span className="sr-only">Open sidebar</span>
+                                <svg
+                                    className="w-6 h-6"
+                                    aria-hidden="true"
+                                    fill="currentColor"
+                                    viewBox="0 0 20 20"
+                                    xmlns="http://www.w3.org/2000/svg"
                                 >
-                                    Dashboard
-                                </NavLink>
-                                <NavLink
-                                    href={route("jadwal.user")}
-                                    active={route().current(
-                                        "jadwal.user"
-                                    )}
-                                >
-                                    Informasi Jadwal 
-                                </NavLink>
-                                
-
-                                
-                            </div>
+                                    <path
+                                        clipRule="evenodd"
+                                        fillRule="evenodd"
+                                        d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"
+                                    />
+                                </svg>
+                            </button>
+                            <a href="/" className="flex ms-2 md:me-24">
+                                <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap text-bermuda">
+                                    DLNFerry
+                                </span>
+                            </a>
+                        </div>
+                        <div className="flex items-center me-24 ">
+                            <NavLink
+                                href={route("jadwal.user")}
+                                active={route().current("jadwal.user")}
+                            >
+                                Jadwal Keberangkatan
+                            </NavLink>
                         </div>
 
                         <div className="hidden sm:flex sm:items-center sm:ms-6">
@@ -55,22 +59,12 @@ export default function UserLayout({ user, header, children }) {
                                         <span className="inline-flex rounded-md dropdown dropdown-end">
                                             <button
                                                 type="button"
-                                                className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4  rounded-md text-midnight bg-white hover:text-grey font-semibold focus:outline-none transition ease-in-out duration-150"
+                                                className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-cyan-50  hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
                                             >
-                                                {auth.user.name}
-
-                                                <svg
-                                                    className="ms-2 -me-0.5 h-4 w-4"
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    viewBox="0 0 20 20"
-                                                    fill="currentColor"
-                                                >
-                                                    <path
-                                                        fillRule="evenodd"
-                                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                                        clipRule="evenodd"
-                                                    />
-                                                </svg>
+                                                <span className="px-2">
+                                                    {auth.user.role}
+                                                </span>
+                                               
                                             </button>
                                         </span>
                                     </Dropdown.Trigger>
@@ -92,105 +86,14 @@ export default function UserLayout({ user, header, children }) {
                                 </Dropdown>
                             </div>
                         </div>
-
-                        <div className="-me-2 flex items-center sm:hidden">
-                            <button
-                                onClick={() =>
-                                    setShowingNavigationDropdown(
-                                        (previousState) => !previousState
-                                    )
-                                }
-                                className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out"
-                            >
-                                <svg
-                                    className="h-6 w-6"
-                                    stroke="currentColor"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                >
-                                    <path
-                                        className={
-                                            !showingNavigationDropdown
-                                                ? "inline-flex"
-                                                : "hidden"
-                                        }
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth="2"
-                                        d="M4 6h16M4 12h16M4 18h16"
-                                    />
-                                    <path
-                                        className={
-                                            showingNavigationDropdown
-                                                ? "inline-flex"
-                                                : "hidden"
-                                        }
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth="2"
-                                        d="M6 18L18 6M6 6l12 12"
-                                    />
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div
-                    className={
-                        (showingNavigationDropdown ? "block" : "hidden") +
-                        " sm:hidden text-white"
-                    }
-                >
-                    <div className="pt-2 pb-3 space-y-1 text-white">
-                        <ResponsiveNavLink
-                            href={route("redirectAuthenticatedUsers")}
-                            active={route().current(
-                                "redirectAuthenticatedUsers"
-                            )}
-                        >
-                            Dashboard
-                        </ResponsiveNavLink>
-                        
-                    </div>
-
-                    <div className="pt-2   border-gray-200">
-                        <div className="px-4">
-                            <div className="font-medium text-base text-white">
-                                {auth.user.name}
-                            </div>
-                            <div className="font-medium text-base text-white">
-                                {auth.user.email}
-                            </div>
-                        </div>
-
-                        <div className="mt-3 space-y-1">
-                            <ResponsiveNavLink href={route("profile.edit")}>
-                                Profile
-                            </ResponsiveNavLink>
-                            <ResponsiveNavLink
-                                method="post"
-                                href={route("logout")}
-                                as="button"
-                            >
-                                Log Out
-                            </ResponsiveNavLink>
-                        </div>
                     </div>
                 </div>
             </nav>
-
-            {header && (
-                <header className="bg-white shadow">
-                    <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {header}
-                    </div>
-                </header>
-            )}
-
-            <main className="bg-grey">{children}</main>
+            <main className="mt-10 min-h-screen">
+                <div className="p-4  bg-grey">{children}</div>
+            </main>
         </div>
-        </UserLayout>
-       
+           
+        </>
     );
 }

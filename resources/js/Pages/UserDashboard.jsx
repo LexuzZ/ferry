@@ -6,7 +6,7 @@ import React from "react";
 export default function userDashboard() {
     const { auth } = usePage().props;
     return (
-        <UserLayout user={auth.user}>
+        <UserLayout>
             <div className="py-12">
                 <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
                     <div className="overflow-hidden bg-blue-950 shadow-sm sm:rounded-lg">
@@ -14,7 +14,7 @@ export default function userDashboard() {
                             You're logged in as {auth.user.role}!
                         </div>
                     </div>
-                    <div></div>
+                    
                 </div>
             </div>
         </UserLayout>

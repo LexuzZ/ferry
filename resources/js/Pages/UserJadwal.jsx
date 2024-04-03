@@ -1,12 +1,13 @@
 import AdminLayout from "@/Layouts/AdminLayout";
+import UserLayout from "@/Layouts/UserLayout";
 import { Head, Link, router, useForm, usePage } from "@inertiajs/react";
 import React from "react";
 
 const UserJadwal = () => {
-    const {  userJadwals } = usePage().props;
+    const { userJadwals } = usePage().props;
     
     return (
-        <AdminLayout>
+        <UserLayout>
             <div className="text-center text-midnight text-2xl font-bold py-4">
                 Informasi Jadwal
             </div>
@@ -85,7 +86,7 @@ const UserJadwal = () => {
                 {" "}
                 <Pagination jadwals={jadwals} />
             </div> */}
-        </AdminLayout>
+        </UserLayout>
     );
 };
 export default UserJadwal;
