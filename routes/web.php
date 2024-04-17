@@ -37,8 +37,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get("/redirectAuthenticatedUsers", [RedirectAuthenticatedUsersController::class, "home"])->name('redirectAuthenticatedUsers');
     Route::group(['middleware' => 'checkRole:admin'], function () {
         Route::inertia('/dashboard', 'Dashboard')->name('dashboard');
-        Route::post('/jadwal', [JadwalController::class, 'store'])->name('jadwal.store');
-        Route::get('/jadwal', [JadwalController::class, 'index'])->name('jadwal.index');
+        // Route::post('/jadwal', [JadwalController::class, 'store'])->name('jadwal.store');
+        Route::get('/jadwals', [JadwalController::class, 'index'])->name('jadwals.index');
+        // Route::delete('/jadwal/{id}', [JadwalController::class, 'destroy'])->name('jadwal.destroy');
+        Route::resource('jadwals', JadwalController::class);
         Route::get('/kapal', [KapalController::class, 'index'])->name('kapals.index');
         Route::get('/rute', [RuteController::class, 'index'])->name('rute.index');
         Route::get('/dashboard', [UserController::class, 'index'])->name('user.count');
@@ -50,6 +52,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['middleware' => 'checkRole:user'], function () {
         Route::inertia('/userDashboard', 'UserDashboard')->name('userDashboard');
         Route::get('/userJadwal', [JadwalUserController::class, 'index'])->name('jadwal.user');
+        Route::get('/pesanan', [JadwalUserController::class, 'index'])->name('jadwal.pesanan');
     });
 });
 

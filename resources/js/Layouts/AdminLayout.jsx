@@ -1,7 +1,7 @@
 import { Link, usePage } from "@inertiajs/react";
 import React from "react";
 import { RiAdminFill } from "react-icons/ri";
-import { Dropdown, DropdownItem } from "flowbite-react";
+import Dropdown from "@/Components/Dropdown";
 
 const AdminLayout = ({ children }) => {
     const { component } = usePage();
@@ -36,42 +36,43 @@ const AdminLayout = ({ children }) => {
                                 </svg>
                             </button>
                             <a href="/" className="flex ms-2 md:me-24">
-                                <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap text-bermuda">
+                                <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap text-white">
                                     DLNFerry
                                 </span>
                             </a>
                         </div>
-                        <div className="flex items-center">
-                            <div className="flex items-center ms-3">
-                                <div className="bg-navy text-bermuda">
-                                    <Dropdown
-                                        label={auth.user.role}
-                                        dismissOnClick={false}
-                                        size="sm"
-                                    >
-                                        <div className="bg-navy">
-                                            <DropdownItem>
-                                                {auth.user.name}
-                                            </DropdownItem>
-                                            <DropdownItem>
-                                                {auth.user.email}
-                                            </DropdownItem>
-                                            <DropdownItem
-                                                href={route("profile.edit")}
+                        <div className="hidden sm:flex sm:items-center sm:ms-6">
+                            <div className="ms-3 relative">
+                                <Dropdown>
+                                    <Dropdown.Trigger>
+                                        <span className="inline-flex rounded-md dropdown dropdown-end">
+                                            <button
+                                                type="button"
+                                                className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white  hover:text-grey focus:outline-none transition ease-in-out duration-150"
                                             >
-                                                Profile
-                                            </DropdownItem>
-                                            <DropdownItem
-                                               href={route("logout")}
-                                               method="post"
-                                               as="button"
-                                            >
-            
-                                                Log Out
-                                            </DropdownItem>
-                                        </div>
-                                    </Dropdown>
-                                </div>
+                                                <span className="px-2">
+                                                    {auth.user.role}
+                                                </span>
+                                               
+                                            </button>
+                                        </span>
+                                    </Dropdown.Trigger>
+
+                                    <Dropdown.Content>
+                                        <Dropdown.Link
+                                            href={route("profile.edit")}
+                                        >
+                                            Profile
+                                        </Dropdown.Link>
+                                        <Dropdown.Link
+                                            href={route("logout")}
+                                            method="post"
+                                            as="button"
+                                        >
+                                            Log Out
+                                        </Dropdown.Link>
+                                    </Dropdown.Content>
+                                </Dropdown>
                             </div>
                         </div>
                     </div>
@@ -106,7 +107,7 @@ const AdminLayout = ({ children }) => {
                         </li>
                         <li>
                             <a
-                                href="/jadwal"
+                                href="/jadwals"
                                 className="flex items-center p-2 text-bermuda rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
                             >
                                 <svg

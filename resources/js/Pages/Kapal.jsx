@@ -148,8 +148,19 @@ const Kapal = () => {
                         {kapals.map((kapal, i) => {
                             return (
                                 <tr key={i}>
-                                    <td>{kapal.jadwal_id}</td>
-                                    <td>{kapal.nama_kapal}</td>
+                                    
+                                    <th
+                                        scope="row"
+                                        className=" py-4  text-midnight  font-medium whitespace-nowrap dark:text-black"
+                                    >
+                                        {kapal.jadwal_id}
+                                    </th>
+                                    <th
+                                        scope="row"
+                                        className=" py-4  text-midnight  font-medium whitespace-nowrap dark:text-black"
+                                    >
+                                        {kapal.nama_kapal}
+                                    </th>
                                     <td class="action">
                             <Link
                                 // href={`/tickets/${ticket.id}/edit`}

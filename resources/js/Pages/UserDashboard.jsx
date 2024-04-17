@@ -13,6 +13,7 @@ export default function userDashboard() {
                         <div className="p-6 bg-cyan-50 border-b text-midnight font-serif">
                             You're logged in as {auth.user.role}!
                         </div>
+                        <Link href="/userJadwal" className="btn btn-primary mx-2 my-2">Pesan Tiket</Link>
                     </div>
                     
                 </div>

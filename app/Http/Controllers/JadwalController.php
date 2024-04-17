@@ -37,7 +37,7 @@ class JadwalController extends Controller
     {
         //
         $request->validate([
-            
+
             'tanggal' => 'required',
             'tiba' => 'required',
             'keberangkatan' => 'required',
@@ -66,27 +66,49 @@ class JadwalController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $jadwal)
     {
         //
+        return inertia('Jadwals/Edit', [
+            'jadwal' => $jadwal,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Jadwal $jadwal)
     {
         //
+        //set validation
+        $request->validate([
+            'tanggal' => 'required',
+            'tiba' => 'required',
+            'keberangkatan' => 'required',
+        ], [
+            'required' => "data ini tidak boleh kosong",
+        ]);
+
+        //update ticket
+        $jadwal->update([
+            'tanggal'     => $request->tanggal,
+            'tiba'   => $request->tiba,
+            'keberangkatan'   => $request->keberangkatan,
+            
+        ]);
+
+        //redirect
+        return Inertia::render('Jadwal');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Jadwal $id)
+    public function destroy($id)
     {
         //
-
-        $id->delete();
+        $jadwals = Jadwal::findOrFail($id); // mencari data berdasarkan id
+        $jadwals->delete();
         return back()->with('message', 'Info Jadwal berhasil dihapus');
     }
 }

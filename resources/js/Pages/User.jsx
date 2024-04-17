@@ -4,7 +4,7 @@ import React from "react";
 import { ImUsers } from "react-icons/im";
 import { Head, Link, router, useForm, usePage } from "@inertiajs/react";
 
-export default function User( ) {
+export default function User() {
     const { data, users } = usePage().props;
 
     return (
@@ -16,9 +16,6 @@ export default function User( ) {
                 <table className="w-full text-sm text-center rtl:text-right text-midnight">
                     <thead className="text-xs text-midnight uppercase bg-gray font-bold">
                         <tr>
-                            <th scope="col" className="px-6 py-3">
-                                id
-                            </th>
                             <th scope="col" className="px-6 py-3">
                                 name
                             </th>
@@ -35,12 +32,6 @@ export default function User( ) {
                         {users.data.map((user, i) => {
                             return (
                                 <tr key={i}>
-                                    <th
-                                        scope="row"
-                                        className=" py-4  text-midnight font-medium whitespace-nowrap dark:text-black"
-                                    >
-                                        {user.id}
-                                    </th>
                                     <th
                                         scope="row"
                                         className=" py-4  text-midnight font-medium whitespace-nowrap dark:text-black"
