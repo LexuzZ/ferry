@@ -13,11 +13,19 @@ class JadwalController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function info()
+    {
+        $information = Jadwal::with('rutes', 'kapals')->get();
+        return Inertia::render('Jadwal', [
+            'information' =>  $information
+        ]);
+    }
+
     public function index()
     {
-        $jadwals = Jadwal::with('rutes', 'kapals')->get();
-        return Inertia::render('Jadwal', [
-            'jadwals' =>  $jadwals
+        $jadwals = Jadwal::get();
+        return Inertia::render('Jadwal/Index', [
+            'jadwals' => $jadwals
         ]);
     }
 
@@ -27,7 +35,7 @@ class JadwalController extends Controller
     public function create()
     {
         //
-
+        return Inertia::render('Jadwal/Create');
     }
 
     /**
@@ -48,7 +56,7 @@ class JadwalController extends Controller
 
         ]);
         Jadwal::create($request->all());
-        return back()->with('message', 'Info Jadwal berhasil disimpan');
+        return redirect()->route('jadwals.index')->with('message', 'Info Jadwal berhasil disimpan');
         // return Inertia::render('Jadwals/Show', [
         //     'post' => $comment->post,
         //     'comments' => $comment->post->comments,
@@ -66,10 +74,10 @@ class JadwalController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $jadwal)
+    public function edit(Jadwal $jadwal)
     {
         //
-        return inertia('Jadwals/Edit', [
+        return inertia('Jadwal/Edit', [
             'jadwal' => $jadwal,
         ]);
     }
@@ -81,7 +89,7 @@ class JadwalController extends Controller
     {
         //
         //set validation
-        $request->validate([
+        $data = $request->validate([
             'tanggal' => 'required',
             'tiba' => 'required',
             'keberangkatan' => 'required',
@@ -90,15 +98,10 @@ class JadwalController extends Controller
         ]);
 
         //update ticket
-        $jadwal->update([
-            'tanggal'     => $request->tanggal,
-            'tiba'   => $request->tiba,
-            'keberangkatan'   => $request->keberangkatan,
-            
-        ]);
+        $jadwal->update($data);
 
         //redirect
-        return Inertia::render('Jadwal');
+        return redirect()->route('jadwals.index')->with('message', 'Info Jadwal berhasil diupdate');
     }
 
     /**
