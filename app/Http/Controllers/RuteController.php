@@ -46,8 +46,7 @@ class RuteController extends Controller
 
         ]);
         Rute::create($request->all());
-        return back()->with('message', 'Tambah Rute berhasil disimpan');
-    }
+        return redirect()->route('rute.index')->with('message', 'Rute berhasil ditambahkan');    }
 
     /**
      * Display the specified resource.

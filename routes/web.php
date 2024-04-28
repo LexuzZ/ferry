@@ -46,6 +46,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/rute/edit/{rute}', [RuteController::class, 'edit'])->name('rute.edit');
         Route::patch('/rute/edit/{rute}', [RuteController::class, 'update'])->name('rute.update');
         Route::get('/kapal', [KapalController::class, 'index'])->name('kapals.index');
+        Route::get('/kapal/create', [KapalController::class, 'create'])->name('kapals.create');
         Route::get('/kapal/edit/{kapal}', [KapalController::class, 'edit'])->name('kapals.edit');
         Route::patch('/kapal/edit/{kapal}', [KapalController::class, 'update'])->name('kapals.update');
         Route::get('/rute', [RuteController::class, 'index'])->name('rute.index');

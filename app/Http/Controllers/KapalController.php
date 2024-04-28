@@ -15,7 +15,7 @@ class KapalController extends Controller
     {
         //
         $kapals = Kapal::with('jadwals')->get();
-        return Inertia::render('Kapal', [
+        return Inertia::render('Kapal/Index', [
             'kapals' => $kapals
         ]);
     }
@@ -26,6 +26,7 @@ class KapalController extends Controller
     public function create()
     {
         //
+        return Inertia::render('Kapal/Create');
     }
 
     /**
@@ -46,7 +47,8 @@ class KapalController extends Controller
 
         ]);
         Kapal::create($request->all());
-        return back()->with('message', 'Tambah Kapal berhasil disimpan');
+        return redirect()->route('kapal.index')->with('message', 'data kapal berhasil disimpan');
+      
     }
 
     /**
