@@ -80,7 +80,7 @@ const AdminLayout = ({ children }) => {
             </nav>
             <aside
                 id="logo-sidebar"
-                className="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full  border-r border-navy sm:translate-x-0 bg-navy"
+                className="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full   border-navy sm:translate-x-0 bg-navy"
                 aria-label="Sidebar"
             >
                 <div className="h-full px-3 pb-4 overflow-y-auto">
@@ -88,7 +88,7 @@ const AdminLayout = ({ children }) => {
                         <li>
                             <a
                                 href="/dashboard"
-                                className="flex items-center p-2 text-bermuda rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                                className="flex items-center p-2 text-bermuda rounded-lg dark:text-white hover:bg-gray dark:hover:bg-gray-700 group"
                             >
                                 <svg
                                     className="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
@@ -108,7 +108,7 @@ const AdminLayout = ({ children }) => {
                         <li>
                             <a
                                 href="/information"
-                                className="flex items-center p-2 text-bermuda rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                                className="flex items-center p-2 text-bermuda rounded-lg dark:text-white hover:bg-gray dark:hover:bg-gray-700 group"
                             >
                                 <svg
                                     className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
@@ -127,7 +127,7 @@ const AdminLayout = ({ children }) => {
                         <li>
                             <a
                                 href="/jadwals"
-                                className="flex items-center p-2 text-bermuda rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                                className="flex items-center p-2 text-bermuda rounded-lg dark:text-white hover:bg-gray dark:hover:bg-gray-700 group"
                             >
                                 <svg
                                     className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
@@ -146,7 +146,7 @@ const AdminLayout = ({ children }) => {
                         <li>
                             <a
                                 href="/rute"
-                                className="flex items-center p-2 text-bermuda rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                                className="flex items-center p-2 text-bermuda rounded-lg dark:text-white hover:bg-gray dark:hover:bg-gray-700 group"
                             >
                                 <svg
                                     className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
@@ -165,7 +165,7 @@ const AdminLayout = ({ children }) => {
                         <li>
                             <a
                                 href="/user"
-                                className="flex items-center p-2 text-bermuda rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                                className="flex items-center p-2 text-bermuda rounded-lg dark:text-white hover:bg-gray dark:hover:bg-gray-700 group"
                             >
                                 <svg
                                     className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
@@ -184,7 +184,7 @@ const AdminLayout = ({ children }) => {
                         <li>
                             <a
                                 href="kapal"
-                                className="flex items-center p-2 text-bermuda rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                                className="flex items-center p-2 text-bermuda rounded-lg dark:text-white hover:bg-gray dark:hover:bg-gray-700 group"
                             >
                                 <svg
                                     className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
@@ -205,7 +205,7 @@ const AdminLayout = ({ children }) => {
                                 href={route("logout")}
                                 method="post"
                                 as="button"
-                                className="flex items-center p-2 text-bermuda rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                                className="flex items-center p-2 text-bermuda rounded-lg dark:text-white hover:bg-gray dark:hover:bg-gray-700 group"
                             >
                                 <svg
                                     className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"

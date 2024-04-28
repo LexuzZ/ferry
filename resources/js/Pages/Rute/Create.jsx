@@ -23,7 +23,7 @@ const Create = () => {
     };
     return (
         <AdminLayout>
-            <div className="text-center text-midnight text-2xl font-bold py-4 mt-5">
+            <div className="text-center text-midnight text-2xl  py-4 mt-5">
                 Tambah Rute Perjalanan 
             </div>
             {flash.message && (

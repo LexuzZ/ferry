@@ -18,7 +18,7 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                'sans': ['"Barlow Semi Condensed"', ...defaultTheme.fontFamily.sans],
             },
         },
         colors: {
@@ -30,12 +30,13 @@ export default {
             'silver': '#ecebff',
             'sea': '#419197',
             'white': '#ffffff',
-            'navy': '#124076',
+            'navy': '#190482',
             'red': '#FF1818',
             'blue': '#2E99B0',
             'green': '#3CB29A',
             'grey': '#CCD3CA',
           },
+          
     },
 
     plugins: [forms, Flowbite, daisyui],

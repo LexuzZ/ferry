@@ -10,7 +10,7 @@ const Index = ({ jadwal, rutes }) => {
 
     return (
         <AdminLayout>
-            <div className="text-center text-midnight text-2xl font-bold py-4">
+            <div className="text-center text-midnight text-2xl font-serif py-4">
                 Informasi Rute
             </div>
             

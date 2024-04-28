@@ -28,7 +28,7 @@ const Index = () => {
     };
     return (
         <AdminLayout>
-            <div className="text-center text-midnight text-2xl font-bold py-4">
+            <div className="text-center text-midnight text-2xl  py-4">
                 Data Nama Kapal
             </div>
             <Link
