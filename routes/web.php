@@ -37,15 +37,19 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get("/redirectAuthenticatedUsers", [RedirectAuthenticatedUsersController::class, "home"])->name('redirectAuthenticatedUsers');
     Route::group(['middleware' => 'checkRole:admin'], function () {
         Route::inertia('/dashboard', 'Dashboard')->name('dashboard');
-        // Route::post('/jadwal', [JadwalController::class, 'store'])->name('jadwal.store');
+        Route::post('/jadwals', [JadwalController::class, 'store'])->name('jadwal.store');
         Route::get('/information', [JadwalController::class, 'info'])->name('information.info');
         Route::get('/jadwals', [JadwalController::class, 'index'])->name('jadwals.index');
+        Route::get('/jadwals/create', [JadwalController::class, 'create'])->name('jadwals.create');
         Route::get('/jadwals/edit/{jadwal}', [JadwalController::class, 'edit'])->name('jadwal.edit');
         Route::patch('/jadwals/edit/{jadwal}', [JadwalController::class, 'update'])->name('jadwals.update');
-        // Route::delete('/jadwal/{id}', [JadwalController::class, 'destroy'])->name('jadwal.destroy');
-        Route::resource('jadwals', JadwalController::class);
+        Route::get('/rute/edit/{rute}', [RuteController::class, 'edit'])->name('rute.edit');
+        Route::patch('/rute/edit/{rute}', [RuteController::class, 'update'])->name('rute.update');
         Route::get('/kapal', [KapalController::class, 'index'])->name('kapals.index');
+        Route::get('/kapal/edit/{kapal}', [KapalController::class, 'edit'])->name('kapals.edit');
+        Route::patch('/kapal/edit/{kapal}', [KapalController::class, 'update'])->name('kapals.update');
         Route::get('/rute', [RuteController::class, 'index'])->name('rute.index');
+        Route::get('/rute/create', [RuteController::class, 'create'])->name('rute.create');
         Route::get('/dashboard', [UserController::class, 'index'])->name('user.count');
         Route::get('/user', [UserController::class, 'userlist'])->name('user.store');
         Route::post('/rute', [RuteController::class, 'store'])->name('rutes.store');

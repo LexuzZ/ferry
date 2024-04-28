@@ -4,29 +4,29 @@ import React, { useState } from "react";
 import "../../../css/trash.css";
 import "../../../css/action.css";
 
-const Edit = ({ jadwal }) => {
+const Edit = ({ rute }) => {
     const { flash, errors } = usePage().props;
     const [processing, setProcessing] = useState(false)
     const { data, setData } = useForm({
-        tanggal: jadwal.tanggal,
-        tiba: jadwal.tiba,
-        keberangkatan: jadwal.keberangkatan,
+       
+        asal: rute.asal,
+        tujuan: rute.tujuan,
     });
     const handleUpdate = (e) => {
         setProcessing(true);
         e.preventDefault();
-        router.post(`/jadwals/edit/${jadwal.id}`, {
+        router.post(`/rute/edit/${rute.id}`, {
             _method: "patch",
-            tanggal: data.tanggal,
-            tiba: data.tiba,
-            keberangkatan: data.keberangkatan,
+        
+            asal: data.asal,
+            tujuan: data.tujuan,
         });
     };
 
     return (
         <AdminLayout>
             <div className="text-center text-midnight text-2xl font-bold py-4">
-                Update Jadwal Tanggal {data.tanggal}
+                Update Jadwal jadwal_id {data.jadwal_id}
             </div>
             {flash.message && (
                 <div
@@ -52,37 +52,7 @@ const Edit = ({ jadwal }) => {
             <div className="flex items-center justify-center">
                 <div className="w-full max-w-sm p-4 bg-bermuda border border-gray rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray dark:border-gray">
                     <form className="max-w-md mx-auto" onSubmit={handleUpdate}>
-                    <div>
-                            <label
-                                for="default-search"
-                                className="mb-2 text-sm font-medium text-gray sr-only dark:text-bermuda"
-                            >
-                                Search
-                            </label>
-                            <div className="relative">
-                                <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none"></div>
-                                <label
-                                    for="email"
-                                    className="block mb-2 text-sm font-medium text-bermuda"
-                                >
-                                    Tanggal Keberangkatan
-                                </label>
-                                <input
-                                    type="date"
-                                    // id="default-search"
-                                    className="bg-sea border text-midnight border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                                    placeholder="enter ..."
-                                    // required
-                                    onChange={(e) =>
-                                        setData("tanggal", e.target.value)
-                                    }
-                                    value={data.tanggal}
-                                />
-                                <p className="text-red text-sm mt-2">
-                                    {errors.tanggal}
-                                </p>
-                            </div>
-                        </div>
+                   
                         <div>
                             <label
                                 for="default-search"
@@ -96,21 +66,21 @@ const Edit = ({ jadwal }) => {
                                     for="email"
                                     className="block mb-2 text-sm font-medium text-bermuda"
                                 >
-                                    Tiba
+                                    asal
                                 </label>
                                 <input
-                                    type="time"
+                                    type="text"
                                     // id="default-search"
                                     className="bg-sea border border-gray-300 text-midnight text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                     placeholder="enter ..."
                                     // required
                                     onChange={(e) =>
-                                        setData("tiba", e.target.value)
+                                        setData("asal", e.target.value)
                                     }
-                                    value={data.tiba}
+                                    value={data.asal}
                                 />
                                 <p className="text-red text-sm mt-2">
-                                    {errors.tiba}
+                                    {errors.asal}
                                 </p>
                             </div>
                         </div>
@@ -127,21 +97,21 @@ const Edit = ({ jadwal }) => {
                                     for="email"
                                     className="block mb-2 text-sm font-medium text-bermuda"
                                 >
-                                    Keberangkatan
+                                    tujuan
                                 </label>
                                 <input
-                                    type="time"
+                                    type="text"
                                     // id="default-search"
                                     className="bg-sea border border-gray-300 text-midnight text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                     placeholder="enter ..."
                                     // required
                                     onChange={(e) =>
-                                        setData("keberangkatan", e.target.value)
+                                        setData("tujuan", e.target.value)
                                     }
-                                    value={data.keberangkatan}
+                                    value={data.tujuan}
                                 />
                                 <p className="text-red text-sm mt-2">
-                                    {errors.keberangkatan}
+                                    {errors.tujuan}
                                 </p>
                             </div>
                         </div>

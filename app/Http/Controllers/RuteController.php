@@ -15,7 +15,7 @@ class RuteController extends Controller
     {
         //
         $rutes = Rute::with('jadwals')->get();
-        return Inertia::render('Rute', [
+        return Inertia::render('Rute/Index', [
             'rutes' => $rutes
         ]);
     }
@@ -26,6 +26,7 @@ class RuteController extends Controller
     public function create()
     {
         //
+        return Inertia::render('Rute/Create');
     }
 
     /**
@@ -59,17 +60,33 @@ class RuteController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Rute $rute)
     {
         //
+        return inertia::render('Rute/Edit', [
+            'rute' => $rute,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Rute $rute)
     {
         //
+        $data = $request->validate([
+            'asal' => 'required',
+            'tujuan' => 'required',
+        ], [
+            'asal.required' => "pelabuhan asal tidak boleh kosong",
+            'tujuan.required' => "pelabuhan tujuan tidak boleh kosong",
+        ]);
+
+        //update ticket
+        $rute->update($data);
+
+        //redirect
+        return redirect()->route('rute.index')->with('message', 'Rute berhasil diupdate');
     }
 
     /**

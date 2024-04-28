@@ -2,37 +2,26 @@ import Pagination from "@/Components/Pagination";
 import AdminLayout from "@/Layouts/AdminLayout";
 import { Head, Link, router, useForm, usePage } from "@inertiajs/react";
 import React from "react";
-import "../../../resources/css/action.css";
-import "../../../resources/css/trash.css";
+import '../../../css/action.css'
+import '../../../css/trash.css'
 
-const Rute = ({ jadwal, rutes }) => {
+const Index = ({ jadwal, rutes }) => {
     const { flash, errors } = usePage().props;
 
-    const { data, setData, reset, post: submit } = useForm({
-        jadwal_id: "",
-        asal: "",
-        tujuan: "",
-    });
-    // const storeInfo = (e) => {
-    //     e.preventDefault();
-    //     router.post("/rute", data, {
-    //         onSuccess: () => {
-    //             reset();
-    //         },
-    //     });
-    // };
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        submit(route('rutes.store'));
-    };
-    const deletePost = async (id) => {
-        router.delete(`/rute/${id}`);
-    };
     return (
         <AdminLayout>
             <div className="text-center text-midnight text-2xl font-bold py-4">
                 Informasi Rute
             </div>
+            
+            <Link
+                href="/rute/create"
+                className="relative inline-flex items-center justify-center p-0.5 mb-2 ms-4 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800"
+            >
+                <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-navy dark:bg-blue-900 rounded-md group-hover:bg-opacity-0">
+                    Tambah 
+                </span>
+            </Link>
             {flash.message && (
                 <div
                     className="flex items-center p-4 mb-4 text-sm text-midnight rounded-lg  dark:text-green"
@@ -54,117 +43,6 @@ const Rute = ({ jadwal, rutes }) => {
                     </div>
                 </div>
             )}
-            <div className="flex items-center justify-center">
-                <div className="w-full max-w-sm p-4 bg-bermuda border border-gray rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray dark:border-gray">
-                    <form className="max-w-md mx-auto" onSubmit={handleSubmit}>
-                        <div>
-                            <label
-                                for="default-search"
-                                className="mb-2 text-sm font-medium text-gray sr-only dark:text-bermuda"
-                            >
-                                Search
-                            </label>
-                            <div className="relative">
-                                <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none"></div>
-                                <label
-                                    for="email"
-                                    className="block mb-2 text-sm font-medium text-bermuda"
-                                >
-                                    Jadwal ID
-                                </label>
-                                <input
-                                    type="text"
-                                    // id="default-search"
-                                    className="bg-sea border text-midnight border-gray-300  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                                    placeholder="enter ..."
-                                    // required
-                                    onChange={(e) =>
-                                        setData("jadwal_id", e.target.value)
-                                    }
-                                    value={data.jadwal_id}
-                                />
-                                <p className="text-red text-sm mt-2">
-                                    {errors.jadwal_id}
-                                </p>
-                            </div>
-                        </div>
-                        <div>
-                            <label
-                                for="default-search"
-                                className="mb-2 text-sm font-medium text-gray sr-only dark:text-bermuda"
-                            >
-                                Search
-                            </label>
-                            <div className="relative">
-                                <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none"></div>
-                                <label
-                                    for="email"
-                                    className="block mb-2 text-sm font-medium text-bermuda"
-                                >
-                                    Asal Pelabuhan
-                                </label>
-                                <input
-                                    type="text"
-                                    // id="default-search"
-                                    className="bg-sea border text-midnight border-gray-300  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                                    placeholder="enter ..."
-                                    // required
-                                    onChange={(e) =>
-                                        setData("asal", e.target.value)
-                                    }
-                                    value={data.asal}
-                                />
-                                <p className="text-red text-sm mt-2">
-                                    {errors.asal}
-                                </p>
-                            </div>
-                        </div>
-                        <div>
-                            <label
-                                for="default-search"
-                                className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
-                            >
-                                Search
-                            </label>
-                            <div className="relative">
-                                <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none"></div>
-                                <label
-                                    for="email"
-                                    className="block mb-2 text-sm font-medium text-bermuda"
-                                >
-                                    Pelabuhan Tujuan
-                                </label>
-                                <input
-                                    type="text"
-                                    // id="default-search"
-                                    className="bg-sea border border-gray-300 text-midnight text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                                    placeholder="enter ..."
-                                    // required
-                                    onChange={(e) =>
-                                        setData("tujuan", e.target.value)
-                                    }
-                                    value={data.tujuan}
-                                />
-                                <p className="text-red text-sm mt-2">
-                                    {errors.tujuan}
-                                </p>
-                            </div>
-                        </div>
-
-                        <button
-                            type="submit"
-                            className="mt-4 text-bermuda bg-navy hover:bg-blue hover:text-bermuda focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                        >
-                            Save
-                        </button>
-                    </form>
-                    {/* {errors.nama_kapal && (
-                    <p className="text-red-800 text-sm mt-2">
-                        {errors.nama_kapal}
-                    </p>
-                )} */}
-                </div>
-            </div>
 
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-6">
                 <table className="w-full text-sm text-center rtl:text-right text-midnight">
@@ -210,7 +88,7 @@ const Rute = ({ jadwal, rutes }) => {
 
                                     <td class="action">
                                         <Link
-                                            // href={`/tickets/${ticket.id}/edit`}
+                                            href={`rute/edit/${rute.id}`}
                                             class="Btn"
                                         >
                                             Edit
@@ -300,4 +178,4 @@ const Rute = ({ jadwal, rutes }) => {
         // </div>
     );
 };
-export default Rute;
+export default Index;
