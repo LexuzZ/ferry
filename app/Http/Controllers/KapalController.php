@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kapal;
+use App\Models\Seat;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -11,12 +12,27 @@ class KapalController extends Controller
     /**
      * Display a listing of the resource.
      */
+    // public function count()
+    // {
+    //     $seatCount = Seat::count();
+    //     return Inertia::render('Kapal/Index', [
+    //         'seatCount' => $seatCount,
+
+    //     ]);
+    // }
     public function index()
     {
         //
+        $ships = Kapal::withCount('seats')
+        ->with(['seats' => function ($query) {
+            $query->selectRaw('kapal_id, COUNT(*) as total_seats, SUM(available) as total_available')
+                ->groupBy('kapal_id');
+        }])
+        ->get();
         $kapals = Kapal::with('jadwals')->get();
         return Inertia::render('Kapal/Index', [
-            'kapals' => $kapals
+            'kapals' => $kapals,
+            'ships' => $ships
         ]);
     }
 

@@ -40,6 +40,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::inertia('/dashboard', 'Dashboard')->name('dashboard');
         Route::post('/jadwals', [JadwalController::class, 'store'])->name('jadwal.store');
         Route::get('/information', [JadwalController::class, 'info'])->name('information.info');
+        // Route::get('/kapal', [SeatController::class, 'tempat'])->name('seat.tempat');
         Route::get('/jadwals', [JadwalController::class, 'index'])->name('jadwals.index');
         Route::get('/jadwals/create', [JadwalController::class, 'create'])->name('jadwals.create');
         Route::get('/jadwals/edit/{jadwal}', [JadwalController::class, 'edit'])->name('jadwal.edit');
@@ -53,6 +54,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/rute', [RuteController::class, 'index'])->name('rute.index');
         Route::get('/rute/create', [RuteController::class, 'create'])->name('rute.create');
         Route::get('/dashboard', [UserController::class, 'index'])->name('user.count');
+        // Route::get('/kapal', [KapalController::class, 'count'])->name('seat.count');
         Route::get('/user', [UserController::class, 'userlist'])->name('user.store');
         Route::post('/rute', [RuteController::class, 'store'])->name('rutes.store');
         Route::post('/kapal', [KapalController::class, 'store'])->name('kapals.store');

@@ -13,10 +13,14 @@ class SeatSeeder extends Seeder
     public function run(): void
     {
         //
-        for ($i = 1; $i <= 200; $i++) {
-            \App\Models\Seat::create([
-                'name' => $i,
-            ]);
-        }
+        \App\Models\Kapal::all()->each(function ($kapal) {
+            for ($i = 1; $i <= 200; $i++) {
+                $kapal->seats()->create([
+                    'name' => " {$i}  ",
+                    
+                ]);
+            }
+        });
+        
     }
 }

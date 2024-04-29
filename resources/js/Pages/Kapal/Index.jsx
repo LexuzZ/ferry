@@ -6,8 +6,8 @@ import "../../../css/action.css";
 import "../../../css/trash.css";
 
 const Index = () => {
-    const { flash, errors, kapals } = usePage().props;
-    console.log(kapals);
+    const { flash, errors, kapals, ships } = usePage().props;
+    console.log(ships);
 
     const {
         data,
@@ -36,7 +36,7 @@ const Index = () => {
                 className="relative inline-flex items-center justify-center p-0.5 mb-2 ms-4 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800"
             >
                 <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-navy dark:bg-blue-900 rounded-md group-hover:bg-opacity-0">
-                    Tambah 
+                    Tambah
                 </span>
             </Link>
             {flash.message && (
@@ -60,7 +60,6 @@ const Index = () => {
                     </div>
                 </div>
             )}
-            
 
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-6">
                 <table className="w-full text-sm text-center rtl:text-right text-midnight">
@@ -72,6 +71,12 @@ const Index = () => {
                             <th scope="col" className="px-6 py-3">
                                 Nama Kapal
                             </th>
+                            <th scope="col" className="px-6 py-3">
+                                Total Kapasitas
+                            </th>
+                            <th scope="col" className="px-6 py-3">
+                                Kapasitas Tersedia
+                            </th>
 
                             <th scope="col" className=" py-3">
                                 Action
@@ -79,9 +84,9 @@ const Index = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {kapals.map((kapal, i) => {
+                        {ships.map((kapal) => {
                             return (
-                                <tr key={i}>
+                                <tr key={kapal.id}>
                                     <th
                                         scope="row"
                                         className=" py-4  text-midnight  font-medium whitespace-nowrap dark:text-black"
@@ -94,6 +99,16 @@ const Index = () => {
                                     >
                                         {kapal.nama_kapal}
                                     </th>
+                                    <th
+                                        scope="row"
+                                        className=" py-4  text-midnight  font-medium whitespace-nowrap dark:text-black"
+                                    >
+                                        {kapal.seats_count}
+                                    </th>
+                                    {kapal.seats.map((seat, i) => (
+                                        <th key={i}>{seat.total_available}</th>
+                                    ))}
+
                                     <td class="action">
                                         <Link
                                             // href={`/tickets/${ticket.id}/edit`}

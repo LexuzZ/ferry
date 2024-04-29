@@ -16,6 +16,13 @@ class SeatController extends Controller
             'seats' => $seats
         ]);
     }
+    public function tempat()
+    {
+        $seats = Seat::with( 'seats')->get();
+        return Inertia::render('Kapal/Index', [
+            'seats' => $seats
+        ]);
+    }
     //
     public function reserve(Seat $seat)
     {
@@ -28,4 +35,6 @@ class SeatController extends Controller
             return response()->json(['success' => false, 'message' => 'Tempat duduk sudah dipesan.']);
         }
     }
+
+    
 }
