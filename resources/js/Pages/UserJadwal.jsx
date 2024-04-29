@@ -74,7 +74,7 @@ const UserJadwal = () => {
                                     >
                                         {jadwal.keberangkatan}
                                     </th>
-                                    <td><Link href="/userDashboard" className="btn btn-primary mx-2 my-2">Pesan</Link></td>
+                                    <td><Link href="/seats" className="btn btn-primary mx-2 my-2">Pesan</Link></td>
                                 </tr>
                             );
                         })}

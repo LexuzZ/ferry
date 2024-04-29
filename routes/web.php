@@ -7,6 +7,7 @@ use App\Http\Controllers\JadwalUserController;
 use App\Http\Controllers\KapalController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RuteController;
+use App\Http\Controllers\SeatController;
 use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -61,6 +62,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::inertia('/userDashboard', 'UserDashboard')->name('userDashboard');
         Route::get('/userJadwal', [JadwalUserController::class, 'index'])->name('jadwal.user');
         Route::get('/pesanan', [JadwalUserController::class, 'index'])->name('jadwal.pesanan');
+        Route::get('/seats', [SeatController::class, 'index'])->name('seats.index');
+        Route::post('/seats/{seat}/reserve', [SeatController::class, 'reserve'])->name('seats.reserve');
     });
 });
 

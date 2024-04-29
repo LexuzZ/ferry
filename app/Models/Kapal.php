@@ -16,4 +16,7 @@ class Kapal extends Model
     {
         return $this->belongsTo(Jadwal::class);
     }
+    public function seats(){
+        return $this->hasMany(Seat::class);
+    }
 }

@@ -1,7 +1,8 @@
 import { Link, usePage } from "@inertiajs/react";
 import React from "react";
 import Dropdown from "@/Components/Dropdown";
-
+import NavLink from "@/Components/NavLink";
+NavLink
 
 
 export default function UserLayout({ children }) {
@@ -41,14 +42,15 @@ export default function UserLayout({ children }) {
                                     DLNFerry
                                 </span>
                             </a>
+                            <NavLink
+                                href={route("userDashboard")}
+                                active={route().current("userDashboard")}
+                            >
+                                Dashboard
+                            </NavLink>
                         </div>
                         <div className="flex items-center me-24 ">
-                            {/* <NavLink
-                                href={route("jadwal.user")}
-                                active={route().current("jadwal.user")}
-                            >
-                                Jadwal Keberangkatan
-                            </NavLink> */}
+                           
                         </div>
 
                         <div className="hidden sm:flex sm:items-center sm:ms-6">
