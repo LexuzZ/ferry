@@ -86,7 +86,7 @@ const Index = () => {
                     <tbody>
                         {ships.map((kapal) => {
                             return (
-                                <tr key={kapal.id}>
+                                <tr key={kapal.jadwal_id}>
                                     <th
                                         scope="row"
                                         className=" py-4  text-midnight  font-medium whitespace-nowrap dark:text-black"
@@ -99,14 +99,14 @@ const Index = () => {
                                     >
                                         {kapal.nama_kapal}
                                     </th>
-                                    <th
-                                        scope="row"
-                                        className=" py-4  text-midnight  font-medium whitespace-nowrap dark:text-black"
-                                    >
-                                        {kapal.seats_count}
-                                    </th>
-                                    {kapal.seats.map((seat, i) => (
-                                        <th key={i}>{seat.total_available}</th>
+                                    
+                                    {kapal.seats.map((seat) => (
+                                        <th key={seat.kapal_id}>
+                                            {seat.total_seats}
+                                        </th>
+                                    ))}
+                                    {kapal.seats.map((seat) => (
+                                        <th key={seat.id}>{seat.total_available}</th>
                                     ))}
 
                                     <td class="action">

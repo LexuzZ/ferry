@@ -15,5 +15,8 @@ class Jadwal extends Model
     public function kapals(){
         return $this->hasMany(Kapal::class);
     }
+    public function seats(){
+        return $this->hasMany(Seat::class);
+    }
 
 }

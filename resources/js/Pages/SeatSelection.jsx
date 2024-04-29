@@ -19,20 +19,14 @@ const SeatSelection = ({ seats }) => {
                 <h2 className="mt-10 mb-5 font-bold text-center text-midnight">
                     Pilih Tempat Duduk/Tidur
                 </h2>
-
-                <ul className=""></ul>
-                <div class="grid grid-cols-10 gap-10">
+                <div className="grid grid-cols-5 gap-5">
                     {seats.map((seat, index) => (
-                        <div
-                            key={index}
-                            className="flex items-center justify-center p-4 bg-silver pe-4 text-midnight"
-                        >
-                            {seat.name}
-
+                        <div className="p-5 flex justify-center items-center rounded-lg max-w-xs shadow-lg text-midnight">
+                            No. Seat : {seat.name}
                             {seat.available ? (
                                 <button
                                     onClick={() => reserveSeat(seat.id)}
-                                    className=" btn btn-circle"
+                                    className="ms-4 btn flex justify-center items-center "
                                 >
                                     Pesan
                                 </button>
