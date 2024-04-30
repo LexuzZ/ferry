@@ -146,10 +146,16 @@ const Create = () => {
 
                         <button
                             type="submit"
-                            className="mt-4 text-white bg-metal hover:bg-blue hover:text-bermuda focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                            className="mt-4 me-3 text-white bg-metal hover:bg-blue hover:text-bermuda focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                         >
                             Save
                         </button>
+                        <Link
+                            href="/rute"
+                            className="mt-4 text-white bg-metal hover:bg-blue hover:text-bermuda focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                        >
+                            Kembali
+                        </Link>
                     </form>
                     {/* {errors.nama_kapal && (
                     <p className="text-red-800 text-sm mt-2">
