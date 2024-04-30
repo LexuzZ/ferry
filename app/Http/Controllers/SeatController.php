@@ -2,18 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kapal;
 use App\Models\Seat;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class SeatController extends Controller
 {
-    public function index()
+    public function index($kapal)
     {
-        $seats = Seat::where('available', true)->get(); // Hanya ambil tempat duduk yang tersedia
+        $kapal = Kapal::find($kapal)->seats->where('available', true);
+        // return response($kapal);
+        // $seats = Seat::where('available', true)->get(); // Hanya ambil tempat duduk yang tersedia
 
         return Inertia::render('SeatSelection', [
-            'seats' => $seats
+            'seats' => $kapal
         ]);
     }
     public function tempat()
