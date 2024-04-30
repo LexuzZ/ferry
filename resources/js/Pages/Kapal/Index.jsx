@@ -28,8 +28,8 @@ const Index = () => {
     };
     return (
         <AdminLayout>
-            <div className="text-center text-midnight text-2xl  py-4">
-                Data Nama Kapal
+            <div className="text-center text-midnight text-2xl font-serif py-4">
+                MANAJEMEN KAPAL
             </div>
             <Link
                 href="/kapal/create"
