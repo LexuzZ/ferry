@@ -7,16 +7,31 @@ export default function userDashboard() {
     const { auth } = usePage().props;
     return (
         <UserLayout>
-            <div className="py-12">
-                <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
-                    <div className="overflow-hidden bg-blue-950 shadow-sm sm:rounded-lg">
-                        <div className="p-6 bg-cyan-50 border-b text-midnight font-serif">
+            <div className=" flex items-center">
+                <section
+                    className="w-full bg-cover bg-center py-32"
+                    style={{
+                        backgroundImage:
+                            'url("https://source.unsplash.com/random")',
+                    }}
+                >
+                    <div className="container mx-auto text-center text-white">
+                        <h1 className="text-5xl font-medium mb-6">
                             Selamat datang {auth.user.name}!
-                        </div>
-                        <Link href="/userJadwal" className="btn btn-primary mx-2 my-2">Pesan Tiket</Link>
+                        </h1>
+                        <p className="text-xl mb-12">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit. Nam viverra euismod odio, gravida pellentesque
+                            urna varius vitae.
+                        </p>
+                        <Link
+                            href="/userJadwal"
+                            className="btn btn-primary mx-2 my-2"
+                        >
+                            Pesan Tiket
+                        </Link>
                     </div>
-                    
-                </div>
+                </section>
             </div>
         </UserLayout>
     );
