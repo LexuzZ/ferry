@@ -23,7 +23,7 @@ export default {
         },
         colors: {
             
-            'gray': '#7F9F80',
+            'gray': '#222831',
             'midnight': '#000000',
             'metal': '#565584',
             'tahiti': '#3ab7bf',
@@ -35,6 +35,8 @@ export default {
             'blue': '#2E99B0',
             'green': '#3CB29A',
             'grey': '#CCD3CA',
+            'orange': '#F97300',
+            'yellow': '#FFC100',
           },
           
     },
