@@ -42,7 +42,9 @@ class RuteController extends Controller
 
 
         ], [
-            'asal.required' => "asal tidak boleh kosong",
+            'jadwal_id.required' => "ID Jadwal tidak boleh kosong",
+            'asal.required' => "Pelabuhan asal tidak boleh kosong",
+            'tujuan.required' => "Pelabuhan tujuan tidak boleh kosong",
 
         ]);
         Rute::create($request->all());
