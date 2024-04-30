@@ -4,7 +4,7 @@ import { Head, Link, router, useForm, usePage } from "@inertiajs/react";
 import React from "react";
 
 const UserJadwal = () => {
-    const { userJadwals } = usePage().props;
+    const { userJadwals, kapal } = usePage().props;
     
     return (
         <UserLayout>
@@ -54,6 +54,7 @@ const UserJadwal = () => {
                                     {jadwal.kapals.map((kapal, i) => (
                                         <th key={i}>{kapal.nama_kapal}</th>
                                     ))}
+                                    
 
                                     {jadwal.rutes.map((rute, i) => (
                                         <th key={i}>{rute.asal}</th>
@@ -74,7 +75,11 @@ const UserJadwal = () => {
                                     >
                                         {jadwal.keberangkatan}
                                     </th>
-                                    <td><Link href="/seats" className="btn btn-primary mx-2 my-2">Pesan</Link></td>
+                                    {jadwal.kapals.map((kapal, i) => (
+                                        <Link key={i} href={`seats/${kapal.id}`}>Pesan</Link>
+                                    ))}
+                                    
+                                    {/* <td><Link href={`seats/${jadwal.id}`} className="btn btn-primary mx-2 my-2">Pesan</Link></td> */}
                                 </tr>
                             );
                         })}
