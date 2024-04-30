@@ -12,9 +12,9 @@ const UserJadwal = () => {
                 Informasi Jadwal
             </div>
 
-            <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-6">
+            <div className="relative overflow-x-auto shadow-md  mt-6 px-6 rounded-lg">
                 <table className="w-full text-sm text-center rtl:text-right text-midnight">
-                    <thead className="text-xs text-midnight uppercase bg-gray font-bold">
+                    <thead className="text-xs text-white uppercase bg-gray font-bold">
                         <tr>
                             <th scope="col" className="px-6 py-3">
                                 Tanggal
@@ -76,7 +76,7 @@ const UserJadwal = () => {
                                         {jadwal.keberangkatan}
                                     </th>
                                     {jadwal.kapals.map((kapal, i) => (
-                                        <Link key={i} href={`seats/${kapal.id}`}>Pesan</Link>
+                                        <Link key={i} href={`seats/${kapal.id}`} className="btn btn-primary m-3">Pesan</Link>
                                     ))}
                                     
                                     {/* <td><Link href={`seats/${jadwal.id}`} className="btn btn-primary mx-2 my-2">Pesan</Link></td> */}
