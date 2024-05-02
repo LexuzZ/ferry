@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Jadwal extends Model
 {
     use HasFactory;
-    protected $fillable = ['rute_id', 'tanggal', 'tiba', 'keberangkatan'];
+    protected $fillable = [ 'tanggal', 'tiba', 'keberangkatan'];
     public function rutes(){
         return $this->hasMany(Rute::class);
     }

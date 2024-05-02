@@ -16,7 +16,7 @@ const SeatSelection = ({ seats }) => {
     return (
         <UserLayout>
             <div>
-                <h2 className="mt-10 mb-5 font-bold text-center text-midnight">
+                <h2 className="pt-20 mb-5 font-bold text-center text-xl text-midnight">
                     Pilih Tempat Duduk/Tidur
                 </h2>
                 <div className="grid grid-cols-5 gap-5">

@@ -39,7 +39,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['middleware' => 'checkRole:admin'], function () {
         Route::inertia('/dashboard', 'Dashboard')->name('dashboard');
         Route::post('/jadwals', [JadwalController::class, 'store'])->name('jadwal.store');
-        Route::get('/information', [JadwalController::class, 'info'])->name('information.info');
         // Route::get('/kapal', [SeatController::class, 'tempat'])->name('seat.tempat');
         Route::get('/jadwals', [JadwalController::class, 'index'])->name('jadwals.index');
         Route::get('/jadwals/create', [JadwalController::class, 'create'])->name('jadwals.create');
@@ -47,7 +46,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::patch('/jadwals/edit/{jadwal}', [JadwalController::class, 'update'])->name('jadwals.update');
         Route::get('/rute/edit/{rute}', [RuteController::class, 'edit'])->name('rute.edit');
         Route::patch('/rute/edit/{rute}', [RuteController::class, 'update'])->name('rute.update');
-        Route::get('/kapal', [KapalController::class, 'index'])->name('kapals.index');
+        Route::get('/kapal', [KapalController::class, 'index'])->name('kapal.index');
         Route::get('/kapal/create', [KapalController::class, 'create'])->name('kapals.create');
         Route::get('/kapal/edit/{kapal}', [KapalController::class, 'edit'])->name('kapals.edit');
         Route::patch('/kapal/edit/{kapal}', [KapalController::class, 'update'])->name('kapals.update');

@@ -14,13 +14,6 @@ class JadwalController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function info()
-    {
-        $information = Jadwal::get();
-        return Inertia::render('Jadwal', [
-            'information' =>  $information
-        ]);
-    }
 
     public function index()
     {
