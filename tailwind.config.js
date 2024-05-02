@@ -30,7 +30,7 @@ export default {
             'silver': '#ecebff',
             'sea': '#419197',
             'white': '#ffffff',
-            'navy': '#190482',
+            'navy': '#074173',
             'red': '#FF1818',
             'blue': '#2E99B0',
             'green': '#3CB29A',
