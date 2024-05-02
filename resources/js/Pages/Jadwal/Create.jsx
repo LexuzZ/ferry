@@ -1,15 +1,17 @@
 import AdminLayout from "@/Layouts/AdminLayout";
 import { Head, Link, router, useForm, usePage } from "@inertiajs/react";
 import React from "react";
-import '../../../css/trash.css'
-import '../../../css/action.css'
+import "../../../css/trash.css";
+import "../../../css/action.css";
 
 const Jadwal = () => {
-    const { flash, errors} = usePage().props;
+    const { flash, errors, kapal, rute } = usePage().props;
+    console.log(rute);
 
     const { data, setData, reset } = useForm({
         asal: "",
         tujuan: "",
+        nama_kapal: "",
         tanggal: "",
         tiba: "",
         keberangkatan: "",
@@ -54,29 +56,52 @@ const Jadwal = () => {
             <div className="flex items-center justify-center">
                 <div className="w-full max-w-sm p-4 bg-bermuda border border-gray rounded-lg shadow sm:p-6 md:p-8 dark:bg-grey dark:border-gray">
                     <form className="max-w-md mx-auto" onSubmit={storeInfo}>
-                        {/* <div>
+                        <div>
                             <label
                                 for="email"
-                                className="block mb-2 text-sm font-medium text-bermuda"
+                                className="block mb-2 text-sm font-medium text-midnight"
+                            >
+                                Nama Kapal
+                            </label>
+                            <select
+                                className="select select-bordered w-full max-w-xs"
+                                onChange={(e) =>
+                                    setData("nama_kapal", e.target.value)
+                                }
+                                value={data.nama_kapal}
+                            >
+                                <option value=""  disabled selected>Pilih Kapal</option>
+                                {kapal.map((k) => (
+                                    <option key={k.id} value={k.id}>
+                                        {k.nama_kapal}
+                                    </option>
+                                ))}
+                            </select>
+
+                            <p className="text-red text-sm mt-2">
+                                {errors.nama_kapal}
+                            </p>
+                        </div>
+                        <div>
+                            <label
+                                for="email"
+                                className="block mb-2 text-sm font-medium text-midnight"
                             >
                                 Pelabuhan Asal
                             </label>
-                           
-
                             <select
+                                className="select select-bordered w-full max-w-xs"
                                 onChange={(e) =>
                                     setData("asal", e.target.value)
                                 }
                                 value={data.asal}
                             >
-                                <option value="" selected={true}>-pilih-</option>
-                                {jadwals.map((jadwal) => {
-                                    return jadwal.rutes.map((rute) => (
-                                        <option value={rute.id} >
-                                            {rute.asal}
-                                        </option>
-                                    ));
-                                })}
+                                <option value="" disabled selected>Pilih Rute Asal</option>
+                                {rute.map((k) => (
+                                    <option key={k.id} value={k.id}>
+                                        {k.asal}
+                                    </option>
+                                ))}
                             </select>
 
                             <p className="text-red text-sm mt-2">
@@ -86,30 +111,29 @@ const Jadwal = () => {
                         <div>
                             <label
                                 for="email"
-                                className="block mb-2 text-sm font-medium text-bermuda"
+                                className="block mb-2 text-sm font-medium text-midnight"
                             >
                                 Pelabuhan Tujuan
                             </label>
                             <select
+                                className="select select-bordered w-full max-w-xs"
                                 onChange={(e) =>
                                     setData("tujuan", e.target.value)
                                 }
                                 value={data.tujuan}
                             >
-                                <option value="">-pilih-</option>
-                                {jadwals.map((jadwal) => {
-                                    return jadwal.rutes.map((rute) => (
-                                        <option value={rute.id} >
-                                            {rute.tujuan}
-                                        </option>
-                                    ));
-                                })}
+                                <option value="" disabled selected>Pilih Rute Tujuan</option>
+                                {rute.map((k) => (
+                                    <option key={k.id} value={k.id}>
+                                        {k.tujuan}
+                                    </option>
+                                ))}
                             </select>
 
                             <p className="text-red text-sm mt-2">
                                 {errors.tujuan}
                             </p>
-                        </div> */}
+                        </div>
 
                         <div>
                             <label
@@ -122,7 +146,7 @@ const Jadwal = () => {
                                 <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none"></div>
                                 <label
                                     for="email"
-                                    className="block mb-2 text-sm font-medium text-bermuda"
+                                    className="block mb-2 text-sm font-medium text-midnight"
                                 >
                                     Tanggal Keberangkatan
                                 </label>
@@ -153,7 +177,7 @@ const Jadwal = () => {
                                 <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none"></div>
                                 <label
                                     for="email"
-                                    className="block mb-2 text-sm font-medium text-bermuda"
+                                    className="block mb-2 text-sm font-medium text-midnight"
                                 >
                                     Tiba
                                 </label>
@@ -184,7 +208,7 @@ const Jadwal = () => {
                                 <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none"></div>
                                 <label
                                     for="email"
-                                    className="block mb-2 text-sm font-medium text-bermuda"
+                                    className="block mb-2 text-sm font-medium text-midnight"
                                 >
                                     Keberangkatan
                                 </label>
@@ -213,8 +237,6 @@ const Jadwal = () => {
                     </form>
                 </div>
             </div>
-
-            
 
             {/* <div className="mt-4 flex justify-center">
                 {" "}

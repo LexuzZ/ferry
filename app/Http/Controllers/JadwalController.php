@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Jadwal;
+use App\Models\Kapal;
 use App\Models\Rute;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -15,7 +16,7 @@ class JadwalController extends Controller
      */
     public function info()
     {
-        $information = Jadwal::with('rutes', 'kapals')->get();
+        $information = Jadwal::get();
         return Inertia::render('Jadwal', [
             'information' =>  $information
         ]);
@@ -23,7 +24,7 @@ class JadwalController extends Controller
 
     public function index()
     {
-        $jadwals = Jadwal::get();
+        $jadwals = Jadwal::with('rutes', 'kapals')->get();
         return Inertia::render('Jadwal/Index', [
             'jadwals' => $jadwals
         ]);
@@ -35,7 +36,13 @@ class JadwalController extends Controller
     public function create()
     {
         //
-        return Inertia::render('Jadwal/Create');
+        $kapal = Kapal::all();
+        $rute = Rute::all();
+
+        return Inertia::render('Jadwal/Create', [
+            'kapal' => $kapal,
+            'rute' => $rute,
+        ]);
     }
 
     /**
@@ -77,8 +84,12 @@ class JadwalController extends Controller
     public function edit(Jadwal $jadwal)
     {
         //
+        $kapal = Kapal::all();
+        $rute = Rute::all();
         return inertia('Jadwal/Edit', [
             'jadwal' => $jadwal,
+            'kapal' => $kapal,
+            'rute' => $rute,
         ]);
     }
 

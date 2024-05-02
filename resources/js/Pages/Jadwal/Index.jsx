@@ -12,7 +12,7 @@ const Jadwal = ({ jadwals }) => {
     };
     return (
         <AdminLayout>
-            <div className="text-center text-midnight text-2xl font-bold py-4">
+            <div className="text-center text-midnight text-2xl font-bold py-4 uppercase">
                 Informasi Jadwal
             </div>
             <Link
@@ -20,7 +20,7 @@ const Jadwal = ({ jadwals }) => {
                 className="relative inline-flex items-center justify-center p-0.5 mb-2 ms-4 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800"
             >
                 <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-navy dark:bg-blue-900 rounded-md group-hover:bg-opacity-0">
-                    Tambah 
+                    Tambah
                 </span>
             </Link>
             {flash.message && (
@@ -47,7 +47,7 @@ const Jadwal = ({ jadwals }) => {
 
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-6">
                 <table className="w-full text-sm text-center rtl:text-right text-midnight">
-                    <thead className="text-xs text-midnight uppercase bg-gray font-bold">
+                    <thead className="text-xs text-white uppercase bg-gray font-bold">
                         <tr>
                             <th scope="col" className="px-6 py-3">
                                 ID
@@ -55,12 +55,21 @@ const Jadwal = ({ jadwals }) => {
                             <th scope="col" className="px-6 py-3">
                                 Tanggal
                             </th>
-
                             <th scope="col" className="px-6 py-3">
-                                tiba
+                                Nama Kapal
                             </th>
                             <th scope="col" className="px-6 py-3">
-                                keberangkatan
+                                Pelabuhan Asal
+                            </th>
+                            <th scope="col" className="px-6 py-3">
+                                Pelabuhan Tujuan
+                            </th>
+
+                            <th scope="col" className="px-6 py-3">
+                                Estimasi Tiba
+                            </th>
+                            <th scope="col" className="px-6 py-3">
+                                Estimasi Keberangkatan
                             </th>
 
                             <th scope="col" className="px-6 py-3">
@@ -84,6 +93,16 @@ const Jadwal = ({ jadwals }) => {
                                     >
                                         {jadwal.tanggal}
                                     </th>
+                                    {jadwal.kapals.map((kapal, i) => (
+                                        <th key={i}>{kapal.nama_kapal}</th>
+                                    ))}
+
+                                    {jadwal.rutes.map((rute, i) => (
+                                        <th key={i}>{rute.asal}</th>
+                                    ))}
+                                    {jadwal.rutes.map((rute, i) => (
+                                        <th key={i}>{rute.tujuan}</th>
+                                    ))}
 
                                     <th
                                         scope="row"

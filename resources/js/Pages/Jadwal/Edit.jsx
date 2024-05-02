@@ -4,10 +4,15 @@ import React, { useState } from "react";
 import "../../../css/trash.css";
 import "../../../css/action.css";
 
-const Edit = ({ jadwal }) => {
+const Edit = ({ jadwal, rute, kapal }) => {
+    console.log(rute);
+    console.log(kapal);
     const { flash, errors } = usePage().props;
-    const [processing, setProcessing] = useState(false)
+    const [processing, setProcessing] = useState(false);
     const { data, setData } = useForm({
+        asal: jadwal.asal,
+        nama_kapal: jadwal.nama_kapal,
+        tiba: jadwal.tiba,
         tanggal: jadwal.tanggal,
         tiba: jadwal.tiba,
         keberangkatan: jadwal.keberangkatan,
@@ -17,6 +22,9 @@ const Edit = ({ jadwal }) => {
         e.preventDefault();
         router.post(`/jadwals/edit/${jadwal.id}`, {
             _method: "patch",
+            asal: data.asal,
+            tiba: data.tiba,
+            nama_kapal: data.nama_kapal,
             tanggal: data.tanggal,
             tiba: data.tiba,
             keberangkatan: data.keberangkatan,
@@ -52,7 +60,91 @@ const Edit = ({ jadwal }) => {
             <div className="flex items-center justify-center">
                 <div className="w-full max-w-sm p-4 bg-bermuda border border-gray rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray dark:border-gray">
                     <form className="max-w-md mx-auto" onSubmit={handleUpdate}>
-                    <div>
+                        <div>
+                            <label
+                                for="email"
+                                className="block mb-2 text-sm font-medium text-midnight"
+                            >
+                                Nama Kapal
+                            </label>
+                            <select
+                                className="select select-bordered w-full max-w-xs"
+                                onChange={(e) =>
+                                    setData("nama_kapal", e.target.value)
+                                }
+                                value={data.nama_kapal}
+                            >
+                                <option value="" disabled selected>
+                                    Pilih Kapal
+                                </option>
+                                {kapal.map((k) => (
+                                    <option key={k.id} value={k.id}>
+                                        {k.nama_kapal}
+                                    </option>
+                                ))}
+                            </select>
+
+                            <p className="text-red text-sm mt-2">
+                                {errors.nama_kapal}
+                            </p>
+                        </div>
+                        <div>
+                            <label
+                                for="email"
+                                className="block mb-2 text-sm font-medium text-midnight"
+                            >
+                                Pelabuhan Asal
+                            </label>
+                            <select
+                                className="select select-bordered w-full max-w-xs"
+                                onChange={(e) =>
+                                    setData("asal", e.target.value)
+                                }
+                                value={data.asal}
+                            >
+                                <option value="" disabled selected>
+                                    Pilih Rute Asal
+                                </option>
+                                {rute.map((k) => (
+                                    <option key={k.id} value={k.id}>
+                                        {k.asal}
+                                    </option>
+                                ))}
+                            </select>
+
+                            <p className="text-red text-sm mt-2">
+                                {errors.asal}
+                            </p>
+                        </div>
+                        <div>
+                            <label
+                                for="email"
+                                className="block mb-2 text-sm font-medium text-midnight"
+                            >
+                                Pelabuhan Tujuan
+                            </label>
+                            <select
+                                className="select select-bordered w-full max-w-xs"
+                                onChange={(e) =>
+                                    setData("tujuan", e.target.value)
+                                }
+                                value={data.tujuan}
+                            >
+                                <option value="" disabled selected>
+                                    Pilih Rute Tujuan
+                                </option>
+                                {rute.map((k) => (
+                                    <option key={k.id} value={k.id}>
+                                        {k.tujuan}
+                                    </option>
+                                ))}
+                            </select>
+
+                            <p className="text-red text-sm mt-2">
+                                {errors.tujuan}
+                            </p>
+                        </div>
+                        <div>
                             <label
                                 for="default-search"
                                 className="mb-2 text-sm font-medium text-gray sr-only dark:text-bermuda"
@@ -149,7 +241,7 @@ const Edit = ({ jadwal }) => {
                             type="submit"
                             className="mt-4 text-bermuda bg-navy hover:bg-blue hover:text-bermuda focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                         >
-                           {processing ? "Processing..." : "UPDATE"}
+                            {processing ? "Processing..." : "UPDATE"}
                         </button>
                     </form>
                     {/* {errors.nama_kapal && (
