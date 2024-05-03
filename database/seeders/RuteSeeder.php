@@ -1,0 +1,24 @@
+<?php
+
+namespace Database\Seeders;
+
+use App\Models\Rute;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+
+class RuteSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
+    {
+        //
+        for ($i = 1; $i <= 4; $i++) {
+            Rute::create([
+                'nama_rute' => 'Rute ' . $i,
+                // Tambahkan kolom lainnya sesuai kebutuhan
+            ]);
+        }
+    }
+}
