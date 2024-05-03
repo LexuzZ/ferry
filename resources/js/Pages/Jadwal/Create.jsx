@@ -15,6 +15,7 @@ const Jadwal = () => {
         tanggal: "",
         tiba: "",
         keberangkatan: "",
+        nama_rute: "",
     });
     const storeInfo = (e) => {
         e.preventDefault();
@@ -92,14 +93,14 @@ const Jadwal = () => {
                             <select
                                 className="select select-bordered w-full max-w-xs"
                                 onChange={(e) =>
-                                    setData("asal", e.target.value)
+                                    setData("nama_rute", e.target.value)
                                 }
-                                value={data.asal}
+                                value={data.nama_rute}
                             >
                                 <option value="" disabled selected>Pilih Rute Asal</option>
                                 {rute.map((k) => (
                                     <option key={k.id} value={k.id}>
-                                        {k.asal}
+                                        {k.nama_rute}
                                     </option>
                                 ))}
                             </select>
