@@ -54,6 +54,9 @@ const Index = ({ jadwal, rutes }) => {
                             <th scope="col" className="px-6 py-3">
                                 Nama Rute
                             </th>
+                            <th scope="col" className="px-6 py-3">
+                                ETA
+                            </th>
 
                             <th scope="col" className=" py-3">
                                 Action
@@ -76,6 +79,7 @@ const Index = ({ jadwal, rutes }) => {
                                     >
                                         {rute.nama_rute}
                                     </th>
+                                  
 
                                     <td class="action">
                                         <Link

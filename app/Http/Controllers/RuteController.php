@@ -26,7 +26,13 @@ class RuteController extends Controller
     public function create()
     {
         //
-        return Inertia::render('Rute/Create');
+        
+        
+        $rute = Rute::all();
+
+        return Inertia::render('Rute/Create', [
+            'rute' => $rute,
+        ]);
     }
 
     /**
@@ -37,14 +43,12 @@ class RuteController extends Controller
         //
         $request->validate([
             'jadwal_id' => 'required',
-            'asal' => 'required',
-            'tujuan' => 'required',
+            'nama_rute' => 'required',
 
 
         ], [
             'jadwal_id.required' => "ID Jadwal tidak boleh kosong",
-            'asal.required' => "Pelabuhan asal tidak boleh kosong",
-            'tujuan.required' => "Pelabuhan tujuan tidak boleh kosong",
+            'nama_rute.required' => "Rute nama_rute tidak boleh kosong",
 
         ]);
         Rute::create($request->all());
@@ -76,11 +80,10 @@ class RuteController extends Controller
     {
         //
         $data = $request->validate([
-            'asal' => 'required',
-            'tujuan' => 'required',
+           
+            'nama_rute' => 'required',
         ], [
-            'asal.required' => "pelabuhan asal tidak boleh kosong",
-            'tujuan.required' => "pelabuhan tujuan tidak boleh kosong",
+            'nama_rute.required' => "Rute tidak boleh kosong",
         ]);
 
         //update ticket

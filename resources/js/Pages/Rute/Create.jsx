@@ -6,12 +6,11 @@ import "../../../css/action.css";
 import "../../../css/trash.css";
 
 const Create = () => {
-    const { flash, errors } = usePage().props;
+    const { flash, errors, rute } = usePage().props;
 
     const { data, setData, reset, post: submit } = useForm({
         jadwal_id: "",
-        asal: "",
-        tujuan: "",
+        nama_rute: "",
     });
    
     const handleSubmit = (e) => {
@@ -50,98 +49,58 @@ const Create = () => {
             <div className="flex items-center justify-center mt-5">
                 <div className="w-full max-w-sm p-4 bg-bermuda border border-gray rounded-lg shadow sm:p-6 md:p-8 dark:bg-white dark:border-gray">
                     <form className="max-w-md mx-auto" onSubmit={handleSubmit}>
-                        <div>
+                    <div>
                             <label
-                                for="default-search"
-                                className="mb-2 text-sm font-medium text-gray sr-only dark:text-bermuda"
+                                for="email"
+                                className="block mb-2 text-sm font-medium text-midnight"
                             >
-                                Search
+                                Jadwal ID
                             </label>
-                            <div className="relative">
-                                <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none"></div>
-                                <label
-                                    for="email"
-                                    className="block mb-2 text-sm font-medium text-midnight"
-                                >
-                                    Jadwal ID
-                                </label>
-                                <input
-                                    type="text"
-                                    // id="default-search"
-                                    className="bg-silver border text-midnight border-gray-300  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                                    placeholder="enter ..."
-                                    // required
-                                    onChange={(e) =>
-                                        setData("jadwal_id", e.target.value)
-                                    }
-                                    value={data.jadwal_id}
-                                />
-                                <p className="text-red text-sm mt-2">
-                                    {errors.jadwal_id}
-                                </p>
-                            </div>
+                            <select
+                                className="select select-bordered w-full max-w-xs"
+                                onChange={(e) =>
+                                    setData("jadwal_id", e.target.value)
+                                }
+                                value={data.jadwal_id}
+                            >
+                                <option value="" disabled selected>Pilih Rute Asal</option>
+                                {rute.map((k) => (
+                                    <option key={k.id} value={k.id}>
+                                        {k.jadwal_id}
+                                    </option>
+                                ))}
+                            </select>
+
+                            <p className="text-red text-sm mt-2">
+                                {errors.jadwal_id}
+                            </p>
                         </div>
+                       
                         <div>
                             <label
-                                for="default-search"
-                                className="mb-2 text-sm font-medium text-gray sr-only dark:text-bermuda"
+                                for="email"
+                                className="block mb-2 text-sm font-medium text-midnight"
                             >
-                                Search
+                                Rute Perjalanan
                             </label>
-                            <div className="relative">
-                                <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none"></div>
-                                <label
-                                    for="email"
-                                    className="block mb-2 text-sm font-medium text-midnight"
-                                >
-                                    Asal Pelabuhan
-                                </label>
-                                <input
-                                    type="text"
-                                    // id="default-search"
-                                    className="bg-silver border text-midnight border-gray-300  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                                    placeholder="enter ..."
-                                    // required
-                                    onChange={(e) =>
-                                        setData("asal", e.target.value)
-                                    }
-                                    value={data.asal}
-                                />
-                                <p className="text-red text-sm mt-2">
-                                    {errors.asal}
-                                </p>
-                            </div>
-                        </div>
-                        <div>
-                            <label
-                                for="default-search"
-                                className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
+                            <select
+                                className="select select-bordered w-full max-w-xs"
+                                onChange={(e) =>
+                                    setData("nama_rute", e.target.value)
+                                }
+                                value={data.nama_rute}
                             >
-                                Search
-                            </label>
-                            <div className="relative">
-                                <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none"></div>
-                                <label
-                                    for="email"
-                                    className="block mb-2 text-sm font-medium text-midnight"
-                                >
-                                    Pelabuhan Tujuan
-                                </label>
-                                <input
-                                    type="text"
-                                    // id="default-search"
-                                    className="bg-silver border border-gray-300 text-midnight text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                                    placeholder="enter ..."
-                                    // required
-                                    onChange={(e) =>
-                                        setData("tujuan", e.target.value)
-                                    }
-                                    value={data.tujuan}
-                                />
-                                <p className="text-red text-sm mt-2">
-                                    {errors.tujuan}
-                                </p>
-                            </div>
+                                <option value="" disabled selected>Pilih Rute Tujuan</option>
+                                {rute.map((k) => (
+                                    <option key={k.id} value={k.id}>
+                                        {k.nama_rute}
+                                    </option>
+                                ))}
+                            </select>
+
+                            <p className="text-red text-sm mt-2">
+                                {errors.nama_rute}
+                            </p>
                         </div>
 
                         <button

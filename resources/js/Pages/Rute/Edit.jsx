@@ -6,27 +6,24 @@ import "../../../css/action.css";
 
 const Edit = ({ rute }) => {
     const { flash, errors } = usePage().props;
-    const [processing, setProcessing] = useState(false)
+    const [processing, setProcessing] = useState(false);
     const { data, setData } = useForm({
-       
-        asal: rute.asal,
-        tujuan: rute.tujuan,
+        jadwal_id: rute.jadwal_id,
+        nama_rute: rute.nama_rute,
     });
     const handleUpdate = (e) => {
         setProcessing(true);
         e.preventDefault();
         router.post(`/rute/edit/${rute.id}`, {
             _method: "patch",
-        
-            asal: data.asal,
-            tujuan: data.tujuan,
+            nama_rute: data.nama_rute,
         });
     };
 
     return (
         <AdminLayout>
             <div className="text-center text-midnight text-2xl font-bold py-4">
-                Update Jadwal jadwal_id {data.jadwal_id}
+                Update Rute {data.jadwal_id}
             </div>
             {flash.message && (
                 <div
@@ -52,7 +49,6 @@ const Edit = ({ rute }) => {
             <div className="flex items-center justify-center">
                 <div className="w-full max-w-sm p-4 bg-bermuda border border-gray rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray dark:border-gray">
                     <form className="max-w-md mx-auto" onSubmit={handleUpdate}>
-                   
                         <div>
                             <label
                                 for="default-search"
@@ -66,7 +62,7 @@ const Edit = ({ rute }) => {
                                     for="email"
                                     className="block mb-2 text-sm font-medium text-bermuda"
                                 >
-                                    asal
+                                    Rute
                                 </label>
                                 <input
                                     type="text"
@@ -75,51 +71,21 @@ const Edit = ({ rute }) => {
                                     placeholder="enter ..."
                                     // required
                                     onChange={(e) =>
-                                        setData("asal", e.target.value)
+                                        setData("nama_rute", e.target.value)
                                     }
-                                    value={data.asal}
+                                    value={data.nama_rute}
                                 />
                                 <p className="text-red text-sm mt-2">
-                                    {errors.asal}
+                                    {errors.nama_rute}
                                 </p>
                             </div>
                         </div>
-                        <div>
-                            <label
-                                for="default-search"
-                                className="mb-2 text-sm font-medium text-midnight sr-only dark:text-white"
-                            >
-                                Search
-                            </label>
-                            <div className="relative">
-                                <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none"></div>
-                                <label
-                                    for="email"
-                                    className="block mb-2 text-sm font-medium text-bermuda"
-                                >
-                                    tujuan
-                                </label>
-                                <input
-                                    type="text"
-                                    // id="default-search"
-                                    className="bg-sea border border-gray-300 text-midnight text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                                    placeholder="enter ..."
-                                    // required
-                                    onChange={(e) =>
-                                        setData("tujuan", e.target.value)
-                                    }
-                                    value={data.tujuan}
-                                />
-                                <p className="text-red text-sm mt-2">
-                                    {errors.tujuan}
-                                </p>
-                            </div>
-                        </div>
+                      
                         <button
                             type="submit"
                             className="mt-4 text-bermuda bg-navy hover:bg-blue hover:text-bermuda focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                         >
-                           {processing ? "Processing..." : "UPDATE"}
+                            {processing ? "Processing..." : "UPDATE"}
                         </button>
                     </form>
                     {/* {errors.nama_kapal && (
