@@ -13,9 +13,14 @@ return new class extends Migration
     {
         Schema::create('jadwals', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('rute_id');
+            $table->unsignedBigInteger('kapal_id');
             $table->date('tanggal');
             $table->time('tiba');
             $table->time('keberangkatan');
+            $table->foreign('rute_id')->references('id')->on('rutes')->onDelete('cascade');
+            $table->foreign('kapal_id')->references('id')->on('kapals')->onDelete('cascade');
+      
             $table->timestamps();
         });
     }
