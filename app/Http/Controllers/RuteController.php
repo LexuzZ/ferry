@@ -14,7 +14,7 @@ class RuteController extends Controller
     public function index()
     {
         //
-        $rutes = Rute::with('jadwals')->get();
+        $rutes = Rute::all();
         return Inertia::render('Rute/Index', [
             'rutes' => $rutes
         ]);
