@@ -16,6 +16,7 @@ class RuteSeeder extends Seeder
         //
         for ($i = 1; $i <= 4; $i++) {
             Rute::create([
+                'jadwal_id' => rand(1, 4),
                 'nama_rute' => 'Rute ' . $i,
                 // Tambahkan kolom lainnya sesuai kebutuhan
             ]);

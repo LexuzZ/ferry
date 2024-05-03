@@ -17,9 +17,8 @@ class JadwalSeeder extends Seeder
         //
         for ($i = 1; $i <= 4; $i++) {
             Jadwal::create([
-                'rute_id' => rand(1, 4), // ID rute akan dipilih secara acak antara 1 dan 10
-                'kapal_id' => rand(1, 4), // ID kapal akan dipilih secara acak antara 1 dan 10
-                'tanggal' => now()->addDays($i), // ID kapal akan dipilih secara acak antara 1 dan 10
+                 // ID kapal akan dipilih secara acak antara 1 dan 10
+                'tanggal' => Carbon::now()->addDays($i)->format('Y-m-d'), // ID kapal akan dipilih secara acak antara 1 dan 10
                 'tiba' => now()->addDays($i)->setHour(rand(8, 12))->setMinute(rand(0, 59)), // Waktu berangkat akan ditetapkan ke hari-hari berikutnya dengan jam acak antara 8 dan 12
                 'keberangkatan' => now()->addDays($i)->setHour(rand(13, 18))->setMinute(rand(0, 59)), // Waktu sampai akan ditetapkan ke hari-hari berikutnya dengan jam acak antara 13 dan 18
             ]);
