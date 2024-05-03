@@ -14,7 +14,12 @@ class Kapal extends Model
     ];
     public function jadwals()
     {
-        return $this->belongsTo(Jadwal::class);
+        return $this->hasMany(Jadwal::class);
+    }
+
+    public function kapals()
+    {
+        return $this->belongsToMany(Kapal::class);
     }
     public function seats(){
         return $this->hasMany(Seat::class);

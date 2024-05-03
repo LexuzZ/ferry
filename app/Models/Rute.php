@@ -13,8 +13,13 @@ class Rute extends Model
         'jadwal_id', 'asal', 'tujuan'
     ];
 
-    public function jadwals()
+    public function kapals()
     {
-        return $this->belongsTo(Jadwal::class);
+        return $this->belongsTo(Kapal::class);
+    }
+
+    public function rutes()
+    {
+        return $this->belongsTo(Rute::class);
     }
 }
