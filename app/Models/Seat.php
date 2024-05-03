@@ -14,8 +14,5 @@ class Seat extends Model
     {
         return $this->belongsTo(Kapal::class);
     }
-    public function jadwals()
-    {
-        return $this->belongsTo(Jadwal::class);
-    }
+    
 }
