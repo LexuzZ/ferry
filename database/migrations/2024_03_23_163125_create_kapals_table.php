@@ -13,10 +13,12 @@ return new class extends Migration
     {
         Schema::create('kapals', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('jadwal_id');
             $table->string('nama_kapal');
-            
+
             // $table->boolean('is_complete')->default(false);
             $table->timestamps();
+            $table->foreign('jadwal_id')->references('id')->on('jadwals')->onDelete('cascade');
         });
     }
 

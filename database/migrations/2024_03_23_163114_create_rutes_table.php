@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('rutes', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('jadwal_id');
             $table->string('nama_rute');
             $table->timestamps();
+            $table->foreign('jadwal_id')->references('id')->on('jadwals')->onDelete('cascade');
         });
     }
 
