@@ -4,8 +4,9 @@ import React from "react";
 import "../../../css/trash.css";
 import "../../../css/action.css";
 
-const Jadwal = ({ jadwals }) => {
+const Jadwal = ({ kapals }) => {
     const { flash, errors } = usePage().props;
+    console.log(kapals);
 
     const deletePost = async (id) => {
         router.delete(`/jadwals/${id}`);
@@ -50,21 +51,11 @@ const Jadwal = ({ jadwals }) => {
                     <thead className="text-xs text-white uppercase bg-gray font-bold">
                         <tr>
                             <th scope="col" className="px-6 py-3">
-                                ID
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                Tanggal
-                            </th>
-                            <th scope="col" className="px-6 py-3">
                                 Nama Kapal
                             </th>
                             <th scope="col" className="px-6 py-3">
-                                Pelabuhan Asal
+                                Tanggal Keberangkatan
                             </th>
-                            <th scope="col" className="px-6 py-3">
-                                Pelabuhan Tujuan
-                            </th>
-
                             <th scope="col" className="px-6 py-3">
                                 Estimasi Tiba
                             </th>
@@ -72,54 +63,42 @@ const Jadwal = ({ jadwals }) => {
                                 Estimasi Keberangkatan
                             </th>
 
+                            {/* <th scope="col" className="px-6 py-3">
+                                Estimasi Tiba
+                            </th>
+                            <th scope="col" className="px-6 py-3">
+                                Estimasi Keberangkatan
+                            </th> */}
+
                             <th scope="col" className="px-6 py-3">
                                 Action
                             </th>
                         </tr>
                     </thead>
                     <tbody>
-                        {jadwals.map((jadwal, i) => {
+                        {kapals.map((kapal, i) => {
                             return (
                                 <tr key={i}>
                                     <th
                                         scope="row"
                                         className=" py-4  text-midnight  font-medium whitespace-nowrap dark:text-black"
                                     >
-                                        {jadwal.id}
+                                        {kapal.nama_kapal}
                                     </th>
-                                    <th
-                                        scope="row"
-                                        className=" py-4  text-midnight  font-medium whitespace-nowrap dark:text-black"
-                                    >
-                                        {jadwal.tanggal}
-                                    </th>
-                                    {jadwal.kapals.map((kapal, i) => (
-                                        <th key={i}>{kapal.nama_kapal}</th>
-                                    ))}
 
-                                    {jadwal.rutes.map((rute, i) => (
-                                        <th key={i}>{rute.asal}</th>
+                                    {kapal.jadwals.map((jadwal, i) => (
+                                        <th key={i}>{jadwal.tanggal}</th>
                                     ))}
-                                    {jadwal.rutes.map((rute, i) => (
-                                        <th key={i}>{rute.tujuan}</th>
+                                    {kapal.jadwals.map((jadwal, i) => (
+                                        <th key={i}>{jadwal.tiba}</th>
                                     ))}
-
-                                    <th
-                                        scope="row"
-                                        className=" py-4  text-midnight font-medium whitespace-nowrap dark:text-black"
-                                    >
-                                        {jadwal.tiba}
-                                    </th>
-                                    <th
-                                        scope="row"
-                                        className=" py-4  text-midnight font-medium whitespace-nowrap dark:text-black"
-                                    >
-                                        {jadwal.keberangkatan}
-                                    </th>
+                                    {kapal.jadwals.map((jadwal, i) => (
+                                        <th key={i}>{jadwal.keberangkatan}</th>
+                                    ))}
 
                                     <td class="action">
                                         <Link
-                                            href={`jadwals/edit/${jadwal.id}`}
+                                            href={`jadwals/edit/${kapal.id}`}
                                             class="Btn"
                                         >
                                             Edit
@@ -159,7 +138,7 @@ const Jadwal = ({ jadwals }) => {
                                                         <button
                                                             onClick={() =>
                                                                 deletePost(
-                                                                    jadwal.id
+                                                                    kapal.id
                                                                 )
                                                             }
                                                             className="btn btn-error m-2"
