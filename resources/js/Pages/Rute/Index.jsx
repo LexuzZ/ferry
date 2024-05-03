@@ -2,8 +2,8 @@ import Pagination from "@/Components/Pagination";
 import AdminLayout from "@/Layouts/AdminLayout";
 import { Head, Link, router, useForm, usePage } from "@inertiajs/react";
 import React from "react";
-import '../../../css/action.css'
-import '../../../css/trash.css'
+import "../../../css/action.css";
+import "../../../css/trash.css";
 
 const Index = ({ jadwal, rutes }) => {
     const { flash, errors } = usePage().props;
@@ -13,13 +13,13 @@ const Index = ({ jadwal, rutes }) => {
             <div className="text-center text-midnight text-2xl font-serif py-4">
                 Informasi Rute
             </div>
-            
+
             <Link
                 href="/rute/create"
                 className="relative inline-flex items-center justify-center p-0.5 mb-2 ms-4 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800"
             >
                 <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-navy dark:bg-blue-900 rounded-md group-hover:bg-opacity-0">
-                    Tambah 
+                    Tambah
                 </span>
             </Link>
             {flash.message && (
@@ -52,10 +52,7 @@ const Index = ({ jadwal, rutes }) => {
                                 Jadwal ID
                             </th>
                             <th scope="col" className="px-6 py-3">
-                                asal
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                tujuan
+                                Nama Rute
                             </th>
 
                             <th scope="col" className=" py-3">
@@ -71,19 +68,13 @@ const Index = ({ jadwal, rutes }) => {
                                         scope="row"
                                         className=" py-4  text-midnight bg-silver font-medium whitespace-nowrap dark:text-black"
                                     >
-                                        {rute.jadwal_id}
+                                        {rute.id}
                                     </th>
                                     <th
                                         scope="row"
                                         className=" py-4  text-midnight bg-silver font-medium whitespace-nowrap dark:text-black"
                                     >
-                                        {rute.asal}
-                                    </th>
-                                    <th
-                                        scope="row"
-                                        className=" py-4  text-midnight font-medium whitespace-nowrap dark:text-black"
-                                    >
-                                        {rute.tujuan}
+                                        {rute.nama_rute}
                                     </th>
 
                                     <td class="action">
@@ -151,7 +142,7 @@ const Index = ({ jadwal, rutes }) => {
             </div>
         </AdminLayout>
         // <div>
-            
+
         //     <form onSubmit={handleSubmit}>
         //         <input
         //             type="text"
@@ -168,11 +159,11 @@ const Index = ({ jadwal, rutes }) => {
         //     <table className="w-full text-sm text-center rtl:text-right text-midnight">
         //         {rutes.map((rute) => (
         //             <li key={rute.id}>{rute.asal}</li>
-                   
+
         //         ))}
         //         {rutes.map((rute) => (
         //             <li key={rute.id}>{rute.tujuan}</li>
-                   
+
         //         ))}
         //     </table>
         // </div>
