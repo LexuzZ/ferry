@@ -13,12 +13,12 @@ class Jadwal extends Model
 
     public function rutes()
     {
-        return $this->belongsTo(Rute::class);
+        return $this->hasMany(Rute::class);
     }
 
     // Definisikan relasi dengan tabel Kapal
     public function kapals()
     {
-        return $this->belongsTo(Kapal::class);
+        return $this->hasMany(Kapal::class);
     }
 }

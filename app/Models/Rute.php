@@ -10,16 +10,10 @@ class Rute extends Model
     use HasFactory;
     protected $table = "rutes";
     protected $fillable = [
-        'jadwal_id', 'asal', 'tujuan'
+        'jadwal_id', 'nama_rute'
     ];
-
-    public function kapals()
+    public function jadwals()
     {
-        return $this->belongsTo(Kapal::class);
-    }
-
-    public function rutes()
-    {
-        return $this->belongsTo(Rute::class);
+        return $this->belongsTo(Jadwal::class);
     }
 }
