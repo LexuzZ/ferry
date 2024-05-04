@@ -109,33 +109,7 @@ const Jadwal = () => {
                                 {errors.asal}
                             </p>
                         </div>
-                        <div>
-                            <label
-                                for="email"
-                                className="block mb-2 text-sm font-medium text-midnight"
-                            >
-                                Pelabuhan Tujuan
-                            </label>
-                            <select
-                                className="select select-bordered w-full max-w-xs"
-                                onChange={(e) =>
-                                    setData("tujuan", e.target.value)
-                                }
-                                value={data.tujuan}
-                            >
-                                <option value="" disabled selected>Pilih Rute Tujuan</option>
-                                {rute.map((k) => (
-                                    <option key={k.id} value={k.id}>
-                                        {k.tujuan}
-                                    </option>
-                                ))}
-                            </select>
-
-                            <p className="text-red text-sm mt-2">
-                                {errors.tujuan}
-                            </p>
-                        </div>
-
+                       
                         <div>
                             <label
                                 for="default-search"

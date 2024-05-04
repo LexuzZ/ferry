@@ -6,8 +6,7 @@ import "../../../css/action.css";
 import "../../../css/trash.css";
 
 const Create = () => {
-    const { flash, errors, kapals } = usePage().props;
-   
+    const { flash, errors, kapal } = usePage().props;
 
     const {
         data,
@@ -57,65 +56,60 @@ const Create = () => {
                     <form className="max-w-md mx-auto" onSubmit={handleSubmit}>
                         <div>
                             <label
-                                for="default-search"
-                                className="mb-2 text-sm font-medium text-gray sr-only dark:text-bermuda"
+                                for="email"
+                                className="block mb-2 text-sm font-medium text-midnight"
                             >
-                                Search
+                                Jadwal ID
                             </label>
-                            <div className="relative">
-                                <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none"></div>
-                                <label
-                                    for="email"
-                                    className="block mb-2 text-sm font-medium text-bermuda"
-                                >
-                                    Jadwal ID
-                                </label>
-                                <input
-                                    type="text"
-                                    // id="default-search"
-                                    className="bg-sea border text-midnight border-gray-300  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                                    placeholder="enter ..."
-                                    // required
-                                    onChange={(e) =>
-                                        setData("jadwal_id", e.target.value)
-                                    }
-                                    value={data.jadwal_id}
-                                />
-                                <p className="text-red text-sm mt-2">
-                                    {errors.jadwal_id}
-                                </p>
-                            </div>
+                            <select
+                                className="select select-bordered w-full max-w-xs"
+                                onChange={(e) =>
+                                    setData("jadwal_id", e.target.value)
+                                }
+                                value={data.jadwal_id}
+                            >
+                                <option value="" disabled selected>
+                                    Pilih Rute Asal
+                                </option>
+                                {kapal.map((k) => (
+                                    <option key={k.id} value={k.id}>
+                                        {k.jadwal_id}
+                                    </option>
+                                ))}
+                            </select>
+
+                            <p className="text-red text-sm mt-2">
+                                {errors.jadwal_id}
+                            </p>
                         </div>
+
                         <div>
                             <label
-                                for="default-search"
-                                className="mb-2 text-sm font-medium text-gray sr-only dark:text-bermuda"
+                                for="email"
+                                className="block mb-2 text-sm font-medium text-midnight"
                             >
-                                Search
+                                Jadwal ID
                             </label>
-                            <div className="relative">
-                                <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none"></div>
-                                <label
-                                    for="email"
-                                    className="block mb-2 text-sm font-medium text-bermuda"
-                                >
-                                    Nama Kapal
-                                </label>
-                                <input
-                                    type="text"
-                                    // id="default-search"
-                                    className="bg-sea border text-midnight border-gray-300  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                                    placeholder="enter ..."
-                                    // required
-                                    onChange={(e) =>
-                                        setData("nama_kapal", e.target.value)
-                                    }
-                                    value={data.nama_kapal}
-                                />
-                                <p className="text-red text-sm mt-2">
-                                    {errors.nama_kapal}
-                                </p>
-                            </div>
+                            <select
+                                className="select select-bordered w-full max-w-xs"
+                                onChange={(e) =>
+                                    setData("jadwal_id", e.target.value)
+                                }
+                                value={data.nama_kapal}
+                            >
+                                <option value="" disabled selected>
+                                    Pilih Rute Asal
+                                </option>
+                                {kapal.map((k) => (
+                                    <option key={k.id} value={k.id}>
+                                        {k.nama_kapal}
+                                    </option>
+                                ))}
+                            </select>
+
+                            <p className="text-red text-sm mt-2">
+                                {errors.nama_kapal}
+                            </p>
                         </div>
 
                         <button
@@ -127,8 +121,6 @@ const Create = () => {
                     </form>
                 </div>
             </div>
-
-            
         </AdminLayout>
     );
 };

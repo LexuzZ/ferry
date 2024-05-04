@@ -13,7 +13,7 @@ const UserJadwal = () => {
             </div>
 
             <div className="relative overflow-x-auto shadow-md  mt-6 px-6 rounded-lg">
-                <table className="w-full text-sm text-center rtl:text-right text-midnight">
+                <table className="table table-md text-sm text-center rtl:text-right text-midnight">
                     <thead className="text-xs text-white uppercase bg-gray font-bold">
                         <tr>
                             <th scope="col" className="px-6 py-3">
@@ -27,9 +27,7 @@ const UserJadwal = () => {
                                 Asal
                             </th>
 
-                            <th scope="col" className="px-6 py-3">
-                                Tujuan
-                            </th>
+                            
                             <th scope="col" className="px-6 py-3">
                                 tiba
                             </th>
@@ -57,11 +55,9 @@ const UserJadwal = () => {
                                     
 
                                     {jadwal.rutes.map((rute, i) => (
-                                        <th key={i}>{rute.asal}</th>
+                                        <th key={i}>{rute.nama_rute}</th>
                                     ))}
-                                    {jadwal.rutes.map((rute, i) => (
-                                        <th key={i}>{rute.tujuan}</th>
-                                    ))}
+                                    
 
                                     <th
                                         scope="row"

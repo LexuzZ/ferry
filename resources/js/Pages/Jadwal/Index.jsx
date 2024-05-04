@@ -46,25 +46,18 @@ const Jadwal = ({ jadwals }) => {
                 </div>
             )}
 
-            <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-6">
-                <table className="w-full text-sm text-center rtl:text-right text-midnight">
-                    <thead className="text-xs text-white uppercase bg-gray font-bold">
-                        <tr>
+            <div className=" overflow-x-auto shadow-md sm:rounded-lg mt-6">
+                <table className="table table-md">
+                    <thead className="text-xs text-center text-white uppercase bg-gray font-bold">
+                        <tr className="">
                             <th scope="col" className="px-6 py-3">
-                                Tanggal 
+                                Tanggal
                             </th>
                             <th scope="col" className="px-6 py-3">
                                 ETA
                             </th>
                             <th scope="col" className="px-6 py-3">
                                 ETD
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                Rute
-                            </th>
-
-                            <th scope="col" className="px-6 py-3">
-                                Nama Kapal
                             </th>
 
                             <th scope="col" className="px-6 py-3">
@@ -75,44 +68,33 @@ const Jadwal = ({ jadwals }) => {
                     <tbody>
                         {jadwals.map((jadwal, i) => {
                             return (
-                                <tr key={i}>
-                                    <th
-                                        scope="row"
-                                        className=" py-4  text-midnight  font-medium whitespace-nowrap dark:text-black"
-                                    >
+                                <tr key={i} className="text-center">
+                                    <td className=" py-4  text-midnight  font-medium whitespace-nowrap dark:text-black">
                                         {jadwal.tanggal}
-                                    </th>
-                                    <th
-                                        scope="row"
-                                        className=" py-4  text-midnight  font-medium whitespace-nowrap dark:text-black"
-                                    >
+                                    </td>
+                                    <td className=" py-4  text-midnight  font-medium whitespace-nowrap dark:text-black">
                                         {jadwal.tiba}
-                                    </th>
-                                    <th
-                                        scope="row"
-                                        className=" py-4  text-midnight  font-medium whitespace-nowrap dark:text-black"
-                                    >
+                                    </td>
+                                    <td className=" py-4  text-midnight  font-medium whitespace-nowrap dark:text-black">
                                         {jadwal.keberangkatan}
-                                    </th>
+                                    </td>
 
-                                    {jadwal.kapals.map((kapal, i) => (
-                                        <th
-                                            scope="row"
+                                    {/* {jadwal.kapals.map((kapal, i) => (
+                                        <td
                                             className=" py-4  text-midnight  font-medium whitespace-nowrap dark:text-black"
                                             key={i}
                                         >
                                             {kapal.nama_kapal}
-                                        </th>
+                                        </td>
                                     ))}
                                     {jadwal.rutes.map((rute, i) => (
-                                        <th
-                                            scope="row"
+                                        <td
                                             className=" py-4  text-midnight  font-medium whitespace-nowrap dark:text-black"
                                             key={i}
                                         >
                                             {rute.nama_rute}
-                                        </th>
-                                    ))}
+                                        </td>
+                                    ))} */}
 
                                     <td class="action">
                                         <Link

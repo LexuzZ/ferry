@@ -18,7 +18,7 @@ class JadwalController extends Controller
     public function index()
     {
         
-        $jadwals = Jadwal::with('kapals', 'rutes')->get();
+        $jadwals = Jadwal::get();
         return Inertia::render('Jadwal/Index', [
             'jadwals' => $jadwals
         ]);

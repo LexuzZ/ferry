@@ -42,7 +42,10 @@ class KapalController extends Controller
     public function create()
     {
         //
-        return Inertia::render('Kapal/Create');
+        $kapal = Kapal::all();
+        return Inertia::render('Kapal/Create', [
+            'kapal' => $kapal
+        ]);
     }
 
     /**

@@ -8,14 +8,19 @@ import "../../../css/trash.css";
 const Create = () => {
     const { flash, errors, rute } = usePage().props;
 
-    const { data, setData, reset, post: submit } = useForm({
+    const {
+        data,
+        setData,
+        reset,
+        post: submit,
+    } = useForm({
         jadwal_id: "",
         nama_rute: "",
     });
-   
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        submit(route('rutes.store'));
+        submit(route("rutes.store"));
     };
     const deletePost = async (id) => {
         router.delete(`/rute/${id}`);
@@ -23,7 +28,7 @@ const Create = () => {
     return (
         <AdminLayout>
             <div className="text-center text-midnight text-2xl  py-4 mt-5">
-                Tambah Rute Perjalanan 
+                Tambah Rute Perjalanan
             </div>
             {flash.message && (
                 <div
@@ -49,7 +54,7 @@ const Create = () => {
             <div className="flex items-center justify-center mt-5">
                 <div className="w-full max-w-sm p-4 bg-bermuda border border-gray rounded-lg shadow sm:p-6 md:p-8 dark:bg-white dark:border-gray">
                     <form className="max-w-md mx-auto" onSubmit={handleSubmit}>
-                    <div>
+                        <div>
                             <label
                                 for="email"
                                 className="block mb-2 text-sm font-medium text-midnight"
@@ -63,7 +68,9 @@ const Create = () => {
                                 }
                                 value={data.jadwal_id}
                             >
-                                <option value="" disabled selected>Pilih Rute Asal</option>
+                                <option value="" disabled selected>
+                                    Pilih Rute Asal
+                                </option>
                                 {rute.map((k) => (
                                     <option key={k.id} value={k.id}>
                                         {k.jadwal_id}
@@ -75,7 +82,7 @@ const Create = () => {
                                 {errors.jadwal_id}
                             </p>
                         </div>
-                       
+
                         <div>
                             <label
                                 for="email"
@@ -90,7 +97,9 @@ const Create = () => {
                                 }
                                 value={data.nama_rute}
                             >
-                                <option value="" disabled selected>Pilih Rute Tujuan</option>
+                                <option value="" disabled selected>
+                                    Pilih Rute Tujuan
+                                </option>
                                 {rute.map((k) => (
                                     <option key={k.id} value={k.id}>
                                         {k.nama_rute}
@@ -123,11 +132,9 @@ const Create = () => {
                 )} */}
                 </div>
             </div>
-
-            
         </AdminLayout>
         // <div>
-            
+
         //     <form onSubmit={handleSubmit}>
         //         <input
         //             type="text"
@@ -144,11 +151,11 @@ const Create = () => {
         //     <table className="w-full text-sm text-center rtl:text-right text-midnight">
         //         {rutes.map((rute) => (
         //             <li key={rute.id}>{rute.asal}</li>
-                   
+
         //         ))}
         //         {rutes.map((rute) => (
         //             <li key={rute.id}>{rute.tujuan}</li>
-                   
+
         //         ))}
         //     </table>
         // </div>
