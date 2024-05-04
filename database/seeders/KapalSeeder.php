@@ -16,6 +16,7 @@ class KapalSeeder extends Seeder
         //
         for ($i = 1; $i <= 4; $i++) {
             Kapal::create([
+                'rute_id' => rand(1, 4),
                 'nama_kapal' => 'DLN ' . $i,
                 // Tambahkan kolom lainnya sesuai kebutuhan
             ]);
