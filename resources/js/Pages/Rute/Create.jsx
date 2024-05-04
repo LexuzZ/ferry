@@ -6,7 +6,9 @@ import "../../../css/action.css";
 import "../../../css/trash.css";
 
 const Create = () => {
-    const { flash, errors, rute } = usePage().props;
+    const { flash, errors, kapal, jadwal, rutes } = usePage().props;
+   
+    console.log(rutes);
 
     const {
         data,
@@ -15,6 +17,7 @@ const Create = () => {
         post: submit,
     } = useForm({
         jadwal_id: "",
+        kapal_id: "",
         nama_rute: "",
     });
 
@@ -53,7 +56,7 @@ const Create = () => {
             )}
             <div className="flex items-center justify-center mt-5">
                 <div className="w-full max-w-sm p-4 bg-bermuda border border-gray rounded-lg shadow sm:p-6 md:p-8 dark:bg-white dark:border-gray">
-                    <form className="max-w-md mx-auto" onSubmit={handleSubmit}>
+                    {/* <form className="max-w-md mx-auto" onSubmit={handleSubmit}>
                         <div>
                             <label
                                 for="email"
@@ -71,7 +74,7 @@ const Create = () => {
                                 <option value="" disabled selected>
                                     Pilih Rute Asal
                                 </option>
-                                {rute.map((k) => (
+                                {jadwal.map((k) => (
                                     <option key={k.id} value={k.id}>
                                         {k.jadwal_id}
                                     </option>
@@ -80,6 +83,34 @@ const Create = () => {
 
                             <p className="text-red text-sm mt-2">
                                 {errors.jadwal_id}
+                            </p>
+                        </div>
+                        <div>
+                            <label
+                                for="email"
+                                className="block mb-2 text-sm font-medium text-midnight"
+                            >
+                                Kapal ID
+                            </label>
+                            <select
+                                className="select select-bordered w-full max-w-xs"
+                                onChange={(e) =>
+                                    setData("kapal_id", e.target.value)
+                                }
+                                value={data.kapal_id}
+                            >
+                                <option value="" disabled selected>
+                                    Pilih Kapal
+                                </option>
+                                {rute.map((k) => (
+                                    <option key={k.id} value={k.id}>
+                                        {k.kapal_id} 
+                                    </option>
+                                ))}
+                            </select>
+
+                            <p className="text-red text-sm mt-2">
+                                {errors.kapal_id}
                             </p>
                         </div>
 
@@ -102,7 +133,7 @@ const Create = () => {
                                 </option>
                                 {rute.map((k) => (
                                     <option key={k.id} value={k.id}>
-                                        {k.nama_rute}
+                                      {k.id} -  {k.nama_rute}
                                     </option>
                                 ))}
                             </select>
@@ -124,7 +155,7 @@ const Create = () => {
                         >
                             Kembali
                         </Link>
-                    </form>
+                    </form> */}
                     {/* {errors.nama_kapal && (
                     <p className="text-red-800 text-sm mt-2">
                         {errors.nama_kapal}

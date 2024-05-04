@@ -9,9 +9,6 @@ const Jadwal = () => {
     console.log(rute);
 
     const { data, setData, reset } = useForm({
-        asal: "",
-        tujuan: "",
-        nama_kapal: "",
         tanggal: "",
         tiba: "",
         keberangkatan: "",
@@ -57,32 +54,6 @@ const Jadwal = () => {
             <div className="flex items-center justify-center">
                 <div className="w-full max-w-sm p-4 bg-bermuda border border-gray rounded-lg shadow sm:p-6 md:p-8 dark:bg-grey dark:border-gray">
                     <form className="max-w-md mx-auto" onSubmit={storeInfo}>
-                        <div>
-                            <label
-                                for="email"
-                                className="block mb-2 text-sm font-medium text-midnight"
-                            >
-                                Nama Kapal
-                            </label>
-                            <select
-                                className="select select-bordered w-full max-w-xs"
-                                onChange={(e) =>
-                                    setData("nama_kapal", e.target.value)
-                                }
-                                value={data.nama_kapal}
-                            >
-                                <option value=""  disabled selected>Pilih Kapal</option>
-                                {kapal.map((k) => (
-                                    <option key={k.id} value={k.id}>
-                                        {k.nama_kapal}
-                                    </option>
-                                ))}
-                            </select>
-
-                            <p className="text-red text-sm mt-2">
-                                {errors.nama_kapal}
-                            </p>
-                        </div>
                         <div>
                             <label
                                 for="email"

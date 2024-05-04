@@ -86,12 +86,12 @@ const Index = () => {
                     <tbody>
                         {ships.map((kapal) => {
                             return (
-                                <tr key={kapal.jadwal_id}>
+                                <tr key={kapal.id}>
                                     <th
                                         scope="row"
                                         className=" py-4  text-midnight  font-medium whitespace-nowrap dark:text-black"
                                     >
-                                        {kapal.jadwal_id}
+                                        {kapal.id}
                                     </th>
                                     <th
                                         scope="row"

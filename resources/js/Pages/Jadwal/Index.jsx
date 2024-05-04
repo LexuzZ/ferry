@@ -78,23 +78,11 @@ const Jadwal = ({ jadwals }) => {
                                     <td className=" py-4  text-midnight  font-medium whitespace-nowrap dark:text-black">
                                         {jadwal.keberangkatan}
                                     </td>
+                                    <td className=" py-4  text-midnight  font-medium whitespace-nowrap dark:text-black">
+                                        {jadwal.rute_id}
+                                    </td>
 
-                                    {/* {jadwal.kapals.map((kapal, i) => (
-                                        <td
-                                            className=" py-4  text-midnight  font-medium whitespace-nowrap dark:text-black"
-                                            key={i}
-                                        >
-                                            {kapal.nama_kapal}
-                                        </td>
-                                    ))}
-                                    {jadwal.rutes.map((rute, i) => (
-                                        <td
-                                            className=" py-4  text-midnight  font-medium whitespace-nowrap dark:text-black"
-                                            key={i}
-                                        >
-                                            {rute.nama_rute}
-                                        </td>
-                                    ))} */}
+                                  
 
                                     <td class="action">
                                         <Link
