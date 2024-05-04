@@ -12,14 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('rutes', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('jadwal_id');
-            $table->unsignedBigInteger('kapal_id');
-
+            $table->id(); 
             $table->string('nama_rute');
             $table->timestamps();
-            $table->foreign('jadwal_id')->references('id')->on('jadwals')->onDelete('cascade');
-            $table->foreign('kapal_id')->references('id')->on('kapals')->onDelete('cascade');
         });
     }
 

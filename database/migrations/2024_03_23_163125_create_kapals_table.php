@@ -13,10 +13,12 @@ return new class extends Migration
     {
         Schema::create('kapals', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('rute_id');
             $table->string('nama_kapal');
 
             // $table->boolean('is_complete')->default(false);
             $table->timestamps();
+            $table->foreign('rute_id')->references('id')->on('rutes')->onDelete('cascade');
         });
     }
 

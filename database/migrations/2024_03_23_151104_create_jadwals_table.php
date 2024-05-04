@@ -13,11 +13,13 @@ return new class extends Migration
     {
         Schema::create('jadwals', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('rute_id');
             $table->date('tanggal');
             $table->time('tiba');
             $table->time('keberangkatan');
-
+            // $table->enum('nama_kapal', ['DLN Oasis', 'DLN Batulayar', 'DLN Mandalika', 'DLN Nusantara']);
             $table->timestamps();
+            $table->foreign('rute_id')->references('id')->on('rutes')->onDelete('cascade');
         });
     }
 
