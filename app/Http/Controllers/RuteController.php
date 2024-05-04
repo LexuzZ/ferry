@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Jadwal;
+use App\Models\Kapal;
 use App\Models\Rute;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 
 class RuteController extends Controller
@@ -14,10 +17,18 @@ class RuteController extends Controller
     public function index()
     {
         //
-        $rutes = Rute::with('kapals', 'jadwals')->get();
-        
+        $rutes = Rute::with('jadwals', 'kapals')->get();
+        $ships = Kapal::withCount('seats')
+        ->with(['seats' => function ($query) {
+            $query->selectRaw('kapal_id, COUNT(*) as total_seats, SUM(available) as total_available')
+                ->groupBy('kapal_id');
+        }])
+        ->get();
+
+
         return Inertia::render('Rute/Index', [
-            'rutes' => $rutes
+            'rutes' => $rutes,
+            'ships' => $ships,
         ]);
     }
 
@@ -27,13 +38,11 @@ class RuteController extends Controller
     public function create()
     {
         //
-        
-        
-        $rute = Rute::all();
 
-        return Inertia::render('Rute/Create', [
-            'rute' => $rute,
-        ]);
+
+
+        $rutes = Rute::with('jadwals', 'kapals')->get();
+        return Inertia::render('Rute/Create', ['rutes' => $rutes]);
     }
 
     /**
@@ -44,16 +53,19 @@ class RuteController extends Controller
         //
         $request->validate([
             'jadwal_id' => 'required',
+            'kapal_id' => 'required',
             'nama_rute' => 'required',
 
 
         ], [
             'jadwal_id.required' => "ID Jadwal tidak boleh kosong",
+            'kapal_id.required' => "ID kapal tidak boleh kosong",
             'nama_rute.required' => "Rute nama_rute tidak boleh kosong",
 
         ]);
         Rute::create($request->all());
-        return redirect()->route('rute.index')->with('message', 'Rute berhasil ditambahkan');    }
+        return redirect()->route('rute.index')->with('message', 'Rute berhasil ditambahkan');
+    }
 
     /**
      * Display the specified resource.
@@ -81,7 +93,7 @@ class RuteController extends Controller
     {
         //
         $data = $request->validate([
-           
+
             'nama_rute' => 'required',
         ], [
             'nama_rute.required' => "Rute tidak boleh kosong",

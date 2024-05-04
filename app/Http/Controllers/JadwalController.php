@@ -18,7 +18,7 @@ class JadwalController extends Controller
     public function index()
     {
         
-        $jadwals = Jadwal::get();
+        $jadwals = Jadwal::with('rutes')->get();
         return Inertia::render('Jadwal/Index', [
             'jadwals' => $jadwals
         ]);
@@ -30,11 +30,9 @@ class JadwalController extends Controller
     public function create()
     {
         //
-        $kapal = Kapal::all();
+       
         $rute = Rute::all();
-
         return Inertia::render('Jadwal/Create', [
-            'kapal' => $kapal,
             'rute' => $rute,
         ]);
     }
@@ -46,7 +44,6 @@ class JadwalController extends Controller
     {
         //
         $request->validate([
-
             'tanggal' => 'required',
             'tiba' => 'required',
             'keberangkatan' => 'required',
