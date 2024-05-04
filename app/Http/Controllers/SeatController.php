@@ -19,13 +19,7 @@ class SeatController extends Controller
             'seats' => $kapal
         ]);
     }
-    public function tempat()
-    {
-        $seats = Seat::with( 'seats')->get();
-        return Inertia::render('Kapal/Index', [
-            'seats' => $seats
-        ]);
-    }
+   
     //
     public function reserve(Seat $seat)
     {
