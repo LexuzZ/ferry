@@ -10,11 +10,11 @@ class Kapal extends Model
     use HasFactory;
     protected $table = "kapals";
     protected $fillable = [
-         'jadwal_id','nama_kapal'
+        'rute_id', 'nama_kapal'
     ];
-    public function jadwals()
+    public function rutes()
     {
-        return $this->belongsToMany(Jadwal::class, 'rute');
+        return $this->belongsTo(Rute::class);
     }
     public function seats(){
         return $this->hasMany(Seat::class);

@@ -9,13 +9,14 @@ class Jadwal extends Model
 {
     use HasFactory;
     protected $table = "jadwals";
-    protected $fillable = [ 'tanggal', 'tiba', 'keberangkatan'];
+    protected $fillable = ['rute_id', 'tanggal', 'tiba', 'keberangkatan'];
 
     
 
     // Definisikan relasi dengan tabel Kapal
-    public function kapals()
+    public function rutes()
     {
-        return $this->belongsToMany(Kapal::class, 'rute');
+        return $this->belongsTo(Rute::class);
     }
+    
 }
