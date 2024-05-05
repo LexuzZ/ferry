@@ -19,17 +19,23 @@ class RuteController extends Controller
         //
         $rutes = Rute::with('jadwals', 'kapals')->get();
         $ships = Kapal::withCount('seats')
-        ->with(['seats' => function ($query) {
-            $query->selectRaw('kapal_id, COUNT(*) as total_seats, SUM(available) as total_available')
-                ->groupBy('kapal_id');
-        }])
-        ->get();
+            ->with(['seats' => function ($query) {
+                $query->selectRaw('kapal_id, COUNT(*) as total_seats, SUM(available) as total_available')
+                    ->groupBy('kapal_id');
+            }])
+            ->get();
 
 
         return Inertia::render('Rute/Index', [
             'rutes' => $rutes,
             'ships' => $ships,
         ]);
+    }
+
+    public function ruteid()
+    {
+        // $rutes = Rute::all();
+        // return Inertia::render('userJadwals', ['rutes' => $rutes]);
     }
 
     /**
@@ -73,6 +79,8 @@ class RuteController extends Controller
     public function show(string $id)
     {
         //
+        $rutes = Rute::with('jadwals', 'kapals')->findOrFail($id);
+        dd($rutes);
     }
 
     /**

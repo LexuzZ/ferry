@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Jadwal;
+use App\Models\Rute;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -14,9 +14,11 @@ class JadwalUserController extends Controller
     public function index()
     {
         //
-        $userJadwals = Jadwal::with('rutes', 'kapals')->get();
+        $rutes = Rute::all();
+        $userJadwals = Rute::with('jadwals', 'kapals')->get();
         return Inertia::render('UserJadwal', [
-            'userJadwals' =>  $userJadwals
+            'userJadwals' =>  $userJadwals,
+            'rutes' => $rutes
         ]);
     }
 
@@ -42,6 +44,13 @@ class JadwalUserController extends Controller
     public function show(string $id)
     {
         //
+        
+        // return Inertia::render(
+        //     'UserDashboard',
+        //     [
+        //         'rute' => $rute
+        //     ]
+        // );
     }
 
     /**

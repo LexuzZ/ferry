@@ -4,7 +4,9 @@ import { Link, usePage } from "@inertiajs/react";
 import React from "react";
 
 export default function userDashboard() {
-    const { auth } = usePage().props;
+    const { auth, rutes, jadwals } = usePage().props;
+    console.log(jadwals);
+    console.log(rutes);
     return (
         <UserLayout>
             <div className=" flex items-center">
@@ -32,6 +34,26 @@ export default function userDashboard() {
                         </Link>
                     </div>
                 </section>
+                {/* <h1>Rute: {rute.id}</h1>
+                <h2>Jadwals:</h2>
+                <ul>
+                    {rute.jadwals.map((jadwal) => (
+                        <li key={jadwal.id}>{jadwal.tanggal}</li>
+                    ))}
+                </ul> */}
+            </div>
+            <div className="mt-4 mb-10 flex items-center justify-center">
+                <div className="dropdown">
+                    <div tabIndex={0} role="button" className="btn m-1">
+                        Click
+                    </div>
+                    <ul
+                        tabIndex={0}
+                        className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
+                    >
+                        
+                    </ul>
+                </div>
             </div>
         </UserLayout>
     );
