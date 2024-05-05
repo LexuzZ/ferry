@@ -16,6 +16,10 @@ class Kapal extends Model
     {
         return $this->belongsTo(Rute::class);
     }
+    public function jadwals()
+    {
+        return $this->hasMany(Jadwal::class);
+    }
     public function seats(){
         return $this->hasMany(Seat::class);
     }
