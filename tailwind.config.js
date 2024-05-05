@@ -23,14 +23,14 @@ export default {
         },
         colors: {
             
-            'gray': '#3C5B6F',
+            'gray': '#03254c',
             'midnight': '#000000',
             'metal': '#565584',
             'tahiti': '#3ab7bf',
-            'silver': '#ecebff',
+            'silver': '#d0efff',
             'sea': '#419197',
-            'white': '#B5C0D0',
-            'navy': '#153448',
+            'white': '#d0efff',
+            'navy': '#1167b1',
             'red': '#FF1818',
             'blue': '#2E99B0',
             'green': '#3CB29A',

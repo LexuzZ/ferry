@@ -8,182 +8,6 @@ export default function Dashboard() {
     console.log(roles);
     return (
         <AdminLayout>
-            {/* <div className="p-4  bg-silver text-midnight rounded-lg  mt-7">
-                <div className="grid grid-cols-3 gap-4 mb-4">
-                    <div className="max-w-sm p-6 bg-bermuda  rounded-lg shadow dark:bg-bermuda">
-                        <div className="flex items-center justify-start px-4 mb-4">
-                            <ImUsers size={80}/>
-
-                            <h5 className="flex justify-end items-center mx-4   tracking-tight text-midnight ">
-                                Jumlah Pengguna 
-                            </h5>
-                            <tr></tr>
-                            <div className="font-bold flex justify-end text-midnight text-2xl">
-                            {userCount}
-                            </div>
-                        </div>
-                        <div className="flex items-center justify-center">
-                            <a
-                                href="/user"
-                                className="inline-flex items-center justify-center px-3 py-2 text-sm font-medium text-center text-bermuda bg-gray rounded-lg hover:bg-blue focus:ring-4 focus:outline-none focus:ring-blue dark:bg-blue dark:hover:bg-navy dark:focus:ring-blue"
-                            >
-                                Data User
-                                <svg
-                                    className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
-                                    aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 14 10"
-                                >
-                                    <path
-                                        stroke="currentColor"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth={2}
-                                        d="M1 5h12m0 0L9 1m4 4L9 9"
-                                    />
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div className="flex items-center justify-center h-24 rounded bg-gray ">
-                        <p className="text-2xl text-gray-400 dark:text-gray">
-                            <svg
-                                className="w-3.5 h-3.5"
-                                aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 18 18"
-                            >
-                                <path
-                                    stroke="currentColor"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M9 1v16M1 9h16"
-                                />
-                            </svg>
-                        </p>
-                    </div>
-                    <div className="flex items-center justify-center h-24 rounded bg-gray -800">
-                        <p className="text-2xl text-gray dark:text-gray">
-                            <svg
-                                className="w-3.5 h-3.5"
-                                aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 18 18"
-                            >
-                                <path
-                                    stroke="currentColor"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M9 1v16M1 9h16"
-                                />
-                            </svg>
-                        </p>
-                    </div>
-                </div>
-                <div className="flex items-center justify-center h-48 mb-4 rounded bg-gray ">
-                    <p className="text-2xl text-gray dark:text-gray">
-                        <svg
-                            className="w-3.5 h-3.5"
-                            aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 18 18"
-                        >
-                            <path
-                                stroke="currentColor"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M9 1v16M1 9h16"
-                            />
-                        </svg>
-                    </p>
-                </div>
-                <div className="grid grid-cols-2 gap-4 mb-4">
-                    <div className="flex items-center justify-center rounded bg-gray-50 h-28 -800">
-                        <p className="text-2xl text-gray-400 dark:text-gray">
-                            <svg
-                                className="w-3.5 h-3.5"
-                                aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 18 18"
-                            >
-                                <path
-                                    stroke="currentColor"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M9 1v16M1 9h16"
-                                />
-                            </svg>
-                        </p>
-                    </div>
-                    <div className="flex items-center justify-center rounded bg-gray-50 h-28 -800">
-                        <p className="text-2xl text-gray-400 dark:text-gray">
-                            <svg
-                                className="w-3.5 h-3.5"
-                                aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 18 18"
-                            >
-                                <path
-                                    stroke="currentColor"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M9 1v16M1 9h16"
-                                />
-                            </svg>
-                        </p>
-                    </div>
-                    <div className="flex items-center justify-center rounded bg-gray-50 h-28 -800">
-                        <p className="text-2xl text-gray-400 dark:text-gray">
-                            <svg
-                                className="w-3.5 h-3.5"
-                                aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 18 18"
-                            >
-                                <path
-                                    stroke="currentColor"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M9 1v16M1 9h16"
-                                />
-                            </svg>
-                        </p>
-                    </div>
-                    <div className="flex items-center justify-center rounded bg-gray-50 h-28 -800">
-                        <p className="text-2xl text-gray-400 dark:text-gray">
-                            <svg
-                                className="w-3.5 h-3.5"
-                                aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 18 18"
-                            >
-                                <path
-                                    stroke="currentColor"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M9 1v16M1 9h16"
-                                />
-                            </svg>
-                        </p>
-                    </div>
-                </div>
-            </div> */}
             <div className="p-6">
                 <>{/* component */}</>
                 <>
@@ -219,7 +43,7 @@ export default function Dashboard() {
                                     <p className="text-2xl font-semibold text-midnight">
                                         {userCount}
                                     </p>
-                                   
+
                                     <div className="absolute inset-x-0 bottom-0 bg-white px-4 py-4 sm:px-6">
                                         <div className="text-sm">
                                             <a
@@ -367,7 +191,7 @@ export default function Dashboard() {
                         <div className="rounded-t mb-0 px-0 border-0">
                             <div className="flex flex-wrap items-center px-4 py-2">
                                 <div className="relative w-full max-w-full flex-grow flex-1">
-                                    <h3 className="font-semibold text-base text-gray dark:text-gray-50">
+                                    <h3 className="font-semibold text-base text-gray dark:text-gray">
                                         Users
                                     </h3>
                                 </div>
@@ -376,17 +200,16 @@ export default function Dashboard() {
                                 <table className="items-center w-full bg-transparent border-collapse">
                                     <thead>
                                         <tr>
-                                            <th className="px-4 bg-white  text-white dark:text-gray align-middle border border-solid border-gray-200 dark:border-gray py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                                            <th className="px-4 bg-white  text-white dark:text-gray align-middle border border-solid border-gray dark:border-gray py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                                                 Role
                                             </th>
-                                            <th className="px-4 bg-white  text-white dark:text-gray align-middle border border-solid border-gray-200 dark:border-gray py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                                            <th className="px-4 bg-white  text-white dark:text-gray align-middle border border-solid border-gray dark:border-gray py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                                                 Amount
                                             </th>
-                                            <th className="px-4 bg-white  text-white dark:text-gray align-middle border border-solid border-gray-200 dark:border-gray py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px" />
+                                            <th className="px-4 bg-white  text-white dark:text-gray align-middle border border-solid border-gray dark:border-gray py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px" />
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        
                                         <tr className="text-midnight dark:text-gray">
                                             <th className="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
                                                 Administrator
@@ -425,7 +248,7 @@ export default function Dashboard() {
                                                         40%
                                                     </span>
                                                     <div className="relative w-full">
-                                                        <div className="overflow-hidden h-2 text-xs flex rounded bg-blue-200">
+                                                        <div className="overflow-hidden h-2 text-xs flex rounded bg-blue">
                                                             <div
                                                                 style={{
                                                                     width: "40%",
@@ -475,7 +298,7 @@ export default function Dashboard() {
                                                         60%
                                                     </span>
                                                     <div className="relative w-full">
-                                                        <div className="overflow-hidden h-2 text-xs flex rounded bg-red-200">
+                                                        <div className="overflow-hidden h-2 text-xs flex rounded bg-red">
                                                             <div
                                                                 style={{
                                                                     width: "60%",
@@ -498,7 +321,7 @@ export default function Dashboard() {
                             <div className="dropdown">
                                 <button
                                     type="button"
-                                    className="dropdown-toggle text-gray-400 hover:text-gray"
+                                    className="dropdown-toggle text-gray hover:text-gray"
                                 >
                                     <i className="ri-more-fill" />
                                 </button>
@@ -506,7 +329,7 @@ export default function Dashboard() {
                                     <li>
                                         <a
                                             href="#"
-                                            className="flex items-center text-[13px] py-1.5 px-4 text-gray hover:text-blue hover:bg-gray-50"
+                                            className="flex items-center text-[13px] py-1.5 px-4 text-gray hover:text-blue hover:bg-gray"
                                         >
                                             Profile
                                         </a>
@@ -514,7 +337,7 @@ export default function Dashboard() {
                                     <li>
                                         <a
                                             href="#"
-                                            className="flex items-center text-[13px] py-1.5 px-4 text-gray hover:text-blue hover:bg-gray-50"
+                                            className="flex items-center text-[13px] py-1.5 px-4 text-gray hover:text-blue hover:bg-gray"
                                         >
                                             Settings
                                         </a>
@@ -522,7 +345,7 @@ export default function Dashboard() {
                                     <li>
                                         <a
                                             href="#"
-                                            className="flex items-center text-[13px] py-1.5 px-4 text-gray hover:text-blue hover:bg-gray-50"
+                                            className="flex items-center text-[13px] py-1.5 px-4 text-gray hover:text-blue hover:bg-gray"
                                         >
                                             Logout
                                         </a>
@@ -534,7 +357,7 @@ export default function Dashboard() {
                             <table className="w-full min-w-[540px]">
                                 <tbody>
                                     <tr>
-                                        <td className="py-2 px-4 border-b border-b-gray-50">
+                                        <td className="py-2 px-4 border-b border-b-gray">
                                             <div className="flex items-center">
                                                 <a
                                                     href="#"
@@ -544,21 +367,21 @@ export default function Dashboard() {
                                                 </a>
                                             </div>
                                         </td>
-                                        <td className="py-2 px-4 border-b border-b-gray-50">
-                                            <span className="text-[13px] font-medium text-gray-400">
+                                        <td className="py-2 px-4 border-b border-b-gray">
+                                            <span className="text-[13px] font-medium text-gray">
                                                 02-02-2024
                                             </span>
                                         </td>
-                                        <td className="py-2 px-4 border-b border-b-gray-50">
-                                            <span className="text-[13px] font-medium text-gray-400">
+                                        <td className="py-2 px-4 border-b border-b-gray">
+                                            <span className="text-[13px] font-medium text-gray">
                                                 17.45
                                             </span>
                                         </td>
-                                        <td className="py-2 px-4 border-b border-b-gray-50">
+                                        <td className="py-2 px-4 border-b border-b-gray">
                                             <div className="dropdown">
                                                 <button
                                                     type="button"
-                                                    className="dropdown-toggle text-gray-400 hover:text-gray text-sm w-6 h-6 rounded flex items-center justify-center bg-gray-50"
+                                                    className="dropdown-toggle text-gray hover:text-gray text-sm w-6 h-6 rounded flex items-center justify-center bg-gray"
                                                 >
                                                     <i className="ri-more-2-fill" />
                                                 </button>
@@ -566,7 +389,7 @@ export default function Dashboard() {
                                                     <li>
                                                         <a
                                                             href="#"
-                                                            className="flex items-center text-[13px] py-1.5 px-4 text-gray hover:text-blue hover:bg-gray-50"
+                                                            className="flex items-center text-[13px] py-1.5 px-4 text-gray hover:text-blue hover:bg-gray"
                                                         >
                                                             Profile
                                                         </a>
@@ -574,7 +397,7 @@ export default function Dashboard() {
                                                     <li>
                                                         <a
                                                             href="#"
-                                                            className="flex items-center text-[13px] py-1.5 px-4 text-gray hover:text-blue hover:bg-gray-50"
+                                                            className="flex items-center text-[13px] py-1.5 px-4 text-gray hover:text-blue hover:bg-gray"
                                                         >
                                                             Settings
                                                         </a>
@@ -582,7 +405,7 @@ export default function Dashboard() {
                                                     <li>
                                                         <a
                                                             href="#"
-                                                            className="flex items-center text-[13px] py-1.5 px-4 text-gray hover:text-blue hover:bg-gray-50"
+                                                            className="flex items-center text-[13px] py-1.5 px-4 text-gray hover:text-blue hover:bg-gray"
                                                         >
                                                             Logout
                                                         </a>
@@ -592,7 +415,7 @@ export default function Dashboard() {
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td className="py-2 px-4 border-b border-b-gray-50">
+                                        <td className="py-2 px-4 border-b border-b-gray">
                                             <div className="flex items-center">
                                                 <a
                                                     href="#"
@@ -602,21 +425,21 @@ export default function Dashboard() {
                                                 </a>
                                             </div>
                                         </td>
-                                        <td className="py-2 px-4 border-b border-b-gray-50">
-                                            <span className="text-[13px] font-medium text-gray-400">
+                                        <td className="py-2 px-4 border-b border-b-gray">
+                                            <span className="text-[13px] font-medium text-gray">
                                                 02-02-2024
                                             </span>
                                         </td>
-                                        <td className="py-2 px-4 border-b border-b-gray-50">
-                                            <span className="text-[13px] font-medium text-gray-400">
+                                        <td className="py-2 px-4 border-b border-b-gray">
+                                            <span className="text-[13px] font-medium text-gray">
                                                 17.45
                                             </span>
                                         </td>
-                                        <td className="py-2 px-4 border-b border-b-gray-50">
+                                        <td className="py-2 px-4 border-b border-b-gray">
                                             <div className="dropdown">
                                                 <button
                                                     type="button"
-                                                    className="dropdown-toggle text-gray-400 hover:text-gray text-sm w-6 h-6 rounded flex items-center justify-center bg-gray-50"
+                                                    className="dropdown-toggle text-gray hover:text-gray text-sm w-6 h-6 rounded flex items-center justify-center bg-gray"
                                                 >
                                                     <i className="ri-more-2-fill" />
                                                 </button>
@@ -624,7 +447,7 @@ export default function Dashboard() {
                                                     <li>
                                                         <a
                                                             href="#"
-                                                            className="flex items-center text-[13px] py-1.5 px-4 text-gray hover:text-blue hover:bg-gray-50"
+                                                            className="flex items-center text-[13px] py-1.5 px-4 text-gray hover:text-blue hover:bg-gray"
                                                         >
                                                             Profile
                                                         </a>
@@ -632,7 +455,7 @@ export default function Dashboard() {
                                                     <li>
                                                         <a
                                                             href="#"
-                                                            className="flex items-center text-[13px] py-1.5 px-4 text-gray hover:text-blue hover:bg-gray-50"
+                                                            className="flex items-center text-[13px] py-1.5 px-4 text-gray hover:text-blue hover:bg-gray"
                                                         >
                                                             Settings
                                                         </a>
@@ -640,7 +463,7 @@ export default function Dashboard() {
                                                     <li>
                                                         <a
                                                             href="#"
-                                                            className="flex items-center text-[13px] py-1.5 px-4 text-gray hover:text-blue hover:bg-gray-50"
+                                                            className="flex items-center text-[13px] py-1.5 px-4 text-gray hover:text-blue hover:bg-gray"
                                                         >
                                                             Logout
                                                         </a>
@@ -661,7 +484,7 @@ export default function Dashboard() {
                             <div className="dropdown">
                                 <button
                                     type="button"
-                                    className="dropdown-toggle text-gray-400 hover:text-gray"
+                                    className="dropdown-toggle text-gray hover:text-gray"
                                 >
                                     <i className="ri-more-fill" />
                                 </button>
@@ -669,7 +492,7 @@ export default function Dashboard() {
                                     <li>
                                         <a
                                             href="#"
-                                            className="flex items-center text-[13px] py-1.5 px-4 text-gray hover:text-blue hover:bg-gray-50"
+                                            className="flex items-center text-[13px] py-1.5 px-4 text-gray hover:text-blue hover:bg-gray"
                                         >
                                             Profile
                                         </a>
@@ -677,7 +500,7 @@ export default function Dashboard() {
                                     <li>
                                         <a
                                             href="#"
-                                            className="flex items-center text-[13px] py-1.5 px-4 text-gray hover:text-blue hover:bg-gray-50"
+                                            className="flex items-center text-[13px] py-1.5 px-4 text-gray hover:text-blue hover:bg-gray"
                                         >
                                             Settings
                                         </a>
@@ -685,7 +508,7 @@ export default function Dashboard() {
                                     <li>
                                         <a
                                             href="#"
-                                            className="flex items-center text-[13px] py-1.5 px-4 text-gray hover:text-blue hover:bg-gray-50"
+                                            className="flex items-center text-[13px] py-1.5 px-4 text-gray hover:text-blue hover:bg-gray"
                                         >
                                             Logout
                                         </a>
@@ -694,7 +517,7 @@ export default function Dashboard() {
                             </div>
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
-                            <div className="rounded-md border border-dashed border-gray-200 p-4">
+                            <div className="rounded-md border border-dashed border-gray p-4">
                                 <div className="flex items-center mb-0.5">
                                     <div className="text-xl font-semibold">
                                         10
@@ -703,24 +526,22 @@ export default function Dashboard() {
                                         $80
                                     </span>
                                 </div>
-                                <span className="text-gray-400 text-sm">
+                                <span className="text-gray text-sm">
                                     Active
                                 </span>
                             </div>
-                            <div className="rounded-md border border-dashed border-gray-200 p-4">
+                            <div className="rounded-md border border-dashed border-gray p-4">
                                 <div className="flex items-center mb-0.5">
-                                    <div className="text-xl font-semibold">
-                                        50
-                                    </div>
+                                    <div className="text-xl font-semibold"></div>
                                     <span className="p-1 rounded text-[12px] font-semibold bg-emerald/10 text-emerald leading-none ml-1">
                                         +$469
                                     </span>
                                 </div>
-                                <span className="text-gray-400 text-sm">
+                                <span className="text-gray text-sm">
                                     Completed
                                 </span>
                             </div>
-                            <div className="rounded-md border border-dashed border-gray-200 p-4">
+                            <div className="rounded-md border border-dashed border-gray p-4">
                                 <div className="flex items-center mb-0.5">
                                     <div className="text-xl font-semibold">
                                         4
@@ -729,7 +550,7 @@ export default function Dashboard() {
                                         -$130
                                     </span>
                                 </div>
-                                <span className="text-gray-400 text-sm">
+                                <span className="text-gray text-sm">
                                     Canceled
                                 </span>
                             </div>
@@ -744,7 +565,7 @@ export default function Dashboard() {
                             <div className="dropdown">
                                 <button
                                     type="button"
-                                    className="dropdown-toggle text-gray-400 hover:text-gray"
+                                    className="dropdown-toggle text-gray hover:text-gray"
                                 >
                                     <i className="ri-more-fill" />
                                 </button>
@@ -752,7 +573,7 @@ export default function Dashboard() {
                                     <li>
                                         <a
                                             href="#"
-                                            className="flex items-center text-[13px] py-1.5 px-4 text-gray hover:text-blue hover:bg-gray-50"
+                                            className="flex items-center text-[13px] py-1.5 px-4 text-gray hover:text-blue hover:bg-gray"
                                         >
                                             Profile
                                         </a>
@@ -760,7 +581,7 @@ export default function Dashboard() {
                                     <li>
                                         <a
                                             href="#"
-                                            className="flex items-center text-[13px] py-1.5 px-4 text-gray hover:text-blue hover:bg-gray-50"
+                                            className="flex items-center text-[13px] py-1.5 px-4 text-gray hover:text-blue hover:bg-gray"
                                         >
                                             Settings
                                         </a>
@@ -768,7 +589,7 @@ export default function Dashboard() {
                                     <li>
                                         <a
                                             href="#"
-                                            className="flex items-center text-[13px] py-1.5 px-4 text-gray hover:text-blue hover:bg-gray-50"
+                                            className="flex items-center text-[13px] py-1.5 px-4 text-gray hover:text-blue hover:bg-gray"
                                         >
                                             Logout
                                         </a>
@@ -780,20 +601,20 @@ export default function Dashboard() {
                             <table className="w-full min-w-[460px]">
                                 <thead>
                                     <tr>
-                                        <th className="text-[12px] uppercase tracking-wide font-medium text-gray-400 py-2 px-4 bg-gray-50 text-left rounded-tl-md rounded-bl-md">
+                                        <th className="text-[12px] uppercase tracking-wide font-medium text-gray py-2 px-4 bg-gray text-left rounded-tl-md rounded-bl-md">
                                             Service
                                         </th>
-                                        <th className="text-[12px] uppercase tracking-wide font-medium text-gray-400 py-2 px-4 bg-gray-50 text-left">
+                                        <th className="text-[12px] uppercase tracking-wide font-medium text-gray py-2 px-4 bg-gray text-left">
                                             Earning
                                         </th>
-                                        <th className="text-[12px] uppercase tracking-wide font-medium text-gray-400 py-2 px-4 bg-gray-50 text-left rounded-tr-md rounded-br-md">
+                                        <th className="text-[12px] uppercase tracking-wide font-medium text-gray py-2 px-4 bg-gray text-left rounded-tr-md rounded-br-md">
                                             Status
                                         </th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td className="py-2 px-4 border-b border-b-gray-50">
+                                        <td className="py-2 px-4 border-b border-b-gray">
                                             <div className="flex items-center">
                                                 <img
                                                     src="https://placehold.co/32x32"
@@ -808,19 +629,19 @@ export default function Dashboard() {
                                                 </a>
                                             </div>
                                         </td>
-                                        <td className="py-2 px-4 border-b border-b-gray-50">
+                                        <td className="py-2 px-4 border-b border-b-gray">
                                             <span className="text-[13px] font-medium text-emerald">
                                                 +$235
                                             </span>
                                         </td>
-                                        <td className="py-2 px-4 border-b border-b-gray-50">
+                                        <td className="py-2 px-4 border-b border-b-gray">
                                             <span className="inline-block p-1 rounded bg-emerald/10 text-emerald font-medium text-[12px] leading-none">
                                                 Pending
                                             </span>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td className="py-2 px-4 border-b border-b-gray-50">
+                                        <td className="py-2 px-4 border-b border-b-gray">
                                             <div className="flex items-center">
                                                 <img
                                                     src="https://placehold.co/32x32"
@@ -835,19 +656,19 @@ export default function Dashboard() {
                                                 </a>
                                             </div>
                                         </td>
-                                        <td className="py-2 px-4 border-b border-b-gray-50">
+                                        <td className="py-2 px-4 border-b border-b-gray">
                                             <span className="text-[13px] font-medium text-rose">
                                                 -$235
                                             </span>
                                         </td>
-                                        <td className="py-2 px-4 border-b border-b-gray-50">
+                                        <td className="py-2 px-4 border-b border-b-gray">
                                             <span className="inline-block p-1 rounded bg-rose/10 text-rose font-medium text-[12px] leading-none">
                                                 Withdrawn
                                             </span>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td className="py-2 px-4 border-b border-b-gray-50">
+                                        <td className="py-2 px-4 border-b border-b-gray">
                                             <div className="flex items-center">
                                                 <img
                                                     src="https://placehold.co/32x32"
@@ -862,19 +683,19 @@ export default function Dashboard() {
                                                 </a>
                                             </div>
                                         </td>
-                                        <td className="py-2 px-4 border-b border-b-gray-50">
+                                        <td className="py-2 px-4 border-b border-b-gray">
                                             <span className="text-[13px] font-medium text-emerald">
                                                 +$235
                                             </span>
                                         </td>
-                                        <td className="py-2 px-4 border-b border-b-gray-50">
+                                        <td className="py-2 px-4 border-b border-b-gray">
                                             <span className="inline-block p-1 rounded bg-emerald/10 text-emerald font-medium text-[12px] leading-none">
                                                 Pending
                                             </span>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td className="py-2 px-4 border-b border-b-gray-50">
+                                        <td className="py-2 px-4 border-b border-b-gray">
                                             <div className="flex items-center">
                                                 <img
                                                     src="https://placehold.co/32x32"
@@ -889,19 +710,19 @@ export default function Dashboard() {
                                                 </a>
                                             </div>
                                         </td>
-                                        <td className="py-2 px-4 border-b border-b-gray-50">
+                                        <td className="py-2 px-4 border-b border-b-gray">
                                             <span className="text-[13px] font-medium text-rose">
                                                 -$235
                                             </span>
                                         </td>
-                                        <td className="py-2 px-4 border-b border-b-gray-50">
+                                        <td className="py-2 px-4 border-b border-b-gray">
                                             <span className="inline-block p-1 rounded bg-rose/10 text-rose font-medium text-[12px] leading-none">
                                                 Withdrawn
                                             </span>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td className="py-2 px-4 border-b border-b-gray-50">
+                                        <td className="py-2 px-4 border-b border-b-gray">
                                             <div className="flex items-center">
                                                 <img
                                                     src="https://placehold.co/32x32"
@@ -916,19 +737,19 @@ export default function Dashboard() {
                                                 </a>
                                             </div>
                                         </td>
-                                        <td className="py-2 px-4 border-b border-b-gray-50">
+                                        <td className="py-2 px-4 border-b border-b-gray">
                                             <span className="text-[13px] font-medium text-emerald">
                                                 +$235
                                             </span>
                                         </td>
-                                        <td className="py-2 px-4 border-b border-b-gray-50">
+                                        <td className="py-2 px-4 border-b border-b-gray">
                                             <span className="inline-block p-1 rounded bg-emerald/10 text-emerald font-medium text-[12px] leading-none">
                                                 Pending
                                             </span>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td className="py-2 px-4 border-b border-b-gray-50">
+                                        <td className="py-2 px-4 border-b border-b-gray">
                                             <div className="flex items-center">
                                                 <img
                                                     src="https://placehold.co/32x32"
@@ -943,19 +764,19 @@ export default function Dashboard() {
                                                 </a>
                                             </div>
                                         </td>
-                                        <td className="py-2 px-4 border-b border-b-gray-50">
+                                        <td className="py-2 px-4 border-b border-b-gray">
                                             <span className="text-[13px] font-medium text-rose">
                                                 -$235
                                             </span>
                                         </td>
-                                        <td className="py-2 px-4 border-b border-b-gray-50">
+                                        <td className="py-2 px-4 border-b border-b-gray">
                                             <span className="inline-block p-1 rounded bg-rose/10 text-rose font-medium text-[12px] leading-none">
                                                 Withdrawn
                                             </span>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td className="py-2 px-4 border-b border-b-gray-50">
+                                        <td className="py-2 px-4 border-b border-b-gray">
                                             <div className="flex items-center">
                                                 <img
                                                     src="https://placehold.co/32x32"
@@ -970,19 +791,19 @@ export default function Dashboard() {
                                                 </a>
                                             </div>
                                         </td>
-                                        <td className="py-2 px-4 border-b border-b-gray-50">
+                                        <td className="py-2 px-4 border-b border-b-gray">
                                             <span className="text-[13px] font-medium text-emerald">
                                                 +$235
                                             </span>
                                         </td>
-                                        <td className="py-2 px-4 border-b border-b-gray-50">
+                                        <td className="py-2 px-4 border-b border-b-gray">
                                             <span className="inline-block p-1 rounded bg-emerald/10 text-emerald font-medium text-[12px] leading-none">
                                                 Pending
                                             </span>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td className="py-2 px-4 border-b border-b-gray-50">
+                                        <td className="py-2 px-4 border-b border-b-gray">
                                             <div className="flex items-center">
                                                 <img
                                                     src="https://placehold.co/32x32"
@@ -997,19 +818,19 @@ export default function Dashboard() {
                                                 </a>
                                             </div>
                                         </td>
-                                        <td className="py-2 px-4 border-b border-b-gray-50">
+                                        <td className="py-2 px-4 border-b border-b-gray">
                                             <span className="text-[13px] font-medium text-rose">
                                                 -$235
                                             </span>
                                         </td>
-                                        <td className="py-2 px-4 border-b border-b-gray-50">
+                                        <td className="py-2 px-4 border-b border-b-gray">
                                             <span className="inline-block p-1 rounded bg-rose/10 text-rose font-medium text-[12px] leading-none">
                                                 Withdrawn
                                             </span>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td className="py-2 px-4 border-b border-b-gray-50">
+                                        <td className="py-2 px-4 border-b border-b-gray">
                                             <div className="flex items-center">
                                                 <img
                                                     src="https://placehold.co/32x32"
@@ -1024,19 +845,19 @@ export default function Dashboard() {
                                                 </a>
                                             </div>
                                         </td>
-                                        <td className="py-2 px-4 border-b border-b-gray-50">
+                                        <td className="py-2 px-4 border-b border-b-gray">
                                             <span className="text-[13px] font-medium text-emerald">
                                                 +$235
                                             </span>
                                         </td>
-                                        <td className="py-2 px-4 border-b border-b-gray-50">
+                                        <td className="py-2 px-4 border-b border-b-gray">
                                             <span className="inline-block p-1 rounded bg-emerald/10 text-emerald font-medium text-[12px] leading-none">
                                                 Pending
                                             </span>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td className="py-2 px-4 border-b border-b-gray-50">
+                                        <td className="py-2 px-4 border-b border-b-gray">
                                             <div className="flex items-center">
                                                 <img
                                                     src="https://placehold.co/32x32"
@@ -1051,12 +872,12 @@ export default function Dashboard() {
                                                 </a>
                                             </div>
                                         </td>
-                                        <td className="py-2 px-4 border-b border-b-gray-50">
+                                        <td className="py-2 px-4 border-b border-b-gray">
                                             <span className="text-[13px] font-medium text-rose">
                                                 -$235
                                             </span>
                                         </td>
-                                        <td className="py-2 px-4 border-b border-b-gray-50">
+                                        <td className="py-2 px-4 border-b border-b-gray">
                                             <span className="inline-block p-1 rounded bg-rose/10 text-rose font-medium text-[12px] leading-none">
                                                 Withdrawn
                                             </span>

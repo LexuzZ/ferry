@@ -18,9 +18,9 @@ const Index = ({ rutes, ships }) => {
 
             <Link
                 href="/rute/create"
-                className="relative inline-flex items-center justify-center p-0.5 mb-2 ms-4 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800"
+                className="relative inline-flex items-center justify-center p-0.5 mb-2 ms-4 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group hover:bg-blue hover:text-midnight dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800"
             >
-                <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-navy dark:bg-blue-900 rounded-md group-hover:bg-opacity-0">
+                <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-navy dark:bg-blue-900 rounded-md group-hover:bg-gray">
                     Tambah
                 </span>
             </Link>
@@ -46,9 +46,9 @@ const Index = ({ rutes, ships }) => {
                 </div>
             )}
 
-            <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-6">
-                <table className="w-full text-sm text-center rtl:text-right text-midnight">
-                    <thead className="text-xs text-midnight uppercase bg-gray font-bold">
+            <div className=" overflow-x-auto shadow-md sm:rounded-lg mt-6">
+                <table className="table table-md">
+                    <thead className="text-xs text-white text-center uppercase bg-gray font-bold">
                         <tr>
                             <th scope="col" className="px-6 py-3">
                                 ID
@@ -74,7 +74,7 @@ const Index = ({ rutes, ships }) => {
                             </th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody className="bg-white text-center">
                         {rutes.map((rute) => (
                             <tr key={rute.id}>
                                 <td
@@ -90,7 +90,10 @@ const Index = ({ rutes, ships }) => {
                                     {rute.nama_rute}
                                 </td>
 
-                                <td>
+                                <td
+                                    scope="row"
+                                    className=" py-4  text-midnight  font-medium whitespace-nowrap dark:text-black"
+                                >
                                     <ul>
                                         {rute.kapals.map((kapal) => (
                                             <li key={kapal.id}>
