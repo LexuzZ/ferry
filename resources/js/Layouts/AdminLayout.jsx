@@ -92,7 +92,7 @@ const AdminLayout = ({ children }) => {
                     <ul className="space-y-2 font-medium">
                         <li>
                             <a
-                                href="/dashboard"
+                                href={`/dashboard`}
                                 className="flex items-center p-2 text-bermuda rounded-lg dark:text-white hover:bg-gray dark:hover:bg-gray-700 group"
                             >
                                 <svg
@@ -112,7 +112,7 @@ const AdminLayout = ({ children }) => {
                         </li>
                         <li>
                             <a
-                                href="/jadwals"
+                                href={`/jadwals`}
                                 className="flex items-center p-2 text-bermuda rounded-lg dark:text-white hover:bg-gray dark:hover:bg-gray-700 group"
                             >
                                 <svg
@@ -131,7 +131,7 @@ const AdminLayout = ({ children }) => {
                         </li>
                         <li>
                             <a
-                                href="/rute"
+                                href={`/rute`}
                                 className="flex items-center p-2 text-bermuda rounded-lg dark:text-white hover:bg-gray dark:hover:bg-gray-700 group"
                             >
                                 <svg
@@ -150,7 +150,7 @@ const AdminLayout = ({ children }) => {
                         </li>
                         <li>
                             <a
-                                href="/user"
+                                href={`/user`}
                                 className="flex items-center p-2 text-bermuda rounded-lg dark:text-white hover:bg-gray dark:hover:bg-gray-700 group"
                             >
                                 <svg
@@ -169,7 +169,7 @@ const AdminLayout = ({ children }) => {
                         </li>
                         <li>
                             <a
-                                href="kapal"
+                                href={`/kapal`}
                                 className="flex items-center p-2 text-bermuda rounded-lg dark:text-white hover:bg-gray dark:hover:bg-gray-700 group"
                             >
                                 <svg
