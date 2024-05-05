@@ -9,7 +9,7 @@ class Jadwal extends Model
 {
     use HasFactory;
     protected $table = "jadwals";
-    protected $fillable = ['rute_id', 'tanggal', 'tiba', 'keberangkatan'];
+    protected $fillable = ['rute_id','kapal_id', 'tanggal', 'tiba', 'keberangkatan'];
 
     
 
@@ -17,6 +17,10 @@ class Jadwal extends Model
     public function rutes()
     {
         return $this->belongsTo(Rute::class);
+    }
+    public function kapals()
+    {
+        return $this->belongsTo(Kapal::class);
     }
     
 }
