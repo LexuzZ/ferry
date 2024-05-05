@@ -61,6 +61,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::group(['middleware' => 'checkRole:user'], function () {
         Route::inertia('/userDashboard', 'UserDashboard')->name('userDashboard');
+        
+        Route::get('/userDashboard/{id}', [RuteController::class, 'show'])->name('rute.show');
         Route::get('/userJadwal', [JadwalUserController::class, 'index'])->name('jadwal.user');
         Route::get('/pesanan', [JadwalUserController::class, 'index'])->name('jadwal.pesanan');
         Route::get('/seats/{kapal}', [SeatController::class, 'index'])->name('seats.index');
