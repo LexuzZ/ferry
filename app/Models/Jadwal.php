@@ -22,5 +22,9 @@ class Jadwal extends Model
     {
         return $this->belongsTo(Kapal::class);
     }
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class);
+    }
     
 }
