@@ -78,7 +78,15 @@ class RuteController extends Controller
      */
     public function show(string $id)
     {
-        
+        $rute = Rute::findOrFail($id);
+        $jadwal = $rute->jadwals()->get();
+        $kapal = $rute->kapals()->get();
+
+        return Inertia::render('Detail', [
+            'rute' => $rute,
+            'jadwal' => $jadwal,
+            'kapal' => $kapal
+        ]);
     }
 
     /**

@@ -1,11 +1,12 @@
 import UserLayout from "@/Layouts/UserLayout";
 import { Head } from "@inertiajs/react";
 import { Link, usePage } from "@inertiajs/react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-export default function userDashboard() {
-    const { auth, rutes} = usePage().props;
-    console.log(rutes);
+export default function userDashboard( ) {
+    const [routeDetail, setRouteDetail] = useState('');
+    const { auth, rutes, rute} = usePage().props;
+    console.log(rute);
     return (
         <UserLayout>
             <div className=" flex items-center pt-14">
