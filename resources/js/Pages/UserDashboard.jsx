@@ -4,12 +4,11 @@ import { Link, usePage } from "@inertiajs/react";
 import React from "react";
 
 export default function userDashboard() {
-    const { auth, rutes, jadwals } = usePage().props;
-    console.log(jadwals);
+    const { auth, rutes} = usePage().props;
     console.log(rutes);
     return (
         <UserLayout>
-            <div className=" flex items-center">
+            <div className=" flex items-center pt-14">
                 <section
                     className="w-full bg-cover bg-center py-32"
                     style={{
@@ -18,7 +17,7 @@ export default function userDashboard() {
                     }}
                 >
                     <div className="container mx-auto text-center text-white">
-                        <h1 className="text-5xl font-medium mb-6">
+                        <h1 className="text-5xl font-medium mb-6 text-white">
                             Selamat datang {auth.user.name}!
                         </h1>
                         <p className="text-xl mb-12">
@@ -41,19 +40,6 @@ export default function userDashboard() {
                         <li key={jadwal.id}>{jadwal.tanggal}</li>
                     ))}
                 </ul> */}
-            </div>
-            <div className="mt-4 mb-10 flex items-center justify-center">
-                <div className="dropdown">
-                    <div tabIndex={0} role="button" className="btn m-1">
-                        Click
-                    </div>
-                    <ul
-                        tabIndex={0}
-                        className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
-                    >
-                        
-                    </ul>
-                </div>
             </div>
         </UserLayout>
     );

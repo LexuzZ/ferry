@@ -5,6 +5,7 @@ import { router } from "@inertiajs/react";
 import React, { useState } from "react";
 UserLayout;
 const SeatSelection = ({ seats }) => {
+    console.log(seats);
     const [selectedSeat, setSelectedSeat] = useState(null);
 
     const reserveSeat = (seatId) => {
@@ -17,11 +18,11 @@ const SeatSelection = ({ seats }) => {
         <UserLayout>
             <div>
                 <h2 className="pt-20 mb-5 font-bold text-center text-xl text-midnight">
-                    Pilih Tempat Duduk/Tidur
+                    Pilih Tempat Tidur
                 </h2>
                 <div className="grid grid-cols-5 gap-5">
                     {seats.map((seat, index) => (
-                        <div className="p-5 flex justify-center items-center rounded-lg max-w-xs shadow-lg text-midnight">
+                        <div  className="p-5 flex justify-center items-center rounded-lg max-w-xs shadow-lg text-midnight">
                             No. Seat : {seat.name}
                             {seat.available ? (
                                 <button

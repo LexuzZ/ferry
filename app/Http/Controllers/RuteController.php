@@ -78,9 +78,7 @@ class RuteController extends Controller
      */
     public function show(string $id)
     {
-        //
-        $rutes = Rute::with('jadwals', 'kapals')->findOrFail($id);
-        dd($rutes);
+        
     }
 
     /**

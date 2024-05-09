@@ -12,9 +12,6 @@ class SeatController extends Controller
     public function index($kapal)
     {
         $kapal = Kapal::find($kapal)->seats->where('available', true);
-        // return response($kapal);
-        // $seats = Seat::where('available', true)->get(); // Hanya ambil tempat duduk yang tersedia
-
         return Inertia::render('SeatSelection', [
             'seats' => $kapal
         ]);

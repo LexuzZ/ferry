@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Rute;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -15,6 +16,8 @@ class HomeController extends Controller
         //
         return Inertia::render('Homepage');
     }
+    
+    
 
     /**
      * Show the form for creating a new resource.

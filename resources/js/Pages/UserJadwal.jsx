@@ -1,32 +1,12 @@
-import AdminLayout from "@/Layouts/AdminLayout";
 import UserLayout from "@/Layouts/UserLayout";
 import { Head, Link, router, useForm, usePage } from "@inertiajs/react";
-import React from "react";
+import React, { useState } from "react";
 
-const UserJadwal = () => {
-    const { userJadwals, rutes } = usePage().props;
-    console.log(userJadwals);
-    console.log(rutes);
+const UserJadwal = ({ rutes }) => {
     return (
         <UserLayout>
-            <div className="text-center text-midnight text-2xl font-bold py-4 mt-14">
-                Informasi Jadwal
-            </div>
-            <div className="mt-4 mb-10 flex items-center justify-center">
-                <select className="select select-bordered w-full max-w-xs">
-                    <option disabled selected>
-                        Pilih Rute Tujuan Anda
-                    </option>
-                    {rutes.map((rute) => (
-                        <option value={rute.id} key={rute.id}>
-                            {rute.nama_rute}
-                        </option>
-                    ))}
-                </select>
-            </div>
-
-            <div className=" overflow-x-auto shadow-md  mt-6 px-4">
-                <table className="table table-md sm:rounded-lg">
+            <div className=" overflow-x-auto shadow-md sm:rounded-lg pt-24 px-4">
+                <table className="table table-md">
                     <thead className="text-xs text-white text-center uppercase bg-gray font-bold">
                         <tr>
                             <th scope="col" className="px-6 py-3">
@@ -36,16 +16,10 @@ const UserJadwal = () => {
                                 Rute
                             </th>
                             <th scope="col" className="px-6 py-3">
-                                Kapal
+                                Nama Kapal
                             </th>
                             <th scope="col" className="px-6 py-3">
-                                Tanggal
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                ETA
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                ETd
+                                Jadwal
                             </th>
 
                             <th scope="col" className=" py-3">
@@ -54,7 +28,7 @@ const UserJadwal = () => {
                         </tr>
                     </thead>
                     <tbody className="bg-white text-center">
-                        {userJadwals.map((rute) => (
+                        {rutes.map((rute) => (
                             <tr key={rute.id}>
                                 <td
                                     scope="row"
@@ -93,122 +67,86 @@ const UserJadwal = () => {
                                         ))}
                                     </ul>
                                 </td>
-                                <td
-                                    scope="row"
-                                    className=" py-4  text-midnight  font-medium whitespace-nowrap dark:text-black"
-                                >
-                                    <ul>
-                                        {rute.jadwals.map((jadwal) => (
-                                            <li key={jadwal.id}>
-                                                {jadwal.tiba}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </td>
 
-                                <td
-                                    scope="row"
-                                    className=" py-4  text-midnight  font-medium whitespace-nowrap dark:text-black"
-                                >
-                                    <ul>
-                                        {rute.jadwals.map((jadwal) => (
-                                            <li key={jadwal.id}>
-                                                {jadwal.keberangkatan}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </td>
-                                {rute.kapals.map((kapal, i) => (
-                                    <Link
-                                        key={i}
-                                        href={`seats/${kapal.id}`}
-                                        className="btn btn-primary m-3"
+                                <td>
+                                    {/* Open the modal using document.getElementById('ID').showModal() method */}
+                                  
+                                    <button
+                                        className="btn"
+                                        onClick={() =>
+                                            document
+                                                .getElementById("my_modal_1")
+                                                .showModal()
+                                        }
                                     >
-                                        Pesan
-                                    </Link>
-                                ))}
+                                        {rute.id}
+                                    </button>
+                                    <dialog id="my_modal_1" className="modal">
+                                        <div className="modal-box bg-grey text-midnight">
+                                            <h3 className="flex items-start justify-start font-bold text-lg">
+                                                Rute Keberangkatan :{" "}
+                                                {rute.nama_rute}
+                                            </h3>
+                                            <p className="flex items-start justify-start py-4">
+                                                {rute.kapals.map((kapal) => (
+                                                    <p key={kapal.id}>
+                                                        Nama Kapal :{" "}
+                                                        {kapal.nama_kapal}
+                                                    </p>
+                                                ))}
+                                            </p>
+                                            <div className="overflow-x-auto">
+                                                <table className="table">
+                                                    {/* head */}
+                                                    <thead className="text-midnight">
+                                                        <tr>
+                                                            <th>Date</th>
+                                                            <th>ETA</th>
+                                                            <th>ETD</th>
+                                                            <th></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {/* row 1 */}
+                                                        {rute.jadwals.map(
+                                                            (jadwal) => (
+                                                                <tr key={jadwal.id}>
+                                                                    <td>
+                                                                        {jadwal.tanggal}
+                                                                    </td>
+                                                                    <td>
+                                                                        {jadwal.tiba}
+                                                                    </td>
+                                                                    <td>
+                                                                        {jadwal.keberangkatan}
+                                                                    </td>
+                                                                    <td>
+                                                                        <button>pesan</button>
+                                                                    </td>
+                                                                </tr>
+                                                            )
+                                                        )}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div className="modal-action">
+                                                <form method="dialog">
+                                                    {/* if there is a button in form, it will close the modal */}
+                                                    <button className="btn">
+                                                        Close
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </dialog>
+                                </td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
             </div>
-
-            {/* <div className="relative overflow-x-auto shadow-md  mt-6 px-6 rounded-lg">
-                <table className="table table-md text-sm text-center rtl:text-right text-midnight">
-                    <thead className="text-xs text-white uppercase bg-gray font-bold">
-                        <tr>
-                            <th scope="col" className="px-6 py-3">
-                                Tanggal
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                Nama Kapal
-                            </th>
-
-                            <th scope="col" className="px-6 py-3">
-                                Asal
-                            </th>
-
-                            
-                            <th scope="col" className="px-6 py-3">
-                                tiba
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                keberangkatan
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                Action
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {userJadwals.map((jadwal, i) => {
-                            return (
-                                <tr key={i}>
-                                    <th
-                                        scope="row"
-                                        className=" py-4  text-midnight  font-medium whitespace-nowrap dark:text-black"
-                                    >
-                                        {jadwal.tanggal}
-                                    </th>
-                                    {jadwal.kapals.map((kapal, i) => (
-                                        <th key={i}>{kapal.nama_kapal}</th>
-                                    ))}
-                                    
-
-                                    {jadwal.rutes.map((rute, i) => (
-                                        <th key={i}>{rute.nama_rute}</th>
-                                    ))}
-                                    
-
-                                    <th
-                                        scope="row"
-                                        className=" py-4  text-midnight font-medium whitespace-nowrap dark:text-black"
-                                    >
-                                        {jadwal.tiba}
-                                    </th>
-                                    <th
-                                        scope="row"
-                                        className=" py-4  text-midnight font-medium whitespace-nowrap dark:text-black"
-                                    >
-                                        {jadwal.keberangkatan}
-                                    </th>
-                                    {jadwal.kapals.map((kapal, i) => (
-                                        <Link key={i} href={`seats/${kapal.id}`} className="btn btn-primary m-3">Pesan</Link>
-                                    ))}
-                                    
-                                    <td><Link href={`seats/${jadwal.id}`} className="btn btn-primary mx-2 my-2">Pesan</Link></td>
-                                </tr>
-                            );
-                        })}
-                    </tbody>
-                </table>
-            </div> */}
-
-            {/* <div className="mt-4 flex justify-center">
-                {" "}
-                <Pagination jadwals={jadwals} />
-            </div> */}
         </UserLayout>
     );
 };
+
 export default UserJadwal;

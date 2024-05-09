@@ -29,9 +29,10 @@ class KapalController extends Controller
                 ->groupBy('kapal_id');
         }])
         ->get();
-        $kapals = Kapal::with('jadwals')->get();
+
+       
+        // $kapals = Kapal::with('jadwals')->get();
         return Inertia::render('Kapal/Index', [
-            'kapals' => $kapals,
             'ships' => $ships
         ]);
     }

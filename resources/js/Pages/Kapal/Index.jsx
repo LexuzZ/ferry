@@ -6,9 +6,8 @@ import "../../../css/action.css";
 import "../../../css/trash.css";
 
 const Index = () => {
-    const { flash, errors, kapals, ships } = usePage().props;
-    console.log(ships);
-    console.log(kapals);
+    const { flash, errors, kapals, ships, userJadwals } = usePage().props;
+    console.log(userJadwals);
 
     const {
         data,

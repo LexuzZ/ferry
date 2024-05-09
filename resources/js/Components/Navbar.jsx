@@ -52,7 +52,15 @@ const Navbar = ({ user }) => {
                                 href="#"
                             >
                                 <div className="flex items-center relative cursor-pointer whitespace-nowrap">
-                                    Become a host
+                                    Kode Booking
+                                </div>
+                            </a>
+                            <a
+                                className="inline-block py-2 px-3 hover:bg-gray-200 rounded-full"
+                                href="#"
+                            >
+                                <div className="flex items-center relative cursor-pointer whitespace-nowrap">
+                                    Beranda
                                 </div>
                             </a>
                         </div>
@@ -63,7 +71,7 @@ const Navbar = ({ user }) => {
                                 role="button"
                                 className=" text-white btn btn-ghost rounded-btn"
                             >
-                                Menu
+                                Masuk DLN Ferry
                             </div>
                             <ul
                                 tabIndex={0}

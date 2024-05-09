@@ -7,8 +7,7 @@ import "../../../css/trash.css";
 
 const Index = ({ rutes, ships }) => {
     const { flash, errors } = usePage().props;
-    console.log(rutes);
-    console.log(ships);
+    
 
     return (
         <AdminLayout>
@@ -195,32 +194,9 @@ const Index = ({ rutes, ships }) => {
                 </table>
             </div>
         </AdminLayout>
-        // <div>
-
-        //     <form onSubmit={handleSubmit}>
-        //         <input
-        //             type="text"
-        //             value={data.asal}
-        //             onChange={(e) => setData('asal', e.target.value)}
-        //         />
-        //         <input
-        //             type="text"
-        //             value={data.tujuan}
-        //             onChange={(e) => setData('tujuan', e.target.value)}
-        //         />
-        //         <button type="submit">Tambah Rute</button>
-        //     </form>
-        //     <table className="w-full text-sm text-center rtl:text-right text-midnight">
-        //         {rutes.map((rute) => (
-        //             <li key={rute.id}>{rute.asal}</li>
-
-        //         ))}
-        //         {rutes.map((rute) => (
-        //             <li key={rute.id}>{rute.tujuan}</li>
-
-        //         ))}
-        //     </table>
-        // </div>
+        
+       
+        
     );
 };
 export default Index;
