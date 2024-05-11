@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\Collection;
+use App\Models\Jadwal;
+use App\Models\Kapal;
 use App\Models\Rute;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -14,10 +17,16 @@ class HomeController extends Controller
     public function index()
     {
         //
-        return Inertia::render('Homepage');
+        $rutes = new Collection(Rute::OrderByDesc('id')->paginate(8));
+       
+        // $rutes = Rute::all();
+        return Inertia::render('Homepage', [
+            'rutes' => $rutes,
+           
+        ]);
     }
-    
-    
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -38,9 +47,22 @@ class HomeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
         //
+        $rute = Rute::with('jadwals', 'kapals')->findOrFail($id);
+        // $rutes = new Collection(Rute::find($id));
+        // $jadwals = $rute->jadwals()->get();
+        // $kapals = $rute->kapals()->get();
+        // dd($kapal);
+        //  return response()->json([
+        //     'rute' => $rute,
+            
+        // ]);
+            return Inertia::render('HomeDetail', [
+                'rute' => $rute,
+                
+            ]);
     }
 
     /**
