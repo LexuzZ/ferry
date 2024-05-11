@@ -33,6 +33,7 @@ Route::get('welcome', function () {
     ]);
 });
 Route::get('/', [HomeController::class, 'index']);
+Route::get('{id}/detail', [HomeController::class, 'show']);
 // Route::get('/', [HomeController::class, 'userbooking'])->name('home.userbooking');
 
 
