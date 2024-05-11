@@ -2,40 +2,84 @@ import React, { useState } from "react";
 import { Link, Head, usePage, router } from "@inertiajs/react";
 import Navbar from "@/Components/Navbar";
 import Pagination from "@/Components/Pagination";
+import NewsLists from "../Components/Homepage/ListRoute";
+import dln4 from "../../../public/dln4.jpg";
+import dln3 from "../../../public/dln3.jpg";
+import dln2 from "../../../public/dln2.jpg";
+import dln1 from "../../../public/dln1.jpg";
+// import Ship from "@/Components/Homepage/Ship";
 
 export default function Homepage(props) {
-    const { rutes } = usePage().props;
-    
+    const { rutes, jadwal, kapal } = usePage().props;
+    console.log(rutes);
+
     return (
         <div className=" min-h-screen  text-black text-2xl bg-grey">
             <Head title={props.title} />
             <Navbar user={props.auth.user} />
-
-            {/* component */}
-           
-            <div className=" overflow-x-auto shadow-md sm:rounded-lg mt-6 px-8 pb-6">
-                <table className="table table-md">
-                    <thead className="text-xs text-white text-center uppercase bg-gray font-bold">
-                        <tr>
-                            <th scope="col" className="px-6 py-3">
-                                Tanggal
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                ETA
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                ETD
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                Action
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody className="bg-white text-center">
-                       
-                    </tbody>
-                </table>
+            <div className="carousel w-full ">
+                <div id="slide1" className="carousel-item relative w-full">
+                    <img
+                        src={dln4}
+                        className="w-full"
+                    />
+                    <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+                        <a href="#slide4" className="btn btn-circle">
+                            ❮
+                        </a>
+                        <a href="#slide2" className="btn btn-circle">
+                            ❯
+                        </a>
+                    </div>
+                </div>
+                <div id="slide2" className="carousel-item relative w-full">
+                    <img
+                        src={dln3}
+                        className="w-full"
+                    />
+                    <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+                        <a href="#slide1" className="btn btn-circle">
+                            ❮
+                        </a>
+                        <a href="#slide3" className="btn btn-circle">
+                            ❯
+                        </a>
+                    </div>
+                </div>
+                <div id="slide3" className="carousel-item relative w-full">
+                    <img
+                        src={dln2}
+                        className="w-full"
+                    />
+                    <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+                        <a href="#slide2" className="btn btn-circle">
+                            ❮
+                        </a>
+                        <a href="#slide4" className="btn btn-circle">
+                            ❯
+                        </a>
+                    </div>
+                </div>
+                <div id="slide4" className="carousel-item relative w-full">
+                    <img
+                        src={dln1}
+                        className="w-full"
+                    />
+                    <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+                        <a href="#slide3" className="btn btn-circle">
+                            ❮
+                        </a>
+                        <a href="#slide1" className="btn btn-circle">
+                            ❯
+                        </a>
+                    </div>
+                </div>
             </div>
+            <NewsLists rutes={props.rutes.data} />
+
+            {/* <Ship kapal={props.kapal}/> */}
+            {/* <h1>{rute.id}</h1> */}
+            {/* <Detail/> */}
         </div>
     );
 }
