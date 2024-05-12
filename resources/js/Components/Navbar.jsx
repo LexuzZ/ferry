@@ -14,11 +14,11 @@ const Navbar = ({ user }) => {
         // </div>
         <>
             {/* component */}
-            <nav className=" bg-navy w-full flex relative justify-between items-center mx-auto px-8 h-20 text-white">
+            <nav className=" bg-white  flex  justify-between items-center mx-auto px-8 h-20 text-midnight">
                 {/* logo */}
                 <div className="inline-flex">
                     <a className="_o6689fn" href="/">
-                        <div className="hidden md:block">
+                        <div className="hidden md:block font-bold ">
                             {/* <svg
                                 width={102}
                                 height={32}
@@ -44,7 +44,7 @@ const Navbar = ({ user }) => {
                                 className="inline-block py-2 px-3 hover:bg-gray-200 rounded-full"
                                 href="#"
                             >
-                                <div className="flex items-center relative cursor-pointer whitespace-nowrap text-sm">
+                                <div className="flex items-center relative cursor-pointer whitespace-nowrap text-sm font-semibold">
                                     Kode Booking
                                 </div>
                             </a>
@@ -62,7 +62,7 @@ const Navbar = ({ user }) => {
                             <div
                                 tabIndex={0}
                                 role="button"
-                                className=" text-white btn btn-ghost rounded-btn"
+                                className=" text-midnight  btn btn-ghost rounded-btn"
                             >
                                 Masuk DLN Ferry
                             </div>

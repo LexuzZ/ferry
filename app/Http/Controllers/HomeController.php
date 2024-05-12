@@ -17,7 +17,7 @@ class HomeController extends Controller
     public function index()
     {
         //
-        $rutes = new Collection(Rute::OrderByDesc('id')->paginate(8));
+        $rutes = new Collection(Rute::all());
        
         // $rutes = Rute::all();
         return Inertia::render('Homepage', [

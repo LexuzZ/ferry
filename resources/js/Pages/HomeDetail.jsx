@@ -8,7 +8,7 @@ const Detail = (props) => {
 
     return (
         
-        <div className="bg-silver min-h-screen">
+        <div className="bg-grey min-h-screen">
             <Navbar user={props.auth.user} />
             <div className="pt-24 text-center text-2xl text-midnight font-serif">
                 <h1>Detail Rute</h1>
@@ -34,7 +34,7 @@ const Detail = (props) => {
                             </thead>
                             <tbody className="text-center">
                                 {rute.jadwals.map((j) => (
-                                    <tr key={j.id} className="hover hover:text-silver">
+                                    <tr key={j.id} className="hover hover:text-white">
                                         <td>{j.tanggal}</td>
                                         <td>{j.tiba}</td>
                                         <td>{j.keberangkatan}</td>

@@ -17,14 +17,14 @@ export default function Homepage(props) {
         <div className=" min-h-screen  text-black text-2xl bg-grey">
             <Head title={props.title} />
             <Navbar user={props.auth.user} />
-            <div className="carousel w-full ">
+            <div className="carousel w-full bg-neutral">
                 <div id="slide1" className="carousel-item relative w-full">
                     <img
                         src={dln4}
                         className="w-full"
                     />
                     <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                        <a href="#slide4" className="btn btn-circle">
+                        <a href="#slide4" className="btn btn-circle ">
                             ❮
                         </a>
                         <a href="#slide2" className="btn btn-circle">

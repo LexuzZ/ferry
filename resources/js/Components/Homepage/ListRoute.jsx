@@ -21,7 +21,7 @@ const isRute = (rutes) => {
                             </th>
                         </tr>
                     </thead>
-                    <tbody className="bg-white text-center hover">
+                    <tbody className="bg-silver text-center hover">
                         {rutes.map((rute) => (
                             <tr key={rute.id}>
                                 <td
