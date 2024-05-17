@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Jadwal;
 use App\Models\Kapal;
 use App\Models\Rute;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -22,6 +23,13 @@ class JadwalUserController extends Controller
 
             'rutes' => $rutes
         ]);
+    }
+    public function order($id){
+        // $jadwal = Jadwal::all();
+        $jadwal = Jadwal::findOrFail($id);
+        $user_id = auth()->user();
+
+        return Inertia::render('FormOrder',  ['jadwal'=>$jadwal, 'user' => $user_id]);
     }
 
     /**
@@ -46,21 +54,7 @@ class JadwalUserController extends Controller
     public function show($ruteId)
     {
         //
-        $rute = Rute::find($ruteId);
-
-        // Jika rute tidak ditemukan, kembalikan response kosong
-        if (!$rute) {
-            return response()->json(['message' => 'Rute tidak ditemukan'], 404);
-        }
-
-        // Ambil jadwal yang terkait dengan rute
-        $jadwals = $rute->jadwals;
-
-        // Kembalikan data jadwal dalam bentuk response JSON
-        return Inertia::render('UserJadwal', [
-            'jadwals' => $jadwals,
-            'rute' => $rute
-        ]);
+        
     }
 
     /**
