@@ -36,6 +36,7 @@ export default {
             'grey': '#CCD3CA',
             'orange': '#F97300',
             'yellow': '#FFC100',
+            'transparent': '#C7B7A3',
           },
           
     },

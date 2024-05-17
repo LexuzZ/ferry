@@ -9,9 +9,9 @@ export default function userDashboard( ) {
     console.log(rute);
     return (
         <UserLayout>
-            <div className=" flex items-center pt-14">
+            <div className=" flex items-center ">
                 <section
-                    className="w-full bg-cover bg-center py-32"
+                    className="hero min-h-screen  bg-cover bg-center "
                     style={{
                         backgroundImage:
                             'url("https://source.unsplash.com/random")',
