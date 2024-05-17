@@ -15,8 +15,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('kapal_id')->constrained()->onDelete('cascade');
             $table->string('name');
+            $table->string('kendaraan');
+            $table->bigInteger('price');
             $table->boolean('available')->default(true); // Menandai ketersediaan tempat duduk
-           
             $table->timestamps();
         });
     }

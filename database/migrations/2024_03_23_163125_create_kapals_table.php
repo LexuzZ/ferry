@@ -15,8 +15,6 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('rute_id');
             $table->string('nama_kapal');
-
-            // $table->boolean('is_complete')->default(false);
             $table->timestamps();
             $table->foreign('rute_id')->references('id')->on('rutes')->onDelete('cascade');
         });
