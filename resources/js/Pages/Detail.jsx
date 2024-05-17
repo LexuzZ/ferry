@@ -35,7 +35,7 @@ const Detail = () => {
                                         <td>{j.tanggal}</td>
                                         <td>{j.tiba}</td>
                                         <td>{j.keberangkatan}</td>
-                                        <td><Link>Pesan</Link></td>
+                                        <td><Link href={`/order/${j.id}`}>Pesan</Link></td>
                                     </tr>
                                 ))}
                             </tbody>
