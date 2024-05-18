@@ -65,6 +65,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/userJadwal/{ruteId}', [JadwalUserController::class, 'show'])->name('jadwaluser.show');
         Route::get('/userJadwal/{id}/detail', [RuteController::class, 'show'])->name('rute.show');
         Route::get('/order/{id}', [JadwalUserController::class, 'order'])->name('order');
+        Route::post('/order', [JadwalUserController::class, 'store'])->name('ticket.store');
         Route::get('/userJadwal', [JadwalUserController::class, 'index'])->name('jadwal.user');
         // Route::get('/pesanan', [JadwalUserController::class, 'index'])->name('jadwal.pesanan');
         Route::get('/seats/{kapal}', [SeatController::class, 'index'])->name('seats.index');
