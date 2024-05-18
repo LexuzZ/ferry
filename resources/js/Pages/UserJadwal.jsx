@@ -7,7 +7,7 @@ const UserJadwal = () => {
     const [isOpen, setIsOpen] = useState(true);
     return (
         <UserLayout>
-            <div className=" overflow-x-auto shadow-md sm:rounded-lg pt-24 px-10">
+            <div className="min-h-screen overflow-x-auto shadow-md sm:rounded-lg pt-24 px-10">
                 <table className="table table-md">
                     <thead className="text-xs text-white text-center uppercase bg-gray font-bold">
                         <tr>
