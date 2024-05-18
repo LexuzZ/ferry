@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Jadwal;
 use App\Models\Kapal;
 use App\Models\Rute;
+use App\Models\Ticket;
+use App\Models\TicketType;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -28,8 +30,10 @@ class JadwalUserController extends Controller
         // $jadwal = Jadwal::all();
         $jadwal = Jadwal::findOrFail($id);
         $user_id = auth()->user();
+        $ticket = Ticket::with( 'seats')->get();
+        // $ticket = TicketType::all();
 
-        return Inertia::render('FormOrder',  ['jadwal'=>$jadwal, 'user' => $user_id]);
+        return Inertia::render('FormOrder',  ['jadwal'=>$jadwal, 'user' => $user_id, 'ticket' => $ticket]);
     }
 
     /**
@@ -37,7 +41,7 @@ class JadwalUserController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('FormOrder');
     }
 
     /**
@@ -46,6 +50,16 @@ class JadwalUserController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'jadwal_id' => 'required',
+            'penumpang' => 'required',
+           
+        ]);
+
+        Ticket::create($request->all());
+
+        return back()->with('message', 'Order Tiket berhasil dibuat');
+
     }
 
     /**
