@@ -9,7 +9,7 @@ class Ticket extends Model
 {
     use HasFactory;
     protected $table = "tickets";
-    protected $fillable = ['jadwal_id', 'penumpang', 'kendaraan'];
+    protected $fillable = ['jadwal_id', 'code'];
 
     public function jadwals()
     {
@@ -19,5 +19,18 @@ class Ticket extends Model
     public function seats(){
         return $this->hasMany(Seat::class);
     }
+    public function passengers()
+    {
+        return $this->hasMany(Passenger::class);
+    }
+
+    /**
+     * Get the vehicles for the ticket.
+     */
+    public function vehicles()
+    {
+        return $this->hasMany(Vehicle::class);
+    }
+
     
 }
