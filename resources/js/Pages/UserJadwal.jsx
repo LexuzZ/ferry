@@ -41,7 +41,7 @@ const UserJadwal = () => {
 
                                 <td>
                                     <Link
-                                        className="btn bg-navy text-white"
+                                        className="btn font-extralight bg-navy text-white"
                                         href={`/userJadwal/${rute.id}/detail`}
                                     >
                                         Detail Keberangkatan
