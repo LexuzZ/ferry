@@ -24,9 +24,6 @@ class Ticket extends Model
         return $this->hasMany(Passenger::class);
     }
 
-    /**
-     * Get the vehicles for the ticket.
-     */
     public function vehicles()
     {
         return $this->hasMany(Vehicle::class);
