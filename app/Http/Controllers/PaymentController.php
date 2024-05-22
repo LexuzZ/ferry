@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Passenger;
 use App\Models\Ticket;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
@@ -15,7 +16,8 @@ class PaymentController extends Controller
 {
     public function create(Ticket $ticket)
     {
-
+        $user = auth()->user()->name;
+        
         // Set konfigurasi Midtrans
         Config::$serverKey = config('services.midtrans.server_key');
         Config::$clientKey = config('services.midtrans.client_key');
@@ -31,6 +33,7 @@ class PaymentController extends Controller
                 'order_id' => $ticket->id,
                 'gross_amount' => $ticket->passengers->sum('price') + $ticket->vehicles->sum('price'),
             ],
+            
             'customer_details' => [
                 'first_name' => auth()->user()->name,
                 'email' => auth()->user()->email,
@@ -49,6 +52,8 @@ class PaymentController extends Controller
         return Inertia::render('Payment', [
             'ticket' => $ticket,
             'snapToken' => $snapToken,
+            'user' => $user,
+           
         ]);
     }
 

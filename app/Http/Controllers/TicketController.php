@@ -6,6 +6,7 @@ use App\Models\Passenger;
 use App\Models\Ticket;
 use App\Models\Vehicle;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 
 class TicketController extends Controller
@@ -68,7 +69,6 @@ class TicketController extends Controller
      */
     public function show(string $id)
     {
-        //
     }
 
     /**
