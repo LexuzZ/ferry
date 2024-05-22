@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('ticket_id');
             $table->string('midtrans_transaction_id')->unique();
-            $table->decimal('amount', 15, 2);
-            $table->string('status')->default('pending');
+            $table->integer('amount');
+            $table->enum('status', ['unpaid', 'proccess', 'shipping', 'received', 'canceled'])->default('unpaid');
             $table->foreign('ticket_id')->references('id')->on('tickets')->onDelete('cascade');
             $table->timestamps();
         });

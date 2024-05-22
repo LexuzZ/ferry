@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('ticket_id');
             $table->enum('category', ['dewasa', 'anak']);
-            $table->decimal('price', 15, 2);
+            $table->integer('price');
             $table->foreign('ticket_id')->references('id')->on('tickets')->onDelete('cascade');
             $table->timestamps();
         });
