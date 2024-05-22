@@ -30,7 +30,7 @@ class JadwalUserController extends Controller
         // $jadwal = Jadwal::all();
         $jadwal = Jadwal::findOrFail($id);
         $user_id = auth()->user();
-        $ticket = Ticket::with( 'seats')->get();
+        $ticket = Ticket::with( 'seats', 'vehicles', 'passengers')->get();
         // $ticket = TicketType::all();
 
         return Inertia::render('FormOrder',  ['jadwal'=>$jadwal, 'user' => $user_id, 'ticket' => $ticket]);
@@ -47,20 +47,20 @@ class JadwalUserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        //
-        $request->validate([
-            'jadwal_id' => 'required',
-            'penumpang' => 'required',
+    // public function store(Request $request)
+    // {
+    //     //
+    //     $request->validate([
+    //         'jadwal_id' => 'required',
+    //         'penumpang' => 'required',
            
-        ]);
+    //     ]);
 
-        Ticket::create($request->all());
+    //     Ticket::create($request->all());
 
-        return back()->with('message', 'Order Tiket berhasil dibuat');
+    //     return back()->with('message', 'Order Tiket berhasil dibuat');
 
-    }
+    // }
 
     /**
      * Display the specified resource.
