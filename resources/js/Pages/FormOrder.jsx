@@ -4,9 +4,11 @@ import React from "react";
 import "../../css/card.css";
 
 const FormOrder = () => {
-    const { jadwal, ticket, user, flash, totalPassengers } = usePage().props;
+    const { jadwal, ticket, user, flash, rute } = usePage().props;
     const { data, setData, post, errors } = useForm({
         jadwal_id: "",
+        rute_id: "",
+        kapal_id: "",
         code: "",
         passengers: [{ category: "dewasa" }],
         vehicles: [{ type: "truk" }],
@@ -113,6 +115,7 @@ const FormOrder = () => {
                                 </h1>
                             </label>
                         </div>
+
                         <div>
                             <label
                                 className="block text-sm font-medium text-gray"
@@ -121,6 +124,28 @@ const FormOrder = () => {
                                 ID Jadwal :{" "}
                                 <h1 className="badge badge-neutral">
                                     {jadwal.id}
+                                </h1>
+                            </label>
+                        </div>
+                        <div>
+                            <label
+                                className="block text-sm font-medium text-gray"
+                                htmlFor="check_in"
+                            >
+                                ID Rute :{" "}
+                                <h1 className="badge badge-neutral">
+                                    {jadwal.rute_id}
+                                </h1>
+                            </label>
+                        </div>
+                        <div>
+                            <label
+                                className="block text-sm font-medium text-gray"
+                                htmlFor="check_in"
+                            >
+                                ID Kapal :{" "}
+                                <h1 className="badge badge-neutral">
+                                    {jadwal.kapal_id}
                                 </h1>
                             </label>
                         </div>
@@ -148,18 +173,44 @@ const FormOrder = () => {
                                 </h1>
                             </label>
                         </div>
+                        {/* <select
+                            className="select w-full  max-w-xs bg-grey text-midnight flex items-center justify-center"
+                            value={data.rute_id}
+                            onChange={(e) => setData("rute_id", e.target.value)}
+                        >
+                            <option value="rute_id">rute</option>
+                        </select>
+                        <select
+                            className="select w-full  max-w-xs bg-grey text-midnight flex items-center justify-center"
+                            value={data.kapal_id}
+                            onChange={(e) =>
+                                setData("kapal_id", e.target.value)
+                            }
+                        >
+                            <option value="">Pilih</option>
+                            <option value="kapal_id">kapal</option>
+                        </select>
+                        <select
+                            className="select w-full  max-w-xs bg-grey text-midnight flex items-center justify-center"
+                            value={data.jadwal_id}
+                            onChange={(e) =>
+                                setData("jadwal_id", e.target.value)
+                            }
+                        >
+                            <option value={data.jadwal_id}>jadwal id</option>
+                        </select> */}
                         <div>
                             <label
                                 htmlFor="jenis_penumpang"
                                 className="block text-sm font-medium text-gray"
                             >
-                                Masukkan ID Jadwal dibawah
+                                Sesuaikan berdasarkan ID Jadwal di atas
                             </label>
 
                             <input
                                 type="number"
                                 // id="default-search"
-                              className="input input-bordered w-full max-w-xs bg-grey text-midnight"  placeholder="enter ..."
+                              className="input input-bordered w-full max-w-xs bg-grey text-midnight"  placeholder={jadwal.id}
                                 // required
                                 onChange={(e) =>
                                     setData("jadwal_id", e.target.value)
@@ -170,7 +221,53 @@ const FormOrder = () => {
                                 {errors.jadwal_id}
                             </p>
                         </div>
-                        <h2 className="text-midnight font-serif">Kategori Penumpang</h2>
+                        <div>
+                            <label
+                                htmlFor="jenis_penumpang"
+                                className="block text-sm font-medium text-gray"
+                            >
+                                Sesuaikan berdasarkan ID Jadwal di atas
+                            </label>
+
+                            <input
+                                type="number"
+                                // id="default-search"
+                              className="input input-bordered w-full max-w-xs bg-grey text-midnight"  placeholder={jadwal.rute_id}
+                                // required
+                                onChange={(e) =>
+                                    setData("rute_id", e.target.value)
+                                }
+                                value={data.rute_id}
+                            />
+                            <p className="text-red text-sm mt-2">
+                                {errors.rute_id}
+                            </p>
+                        </div>
+                        <div>
+                            <label
+                                htmlFor="jenis_penumpang"
+                                className="block text-sm font-medium text-gray"
+                            >
+                                Sesuaikan berdasarkan ID Jadwal di atas
+                            </label>
+
+                            <input
+                                type="number"
+                                // id="default-search"
+                              className="input input-bordered w-full max-w-xs bg-grey text-midnight"  placeholder={jadwal.kapal_id}
+                                // required
+                                onChange={(e) =>
+                                    setData("kapal_id", e.target.value)
+                                }
+                                value={data.kapal_id}
+                            />
+                            <p className="text-red text-sm mt-2">
+                                {errors.kapal_id}
+                            </p>
+                        </div>
+                        <h2 className="text-midnight font-serif">
+                            Kategori Penumpang
+                        </h2>
                         {data.passengers.map((passenger, index) => (
                             <div key={index}>
                                 <select
@@ -201,7 +298,9 @@ const FormOrder = () => {
                             Tambah Penumpang
                         </button>
 
-                        <h2 className="font-serif text-midnight">Tipe Kendaraan</h2>
+                        <h2 className="font-serif text-midnight">
+                            Tipe Kendaraan
+                        </h2>
                         {data.vehicles.map((vehicle, index) => (
                             <div key={index}>
                                 <select
@@ -239,7 +338,7 @@ const FormOrder = () => {
                                 className="w-full px-4 py-2 font-semibold text-white bg-green rounded-md hover:bg-metal focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
                                 type="submit"
                             >
-                                Checkout 
+                                Checkout
                             </button>
                         </div>
                         <div>
@@ -284,26 +383,7 @@ const FormOrder = () => {
                         </div>
 
                         <div className="card-footer">
-                            {/* <span className="text-title">Rp {calculateTotalPrice()}</span> */}
-
-                            {/* {t.passengers.map((p) => (
-                                <h3
-                                    key={p.id}
-                                    className="font-bold text-title text-gray"
-                                >
-                                    Total : {p.price}
-                                </h3>
-                            ))} */}
-                            {/* {totalPassengerPrice} */}
-                            {/* {t.vehicles.map((p) => (
-                                <h3
-                                    key={p.id}
-                                    className="font-bold text-title text-gray"
-                                >
-                                    Total : {p.price}
-                                </h3>
-                            ))} */}
-                            {/* {totalVehiclePrice} */}
+                            
 
                             <Link
                                 className="card-button"
