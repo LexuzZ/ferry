@@ -9,11 +9,19 @@ class Ticket extends Model
 {
     use HasFactory;
     protected $table = "tickets";
-    protected $fillable = ['jadwal_id', 'code'];
+    protected $fillable = ['jadwal_id','rute_id','kapal_id', 'code'];
 
     public function jadwals()
     {
-        return $this->belongsTo(Jadwal::class);
+        return $this->belongsTo(Jadwal::class, 'jadwal_id');
+    }
+    public function kapals()
+    {
+        return $this->belongsTo(Kapal::class, 'kapal_id');
+    }
+    public function Rutes()
+    {
+        return $this->belongsTo(Rute::class, 'rute_id');
     }
     
     public function seats(){

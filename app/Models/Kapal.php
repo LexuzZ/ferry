@@ -23,4 +23,8 @@ class Kapal extends Model
     public function seats(){
         return $this->hasMany(Seat::class);
     }
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class);
+    }
 }

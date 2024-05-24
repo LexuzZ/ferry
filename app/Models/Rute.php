@@ -21,4 +21,8 @@ class Rute extends Model
     {
         return $this->hasMany(Kapal::class);
     }
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class);
+    }
 }
