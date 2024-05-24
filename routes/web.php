@@ -68,12 +68,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/userJadwal/{id}/detail', [RuteController::class, 'show'])->name('rute.show');
         Route::get('/order/{id}', [JadwalUserController::class, 'order'])->name('order');
         Route::get('/order', [TicketController::class, 'index'])->name('home');
-
-        // Rute untuk menyimpan data pemesanan tiket
         Route::post('/order', [TicketController::class, 'store'])->name('ticket.store');
-
         Route::get('/userJadwal', [JadwalUserController::class, 'index'])->name('jadwal.user');
-        // Route::get('/pesanan', [JadwalUserController::class, 'index'])->name('jadwal.pesanan');
+        Route::get('/riwayat', [JadwalUserController::class, 'riwayat'])->name('jadwal.riwayat');
         Route::get('/seats/{kapal}', [SeatController::class, 'index'])->name('seats.index');
         Route::post('/seats/{seat}/reserve', [SeatController::class, 'reserve'])->name('seats.reserve');
         Route::get('/payment/{ticket}', [PaymentController::class, 'create'])->name('payment.create');
