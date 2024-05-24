@@ -27,13 +27,22 @@ class JadwalUserController extends Controller
     {
         $jadwal = Jadwal::findOrFail($id);
         $user_id = auth()->user();
-        $ticket = Ticket::with('seats', 'vehicles', 'passengers')->get();
+        // $rutes = Rute::whereBelongsTo($jadwal->id);
+        $order = Jadwal::with('tickets')->get();
+        $ticket = Ticket::with(['seats', 'vehicles', 'passengers'])->get();
         return Inertia::render('FormOrder',  [
             'jadwal' => $jadwal,
             'user' => $user_id,
             'ticket' => $ticket,
+            'order' => $order,
+            // 'rute' => $rutes,
 
         ]);
+    }
+    public function riwayat(){
+        $tickets = Ticket::with(['rutes', 'kapals', 'jadwals'])->get();
+        // dd($tickets);
+        return Inertia::render('Tiket/Riwayat', ['ticket' => $tickets]);
     }
 
     /**
