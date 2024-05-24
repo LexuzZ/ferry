@@ -49,6 +49,12 @@ export default function UserLayout({ children }) {
                                 >
                                     Dashboard
                                 </NavLink>
+                                <NavLink
+                                    href={route("jadwal.riwayat")}
+                                    active={route().current("jadwal.riwayat")}
+                                >
+                                    Invoice
+                                </NavLink>
                             </div>
                             <div className="flex items-center me-24 "></div>
 
