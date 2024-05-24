@@ -37,12 +37,16 @@ class TicketController extends Controller
     {
         $request->validate([
             'jadwal_id' => 'required',
+            'rute_id' => 'required',
+            'kapal_id' => 'required',
             'passengers' => 'required|array',
             'vehicles' => 'required|array',
         ]);
 
         $ticket = Ticket::create([
             'jadwal_id' => $request->jadwal_id,
+            'kapal_id' => $request->kapal_id,
+            'rute_id' => $request->rute_id,
             'code' => uniqid('TKT-'),
         ]);
 
@@ -69,6 +73,12 @@ class TicketController extends Controller
      */
     public function show(string $id)
     {
+        $ticket = Ticket::with('jadwals')->findOrFail($id);
+        dd($ticket);
+        // Mengirim data ke view menggunakan Inertia
+        // return Inertia::render('Tickets/Show', [
+        //     'ticket' => $ticket
+        // ]);
     }
 
     /**
