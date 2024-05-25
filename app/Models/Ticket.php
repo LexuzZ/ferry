@@ -36,6 +36,10 @@ class Ticket extends Model
     {
         return $this->hasMany(Vehicle::class);
     }
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class);
+    }
 
     
 }

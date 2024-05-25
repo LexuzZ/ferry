@@ -1,12 +1,11 @@
 import UserLayout from "@/Layouts/UserLayout";
-import { Head } from "@inertiajs/react";
+import { Head, createInertiaApp } from "@inertiajs/react";
 import { Link, usePage } from "@inertiajs/react";
 import React, { useEffect, useState } from "react";
 import hero from "../../../public/hero.jpg";
 export default function userDashboard() {
-    const [routeDetail, setRouteDetail] = useState("");
     const { auth, rutes, rute } = usePage().props;
-    console.log(rute);
+    console.log(rutes);
     return (
         <UserLayout>
             <div className="pt-10  min-h-screen">
@@ -79,7 +78,7 @@ export default function userDashboard() {
                             </div>
                             <div className="w-full mt-8  rounded-md lg:max-w-sm dark:border-gray-700 focus-within:border-blue-400 focus-within:ring focus-within:ring-blue-300 dark:focus-within:border-blue-400 focus-within:ring-opacity-40">
                                 <Link
-                                    href="/userJadwal"
+                                    // href="/userJadwal"
                                     className="h-10 px-4 py-2 m-1 text-white transition-colors duration-200 transform bg-blue rounded-md hover:bg-blue-400 focus:outline-none focus:bg-blue-400"
                                 >
                                     Pesan Tiket Sekarang
@@ -94,6 +93,51 @@ export default function userDashboard() {
                         </div>
                     </div>
                 </section>
+                <div className="min-h-screen overflow-x-auto shadow-md sm:rounded-lg pt-24 px-10">
+                <table className="table table-md">
+                    <thead className="text-xs text-white text-center uppercase bg-gray font-bold">
+                        <tr>
+                            <th scope="col" className="px-6 py-3">
+                                ID
+                            </th>
+                            <th scope="col" className="px-6 py-3">
+                                Rute
+                            </th>
+
+                            <th scope="col" className=" py-3">
+                                Action
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody className="bg-white text-center">
+                        {rutes.map((rute) => (
+                            <tr key={rute.id}>
+                                <td
+                                    scope="row"
+                                    className=" py-4  text-midnight  font-medium whitespace-nowrap dark:text-black"
+                                >
+                                    {rute.id}
+                                </td>
+                                <td
+                                    scope="row"
+                                    className=" py-4  text-midnight  font-medium whitespace-nowrap dark:text-black"
+                                >
+                                    {rute.nama_rute}
+                                </td>
+
+                                <td>
+                                    <Link
+                                        className="btn font-extralight bg-navy text-white"
+                                        href={`/userJadwal/${rute.id}/detail`}
+                                    >
+                                        Detail Keberangkatan
+                                    </Link>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
                 {/* <h1>Rute: {rute.id}</h1>
                 <h2>Jadwals:</h2>
                 <ul>

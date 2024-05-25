@@ -1,10 +1,11 @@
 import { Link, router } from "@inertiajs/react";
 
 const isRute = (rutes) => {
-    console.log(rutes);
     return (
         <div>
-            <div className="flex items-center justify-start mt-10 mx-10 text-midnight font-serif">Cari Tiket Anda</div>
+            <div className="flex items-center justify-start mt-10 mx-10 text-midnight font-serif">
+                Cari Tiket Anda
+            </div>
             <div className=" overflow-x-auto shadow-md sm:rounded-lg mt-4 mx-10 pb-5">
                 <table className="table table-md">
                     <thead className="text-xs text-white text-center uppercase bg-gray font-bold">

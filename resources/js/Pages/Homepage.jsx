@@ -75,6 +75,11 @@ export default function Homepage(props) {
                     </div>
                 </div>
             </div>
+            <>
+  {/* component */}
+  
+</>
+
             <NewsLists rutes={props.rutes.data} />
 
             {/* <Ship kapal={props.kapal}/> */}

@@ -1,6 +1,6 @@
 import UserLayout from "@/Layouts/UserLayout";
 import { Link, router, usePage } from "@inertiajs/react";
-import { useEffect, useState } from "react";
+import React from "react";
 
 const Detail = () => {
     const { auth, rute, kapal, jadwal } = usePage().props;

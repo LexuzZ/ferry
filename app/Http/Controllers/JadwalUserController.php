@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Jadwal;
 use App\Models\Rute;
 use App\Models\Ticket;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -18,7 +19,7 @@ class JadwalUserController extends Controller
         //
         $rutes = Rute::with('jadwals', 'kapals')->get();
 
-        return Inertia::render('UserJadwal', [
+        return Inertia::render('UserDashboard', [
 
             'rutes' => $rutes
         ]);
@@ -28,21 +29,23 @@ class JadwalUserController extends Controller
         $jadwal = Jadwal::findOrFail($id);
         $user_id = auth()->user();
         // $rutes = Rute::whereBelongsTo($jadwal->id);
-        $order = Jadwal::with('tickets')->get();
-        $ticket = Ticket::with(['seats', 'vehicles', 'passengers'])->get();
+        
+        $ticket = Ticket::with(['seats', 'vehicles', 'passengers','rutes', 'kapals', 'jadwals'])->get();
         return Inertia::render('FormOrder',  [
             'jadwal' => $jadwal,
             'user' => $user_id,
             'ticket' => $ticket,
-            'order' => $order,
+            
             // 'rute' => $rutes,
 
         ]);
     }
     public function riwayat(){
-        $tickets = Ticket::with(['rutes', 'kapals', 'jadwals'])->get();
+        $tickets = Ticket::with(['rutes', 'kapals', 'jadwals','vehicles', 'passengers'])->get();
         // dd($tickets);
-        return Inertia::render('Tiket/Riwayat', ['ticket' => $tickets]);
+        // $transaction = Transaction::get(['status', 'amount']);
+        // dd($transaction);
+        return Inertia::render('Tiket/Riwayat', ['ticket' => $tickets, ]);
     }
 
     /**
