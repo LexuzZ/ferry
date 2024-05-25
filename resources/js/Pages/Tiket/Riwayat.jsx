@@ -1,9 +1,11 @@
+
 import UserLayout from "@/Layouts/UserLayout";
 import { Link, router, usePage } from "@inertiajs/react";
 import { useEffect, useState } from "react";
 
 const Riwayat = () => {
-    const { auth, rute, kapal, jadwal } = usePage().props;
+    const { ticket, transaksi } = usePage().props;
+    console.log(transaksi);
 
     return (
         <UserLayout>
@@ -12,41 +14,72 @@ const Riwayat = () => {
                     <h1>Riwayat Rute</h1>
                 </div>
 
-                <div className="overflow-x-auto">
+                <div className="overflow-x-auto text-gray text-center px-4">
                     <table className="table">
                         {/* head */}
                         <thead>
-                            <tr>
-                                <th></th>
-                                <th>Name</th>
-                                <th>Job</th>
-                                <th>Favorite Color</th>
+                            <tr className="text-center text-midnight font-serif">
+                                <th>Kode Tiket</th>
+                                <th>Rute Penyebrangan</th>
+                                <th>Nama Kapal</th>
+                                <th>Tanggal Keberangkatan</th>
+                                <th>Estimasi Tiba</th>
+                                <th>Estimasi Keberangkatan</th>
+                                <th>Kategori Penumpang</th>
+                                <th>Tipe Kendaraan</th>
                             </tr>
                         </thead>
                         <tbody>
                             {/* row 1 */}
-                            <tr>
-                                <th>1</th>
-                                <td>Cy Ganderton</td>
-                                <td>Quality Control Specialist</td>
-                                <td>Blue</td>
-                            </tr>
-                            {/* row 2 */}
-                            <tr>
-                                <th>2</th>
-                                <td>Hart Hagerty</td>
-                                <td>Desktop Support Technician</td>
-                                <td>Purple</td>
-                            </tr>
-                            {/* row 3 */}
-                            <tr>
-                                <th>3</th>
-                                <td>Brice Swyre</td>
-                                <td>Tax Accountant</td>
-                                <td>Red</td>
-                            </tr>
+                            {ticket.map((t) => (
+                                <tr key={t.id} className="text-center">
+                                    <td>{t.code}</td>
+                                    <td>{t.rutes.nama_rute}</td>
+                                    <td>{t.kapals.nama_kapal}</td>
+                                    <td>{t.jadwals.tanggal}</td>
+                                    <td>{t.jadwals.tiba}</td>
+                                    <td>{t.jadwals.keberangkatan}</td>
+                                    <ul>
+                                        {t.passengers.map((p) => (
+                                            <li
+                                                key={p.id}
+                                                className="text-body text-gray"
+                                            >
+                                                {p.category}
+                                            </li>
+                                        ))}
+                                    </ul>
+
+                                    {t.vehicles.map((p) => (
+                                        <td
+                                            key={p.id}
+                                            className="text-body text-gray"
+                                        >
+                                            {p.type}
+                                        </td>
+                                    ))}
+                                </tr>
+                            ))}
                         </tbody>
                     </table>
+                    <div className="pt-24 text-center text-2xl text-midnight font-serif">
+                        <h1>Riwayat Rute</h1>
+                    </div>
+                    <div className="overflow-x-auto text-gray text-center px-4">
+                        <table className="table">
+                            {/* head */}
+                            <thead>
+                                <tr className="text-center text-midnight font-serif">
+                                    <th>Kode Tiket</th>
+                                    <th>Rute Penyebrangan</th>
+                                    <th>Nama Kapal</th>
+                                    <th>Tanggal Keberangkatan</th>
+                                    <th>Estimasi Tiba</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </UserLayout>
