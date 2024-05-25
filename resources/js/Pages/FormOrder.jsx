@@ -4,7 +4,8 @@ import React from "react";
 import "../../css/card.css";
 
 const FormOrder = () => {
-    const { jadwal, ticket, user, flash, rute } = usePage().props;
+    const { jadwal, ticket, user, flash, order } = usePage().props;
+    // console.log(order);
     const { data, setData, post, errors } = useForm({
         jadwal_id: "",
         rute_id: "",
@@ -104,17 +105,7 @@ const FormOrder = () => {
                             </label>
                         </div>
 
-                        <div>
-                            <label
-                                className="block text-sm font-medium text-gray"
-                                htmlFor="check_in"
-                            >
-                                Jadwal Keberangkatan :{" "}
-                                <h1 className="badge badge-neutral">
-                                    {jadwal.tanggal}
-                                </h1>
-                            </label>
-                        </div>
+                        
 
                         <div>
                             <label
@@ -150,29 +141,8 @@ const FormOrder = () => {
                             </label>
                         </div>
 
-                        <div>
-                            <label
-                                className="block text-sm font-medium text-gray"
-                                htmlFor="check_in"
-                            >
-                                Estimasi Tiba :{" "}
-                                <h1 className="badge badge-neutral">
-                                    {jadwal.tiba}
-                                </h1>
-                            </label>
-                        </div>
-                        <div>
-                            <label
-                                className="block text-sm font-medium text-gray"
-                                htmlFor="check_in"
-                            >
-                                Estimasi Keberangkatan :{" "}
-                                <h1 className="badge badge-neutral">
-                                    {" "}
-                                    {jadwal.keberangkatan}
-                                </h1>
-                            </label>
-                        </div>
+                        
+                        
                         {/* <select
                             className="select w-full  max-w-xs bg-grey text-midnight flex items-center justify-center"
                             value={data.rute_id}
@@ -210,7 +180,7 @@ const FormOrder = () => {
                             <input
                                 type="number"
                                 // id="default-search"
-                              className="input input-bordered w-full max-w-xs bg-grey text-midnight"  placeholder={jadwal.id}
+                              className="input input-bordered w-full max-w-xs bg-grey text-midnight"   placeholder={jadwal.id}
                                 // required
                                 onChange={(e) =>
                                     setData("jadwal_id", e.target.value)
@@ -232,7 +202,7 @@ const FormOrder = () => {
                             <input
                                 type="number"
                                 // id="default-search"
-                              className="input input-bordered w-full max-w-xs bg-grey text-midnight"  placeholder={jadwal.rute_id}
+                              className="input input-bordered w-full max-w-xs bg-grey text-midnight"   placeholder={jadwal.rute_id}
                                 // required
                                 onChange={(e) =>
                                     setData("rute_id", e.target.value)
@@ -254,7 +224,7 @@ const FormOrder = () => {
                             <input
                                 type="number"
                                 // id="default-search"
-                              className="input input-bordered w-full max-w-xs bg-grey text-midnight"  placeholder={jadwal.kapal_id}
+                              className="input input-bordered w-full max-w-xs bg-grey text-midnight"   placeholder={jadwal.kapal_id}
                                 // required
                                 onChange={(e) =>
                                     setData("kapal_id", e.target.value)
@@ -359,16 +329,17 @@ const FormOrder = () => {
             <div className="flex items-center justify-center py-4 px-4 ">
                 {ticket.map((t) => (
                     <div className="card mx-5" key={t.id}>
-                        <div className="card-info">
-                            <p className="text-title text-gray">{user.name}</p>
+                        <div className="card-info">       
+                            <p className="text-title text-center mb-1 text-gray">{t.rutes.nama_rute}</p>
                             <p className="text-body text-gray">{t.code}</p>
-                            <p className="text-body text-gray">{t.kendaraan}</p>
+                            <p className="text-body text-gray">{t.jadwals.tanggal}</p>
+                            <p className="text-body text-gray">{t.jadwals.tiba}</p>
+                            <p className="text-body text-gray">{t.jadwals.keberangkatan}</p>
+                            <p className="text-body text-gray">{t.kapals.nama_kapal}</p>
+            
+                            <p className="text-body text-gray">{t.kendaraan}</p> 
                             <p className="text-body text-gray">
-                                {jadwal.tanggal}
-                            </p>
-                            <p className="text-body text-gray">{jadwal.tiba}</p>
-                            <p className="text-body text-gray">
-                                {jadwal.keberangkatan}
+                                {/* {order.rutes.nama_rute} */}
                             </p>
                             {t.passengers.map((p) => (
                                 <p key={p.id} className="text-body text-gray">
