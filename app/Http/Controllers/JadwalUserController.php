@@ -47,6 +47,7 @@ class JadwalUserController extends Controller
         // dd($transaction);
         return Inertia::render('Tiket/Riwayat', ['ticket' => $tickets, ]);
     }
+    
 
     /**
      * Show the form for creating a new resource.
@@ -56,31 +57,16 @@ class JadwalUserController extends Controller
         return Inertia::render('FormOrder');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    // public function store(Request $request)
-    // {
-    //     //
-    //     $request->validate([
-    //         'jadwal_id' => 'required',
-    //         'penumpang' => 'required',
-
-    //     ]);
-
-    //     Ticket::create($request->all());
-
-    //     return back()->with('message', 'Order Tiket berhasil dibuat');
-
-    // }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show($ruteId)
+    public function show($id)
     {
-        //
-
+        $ticket = Ticket::findOrFail($id);
+        return Inertia::render('Tickets/Show', ['ticket' => $ticket]);
+    }
+    
+    public function pdf($id)
+    {
+        $ticket = Ticket::with(['rutes', 'kapals', 'jadwals','vehicles', 'passengers'])->findOrFail($id);
+        return Inertia::render('Tiket/CetakTiket', ['ticket' => $ticket]);
     }
 
     /**

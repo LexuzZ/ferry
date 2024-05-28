@@ -70,6 +70,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('order', [TicketController::class, 'index'])->name('home');
         Route::post('order', [TicketController::class, 'store'])->name('ticket.store');
         Route::get('riwayat', [JadwalUserController::class, 'riwayat'])->name('jadwal.riwayat');
+        Route::get('riwayat/{id}/pdf', [JadwalUserController::class, 'pdf'])->name('tickets.pdf');
         Route::get('seats/{kapal}', [SeatController::class, 'index'])->name('seats.index');
         Route::post('seats/{seat}/reserve', [SeatController::class, 'reserve'])->name('seats.reserve');
         Route::get('payment/{ticket}', [PaymentController::class, 'create'])->name('payment.create');

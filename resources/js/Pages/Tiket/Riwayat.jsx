@@ -1,7 +1,8 @@
-
 import UserLayout from "@/Layouts/UserLayout";
 import { Link, router, usePage } from "@inertiajs/react";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import CetakTiket from "./CetakTiket";
+import { PDFDownloadLink } from "@react-pdf/renderer";
 
 const Riwayat = () => {
     const { ticket, transaksi } = usePage().props;
@@ -58,16 +59,36 @@ const Riwayat = () => {
                                             {p.type}
                                         </td>
                                     ))}
+                                    <PDFDownloadLink
+                                        document={
+                                            <CetakTiket ticket={ticket} />
+                                        }
+                                        fileName="ticket.pdf"
+                                        className="btn btn-primary mt-3"
+                                    >
+                                        {({ loading }) =>
+                                            loading
+                                                ? "Loading document..."
+                                                : "Cetak Tiket"
+                                        }
+                                    </PDFDownloadLink>
+                                    <Link
+                                        href={`/riwayat/${t.id}/pdf`}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="btn btn-link"
+                                    >
+                                        View PDF
+                                    </Link>
                                 </tr>
                             ))}
                         </tbody>
                     </table>
-                    <div className="pt-24 text-center text-2xl text-midnight font-serif">
+                    {/* <div className="pt-24 text-center text-2xl text-midnight font-serif">
                         <h1>Riwayat Rute</h1>
                     </div>
                     <div className="overflow-x-auto text-gray text-center px-4">
                         <table className="table">
-                            {/* head */}
                             <thead>
                                 <tr className="text-center text-midnight font-serif">
                                     <th>Kode Tiket</th>
@@ -79,7 +100,7 @@ const Riwayat = () => {
                             </thead>
                             <tbody></tbody>
                         </table>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </UserLayout>

@@ -42,8 +42,8 @@ const Payment = ({ ticket, snapToken, user, passengers }) => {
         <UserLayout>
             <>
                 {/* component */}
-                <div className="flex h-screen w-full items-center justify-center bg-silver pt-24 pb-7">
-                    <div className="w-80 rounded bg-white px-6 pt-8 shadow-lg">
+                <div className="flex min-h-screen w-full items-center justify-center bg-silver pt-24 pb-7">
+                    <div className="w-100 rounded bg-white px-6 pt-8 shadow-lg">
                         <div className="flex flex-col justify-center items-center gap-2">
                             <h4 className="font-semibold text-gray">
                                 Detail Tiket
@@ -52,7 +52,7 @@ const Payment = ({ ticket, snapToken, user, passengers }) => {
                                 Damai Lautan Nusantara
                             </p>
                         </div>
-                        <div className="flex flex-col gap-3 border-b py-6 text-md">
+                        <div className="flex flex-col gap-3 border-b py-6 text-md font-mono">
                             <p className="flex justify-between">
                                 <span className="text-gray font-bold">
                                     Code Booking :
@@ -87,23 +87,15 @@ const Payment = ({ ticket, snapToken, user, passengers }) => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <ul className="flex py-1">
+                                    <ul className="">
                                         {ticket.passengers.map((passenger) => (
                                             <li
                                                 key={passenger.id}
-                                                className="flex-1"
+                                                className="flex py-1"
                                             >
                                                 {passenger.category}
                                             </li>
                                         ))}
-                                        {/* {ticket.passengers.map((passenger) => (
-                                            <li
-                                                key={passenger.id}
-                                                className="min-w-[44px]"
-                                            >
-                                                Rp {passenger.price}
-                                            </li>
-                                        ))} */}
                                        <li className="min-w-[44px] "> Rp {totalPassengerPrice} </li>
                                     </ul>
                                     <ul className="flex py-1">

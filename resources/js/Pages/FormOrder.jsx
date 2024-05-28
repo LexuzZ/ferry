@@ -1,7 +1,7 @@
 import UserLayout from "@/Layouts/UserLayout";
 import { Link, router, useForm, usePage } from "@inertiajs/react";
 import React from "react";
-import "../../css/card.css";
+import "../../css/orders.css";
 
 const FormOrder = () => {
     const { jadwal, ticket, user, flash, order } = usePage().props;
@@ -39,15 +39,6 @@ const FormOrder = () => {
         e.preventDefault();
         post(route("ticket.store"));
     };
-    const totalPassengerPrice = data.passengers.reduce(
-        (acc, passenger) => acc + passenger.price,
-        0
-    );
-    const totalVehiclePrice = data.vehicles.reduce(
-        (sum, vehicle) => sum + vehicle.price,
-        0
-    );
-    const totalPrice = totalPassengerPrice + totalVehiclePrice;
 
     return (
         <UserLayout>
@@ -80,7 +71,7 @@ const FormOrder = () => {
                     <p className="text-center text-gray">
                         Isi form reservasi tiket dibawah dengan benar!
                     </p>
-                    <form className="space-y-4" onSubmit={handleSubmit}>
+                    <form className="space-y-4 w-full" onSubmit={handleSubmit}>
                         <div>
                             <label
                                 className="block text-sm font-medium text-gray"
@@ -104,8 +95,6 @@ const FormOrder = () => {
                                 </h1>
                             </label>
                         </div>
-
-                        
 
                         <div>
                             <label
@@ -141,8 +130,6 @@ const FormOrder = () => {
                             </label>
                         </div>
 
-                        
-                        
                         {/* <select
                             className="select w-full  max-w-xs bg-grey text-midnight flex items-center justify-center"
                             value={data.rute_id}
@@ -180,7 +167,8 @@ const FormOrder = () => {
                             <input
                                 type="number"
                                 // id="default-search"
-                              className="input input-bordered w-full max-w-xs bg-grey text-midnight"   placeholder={jadwal.id}
+                                className="input input-bordered w-full max-w-xs bg-grey text-midnight"
+                                placeholder={jadwal.id}
                                 // required
                                 onChange={(e) =>
                                     setData("jadwal_id", e.target.value)
@@ -202,7 +190,8 @@ const FormOrder = () => {
                             <input
                                 type="number"
                                 // id="default-search"
-                              className="input input-bordered w-full max-w-xs bg-grey text-midnight"   placeholder={jadwal.rute_id}
+                                className="input input-bordered w-full max-w-xs bg-grey text-midnight"
+                                placeholder={jadwal.rute_id}
                                 // required
                                 onChange={(e) =>
                                     setData("rute_id", e.target.value)
@@ -224,7 +213,8 @@ const FormOrder = () => {
                             <input
                                 type="number"
                                 // id="default-search"
-                              className="input input-bordered w-full max-w-xs bg-grey text-midnight"   placeholder={jadwal.kapal_id}
+                                className="input input-bordered w-full max-w-xs bg-grey text-midnight"
+                                placeholder={jadwal.kapal_id}
                                 // required
                                 onChange={(e) =>
                                     setData("kapal_id", e.target.value)
@@ -326,140 +316,91 @@ const FormOrder = () => {
                 Riwayat Order
             </h1>
 
-            <div className="flex items-center justify-center py-4 px-4 ">
+            <div className="flex items-center justify-center py-4 px-4 container">
                 {ticket.map((t) => (
-                    <div className="card mx-5" key={t.id}>
-                        <div className="card-info">       
-                            <p className="text-title text-center mb-1 text-gray">{t.rutes.nama_rute}</p>
-                            <p className="text-body text-gray">{t.code}</p>
-                            <p className="text-body text-gray">{t.jadwals.tanggal}</p>
-                            <p className="text-body text-gray">{t.jadwals.tiba}</p>
-                            <p className="text-body text-gray">{t.jadwals.keberangkatan}</p>
-                            <p className="text-body text-gray">{t.kapals.nama_kapal}</p>
-            
-                            <p className="text-body text-gray">{t.kendaraan}</p> 
-                            <p className="text-body text-gray">
-                                {/* {order.rutes.nama_rute} */}
-                            </p>
-                            {t.passengers.map((p) => (
-                                <p key={p.id} className="text-body text-gray">
-                                    {p.category}
-                                </p>
-                            ))}
-                            {t.vehicles.map((v) => (
-                                <p key={v.id} className="text-body text-gray">
-                                    {v.type}
-                                </p>
-                            ))}
-                        </div>
-
-                        <div className="card-footer">
-                            
-
-                            <Link
-                                className="card-button"
-                                href={`/payment/${t.id}`}
-                            >
-                                <svg className="svg-icon" viewBox="0 0 20 20">
-                                    <path d="M17.72,5.011H8.026c-0.271,0-0.49,0.219-0.49,0.489c0,0.271,0.219,0.489,0.49,0.489h8.962l-1.979,4.773H6.763L4.935,5.343C4.926,5.316,4.897,5.309,4.884,5.286c-0.011-0.024,0-0.051-0.017-0.074C4.833,5.166,4.025,4.081,2.33,3.908C2.068,3.883,1.822,4.075,1.795,4.344C1.767,4.612,1.962,4.853,2.231,4.88c1.143,0.118,1.703,0.738,1.808,0.866l1.91,5.661c0.066,0.199,0.252,0.333,0.463,0.333h8.924c0.116,0,0.22-0.053,0.308-0.128c0.027-0.023,0.042-0.048,0.063-0.076c0.026-0.034,0.063-0.058,0.08-0.099l2.384-5.75c0.062-0.151,0.046-0.323-0.045-0.458C18.036,5.092,17.883,5.011,17.72,5.011z" />
-                                    <path d="M8.251,12.386c-1.023,0-1.856,0.834-1.856,1.856s0.833,1.853,1.856,1.853c1.021,0,1.853-0.83,1.853-1.853S9.273,12.386,8.251,12.386z M8.251,15.116c-0.484,0-0.877-0.393-0.877-0.874c0-0.484,0.394-0.878,0.877-0.878c0.482,0,0.875,0.394,0.875,0.878C9.126,14.724,8.733,15.116,8.251,15.116z" />
-                                    <path d="M13.972,12.386c-1.022,0-1.855,0.834-1.855,1.856s0.833,1.853,1.855,1.853s1.854-0.83,1.854-1.853S14.994,12.386,13.972,12.386z M13.972,15.116c-0.484,0-0.878-0.393-0.878-0.874c0-0.484,0.394-0.878,0.878-0.878c0.482,0,0.875,0.394,0.875,0.878C14.847,14.724,14.454,15.116,13.972,15.116z" />
-                                </svg>
-                            </Link>
+                    <div className="card cart" key={t.id}>
+                        <div className="">
+                            <label className="title uppercase  text-gray">
+                                {t.rutes.nama_rute}
+                            </label>
+                            <div className="steps">
+                                <div className="step">
+                                    <div className="font-mono">
+                                        <span>Shipping</span>
+                                        <p>Nama Kapal : {t.kapals.nama_kapal}</p>
+                                        <p className=" text-gray">Kode Tiket : {t.code}</p>
+                                        <p className=" text-gray">
+                                            Tanggal : {t.jadwals.tanggal}
+                                        </p>
+                                        <p className=" text-gray">
+                                            Estimasi Tiba : {t.jadwals.tiba}
+                                        </p>
+                                        <p className=" text-gray">
+                                            Keberangkatan : {t.jadwals.keberangkatan}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr />
+                            <div className="payments">
+                                <span className="text-midnight font-bold ml-40">PAYMENT</span>
+                                <div className="details mx-10">
+                                    <ul>
+                                        {t.passengers.map((p) => (
+                                            <li
+                                                key={p.id}
+                                                className=" text-gray"
+                                            >
+                                                Penumpang : {p.category}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                    <ul>
+                                        {t.passengers.map((p) => (
+                                            <li
+                                                key={p.id}
+                                                className=" text-gray"
+                                            >
+                                                {p.price}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                    <ul>
+                                        {t.vehicles.map((p) => (
+                                            <li
+                                                key={p.id}
+                                                className=" text-gray"
+                                            >
+                                                Jenis Kendaraan : {p.type}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                    <ul>
+                                        {t.vehicles.map((p) => (
+                                            <li
+                                                key={p.id}
+                                                className=" text-gray"
+                                            >
+                                                {p.price}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            </div>
+                            <div className="card checkout">
+                                <div className="footer">
+                                    <Link
+                                        className="checkout-btn"
+                                        href={`/payment/${t.id}`}
+                                    >
+                                        Checkout
+                                    </Link>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 ))}
             </div>
-
-            {/* <div className="w-full max-w-md p-8 space-y-6 bg-white border border-gray rounded-lg shadow-lg">
-                <h1>Pemesanan Tiket</h1>
-                <form onSubmit={handleButon}>
-                    <div>
-                        <label
-                            htmlFor="jenis_penumpang"
-                            className="block text-sm font-medium text-gray"
-                        >
-                            Masukkan ID Jadwal dibawah
-                        </label>
-
-                        <input
-                            type="number"
-                            // id="default-search"
-                            className=" border  border-gray-300 text-gray text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 "
-                            placeholder="enter ..."
-                            // required
-                            onChange={(e) =>
-                                setData("jadwal_id", e.target.value)
-                            }
-                            value={data.jadwal_id}
-                        />
-                        <p className="text-red text-sm mt-2">
-                            {errors.jadwal_id}
-                        </p>
-                    </div>
-                    {passengers.map((passenger, index) => (
-                        <div key={index}>
-                            <select
-                                value={passenger.category}
-                                onChange={(e) => {
-                                    const newPassengers = [...passengers];
-                                    newPassengers[index].category =
-                                        e.target.value;
-                                    setPassengers(newPassengers);
-                                }}
-                            >
-                                <option value="dewasa">Dewasa</option>
-                                <option value="anak">Anak</option>
-                            </select>
-                        </div>
-                    ))}
-                    <button
-                        type="button"
-                        onClick={() =>
-                            setPassengers([
-                                ...passengers,
-                                { name: "", category: "dewasa" },
-                            ])
-                        }
-                    >
-                        Tambah Penumpang
-                    </button>
-
-                    {vehicles.map((vehicle, index) => (
-                        <div key={index}>
-                            <select
-                                value={vehicle.type}
-                                onChange={(e) => {
-                                    const newVehicles = [...vehicles];
-                                    newVehicles[index].type = e.target.value;
-                                    setVehicles(newVehicles);
-                                }}
-                            >
-                                <option value="truk">Truk</option>
-                                <option value="mobil">Mobil</option>
-                                <option value="sepeda_motor">
-                                    Sepeda Motor
-                                </option>
-                            </select>
-                        </div>
-                    ))}
-                    <button
-                        type="button"
-                        onClick={() =>
-                            setVehicles([...vehicles, { type: "sedan" }])
-                        }
-                    >
-                        Tambah Kendaraan
-                    </button>
-
-                    <button
-                        type="submit"
-                        className="flex items-center justify-end"
-                    >
-                        Pesan
-                    </button>
-                </form>
-            </div> */}
         </UserLayout>
     );
 };
