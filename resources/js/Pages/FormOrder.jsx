@@ -1,11 +1,11 @@
 import UserLayout from "@/Layouts/UserLayout";
 import { Link, router, useForm, usePage } from "@inertiajs/react";
-import React from "react";
+import React, { useState } from "react";
 import "../../css/orders.css";
 
 const FormOrder = () => {
-    const { jadwal, ticket, user, flash, order } = usePage().props;
-    // console.log(order);
+    const { jadwal, ticket, user, flash, kapal } = usePage().props;
+    console.log(kapal);
     const { data, setData, post, errors } = useForm({
         jadwal_id: "",
         rute_id: "",
@@ -39,7 +39,27 @@ const FormOrder = () => {
         e.preventDefault();
         post(route("ticket.store"));
     };
+    const [formData, setFormData] = useState({
+        tripType: "Roundtrip",
+        flyingFrom: "",
+        flyingTo: "",
+        departing: "",
+        returning: "",
+        adults: 1,
+        children: 0,
+        travelClass: "Economy class",
+    });
 
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+    };
+
+    const handleSubmitt = (e) => {
+        e.preventDefault();
+        console.log(formData);
+        // Lakukan sesuatu dengan data form, seperti mengirim ke server
+    };
     return (
         <UserLayout>
             {flash.message && (
@@ -64,10 +84,125 @@ const FormOrder = () => {
                 </div>
             )}
             <div className="flex items-center justify-center min-h-screen pt-24">
+                <form onSubmit={handleSubmitt}>
+                    <div className="mb-4">
+                        <label className="block mb-2">Trip Type</label>
+                        <div className="flex space-x-4">
+                            {["Roundtrip", "One way", "Multi-City"].map(
+                                (type) => (
+                                    <label
+                                        key={type}
+                                        className="flex items-center"
+                                    >
+                                        <input
+                                            type="radio"
+                                            name="tripType"
+                                            value={type}
+                                            checked={formData.tripType === type}
+                                            onChange={handleChange}
+                                            className="form-radio"
+                                        />
+                                        <span className="ml-2">{type}</span>
+                                    </label>
+                                )
+                            )}
+                        </div>
+                    </div>
+                    <div className="mb-4">
+                        <label className="block mb-2">Flying From</label>
+                        <input
+                            type="text"
+                            name="flyingFrom"
+                            value={formData.flyingFrom}
+                            onChange={handleChange}
+                            placeholder="City or airport"
+                            className="w-full p-2 border rounded"
+                        />
+                    </div>
+                    <div className="mb-4">
+                        <label className="block mb-2">Flying To</label>
+                        <input
+                            type="text"
+                            name="flyingTo"
+                            value={formData.flyingTo}
+                            onChange={handleChange}
+                            placeholder="City or airport"
+                            className="w-full p-2 border rounded"
+                        />
+                    </div>
+                    <div className="mb-4">
+                        <label className="block mb-2">Departing</label>
+                        <input
+                            type="date"
+                            name="departing"
+                            value={formData.departing}
+                            onChange={handleChange}
+                            className="w-full p-2 border rounded"
+                        />
+                    </div>
+                    <div className="mb-4">
+                        <label className="block mb-2">Returning</label>
+                        <input
+                            type="date"
+                            name="returning"
+                            value={formData.returning}
+                            onChange={handleChange}
+                            className="w-full p-2 border rounded"
+                        />
+                    </div>
+                    <div className="mb-4 flex space-x-4">
+                        <div className="w-1/2">
+                            <label className="block mb-2">Adults (18+)</label>
+                            <input
+                                type="number"
+                                name="adults"
+                                value={formData.adults}
+                                onChange={handleChange}
+                                min="1"
+                                className="w-full p-2 border rounded"
+                            />
+                        </div>
+                        <div className="w-1/2">
+                            <label className="block mb-2">
+                                Children (0-17)
+                            </label>
+                            <input
+                                type="number"
+                                name="children"
+                                value={formData.children}
+                                onChange={handleChange}
+                                min="0"
+                                className="w-full p-2 border rounded"
+                            />
+                        </div>
+                    </div>
+                    <div className="mb-4">
+                        <label className="block mb-2">Travel Class</label>
+                        <select
+                            name="travelClass"
+                            value={formData.travelClass}
+                            onChange={handleChange}
+                            className="w-full p-2 border rounded"
+                        >
+                            <option value="Economy class">Economy class</option>
+                            <option value="Business class">
+                                Business class
+                            </option>
+                            <option value="First class">First class</option>
+                        </select>
+                    </div>
+                    <button
+                        type="submit"
+                        className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
+                    >
+                        Show Flights
+                    </button>
+                </form>
                 <div className="w-full max-w-md p-8 space-y-6 bg-white border border-gray rounded-lg shadow-lg">
                     <h2 className="text-2xl font-semibold text-center text-midnight">
                         DAMAI LAUTAN NUSANTARA
                     </h2>
+
                     <p className="text-center text-gray">
                         Isi form reservasi tiket dibawah dengan benar!
                     </p>
@@ -130,32 +265,6 @@ const FormOrder = () => {
                             </label>
                         </div>
 
-                        {/* <select
-                            className="select w-full  max-w-xs bg-grey text-midnight flex items-center justify-center"
-                            value={data.rute_id}
-                            onChange={(e) => setData("rute_id", e.target.value)}
-                        >
-                            <option value="rute_id">rute</option>
-                        </select>
-                        <select
-                            className="select w-full  max-w-xs bg-grey text-midnight flex items-center justify-center"
-                            value={data.kapal_id}
-                            onChange={(e) =>
-                                setData("kapal_id", e.target.value)
-                            }
-                        >
-                            <option value="">Pilih</option>
-                            <option value="kapal_id">kapal</option>
-                        </select>
-                        <select
-                            className="select w-full  max-w-xs bg-grey text-midnight flex items-center justify-center"
-                            value={data.jadwal_id}
-                            onChange={(e) =>
-                                setData("jadwal_id", e.target.value)
-                            }
-                        >
-                            <option value={data.jadwal_id}>jadwal id</option>
-                        </select> */}
                         <div>
                             <label
                                 htmlFor="jenis_penumpang"
@@ -225,6 +334,8 @@ const FormOrder = () => {
                                 {errors.kapal_id}
                             </p>
                         </div>
+                        {/* Open the modal using document.getElementById('ID').showModal() method */}
+
                         <h2 className="text-midnight font-serif">
                             Kategori Penumpang
                         </h2>
@@ -327,8 +438,12 @@ const FormOrder = () => {
                                 <div className="step">
                                     <div className="font-mono">
                                         <span>Shipping</span>
-                                        <p>Nama Kapal : {t.kapals.nama_kapal}</p>
-                                        <p className=" text-gray">Kode Tiket : {t.code}</p>
+                                        <p>
+                                            Nama Kapal : {t.kapals.nama_kapal}
+                                        </p>
+                                        <p className=" text-gray">
+                                            Kode Tiket : {t.code}
+                                        </p>
                                         <p className=" text-gray">
                                             Tanggal : {t.jadwals.tanggal}
                                         </p>
@@ -336,14 +451,17 @@ const FormOrder = () => {
                                             Estimasi Tiba : {t.jadwals.tiba}
                                         </p>
                                         <p className=" text-gray">
-                                            Keberangkatan : {t.jadwals.keberangkatan}
+                                            Keberangkatan :{" "}
+                                            {t.jadwals.keberangkatan}
                                         </p>
                                     </div>
                                 </div>
                             </div>
                             <hr />
                             <div className="payments">
-                                <span className="text-midnight font-bold ml-40">PAYMENT</span>
+                                <span className="text-midnight font-bold ml-40">
+                                    PAYMENT
+                                </span>
                                 <div className="details mx-10">
                                     <ul>
                                         {t.passengers.map((p) => (
