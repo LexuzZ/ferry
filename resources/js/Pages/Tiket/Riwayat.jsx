@@ -12,7 +12,7 @@ const Riwayat = () => {
         <UserLayout>
             <div className="min-h-screen">
                 <div className="pt-24 text-center text-2xl text-midnight font-serif">
-                    <h1>Riwayat Rute</h1>
+                    <h1>Riwayat Transaksi</h1>
                 </div>
 
                 <div className="overflow-x-auto text-gray text-center px-4">
@@ -28,6 +28,7 @@ const Riwayat = () => {
                                 <th>Estimasi Keberangkatan</th>
                                 <th>Kategori Penumpang</th>
                                 <th>Tipe Kendaraan</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -59,24 +60,12 @@ const Riwayat = () => {
                                             {p.type}
                                         </td>
                                     ))}
-                                    <PDFDownloadLink
-                                        document={
-                                            <CetakTiket ticket={ticket} />
-                                        }
-                                        fileName="ticket.pdf"
-                                        className="btn btn-primary mt-3"
-                                    >
-                                        {({ loading }) =>
-                                            loading
-                                                ? "Loading document..."
-                                                : "Cetak Tiket"
-                                        }
-                                    </PDFDownloadLink>
+                                    
                                     <Link
                                         href={`/riwayat/${t.id}/pdf`}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="btn btn-link"
+                                        className="btn btn-link mt-3"
                                     >
                                         View PDF
                                     </Link>
