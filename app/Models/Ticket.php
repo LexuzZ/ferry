@@ -23,10 +23,6 @@ class Ticket extends Model
     {
         return $this->belongsTo(Rute::class, 'rute_id');
     }
-    
-    public function seats(){
-        return $this->hasMany(Seat::class);
-    }
     public function passengers()
     {
         return $this->hasMany(Passenger::class);
