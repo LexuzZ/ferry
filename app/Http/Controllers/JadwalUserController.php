@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Jadwal;
+use App\Models\Kapal;
 use App\Models\Rute;
 use App\Models\Ticket;
 use App\Models\Transaction;
@@ -30,11 +31,13 @@ class JadwalUserController extends Controller
         $user_id = auth()->user();
         // $rutes = Rute::whereBelongsTo($jadwal->id);
         
-        $ticket = Ticket::with(['seats', 'vehicles', 'passengers','rutes', 'kapals', 'jadwals'])->get();
+        $ticket = Ticket::with(['vehicles', 'passengers','rutes', 'kapals', 'jadwals'])->get();
+        $kapal = Kapal::with('seats')->get();
         return Inertia::render('FormOrder',  [
             'jadwal' => $jadwal,
             'user' => $user_id,
             'ticket' => $ticket,
+            'kapal' => $kapal
             
             // 'rute' => $rutes,
 
@@ -65,8 +68,8 @@ class JadwalUserController extends Controller
     
     public function pdf($id)
     {
-        $ticket = Ticket::with(['rutes', 'kapals', 'jadwals','vehicles', 'passengers'])->findOrFail($id);
-        return Inertia::render('Tiket/CetakTiket', ['ticket' => $ticket]);
+        $ticket = Ticket::with(['rutes', 'kapals', 'jadwals','vehicles', 'passengers', 'transactions'])->findOrFail($id);
+        return Inertia::render('Tiket/PDFPage', ['ticket' => $ticket]);
     }
 
     /**
