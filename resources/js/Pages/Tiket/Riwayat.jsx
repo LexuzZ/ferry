@@ -24,10 +24,7 @@ const Riwayat = () => {
                                 <th>Rute Penyebrangan</th>
                                 <th>Nama Kapal</th>
                                 <th>Tanggal Keberangkatan</th>
-                                <th>Estimasi Tiba</th>
-                                <th>Estimasi Keberangkatan</th>
-                                <th>Kategori Penumpang</th>
-                                <th>Tipe Kendaraan</th>
+
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -39,33 +36,12 @@ const Riwayat = () => {
                                     <td>{t.rutes.nama_rute}</td>
                                     <td>{t.kapals.nama_kapal}</td>
                                     <td>{t.jadwals.tanggal}</td>
-                                    <td>{t.jadwals.tiba}</td>
-                                    <td>{t.jadwals.keberangkatan}</td>
-                                    <ul>
-                                        {t.passengers.map((p) => (
-                                            <li
-                                                key={p.id}
-                                                className="text-body text-gray"
-                                            >
-                                                {p.category}
-                                            </li>
-                                        ))}
-                                    </ul>
 
-                                    {t.vehicles.map((p) => (
-                                        <td
-                                            key={p.id}
-                                            className="text-body text-gray"
-                                        >
-                                            {p.type}
-                                        </td>
-                                    ))}
-                                    
                                     <Link
                                         href={`/riwayat/${t.id}/pdf`}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="btn btn-link mt-3"
+                                        className="btn btn-link "
                                     >
                                         View PDF
                                     </Link>
