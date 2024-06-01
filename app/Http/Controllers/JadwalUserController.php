@@ -18,7 +18,7 @@ class JadwalUserController extends Controller
     public function index()
     {
         //
-        $rutes = Rute::with('jadwals', 'kapals')->get();
+        $rutes = Rute::all();
 
         return Inertia::render('UserDashboard', [
 
@@ -27,20 +27,15 @@ class JadwalUserController extends Controller
     }
     public function order($id)
     {
-        $jadwal = Jadwal::findOrFail($id);
-        $user_id = auth()->user();
-        // $rutes = Rute::whereBelongsTo($jadwal->id);
+        $jadwal = Jadwal::with('rutes', 'kapals')->findOrFail($id);
+       
         
         $ticket = Ticket::with(['vehicles', 'passengers','rutes', 'kapals', 'jadwals'])->get();
-        $kapal = Kapal::with('seats')->get();
+
         return Inertia::render('FormOrder',  [
             'jadwal' => $jadwal,
-            'user' => $user_id,
             'ticket' => $ticket,
-            'kapal' => $kapal
-            
-            // 'rute' => $rutes,
-
+           
         ]);
     }
     public function riwayat(){
