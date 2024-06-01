@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     },
     tableRow: { margin: "auto", flexDirection: "row" },
     tableCol: {
-        width: "25%",
+        width: "50%",
         borderStyle: "solid",
         borderWidth: 1,
         borderColor: "#000",
@@ -36,15 +36,9 @@ const CetakTiket = ({ ticket }) => (
                 <Text style={styles.hero}>{ticket.jadwals.tanggal}</Text>
                 <hr style={styles.line} />
                 <Text style={styles.title}>Detail Tiket</Text>
+                <Text style={styles.text}>Kode Booking : {ticket.code}</Text>
+                <Text style={styles.text}>Nama Pemesan : {ticket.nama}</Text>
                 <View style={styles.table}>
-                    <View style={styles.tableRow}>
-                        <View style={styles.tableCol}>
-                            <Text style={styles.tableCell}>Code</Text>
-                        </View>
-                        <View style={styles.tableCol}>
-                            <Text style={styles.tableCell}>{ticket.code}</Text>
-                        </View>
-                    </View>
                     <View style={styles.tableRow}>
                         <View style={styles.tableCol}>
                             <Text style={styles.tableCell}>Kapal</Text>
