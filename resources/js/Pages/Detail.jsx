@@ -9,19 +9,19 @@ const Detail = () => {
         <UserLayout>
             <div className="min-h-screen">
                 <div className="pt-24 text-center text-2xl text-midnight font-serif">
-                    <h1>Detail Rute</h1>
+                    <h1 className="uppercase mb-6">Jadwal Berdasarkan Rute Penyebrangan</h1>
                 </div>
 
-                <div className="card card-side bg-base-100 shadow-xl mx-24 ">
+                <div className="card card-side bg-white shadow-xl mx-24 ">
                     <div className="card-body">
-                        <h2 className="card-title">{rute.nama_rute}</h2>
+                        <h2 className="card-title text-midnight">{rute.nama_rute}</h2>
                         {kapal.map((k) => (
-                            <p key={k.id}>{k.nama_kapal}</p>
+                            <p key={k.id} className="text-midnight">{k.nama_kapal}</p>
                         ))}
                         <div className="overflow-x-auto">
                             <table className="table">
                                 {/* head */}
-                                <thead>
+                                <thead className="bg-grey text-midnight uppercase">
                                     <tr>
                                         <th>Tanggal</th>
                                         <th>Estimasi Tiba</th>
@@ -29,9 +29,9 @@ const Detail = () => {
                                         <th> </th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody className="text-midnight">
                                     {jadwal.map((j) => (
-                                        <tr key={j.id} className="hover">
+                                        <tr key={j.id} className=" hover:bg-grey">
                                             <td>{j.tanggal}</td>
                                             <td>{j.tiba}</td>
                                             <td>{j.keberangkatan}</td>
@@ -49,13 +49,14 @@ const Detail = () => {
                         <div className="card-actions justify-end">
                             <Link
                                 className="btn btn-primary"
-                                href="/userJadwal"
+                                href="/userDashboard"
                             >
                                 Kembali
                             </Link>
                         </div>
                     </div>
                 </div>
+                
             </div>
         </UserLayout>
     );
