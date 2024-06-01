@@ -3,14 +3,15 @@ import { Link, router, useForm, usePage } from "@inertiajs/react";
 import React, { useState } from "react";
 import "../../css/orders.css";
 
-const FormOrder = () => {
-    const { jadwal, ticket, user, flash, kapal } = usePage().props;
-    console.log(kapal);
+const FormOrder = ({}) => {
+    const { jadwal, ticket, user, flash, jadwals, kapals, rutes } =
+        usePage().props;
     const { data, setData, post, errors } = useForm({
-        jadwal_id: "",
-        rute_id: "",
-        kapal_id: "",
-        code: "",
+        jadwal_id: jadwal.id,
+        kapal_id: jadwal.kapal_id,
+        rute_id: jadwal.rute_id,
+        nama: "",
+        ktp: "",
         passengers: [{ category: "dewasa" }],
         vehicles: [{ type: "truk" }],
     });
@@ -39,27 +40,7 @@ const FormOrder = () => {
         e.preventDefault();
         post(route("ticket.store"));
     };
-    const [formData, setFormData] = useState({
-        tripType: "Roundtrip",
-        flyingFrom: "",
-        flyingTo: "",
-        departing: "",
-        returning: "",
-        adults: 1,
-        children: 0,
-        travelClass: "Economy class",
-    });
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
-    };
-
-    const handleSubmitt = (e) => {
-        e.preventDefault();
-        console.log(formData);
-        // Lakukan sesuatu dengan data form, seperti mengirim ke server
-    };
     return (
         <UserLayout>
             {flash.message && (
@@ -70,7 +51,7 @@ const FormOrder = () => {
                     <svg
                         className="flex-shrink-0 inline w-4 h-4 me-3"
                         aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns="http://www.w3.org0/svg"
                         fill="currentColor"
                         viewBox="0 0 20 20"
                     >
@@ -83,344 +64,203 @@ const FormOrder = () => {
                     </div>
                 </div>
             )}
-            <div className="flex items-center justify-center min-h-screen pt-24">
-                <form onSubmit={handleSubmitt}>
-                    <div className="mb-4">
-                        <label className="block mb-2">Trip Type</label>
-                        <div className="flex space-x-4">
-                            {["Roundtrip", "One way", "Multi-City"].map(
-                                (type) => (
-                                    <label
-                                        key={type}
-                                        className="flex items-center"
-                                    >
-                                        <input
-                                            type="radio"
-                                            name="tripType"
-                                            value={type}
-                                            checked={formData.tripType === type}
-                                            onChange={handleChange}
-                                            className="form-radio"
-                                        />
-                                        <span className="ml-2">{type}</span>
-                                    </label>
-                                )
-                            )}
-                        </div>
-                    </div>
-                    <div className="mb-4">
-                        <label className="block mb-2">Flying From</label>
-                        <input
-                            type="text"
-                            name="flyingFrom"
-                            value={formData.flyingFrom}
-                            onChange={handleChange}
-                            placeholder="City or airport"
-                            className="w-full p-2 border rounded"
-                        />
-                    </div>
-                    <div className="mb-4">
-                        <label className="block mb-2">Flying To</label>
-                        <input
-                            type="text"
-                            name="flyingTo"
-                            value={formData.flyingTo}
-                            onChange={handleChange}
-                            placeholder="City or airport"
-                            className="w-full p-2 border rounded"
-                        />
-                    </div>
-                    <div className="mb-4">
-                        <label className="block mb-2">Departing</label>
-                        <input
-                            type="date"
-                            name="departing"
-                            value={formData.departing}
-                            onChange={handleChange}
-                            className="w-full p-2 border rounded"
-                        />
-                    </div>
-                    <div className="mb-4">
-                        <label className="block mb-2">Returning</label>
-                        <input
-                            type="date"
-                            name="returning"
-                            value={formData.returning}
-                            onChange={handleChange}
-                            className="w-full p-2 border rounded"
-                        />
-                    </div>
-                    <div className="mb-4 flex space-x-4">
-                        <div className="w-1/2">
-                            <label className="block mb-2">Adults (18+)</label>
-                            <input
-                                type="number"
-                                name="adults"
-                                value={formData.adults}
-                                onChange={handleChange}
-                                min="1"
-                                className="w-full p-2 border rounded"
-                            />
-                        </div>
-                        <div className="w-1/2">
-                            <label className="block mb-2">
-                                Children (0-17)
-                            </label>
-                            <input
-                                type="number"
-                                name="children"
-                                value={formData.children}
-                                onChange={handleChange}
-                                min="0"
-                                className="w-full p-2 border rounded"
-                            />
-                        </div>
-                    </div>
-                    <div className="mb-4">
-                        <label className="block mb-2">Travel Class</label>
-                        <select
-                            name="travelClass"
-                            value={formData.travelClass}
-                            onChange={handleChange}
-                            className="w-full p-2 border rounded"
-                        >
-                            <option value="Economy class">Economy class</option>
-                            <option value="Business class">
-                                Business class
-                            </option>
-                            <option value="First class">First class</option>
-                        </select>
-                    </div>
-                    <button
-                        type="submit"
-                        className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
-                    >
-                        Show Flights
-                    </button>
-                </form>
-                <div className="w-full max-w-md p-8 space-y-6 bg-white border border-gray rounded-lg shadow-lg">
-                    <h2 className="text-2xl font-semibold text-center text-midnight">
-                        DAMAI LAUTAN NUSANTARA
-                    </h2>
-
-                    <p className="text-center text-gray">
-                        Isi form reservasi tiket dibawah dengan benar!
-                    </p>
-                    <form className="space-y-4 w-full" onSubmit={handleSubmit}>
-                        <div>
-                            <label
-                                className="block text-sm font-medium text-gray"
-                                htmlFor="first_name"
-                            >
-                                Nama Pemesan :{" "}
-                                <h1 className="badge badge-neutral">
-                                    {user.name}
-                                </h1>
-                            </label>
-                        </div>
-
-                        <div>
-                            <label
-                                className="block text-sm font-medium text-gray"
-                                htmlFor="first_name"
-                            >
-                                Email Pemesan :{" "}
-                                <h1 className="badge badge-neutral">
-                                    {user.email}
-                                </h1>
-                            </label>
-                        </div>
-
-                        <div>
-                            <label
-                                className="block text-sm font-medium text-gray"
-                                htmlFor="check_in"
-                            >
-                                ID Jadwal :{" "}
-                                <h1 className="badge badge-neutral">
-                                    {jadwal.id}
-                                </h1>
-                            </label>
-                        </div>
-                        <div>
-                            <label
-                                className="block text-sm font-medium text-gray"
-                                htmlFor="check_in"
-                            >
-                                ID Rute :{" "}
-                                <h1 className="badge badge-neutral">
-                                    {jadwal.rute_id}
-                                </h1>
-                            </label>
-                        </div>
-                        <div>
-                            <label
-                                className="block text-sm font-medium text-gray"
-                                htmlFor="check_in"
-                            >
-                                ID Kapal :{" "}
-                                <h1 className="badge badge-neutral">
-                                    {jadwal.kapal_id}
-                                </h1>
-                            </label>
-                        </div>
-
-                        <div>
-                            <label
-                                htmlFor="jenis_penumpang"
-                                className="block text-sm font-medium text-gray"
-                            >
-                                Sesuaikan berdasarkan ID Jadwal di atas
-                            </label>
-
-                            <input
-                                type="number"
-                                // id="default-search"
-                                className="input input-bordered w-full max-w-xs bg-grey text-midnight"
-                                placeholder={jadwal.id}
-                                // required
-                                onChange={(e) =>
-                                    setData("jadwal_id", e.target.value)
-                                }
-                                value={data.jadwal_id}
-                            />
-                            <p className="text-red text-sm mt-2">
-                                {errors.jadwal_id}
-                            </p>
-                        </div>
-                        <div>
-                            <label
-                                htmlFor="jenis_penumpang"
-                                className="block text-sm font-medium text-gray"
-                            >
-                                Sesuaikan berdasarkan ID Jadwal di atas
-                            </label>
-
-                            <input
-                                type="number"
-                                // id="default-search"
-                                className="input input-bordered w-full max-w-xs bg-grey text-midnight"
-                                placeholder={jadwal.rute_id}
-                                // required
-                                onChange={(e) =>
-                                    setData("rute_id", e.target.value)
-                                }
-                                value={data.rute_id}
-                            />
-                            <p className="text-red text-sm mt-2">
-                                {errors.rute_id}
-                            </p>
-                        </div>
-                        <div>
-                            <label
-                                htmlFor="jenis_penumpang"
-                                className="block text-sm font-medium text-gray"
-                            >
-                                Sesuaikan berdasarkan ID Jadwal di atas
-                            </label>
-
-                            <input
-                                type="number"
-                                // id="default-search"
-                                className="input input-bordered w-full max-w-xs bg-grey text-midnight"
-                                placeholder={jadwal.kapal_id}
-                                // required
-                                onChange={(e) =>
-                                    setData("kapal_id", e.target.value)
-                                }
-                                value={data.kapal_id}
-                            />
-                            <p className="text-red text-sm mt-2">
-                                {errors.kapal_id}
-                            </p>
-                        </div>
-                        {/* Open the modal using document.getElementById('ID').showModal() method */}
-
-                        <h2 className="text-midnight font-serif">
-                            Kategori Penumpang
+            <div className="flex items-center  justify-center min-h-screen pt-24">
+                <div className="container max-w-screen-lg mx-auto">
+                    <div>
+                        <h2 className="font-semibold text-xl text-gray">
+                            Booking Tiket
                         </h2>
-                        {data.passengers.map((passenger, index) => (
-                            <div key={index}>
-                                <select
-                                    className="select w-full  max-w-xs bg-grey text-midnight flex items-center justify-center"
-                                    value={passenger.category}
-                                    onChange={(e) =>
-                                        handlePassengerChange(
-                                            index,
-                                            "category",
-                                            e.target.value
-                                        )
-                                    }
-                                >
-                                    <option value="dewasa">Dewasa</option>
-                                    <option value="anak">Anak</option>
-                                </select>
-                                {errors.passengers &&
-                                    errors.passengers[index] && (
-                                        <div>{errors.passengers[index]}</div>
-                                    )}
-                            </div>
-                        ))}
-                        <button
-                            type="button"
-                            onClick={addPassenger}
-                            className="py-2 px-2 rounded-md font-serif  text-midnight hover:bg-grey"
-                        >
-                            Tambah Penumpang
-                        </button>
+                        <p className="text-gray mb-6">
+                            Isi form reservasi tiket dibawah.
+                        </p>
 
-                        <h2 className="font-serif text-midnight">
-                            Tipe Kendaraan
-                        </h2>
-                        {data.vehicles.map((vehicle, index) => (
-                            <div key={index}>
-                                <select
-                                    className="select w-full  max-w-xs bg-grey text-midnight flex items-center justify-center"
-                                    value={vehicle.type}
-                                    onChange={(e) =>
-                                        handleVehicleChange(
-                                            index,
-                                            "type",
-                                            e.target.value
-                                        )
-                                    }
-                                >
-                                    <option value="mobil">Mobil</option>
-                                    <option value="sepeda_motor">
-                                        Sepeda Motor
-                                    </option>
-                                    <option value="truk">Truk</option>
-                                </select>
-                                {errors.vehicles && errors.vehicles[index] && (
-                                    <div>{errors.vehicles[index]}</div>
-                                )}
-                            </div>
-                        ))}
-                        <button
-                            type="button"
-                            onClick={addVehicle}
-                            className="py-2 px-2 rounded-md font-serif  text-midnight hover:bg-grey"
+                        <Link
+                            className=" px-4 py-2 mb-6 font-semibold text-white bg-red rounded-md hover:bg-red focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+                            href="/userDashboard"
                         >
-                            Tambah Kendaraan
-                        </button>
+                            Kembali
+                        </Link>
+                        <form
+                            className="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6 mt-4"
+                            onSubmit={handleSubmit}
+                        >
+                            <div className="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
+                                <div className="text-gray">
+                                    <p className="font-medium text-lg">
+                                        Detail Form Tiket
+                                    </p>
+                                </div>
 
-                        <div>
-                            <button
-                                className="w-full px-4 py-2 font-semibold text-white bg-green rounded-md hover:bg-metal focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
-                                type="submit"
-                            >
-                                Checkout
-                            </button>
-                        </div>
-                        <div>
-                            <Link
-                                className="w-full px-4 py-2 font-semibold text-white bg-red rounded-md hover:bg-red focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
-                                href="/userDashboard"
-                            >
-                                Kembali
-                            </Link>
-                        </div>
-                    </form>
+                                <div className="lg:col-span-2">
+                                    <div className="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
+                                        <div className="md:col-span-5">
+                                            <label htmlFor="full_name">
+                                                Full Name
+                                            </label>
+                                            <input
+                                                type="text"
+                                                name="full_name"
+                                                id="full_name"
+                                                className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                                                defaultValue=""
+                                                onChange={(e) =>
+                                                    setData(
+                                                        "nama",
+                                                        e.target.value
+                                                    )
+                                                }
+                                                value={data.nama}
+                                            />
+                                        </div>
+                                        <div className="md:col-span-5">
+                                            <label htmlFor="full_name">
+                                                No. KTP
+                                            </label>
+                                            <input
+                                                type="text"
+                                                className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                                                defaultValue=""
+                                                placeholder=""
+                                                onChange={(e) =>
+                                                    setData(
+                                                        "ktp",
+                                                        e.target.value
+                                                    )
+                                                }
+                                                value={data.ktp}
+                                            />
+                                        </div>
+
+                                        <div className="md:col-span-2 ">
+                                            <label
+                                                htmlFor="country"
+                                                className="text-midnight my-2"
+                                            >
+                                                Penumpang / Passengers
+                                            </label>
+
+                                            {data.passengers.map(
+                                                (passenger, index) => (
+                                                    <div key={index}>
+                                                        <select
+                                                            className="select w-full  max-w-xs  appearance-none outline-none text-gray  bg-grey"
+                                                            value={
+                                                                passenger.category
+                                                            }
+                                                            onChange={(e) =>
+                                                                handlePassengerChange(
+                                                                    index,
+                                                                    "category",
+                                                                    e.target
+                                                                        .value
+                                                                )
+                                                            }
+                                                        >
+                                                            <option value="dewasa">
+                                                                Dewasa
+                                                            </option>
+                                                            <option value="anak">
+                                                                Anak
+                                                            </option>
+                                                        </select>
+                                                        {errors.passengers &&
+                                                            errors.passengers[
+                                                                index
+                                                            ] && (
+                                                                <div>
+                                                                    {
+                                                                        errors
+                                                                            .passengers[
+                                                                            index
+                                                                        ]
+                                                                    }
+                                                                </div>
+                                                            )}
+                                                    </div>
+                                                )
+                                            )}
+                                            <div className="my-4">
+                                                <button
+                                                    type="button"
+                                                    onClick={addPassenger}
+                                                    className="py-2 px-2 rounded-md font-serif bg-grey  text-midnight hover:bg-transparent"
+                                                >
+                                                    Tambah Penumpang
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div className="md:col-span-2">
+                                            <label
+                                                htmlFor="state"
+                                                className="text-midnight"
+                                            >
+                                                Kendaraan / Vehicles
+                                            </label>
+                                            {data.vehicles.map(
+                                                (vehicle, index) => (
+                                                    <div key={index}>
+                                                        <select
+                                                            className="select w-full  max-w-xs bg-grey text-midnight flex items-center justify-center"
+                                                            value={vehicle.type}
+                                                            onChange={(e) =>
+                                                                handleVehicleChange(
+                                                                    index,
+                                                                    "type",
+                                                                    e.target
+                                                                        .value
+                                                                )
+                                                            }
+                                                        >
+                                                            <option value="mobil">
+                                                                Mobil
+                                                            </option>
+                                                            <option value="sepeda_motor">
+                                                                Sepeda Motor
+                                                            </option>
+                                                            <option value="truk">
+                                                                Truk
+                                                            </option>
+                                                        </select>
+                                                        {errors.vehicles &&
+                                                            errors.vehicles[
+                                                                index
+                                                            ] && (
+                                                                <div>
+                                                                    {
+                                                                        errors
+                                                                            .vehicles[
+                                                                            index
+                                                                        ]
+                                                                    }
+                                                                </div>
+                                                            )}
+                                                    </div>
+                                                )
+                                            )}
+                                            <button
+                                                type="button"
+                                                onClick={addVehicle}
+                                                className="py-2 px-2 my-4 rounded-md font-serif bg-grey text-midnight hover:bg-transparent"
+                                            >
+                                                Tambah Kendaraan
+                                            </button>
+                                        </div>
+
+                                        <div className="md:col-span-5 text-right">
+                                            <div className="inline-flex items-end">
+                                                <button
+                                                    className="w-full px-4 py-2 mb-5 font-semibold text-white bg-green rounded-md hover:bg-metal focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+                                                    type="submit"
+                                                >
+                                                    Checkout
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
             <h1 className="text-center pt-4 font-semibold text-midnight">
@@ -519,6 +359,7 @@ const FormOrder = () => {
                     </div>
                 ))}
             </div>
+          
         </UserLayout>
     );
 };
