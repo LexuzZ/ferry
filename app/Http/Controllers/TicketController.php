@@ -36,9 +36,11 @@ class TicketController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'jadwal_id' => 'required',
-            'rute_id' => 'required',
-            'kapal_id' => 'required',
+            'jadwal_id' => 'nullable|exists:jadwals,id',
+            'kapal_id' => 'nullable|exists:kapals,id',
+            'rute_id' => 'nullable|exists:rutes,id',
+            'nama' => 'required|string',
+            'ktp' => 'required|string',
             'passengers' => 'required|array',
             'vehicles' => 'required|array',
         ]);
@@ -48,6 +50,8 @@ class TicketController extends Controller
             'kapal_id' => $request->kapal_id,
             'rute_id' => $request->rute_id,
             'code' => uniqid('TKT-'),
+            'ktp' => $request->ktp,
+            'nama' => $request->nama,
         ]);
 
         foreach ($request->input('passengers') as $passengerData) {
