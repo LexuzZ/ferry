@@ -59,9 +59,10 @@ class PaymentController extends Controller
 
     public function callback(Request $request)
     {
+        $transaction = new Notification();
         $data = $request->all();
         $trxId = $data['ticket_id'];
-        $status = $data['transaction_status'];
+        $status = $data['status'];
         $channelResponse = $data['channel_response_message'];
 
         $transaction = Transaction::find($trxId);

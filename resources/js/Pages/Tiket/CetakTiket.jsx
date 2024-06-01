@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: "#000",
     },
-    tableCell: { margin: "auto", marginTop: 5, padding: 5, fontSize: 12 },
+    tableCell: { margin: "auto", marginTop: 5, padding: 5, fontSize: 12, textAlign: 'left' },
 });
 
 const CetakTiket = ({ ticket }) => (
@@ -41,7 +41,7 @@ const CetakTiket = ({ ticket }) => (
                 <View style={styles.table}>
                     <View style={styles.tableRow}>
                         <View style={styles.tableCol}>
-                            <Text style={styles.tableCell}>Kapal</Text>
+                            <Text style={styles.tableCell}>Nama Kapal</Text>
                         </View>
                         <View style={styles.tableCol}>
                             <Text style={styles.tableCell}>
@@ -51,7 +51,7 @@ const CetakTiket = ({ ticket }) => (
                     </View>
                     <View style={styles.tableRow}>
                         <View style={styles.tableCol}>
-                            <Text style={styles.tableCell}>Date</Text>
+                            <Text style={styles.tableCell}>Tanggal Keberangkatan</Text>
                         </View>
                         <View style={styles.tableCol}>
                             <Text style={styles.tableCell}>
@@ -61,7 +61,7 @@ const CetakTiket = ({ ticket }) => (
                     </View>
                     <View style={styles.tableRow}>
                         <View style={styles.tableCol}>
-                            <Text style={styles.tableCell}>ETA</Text>
+                            <Text style={styles.tableCell}>Estmasi Sandar</Text>
                         </View>
                         <View style={styles.tableCol}>
                             <Text style={styles.tableCell}>
@@ -71,7 +71,7 @@ const CetakTiket = ({ ticket }) => (
                     </View>
                     <View style={styles.tableRow}>
                         <View style={styles.tableCol}>
-                            <Text style={styles.tableCell}>ETD</Text>
+                            <Text style={styles.tableCell}>Estimasi Keberangkatan</Text>
                         </View>
                         <View style={styles.tableCol}>
                             <Text style={styles.tableCell}>

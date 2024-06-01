@@ -7,7 +7,8 @@ import dln4 from "../../../public/dln4.jpg";
 import dln3 from "../../../public/dln3.jpg";
 import dln2 from "../../../public/dln2.jpg";
 import dln1 from "../../../public/dln1.jpg";
-// import Ship from "@/Components/Homepage/Ship";
+import axios from "axios";
+
 
 export default function Homepage(props) {
     const { rutes, jadwal, kapal } = usePage().props;
