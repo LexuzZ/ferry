@@ -16,11 +16,11 @@ class Jadwal extends Model
     // Definisikan relasi dengan tabel Kapal
     public function rutes()
     {
-        return $this->belongsTo(Rute::class);
+        return $this->belongsTo(Rute::class, 'rute_id');
     }
     public function kapals()
     {
-        return $this->belongsTo(Kapal::class);
+        return $this->belongsTo(Kapal::class, 'kapal_id');
     }
     public function tickets()
     {
