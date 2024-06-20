@@ -15,6 +15,6 @@ class Transaction extends Model
      */
     public function tickets()
     {
-        return $this->belongsTo(Ticket::class);
+        return $this->belongsTo(Ticket::class, 'ticket_id');
     }
 }
