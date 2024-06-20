@@ -46,6 +46,7 @@ export default function UserLayout({ children }) {
                                 <NavLink
                                     href={route("userDashboard")}
                                     active={route().current("userDashboard")}
+                                    className="me-4"
                                 >
                                     Dashboard
                                 </NavLink>
@@ -53,7 +54,7 @@ export default function UserLayout({ children }) {
                                     href={route("jadwal.riwayat")}
                                     active={route().current("jadwal.riwayat")}
                                 >
-                                    Invoice
+                                    Riwayat Transaksi
                                 </NavLink>
                             </div>
                             <div className="flex items-center me-24 "></div>
