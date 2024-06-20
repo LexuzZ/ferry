@@ -8,6 +8,7 @@ use App\Models\Rute;
 use App\Models\Ticket;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 
 class JadwalUserController extends Controller
@@ -15,17 +16,43 @@ class JadwalUserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-        $rutes = Rute::with('kapals', 'jadwals')->get();
-        $jadwal = Jadwal::with(['rutes', 'kapals'])->get();
+        // Ambil data rute dan kapal
+        $rutes = DB::table('rutes')->select('id', 'nama_rute')->get();
+        $kapals = DB::table('kapals')->select('id', 'nama_kapal')->get();
 
+        // Buat query dengan join
+        $query = DB::table('jadwals')
+            ->join('rutes', 'jadwals.rute_id', '=', 'rutes.id')
+            ->join('kapals', 'jadwals.kapal_id', '=', 'kapals.id')
+            ->select('jadwals.*', 'rutes.nama_rute', 'kapals.nama_kapal');
+
+        // Tambahkan filter berdasarkan parameter 'search'
+        if ($request->has('search_rute') && $request->search_rute != '') {
+            $query->where('rutes.nama_rute', 'like', '%'.$request->search_rute.'%');
+        }
+
+        if ($request->has('search_kapal') && $request->search_kapal != '') {
+            $query->where('kapals.nama_kapal', 'like', '%'.$request->search_kapal.'%');
+        }
+
+        if ($request->has('search_tanggal') && $request->search_tanggal != '') {
+            $query->whereDate('jadwals.tanggal', $request->search_tanggal);
+        }
+
+        // Paginate hasil query
+        $jadwal = $query->paginate(8);
+
+        // Render dengan Inertia
         return Inertia::render('UserDashboard', [
             'jadwal' => $jadwal,
-
-            'rutes' => $rutes
+            'rutes' => $rutes,
+            'kapals' => $kapals,
+            'filters' => $request->only(['search_rute', 'search_kapal', 'search_tanggal']),
+            'total' => $jadwal->total()
         ]);
+
     }
     public function order($id)
     {
