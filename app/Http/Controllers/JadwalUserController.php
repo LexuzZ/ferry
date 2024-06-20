@@ -18,9 +18,11 @@ class JadwalUserController extends Controller
     public function index()
     {
         //
-        $rutes = Rute::all();
+        $rutes = Rute::with('kapals', 'jadwals')->get();
+        $jadwal = Jadwal::with(['rutes', 'kapals'])->get();
 
         return Inertia::render('UserDashboard', [
+            'jadwal' => $jadwal,
 
             'rutes' => $rutes
         ]);
@@ -39,11 +41,9 @@ class JadwalUserController extends Controller
         ]);
     }
     public function riwayat(){
-        $tickets = Ticket::with(['rutes', 'kapals', 'jadwals','vehicles', 'passengers'])->get();
-        // dd($tickets);
-        // $transaction = Transaction::get(['status', 'amount']);
-        // dd($transaction);
-        return Inertia::render('Tiket/Riwayat', ['ticket' => $tickets, ]);
+        $tickets = Ticket::with(['rutes', 'kapals', 'jadwals','vehicles', 'passengers', 'transactions'])->get();
+        $transaksi = Transaction::with('tickets')->get();
+        return Inertia::render('Tiket/Riwayat', ['ticket' => $tickets, 'transaksi' => $transaksi ]);
     }
     
 
