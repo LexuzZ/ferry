@@ -21,30 +21,31 @@ const Riwayat = () => {
                         <thead>
                             <tr className="text-center text-midnight font-serif">
                                 <th>Kode Tiket</th>
-                                <th>Rute Penyebrangan</th>
-                                <th>Nama Kapal</th>
-                                <th>Tanggal Keberangkatan</th>
+                                <th>Status Pembayaran</th>
+                                <th>Total</th>
 
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             {/* row 1 */}
-                            {ticket.map((t) => (
+                            {transaksi.map((t) => (
                                 <tr key={t.id} className="text-center">
-                                    <td>{t.code}</td>
-                                    <td>{t.rutes.nama_rute}</td>
-                                    <td>{t.kapals.nama_kapal}</td>
-                                    <td>{t.jadwals.tanggal}</td>
+                                    <td>{t.tickets.code}</td>
+                                    <td>{t.status}</td>
+                                    <td>{t.amount}</td>
 
-                                    <Link
-                                        href={`/riwayat/${t.id}/pdf`}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="btn btn-link "
-                                    >
-                                        View PDF
-                                    </Link>
+                                    {/* <td>{t.transactions.status}</td> */}
+                                    <td>
+                                        <Link
+                                            href={`/riwayat/${t.id}/pdf`}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="btn btn-link "
+                                        >
+                                            View PDF
+                                        </Link>
+                                    </td>
                                 </tr>
                             ))}
                         </tbody>

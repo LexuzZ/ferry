@@ -4,72 +4,57 @@ import { Link, usePage } from "@inertiajs/react";
 import React, { useEffect, useState } from "react";
 import hero from "../../../public/hero.jpg";
 export default function userDashboard() {
-    const { auth, rutes, rute } = usePage().props;
+    const { auth, rutes, jadwal } = usePage().props;
     console.log(rutes);
     return (
         <UserLayout>
             <div className="pt-10  min-h-screen px-4">
-                <h2 className=" pt-10 px-5 text-2xl font-serif text-midnight mb-6">
+                <h2 className=" pt-10 px-5 text-2xl font-serif text-midnight mb-3">
                     Selamat Datang {auth.user.name}!
                 </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div className="bg-white p-6 rounded-lg shadow-md">
-                        <h3 className="text-lg font-semibold">Card 1</h3>
-                        <p className="mt-2 text-gray-600">
-                            This is the first card.
-                        </p>
-                    </div>
-                    <div className="bg-white p-6 rounded-lg shadow-md">
-                        <h3 className="text-lg font-semibold">Card 2</h3>
-                        <p className="mt-2 text-gray-600">
-                            This is the second card.
-                        </p>
-                    </div>
-                    <div className="bg-white p-6 rounded-lg shadow-md">
-                        <h3 className="text-lg font-semibold">Card 3</h3>
-                        <p className="mt-2 text-gray-600">
-                            This is the third card.
-                        </p>
-                    </div>
-                </div>
 
-                <div className=" overflow-x-auto shadow-md sm:rounded-lg pt-10 pb-4 px-10">
-                    <h1 className="text-2xl text-midnight pb-2">Cari Tiket Sekarang</h1>
-                    <table className="table-auto border-collapse w-full">
-                        <thead className="text-xs text-midnight text-center uppercase bg-metal font-bold">
-                            <tr>
-                                <th scope="col" className="px-6 py-3">
-                                    Rute
-                                </th>
-
-                                <th scope="col" className=" py-3">
-                                    Action
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody className="bg-white text-center">
-                            {rutes.map((rute) => (
-                                <tr key={rute.id}>
-                                    <td
-                                        scope="row"
-                                        className=" py-4  text-midnight  font-medium whitespace-nowrap dark:text-black"
+                <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-4 py-12">
+                    <div className="text-center pb-4">
+                        <h2 className="text-base font-bold text-midnight flex items-center justify-start">
+                            Cari Tiket Sekarang
+                        </h2>
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {jadwal.map((j) => (
+                            <div
+                                key={j.id}
+                                className="w-full bg-white rounded-lg sahdow-lg p-3 flex flex-col justify-start"
+                            >
+                                <div className="mb-2 text-xl text-midnight">
+                                    <h3>Rute : {j.rutes.nama_rute}</h3>
+                                    <p className="mb-8 text-base text-gray-400 font-normal">
+                                        {j.kapals.nama_kapal}
+                                    </p>
+                                </div>
+                                <div className="text-left">
+                                    <p className=" text-gray font-bold mb-2">
+                                        {new Date(j.tanggal).toLocaleDateString()}
+                                    </p>
+                                    <p className=" text-gray font-bold mb-2">
+                                        ETD : {j.tiba}
+                                    </p>
+                                    <p className=" text-gray font-bold mb-2">
+                                        ETA : {j.keberangkatan}
+                                    </p>
+                                    
+                                    <Link
+                                        href={`/order/${j.id}`}
+                                        className="btn btn-link flex items-center justify-end"
                                     >
-                                        {rute.nama_rute}
-                                    </td>
+                                        Pesan Tiket
+                                    </Link>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </section>
 
-                                    <td>
-                                        <Link
-                                            className="btn  btn-outline font-normal text-midnight"
-                                            href={`/userJadwal/${rute.id}/detail`}
-                                        >
-                                            Detail Keberangkatan
-                                        </Link>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
+               
             </div>
         </UserLayout>
     );

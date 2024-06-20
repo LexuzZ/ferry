@@ -266,100 +266,101 @@ const FormOrder = ({}) => {
             <h1 className="text-center pt-4 font-semibold text-midnight">
                 Riwayat Order
             </h1>
-
-            <div className="flex items-center justify-center py-4 px-4 container">
-                {ticket.map((t) => (
-                    <div className="card cart" key={t.id}>
-                        <div className="">
-                            <label className="title uppercase  text-gray">
-                                {t.rutes.nama_rute}
-                            </label>
-                            <div className="steps">
-                                <div className="step">
-                                    <div className="font-mono">
-                                        <span>Shipping</span>
-                                        <p>
-                                            Nama Kapal : {t.kapals.nama_kapal}
-                                        </p>
-                                        <p className=" text-gray">
-                                            Kode Tiket : {t.code}
-                                        </p>
-                                        <p className=" text-gray">
-                                            Tanggal : {t.jadwals.tanggal}
-                                        </p>
-                                        <p className=" text-gray">
-                                            Estimasi Tiba : {t.jadwals.tiba}
-                                        </p>
-                                        <p className=" text-gray">
-                                            Keberangkatan :{" "}
-                                            {t.jadwals.keberangkatan}
-                                        </p>
+            <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-2 py-12">
+                <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {ticket.map((t) => (
+                        <div className="card cart" key={t.id}>
+                            <div className="">
+                                <label className="title uppercase  text-gray">
+                                    {t.rutes.nama_rute}
+                                </label>
+                                <div className="steps">
+                                    <div className="step">
+                                        <div className="font-mono">
+                                            <span>Shipping</span>
+                                            <p>
+                                                Nama Kapal :{" "}
+                                                {t.kapals.nama_kapal}
+                                            </p>
+                                            <p className=" text-gray">
+                                                Kode Tiket : {t.code}
+                                            </p>
+                                            <p className=" text-gray">
+                                                Tanggal : {t.jadwals.tanggal}
+                                            </p>
+                                            <p className=" text-gray">
+                                                Estimasi Tiba : {t.jadwals.tiba}
+                                            </p>
+                                            <p className=" text-gray">
+                                                Keberangkatan :{" "}
+                                                {t.jadwals.keberangkatan}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr />
+                                <div className="payments">
+                                    <span className="text-midnight font-bold ml-40">
+                                        PAYMENT
+                                    </span>
+                                    <div className="details mx-10">
+                                        <ul>
+                                            {t.passengers.map((p) => (
+                                                <li
+                                                    key={p.id}
+                                                    className=" text-gray"
+                                                >
+                                                    Penumpang : {p.category}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                        <ul>
+                                            {t.passengers.map((p) => (
+                                                <li
+                                                    key={p.id}
+                                                    className=" text-gray"
+                                                >
+                                                    {p.price}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                        <ul>
+                                            {t.vehicles.map((p) => (
+                                                <li
+                                                    key={p.id}
+                                                    className=" text-gray"
+                                                >
+                                                    Jenis Kendaraan : {p.type}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                        <ul>
+                                            {t.vehicles.map((p) => (
+                                                <li
+                                                    key={p.id}
+                                                    className=" text-gray"
+                                                >
+                                                    {p.price}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div className="card checkout">
+                                    <div className="footer">
+                                        <Link
+                                            className="checkout-btn"
+                                            href={`/payment/${t.id}`}
+                                        >
+                                            Checkout
+                                        </Link>
                                     </div>
                                 </div>
                             </div>
-                            <hr />
-                            <div className="payments">
-                                <span className="text-midnight font-bold ml-40">
-                                    PAYMENT
-                                </span>
-                                <div className="details mx-10">
-                                    <ul>
-                                        {t.passengers.map((p) => (
-                                            <li
-                                                key={p.id}
-                                                className=" text-gray"
-                                            >
-                                                Penumpang : {p.category}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                    <ul>
-                                        {t.passengers.map((p) => (
-                                            <li
-                                                key={p.id}
-                                                className=" text-gray"
-                                            >
-                                                {p.price}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                    <ul>
-                                        {t.vehicles.map((p) => (
-                                            <li
-                                                key={p.id}
-                                                className=" text-gray"
-                                            >
-                                                Jenis Kendaraan : {p.type}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                    <ul>
-                                        {t.vehicles.map((p) => (
-                                            <li
-                                                key={p.id}
-                                                className=" text-gray"
-                                            >
-                                                {p.price}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            </div>
-                            <div className="card checkout">
-                                <div className="footer">
-                                    <Link
-                                        className="checkout-btn"
-                                        href={`/payment/${t.id}`}
-                                    >
-                                        Checkout
-                                    </Link>
-                                </div>
-                            </div>
                         </div>
-                    </div>
-                ))}
-            </div>
-          
+                    ))}
+                </div>
+            </section>
         </UserLayout>
     );
 };
