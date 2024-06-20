@@ -94,7 +94,10 @@ const FormOrder = ({}) => {
                                 <div className="lg:col-span-2">
                                     <div className="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
                                         <div className="md:col-span-5">
-                                            <label htmlFor="full_name">
+                                            <label
+                                                htmlFor="full_name"
+                                                className="text-midnight"
+                                            >
                                                 Full Name
                                             </label>
                                             <input
@@ -103,6 +106,7 @@ const FormOrder = ({}) => {
                                                 id="full_name"
                                                 className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
                                                 defaultValue=""
+                                                placeholder="cth: John Lehman"
                                                 onChange={(e) =>
                                                     setData(
                                                         "nama",
@@ -113,14 +117,17 @@ const FormOrder = ({}) => {
                                             />
                                         </div>
                                         <div className="md:col-span-5">
-                                            <label htmlFor="full_name">
+                                            <label
+                                                htmlFor="full_name"
+                                                className="text-midnight"
+                                            >
                                                 No. KTP
                                             </label>
                                             <input
                                                 type="text"
                                                 className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
                                                 defaultValue=""
-                                                placeholder=""
+                                                placeholder="cth : 52020XXXXXX"
                                                 onChange={(e) =>
                                                     setData(
                                                         "ktp",
@@ -143,7 +150,7 @@ const FormOrder = ({}) => {
                                                 (passenger, index) => (
                                                     <div key={index}>
                                                         <select
-                                                            className="select w-full  max-w-xs  appearance-none outline-none text-gray  bg-grey"
+                                                            className="select w-full  max-w-xs mb-2 appearance-none outline-none text-midnight  bg-grey"
                                                             value={
                                                                 passenger.category
                                                             }
@@ -200,7 +207,7 @@ const FormOrder = ({}) => {
                                                 (vehicle, index) => (
                                                     <div key={index}>
                                                         <select
-                                                            className="select w-full  max-w-xs bg-grey text-midnight flex items-center justify-center"
+                                                            className="select w-full mb-2  max-w-xs bg-grey text-midnight flex items-center justify-center"
                                                             value={vehicle.type}
                                                             onChange={(e) =>
                                                                 handleVehicleChange(
@@ -277,7 +284,6 @@ const FormOrder = ({}) => {
                                 <div className="steps">
                                     <div className="step">
                                         <div className="font-mono">
-                                            <span>Shipping</span>
                                             <p>
                                                 Nama Kapal :{" "}
                                                 {t.kapals.nama_kapal}
@@ -286,14 +292,16 @@ const FormOrder = ({}) => {
                                                 Kode Tiket : {t.code}
                                             </p>
                                             <p className=" text-gray">
-                                                Tanggal : {t.jadwals.tanggal}
+                                                Tanggal :{" "}
+                                                {new Date(
+                                                    t.jadwals.tanggal
+                                                ).toLocaleDateString()}
                                             </p>
                                             <p className=" text-gray">
-                                                Estimasi Tiba : {t.jadwals.tiba}
+                                                ETD : {t.jadwals.tiba}
                                             </p>
                                             <p className=" text-gray">
-                                                Keberangkatan :{" "}
-                                                {t.jadwals.keberangkatan}
+                                                ETA : {t.jadwals.keberangkatan}
                                             </p>
                                         </div>
                                     </div>
@@ -310,7 +318,7 @@ const FormOrder = ({}) => {
                                                     key={p.id}
                                                     className=" text-gray"
                                                 >
-                                                    Penumpang : {p.category}
+                                                    {p.category}
                                                 </li>
                                             ))}
                                         </ul>
@@ -330,7 +338,7 @@ const FormOrder = ({}) => {
                                                     key={p.id}
                                                     className=" text-gray"
                                                 >
-                                                    Jenis Kendaraan : {p.type}
+                                                    {p.type}
                                                 </li>
                                             ))}
                                         </ul>
