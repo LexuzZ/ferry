@@ -30,11 +30,11 @@ class JadwalUserController extends Controller
 
         // Tambahkan filter berdasarkan parameter 'search'
         if ($request->has('search_rute') && $request->search_rute != '') {
-            $query->where('rutes.nama_rute', 'like', '%'.$request->search_rute.'%');
+            $query->where('rutes.nama_rute', 'like', '%' . $request->search_rute . '%');
         }
 
         if ($request->has('search_kapal') && $request->search_kapal != '') {
-            $query->where('kapals.nama_kapal', 'like', '%'.$request->search_kapal.'%');
+            $query->where('kapals.nama_kapal', 'like', '%' . $request->search_kapal . '%');
         }
 
         if ($request->has('search_tanggal') && $request->search_tanggal != '') {
@@ -52,27 +52,29 @@ class JadwalUserController extends Controller
             'filters' => $request->only(['search_rute', 'search_kapal', 'search_tanggal']),
             'total' => $jadwal->total()
         ]);
-
     }
-    public function order($id)
+    public function order(Request $request, $id)
     {
         $jadwal = Jadwal::with('rutes', 'kapals')->findOrFail($id);
-       
-        
-        $ticket = Ticket::with(['vehicles', 'passengers','rutes', 'kapals', 'jadwals'])->get();
 
+
+        $ticket = Ticket::with(['vehicles', 'passengers', 'rutes', 'kapals', 'jadwals'])
+            ->where('user_id', $request->user()->id)
+            ->get();
         return Inertia::render('FormOrder',  [
             'jadwal' => $jadwal,
             'ticket' => $ticket,
-           
+
         ]);
     }
-    public function riwayat(){
-        $tickets = Ticket::with(['rutes', 'kapals', 'jadwals','vehicles', 'passengers', 'transactions'])->get();
-        $transaksi = Transaction::with('tickets')->get();
-        return Inertia::render('Tiket/Riwayat', ['ticket' => $tickets, 'transaksi' => $transaksi ]);
+    public function riwayat(Request $request)
+    {
+        // $tickets = Ticket::with(['rutes', 'kapals', 'jadwals','vehicles', 'passengers', 'transactions'])->get();
+        $transaksi = Transaction::with('tickets')->where('user_id', $request->user()->id)
+            ->get();
+        return Inertia::render('Tiket/Riwayat', ['transaksi' => $transaksi]);
     }
-    
+
 
     /**
      * Show the form for creating a new resource.
@@ -87,10 +89,12 @@ class JadwalUserController extends Controller
         $ticket = Ticket::findOrFail($id);
         return Inertia::render('Tickets/Show', ['ticket' => $ticket]);
     }
-    
-    public function pdf($id)
+
+    public function pdf(Request $request, $id)
     {
-        $ticket = Ticket::with(['rutes', 'kapals', 'jadwals','vehicles', 'passengers', 'transactions'])->findOrFail($id);
+        $ticket = Ticket::with(['rutes', 'kapals', 'jadwals', 'vehicles', 'passengers', 'transactions'])->where('id', $id)
+            ->where('user_id', $request->user()->id)
+            ->firstOrFail();
         return Inertia::render('Tiket/PDFPage', ['ticket' => $ticket]);
     }
 
