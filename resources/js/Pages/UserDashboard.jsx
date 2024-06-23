@@ -159,7 +159,7 @@ export default function userDashboard() {
                                         <div className="bg-green">
                                             <Link
                                                 href={`/order/${j.id}`}
-                                                className="btn btn-link flex items-center justify-end text-white"
+                                                className="btn btn-link flex items-center justify-end text-white hover:text-midnight"
                                             >
                                                 Pesan Tiket
                                             </Link>
