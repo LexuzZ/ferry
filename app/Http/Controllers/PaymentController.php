@@ -44,6 +44,7 @@ class PaymentController extends Controller
         $snapToken = Snap::getSnapToken($params);
         Transaction::create([
             'ticket_id' => $ticket->id,
+            'user_id' => $ticket->user_id,
             'midtrans_transaction_id' => $snapToken,
             'amount' => $ticket->passengers->sum('price') + $ticket->vehicles->sum('price'),
             'status' => 'unpaid',
