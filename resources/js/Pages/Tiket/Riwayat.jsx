@@ -28,17 +28,21 @@ const Riwayat = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {/* row 1 */}
                             {transaksi.map((t) => (
                                 <tr key={t.id} className="text-center">
                                     <td>{t.tickets.code}</td>
                                     <td>{t.status}</td>
-                                    <td>{t.amount}</td>
+                                    <td>
+                                        {new Intl.NumberFormat("id", {
+                                            style: "currency",
+                                            currency: "IDR",
+                                            maximumFractionDigits: 0,
+                                        }).format(t.amount)}
+                                    </td>
 
-                                    {/* <td>{t.transactions.status}</td> */}
                                     <td>
                                         <Link
-                                            href={`/riwayat/${t.id}/pdf`}
+                                            href={`/riwayat/${t.tickets.id}/pdf`}
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             className="btn btn-link "
