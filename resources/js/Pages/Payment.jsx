@@ -42,7 +42,7 @@ const Payment = ({ ticket, snapToken, user, passengers }) => {
         <UserLayout>
             <>
                 {/* component */}
-                <div className="flex min-h-screen w-full items-center justify-center bg-silver pt-24 pb-7">
+                <div className="flex min-h-screen w-full items-center justify-center bg-silver pt-20 pb-7 rounded-lg">
                     <div className="w-100 rounded bg-white px-6 pt-8 shadow-lg">
                         <div className="flex flex-col justify-center items-center gap-2">
                             <h4 className="font-semibold text-gray">
@@ -70,7 +70,7 @@ const Payment = ({ ticket, snapToken, user, passengers }) => {
                                 <span className="text-gray font-bold">
                                     Customer:
                                 </span>
-                                <span className="text-gray">{user}</span>
+                                <span className="text-gray">{ticket.nama}</span>
                             </p>
                         </div>
                         <div className="flex flex-col gap-2 pb-6 pt-2 text-md">
@@ -87,16 +87,22 @@ const Payment = ({ ticket, snapToken, user, passengers }) => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <ul className="">
+                                    <ul className="flex py-1">
                                         {ticket.passengers.map((passenger) => (
                                             <li
                                                 key={passenger.id}
-                                                className="flex py-1"
+                                                className="flex-1"
                                             >
                                                 {passenger.category}
                                             </li>
                                         ))}
-                                       <li className="min-w-[44px] "> Rp {totalPassengerPrice} </li>
+                                        
+                                            {new Intl.NumberFormat("id", {
+                                                style: "currency",
+                                                currency: "IDR",
+                                                maximumFractionDigits: 0,
+                                            }).format(totalPassengerPrice)}
+                                        
                                     </ul>
                                     <ul className="flex py-1">
                                         {ticket.vehicles.map((vehicle) => (
@@ -108,14 +114,23 @@ const Payment = ({ ticket, snapToken, user, passengers }) => {
                                             </li>
                                         ))}
 
-                                       Rp {totalVehiclePrice}
+                                        {new Intl.NumberFormat("id", {
+                                            style: "currency",
+                                            currency: "IDR",
+                                            maximumFractionDigits: 0,
+                                        }).format(totalVehiclePrice)}
                                     </ul>
                                 </tbody>
                             </table>
 
                             <div className=" border-b border border-dashed" />
                             <p className="flex items-center justify-left text-gray font-semibold">
-                                Total : Rp {totalPrice}
+                                Total :{" "}
+                                {new Intl.NumberFormat("id", {
+                                    style: "currency",
+                                    currency: "IDR",
+                                    maximumFractionDigits: 0,
+                                }).format(totalPrice)}
                             </p>
                             <div className="py-4 justify-center items-center flex flex-col gap-2">
                                 <button

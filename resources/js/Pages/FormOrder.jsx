@@ -44,7 +44,6 @@ const FormOrder = () => {
         post(route("ticket.store"));
     };
 
-
     return (
         <UserLayout>
             {flash.message && (
@@ -272,8 +271,12 @@ const FormOrder = () => {
                                             >
                                                 No. Seat
                                             </label>
-                                            <Link href={`/seats/${jadwal.kapal_id}`} className="btn bg-grey">pilih</Link>
-                                           
+                                            <Link
+                                                href={`/seats/${jadwal.kapal_id}`}
+                                                className="btn bg-grey"
+                                            >
+                                                pilih
+                                            </Link>
                                         </div>
 
                                         <div className="md:col-span-5 text-right">
@@ -351,7 +354,14 @@ const FormOrder = () => {
                                                     key={p.id}
                                                     className=" text-gray"
                                                 >
-                                                    {p.price}
+                                                    {new Intl.NumberFormat(
+                                                        "id",
+                                                        {
+                                                            style: "currency",
+                                                            currency: "IDR",
+                                                            maximumFractionDigits: 0,
+                                                        }
+                                                    ).format(p.price)}
                                                 </li>
                                             ))}
                                         </ul>
@@ -371,7 +381,14 @@ const FormOrder = () => {
                                                     key={p.id}
                                                     className=" text-gray"
                                                 >
-                                                    {p.price}
+                                                    {new Intl.NumberFormat(
+                                                        "id",
+                                                        {
+                                                            style: "currency",
+                                                            currency: "IDR",
+                                                            maximumFractionDigits: 0,
+                                                        }
+                                                    ).format(p.price)}
                                                 </li>
                                             ))}
                                         </ul>
