@@ -11,34 +11,21 @@ use Inertia\Inertia;
 
 class TicketController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    // public function index()
-    // {
-    //     //
-    //     $tickets = Ticket::with('passengers', 'vehicles')->get();
-    //     return Inertia::render('FormOrder', ['ticket'=> $tickets]);
-    // }
-
-    /**
-     * Show the form for creating a new resource.
-     */
+    
     public function create()
     {
         //
         // return Inertia::render('Payment');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    
     public function store(Request $request)
     {
         $request->validate([
             'jadwal_id' => 'nullable|exists:jadwals,id',
             'kapal_id' => 'nullable|exists:kapals,id',
             'rute_id' => 'nullable|exists:rutes,id',
+            'user_id' => 'nullable|exists:users,id',
             'nama' => 'required|string',
             'ktp' => 'required|string',
             'passengers' => 'required|array',
@@ -49,6 +36,7 @@ class TicketController extends Controller
             'jadwal_id' => $request->jadwal_id,
             'kapal_id' => $request->kapal_id,
             'rute_id' => $request->rute_id,
+            'user_id' => $request->user()->id,
             'code' => uniqid('TKT-'),
             'ktp' => $request->ktp,
             'nama' => $request->nama,
