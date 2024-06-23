@@ -143,7 +143,7 @@ export default function userDashboard() {
                                     </div>
                                     <div className="text-left">
                                         <p className="mb-2 mt-2 text-base text-midnight font-bold">
-                                            Rincian Jadwal
+                                            Detail Jadwal
                                         </p>
                                         <p className=" text-gray font-serif mb-2">
                                             {new Date(
