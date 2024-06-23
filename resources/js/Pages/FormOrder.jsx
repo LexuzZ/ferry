@@ -2,10 +2,12 @@ import UserLayout from "@/Layouts/UserLayout";
 import { Link, router, useForm, usePage } from "@inertiajs/react";
 import React, { useState } from "react";
 import "../../css/orders.css";
+import { Inertia } from "@inertiajs/inertia";
 
-const FormOrder = ({}) => {
-    const { jadwal, ticket, user, flash, jadwals, kapals, rutes } =
+const FormOrder = () => {
+    const { jadwal, ticket, user, flash, jadwals, kapals, rutes, seat } =
         usePage().props;
+
     const { data, setData, post, errors } = useForm({
         jadwal_id: jadwal.id,
         kapal_id: jadwal.kapal_id,
@@ -15,6 +17,7 @@ const FormOrder = ({}) => {
         passengers: [{ category: "dewasa" }],
         vehicles: [{ type: "truk" }],
     });
+    console.log(seat);
 
     const handlePassengerChange = (index, field, value) => {
         const newPassengers = data.passengers.slice();
@@ -40,6 +43,7 @@ const FormOrder = ({}) => {
         e.preventDefault();
         post(route("ticket.store"));
     };
+
 
     return (
         <UserLayout>
@@ -86,9 +90,18 @@ const FormOrder = ({}) => {
                         >
                             <div className="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
                                 <div className="text-gray">
-                                    <p className="font-medium text-lg">
+                                    <p className="font-medium text-lg mb-4">
                                         Detail Form Tiket
                                     </p>
+                                    <p>{jadwal.kapals.nama_kapal}</p>
+                                    <p>{jadwal.rutes.nama_rute}</p>
+                                    <p>
+                                        {new Date(
+                                            jadwal.tanggal
+                                        ).toLocaleDateString()}
+                                    </p>
+                                    <p>{jadwal.tiba}</p>
+                                    <p>{jadwal.keberangkatan}</p>
                                 </div>
 
                                 <div className="lg:col-span-2">
@@ -251,6 +264,16 @@ const FormOrder = ({}) => {
                                             >
                                                 Tambah Kendaraan
                                             </button>
+                                        </div>
+                                        <div>
+                                            <label
+                                                htmlFor="state mr-5"
+                                                className="text-midnight"
+                                            >
+                                                No. Seat
+                                            </label>
+                                            <Link href={`/seats/${jadwal.kapal_id}`} className="btn bg-grey">pilih</Link>
+                                           
                                         </div>
 
                                         <div className="md:col-span-5 text-right">
