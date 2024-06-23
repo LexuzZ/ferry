@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('jadwal_id');
             $table->unsignedBigInteger('kapal_id');
             $table->unsignedBigInteger('rute_id');
+            $table->unsignedBigInteger('user_id');
             $table->string('code')->unique();
             $table->string('nama');
             $table->string('ktp');
@@ -23,6 +24,7 @@ return new class extends Migration
             $table->foreign('jadwal_id')->references('id')->on('jadwals')->onDelete('cascade');
             $table->foreign('kapal_id')->references('id')->on('kapals')->onDelete('cascade');
             $table->foreign('rute_id')->references('id')->on('rutes')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
