@@ -1,5 +1,6 @@
-import { Document, Page, StyleSheet, Text, View } from "@react-pdf/renderer";
 import React from "react";
+import { Document, Page, StyleSheet, Text, View } from "@react-pdf/renderer";
+
 const styles = StyleSheet.create({
     page: { padding: 30 },
     section: { margin: 10, padding: 10, flexGrow: 1 },
@@ -22,7 +23,13 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: "#000",
     },
-    tableCell: { margin: "auto", marginTop: 5, padding: 5, fontSize: 12, textAlign: 'left' },
+    tableCell: {
+        margin: "auto",
+        marginTop: 5,
+        padding: 5,
+        fontSize: 12,
+        textAlign: "left",
+    },
 });
 
 const CetakTiket = ({ ticket }) => (
@@ -30,11 +37,11 @@ const CetakTiket = ({ ticket }) => (
         <Page size="A4" style={styles.page}>
             <View style={styles.section}>
                 <Text style={styles.hero}>{ticket.rutes.nama_rute}</Text>
-                <hr style={styles.line} />
+                <View style={styles.line} />
                 <Text style={styles.hero}>Damai Lautan Nusantara</Text>
-                <hr style={styles.line} />
+                <View style={styles.line} />
                 <Text style={styles.hero}>{ticket.jadwals.tanggal}</Text>
-                <hr style={styles.line} />
+                <View style={styles.line} />
                 <Text style={styles.title}>Detail Tiket</Text>
                 <Text style={styles.text}>Kode Booking : {ticket.code}</Text>
                 <Text style={styles.text}>Nama Pemesan : {ticket.nama}</Text>
@@ -51,7 +58,9 @@ const CetakTiket = ({ ticket }) => (
                     </View>
                     <View style={styles.tableRow}>
                         <View style={styles.tableCol}>
-                            <Text style={styles.tableCell}>Tanggal Keberangkatan</Text>
+                            <Text style={styles.tableCell}>
+                                Tanggal Keberangkatan
+                            </Text>
                         </View>
                         <View style={styles.tableCol}>
                             <Text style={styles.tableCell}>
@@ -61,7 +70,9 @@ const CetakTiket = ({ ticket }) => (
                     </View>
                     <View style={styles.tableRow}>
                         <View style={styles.tableCol}>
-                            <Text style={styles.tableCell}>Estmasi Sandar</Text>
+                            <Text style={styles.tableCell}>
+                                Estimasi Sandar
+                            </Text>
                         </View>
                         <View style={styles.tableCol}>
                             <Text style={styles.tableCell}>
@@ -71,7 +82,9 @@ const CetakTiket = ({ ticket }) => (
                     </View>
                     <View style={styles.tableRow}>
                         <View style={styles.tableCol}>
-                            <Text style={styles.tableCell}>Estimasi Keberangkatan</Text>
+                            <Text style={styles.tableCell}>
+                                Estimasi Keberangkatan
+                            </Text>
                         </View>
                         <View style={styles.tableCol}>
                             <Text style={styles.tableCell}>
@@ -84,19 +97,33 @@ const CetakTiket = ({ ticket }) => (
                 <Text style={styles.title}>Penumpang</Text>
                 {ticket.passengers.map((p) => (
                     <Text key={p.id} style={styles.text}>
-                        {p.category} Rp{p.price}
+                        {p.category} {new Intl.NumberFormat("id", {
+                            style: "currency",
+                            currency: "IDR",
+                            maximumFractionDigits: 0,
+                        }).format(p.price)}
                     </Text>
                 ))}
-                <hr style={styles.line} />
+                <View style={styles.line} />
                 <Text style={styles.title}>Kendaraan</Text>
                 {ticket.vehicles.map((p) => (
                     <Text key={p.id} style={styles.text}>
-                        {p.type} Rp{p.price}
+                        {p.type} {new Intl.NumberFormat("id", {
+                            style: "currency",
+                            currency: "IDR",
+                            maximumFractionDigits: 0,
+                        }).format(p.price)}
                     </Text>
                 ))}
-                <Text>{ticket.transactions.amount}</Text>
-
-                {/* <Text ></Text> */}
+                {ticket.transactions.map((t) => (
+                    <Text key={t.id}>
+                        {new Intl.NumberFormat("id", {
+                            style: "currency",
+                            currency: "IDR",
+                            maximumFractionDigits: 0,
+                        }).format(t.amount)}
+                    </Text>
+                ))}
             </View>
         </Page>
     </Document>
