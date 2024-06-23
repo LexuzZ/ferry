@@ -9,26 +9,39 @@ use Inertia\Inertia;
 
 class SeatController extends Controller
 {
-    public function index($kapal)
+    //dalam project pemesanan tiket dengan laravel react inertia. Bagaimana cara agar informasi tempat duduk sesuai dengan id kapal dan id jadwal?
+
+    public function index($kapalId)
     {
-        $kapal = Kapal::find($kapal)->seats->where('available', true);
-        return Inertia::render('SeatSelection', [
-            'seats' => $kapal
+        $seats = Seat::where('kapal_id', $kapalId)
+            ->where('available', true)
+            ->get();
+
+        return Inertia::render('Seats/Index', [
+            'seats' => $seats,
+            'kapal_id' => $kapalId,
         ]);
     }
-   
+
     //
-    public function reserve(Seat $seat)
+    public function reserve(Request $request, Seat $seat)
     {
         if ($seat->available) {
             $seat->available = false;
             $seat->save();
-
-            return response()->json(['success' => true]);
-        } else {
-            return response()->json(['success' => false, 'message' => 'Tempat duduk sudah dipesan.']);
         }
+        // Simpan detail tempat duduk yang dipilih dalam sesi
+        $request->session()->put('reserved_seat', $seat);
+
+        return redirect()->route('seats.index');
     }
 
-    
+    public function confirmation(Request $request)
+    {
+        $seat = $request->session()->get('reserved_seat');
+
+        return Inertia::render('FormOrder', [
+            'seat' => $seat,
+        ]);
+    }
 }
