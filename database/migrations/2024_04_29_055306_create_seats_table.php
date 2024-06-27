@@ -14,9 +14,11 @@ return new class extends Migration
         Schema::create('seats', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('kapal_id');
+            $table->unsignedBigInteger('jadwal_id');
             $table->string('name');
             $table->boolean('available')->default(true); // Menandai ketersediaan tempat duduk
             $table->foreign('kapal_id')->references('id')->on('kapals')->onDelete('cascade');
+            $table->foreign('jadwal_id')->references('id')->on('jadwals')->onDelete('cascade');
             $table->timestamps();
         });
     }
