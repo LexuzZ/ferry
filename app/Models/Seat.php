@@ -18,6 +18,11 @@ class Seat extends Model
     {
         return $this->belongsTo(Jadwal::class);
     }
+    public function bookings()
+    {
+        return $this->hasMany(Booking::class);
+    }
+
   
     
     
