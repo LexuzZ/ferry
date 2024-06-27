@@ -5,7 +5,7 @@ import "../../css/orders.css";
 import { Inertia } from "@inertiajs/inertia";
 
 const FormOrder = () => {
-    const { jadwal, ticket, user, flash, jadwals, kapals, rutes, seat } =
+    const { jadwal, ticket, user, flash, jadwals, kapals, rutes,  reservedSeats  } =
         usePage().props;
 
     const { data, setData, post, errors } = useForm({
@@ -17,7 +17,7 @@ const FormOrder = () => {
         passengers: [{ category: "dewasa" }],
         vehicles: [{ type: "truk" }],
     });
-    console.log(seat);
+    
 
     const handlePassengerChange = (index, field, value) => {
         const newPassengers = data.passengers.slice();
@@ -101,6 +101,15 @@ const FormOrder = () => {
                                     </p>
                                     <p>{jadwal.tiba}</p>
                                     <p>{jadwal.keberangkatan}</p>
+                                    
+                                    {reservedSeats.map((seat) => (
+                                        <div
+                                            key={seat.id}
+                                         >
+                                            <p> No. Seat : {seat.name}</p>
+                                        
+                                        </div>
+                                    ))}
                                 </div>
 
                                 <div className="lg:col-span-2">
@@ -272,7 +281,7 @@ const FormOrder = () => {
                                                 No. Seat
                                             </label>
                                             <Link
-                                                href={`/seats/${jadwal.kapal_id}`}
+                                                href={`/seats/${jadwal.kapal_id}/${jadwal.id}`}
                                                 className="btn bg-grey"
                                             >
                                                 pilih
