@@ -56,6 +56,7 @@ class JadwalUserController extends Controller
     public function order(Request $request, $id)
     {
         $jadwal = Jadwal::with('rutes', 'kapals')->findOrFail($id);
+        $reservedSeats = $jadwal->seats->where('available', false);
 
 
         $ticket = Ticket::with(['vehicles', 'passengers', 'rutes', 'kapals', 'jadwals'])
@@ -64,6 +65,9 @@ class JadwalUserController extends Controller
         return Inertia::render('FormOrder',  [
             'jadwal' => $jadwal,
             'ticket' => $ticket,
+            'reservedSeats' => $reservedSeats,
+        
+            
 
         ]);
     }
