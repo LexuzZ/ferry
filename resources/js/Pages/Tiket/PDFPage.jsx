@@ -2,7 +2,6 @@ import React from "react";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import { usePage } from "@inertiajs/inertia-react";
 import CetakTiket from "./CetakTiket";
-import styles from "../../Components/PDFPage.module.css";
 import UserLayout from "@/Layouts/UserLayout";
 
 const PDFPage = ({ ticket }) => {

@@ -64,7 +64,9 @@ const CetakTiket = ({ ticket }) => (
                         </View>
                         <View style={styles.tableCol}>
                             <Text style={styles.tableCell}>
-                                {ticket.jadwals.tanggal}
+                                {new Date(
+                                ticket.jadwals.tanggal
+                            ).toLocaleDateString()}
                             </Text>
                         </View>
                     </View>
@@ -76,7 +78,7 @@ const CetakTiket = ({ ticket }) => (
                         </View>
                         <View style={styles.tableCol}>
                             <Text style={styles.tableCell}>
-                                {ticket.jadwals.tiba}
+                                {ticket.jadwals.tiba} WIB
                             </Text>
                         </View>
                     </View>
@@ -88,16 +90,17 @@ const CetakTiket = ({ ticket }) => (
                         </View>
                         <View style={styles.tableCol}>
                             <Text style={styles.tableCell}>
-                                {ticket.jadwals.keberangkatan}
+                                {ticket.jadwals.keberangkatan} WIB
                             </Text>
                         </View>
                     </View>
                 </View>
 
-                <Text style={styles.title}>Penumpang</Text>
+                <Text style={styles.text}>Penumpang</Text>
                 {ticket.passengers.map((p) => (
                     <Text key={p.id} style={styles.text}>
-                        {p.category} {new Intl.NumberFormat("id", {
+                        {p.category}{" "}
+                        {new Intl.NumberFormat("id", {
                             style: "currency",
                             currency: "IDR",
                             maximumFractionDigits: 0,
@@ -105,18 +108,21 @@ const CetakTiket = ({ ticket }) => (
                     </Text>
                 ))}
                 <View style={styles.line} />
-                <Text style={styles.title}>Kendaraan</Text>
+                <Text style={styles.text}>Kendaraan</Text>
                 {ticket.vehicles.map((p) => (
                     <Text key={p.id} style={styles.text}>
-                        {p.type} {new Intl.NumberFormat("id", {
+                        {p.type}{" "}
+                        {new Intl.NumberFormat("id", {
                             style: "currency",
                             currency: "IDR",
                             maximumFractionDigits: 0,
                         }).format(p.price)}
                     </Text>
                 ))}
+                <View style={styles.line} />
                 {ticket.transactions.map((t) => (
                     <Text key={t.id}>
+                        Total :
                         {new Intl.NumberFormat("id", {
                             style: "currency",
                             currency: "IDR",
