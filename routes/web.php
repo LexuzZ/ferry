@@ -66,13 +66,13 @@ Route::group(['middleware' => 'auth'], function () {
         Route::inertia('userDashboard', 'UserDashboard')->name('userDashboard');
         Route::get('userDashboard', [JadwalUserController::class, 'index'])->name('userDashboard');
         Route::get('userJadwal/{id}/detail', [RuteController::class, 'show'])->name('rute.show');
-        Route::get('order/{id}', [JadwalUserController::class, 'order'])->name('order');
-        Route::get('order', [TicketController::class, 'index'])->name('home');
+        Route::get('order/{id}', [JadwalUserController::class, 'order'])->name('order.ticket');
+        // Route::get('order', [TicketController::class, 'index'])->name('home');
         Route::post('order', [TicketController::class, 'store'])->name('ticket.store');
         Route::get('riwayat', [JadwalUserController::class, 'riwayat'])->name('jadwal.riwayat');
         Route::get('riwayat/{id}/pdf', [JadwalUserController::class, 'pdf'])->name('tickets.pdf');
         Route::get('/seats/{kapal}/{jadwal}', [SeatController::class, 'index'])->name('seats.index');
-        Route::post('/seats/reserve/{seat}', [SeatController::class, 'reserve'])->name('seats.reserve');
+        Route::post('/seats/reserve', [SeatController::class, 'reserve'])->name('seats.reserve');
         Route::get('payment/{ticket}', [PaymentController::class, 'create'])->name('payment.create');
 
         // Rute untuk menangani callback dari Midtrans
