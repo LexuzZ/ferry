@@ -1,11 +1,29 @@
 import { Link, usePage } from "@inertiajs/react";
-import React from "react";
+import React, { useEffect } from "react";
 import Dropdown from "@/Components/Dropdown";
 import NavLink from "@/Components/NavLink";
-NavLink;
+import Swal from "sweetalert2";
+
 
 export default function UserLayout({ children }) {
-    const { auth } = usePage().props;
+    const { auth, flash } = usePage().props;
+    useEffect(() => {
+        if (flash.success) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil',
+                text: flash.success,
+            });
+        }
+
+        if (flash.error) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Gagal',
+                text: flash.error,
+            });
+        }
+    }, [flash]);
 
     return (
         <>
