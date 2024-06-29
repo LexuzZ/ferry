@@ -103,12 +103,12 @@ const FormOrder = () => {
                                     <p>{jadwal.keberangkatan}</p>
                                     
                                     {reservedSeats.map((seat) => (
-                                        <div
+                                        <ul
                                             key={seat.id}
                                          >
-                                            <p> No. Seat : {seat.name}</p>
+                                            <li> No. Seat : {seat.name}</li>
                                         
-                                        </div>
+                                        </ul>
                                     ))}
                                 </div>
 
@@ -207,7 +207,7 @@ const FormOrder = () => {
                                                     </div>
                                                 )
                                             )}
-                                            <div className="my-4">
+                                            <div className="my-2">
                                                 <button
                                                     type="button"
                                                     onClick={addPassenger}
@@ -268,23 +268,23 @@ const FormOrder = () => {
                                             <button
                                                 type="button"
                                                 onClick={addVehicle}
-                                                className="py-2 px-2 my-4 rounded-md font-serif bg-grey text-midnight hover:bg-transparent"
+                                                className="py-2 px-2 my-2 rounded-md font-serif bg-grey text-midnight hover:bg-transparent"
                                             >
                                                 Tambah Kendaraan
                                             </button>
                                         </div>
-                                        <div>
+                                        <div className="" >
                                             <label
-                                                htmlFor="state mr-5"
+                                                htmlFor="state "
                                                 className="text-midnight"
                                             >
                                                 No. Seat
                                             </label>
                                             <Link
                                                 href={`/seats/${jadwal.kapal_id}/${jadwal.id}`}
-                                                className="btn bg-grey"
+                                                className="btn bg-grey  px-2 text-midnight font-normal hover:text-white    flex items-center justify-center"
                                             >
-                                                pilih
+                                                Pilih Tempat Tidur
                                             </Link>
                                         </div>
 

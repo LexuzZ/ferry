@@ -10,7 +10,12 @@ class Booking extends Model
     use HasFactory;
     protected $fillable = [
         'user_id',
-        'seat_id',
+        'kapal_id',
+        'jadwal_id',
+        'seat_ids',
+    ];
+    protected $casts = [
+        'seat_ids' => 'array', // Mengonversi JSON ke array otomatis
     ];
 
     public function users()
@@ -18,8 +23,14 @@ class Booking extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function seats()
+    public function kapals()
     {
-        return $this->belongsTo(Seat::class);
+        return $this->belongsTo(Kapal::class);
     }
+
+    public function jadwals()
+    {
+        return $this->belongsTo(Jadwal::class);
+    }
+    
 }
