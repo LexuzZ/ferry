@@ -14,11 +14,14 @@ return new class extends Migration
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('seat_id');
+            $table->unsignedBigInteger('kapal_id');
+            $table->unsignedBigInteger('jadwal_id');
+            $table->json('seat_ids'); // Menyimpan array seat_ids sebagai JSON
             $table->timestamps();
+
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('seat_id')->references('id')->on('seats')->onDelete('cascade');
-        
+            $table->foreign('kapal_id')->references('id')->on('kapals')->onDelete('cascade');
+            $table->foreign('jadwal_id')->references('id')->on('jadwals')->onDelete('cascade');
         });
     }
 
