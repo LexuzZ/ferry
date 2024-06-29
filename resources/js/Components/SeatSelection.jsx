@@ -1,46 +1,110 @@
-// resources/js/Pages/Seats/Index.jsx
+// resources/js/Components/SeatSelection.jsx
 
-import React, { useState } from 'react';
-import { Inertia } from '@inertiajs/inertia';
-import UserLayout from '@/Layouts/UserLayout';
-import { Link } from '@inertiajs/react';
+import React, { useState } from "react";
+import { Inertia } from "@inertiajs/inertia";
+import UserLayout from "@/Layouts/UserLayout";
+import Swal from "sweetalert2";
 
-const SeatSelection = ({ seats, kapal_id, jadwal_id }) => {
-    const reserveSeat = (seatId) => {
-        if (confirm("Apakah Anda yakin ingin memesan tempat duduk ini?")) {
-            Inertia.post(route("seats.reserve", { seat: seatId }), { kapal_id, jadwal_id });
+const SeatSelection = ({ seats, reservedSeats, kapal_id, jadwal_id }) => {
+    const [selectedSeats, setSelectedSeats] = useState([]);
+
+    const toggleSelectSeat = (seatId) => {
+        if (selectedSeats.includes(seatId)) {
+            setSelectedSeats(selectedSeats.filter((id) => id !== seatId));
+        } else {
+            setSelectedSeats([...selectedSeats, seatId]);
         }
+    };
+
+    const reserveSeats = () => {
+        if (selectedSeats.length === 0) {
+            Swal.fire({
+                icon: "warning",
+                title: "Peringatan",
+                text: "Silakan pilih setidaknya satu tempat duduk.",
+            });
+            return;
+        }
+
+        Swal.fire({
+            title: "Konfirmasi",
+            text: "Apakah Anda yakin ingin memesan tempat duduk ini?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Ya, Pesan!",
+            cancelButtonText: "Batal",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Inertia.post(
+                    route("seats.reserve"),
+                    { kapal_id, jadwal_id, seat_ids: selectedSeats },
+                    {
+                        onSuccess: () => {
+                            Swal.fire({
+                                icon: "success",
+                                title: "Berhasil",
+                                text: "Tempat duduk berhasil dipesan.",
+                            });
+                        },
+                        onError: (errors) => {
+                            Swal.fire({
+                                icon: "error",
+                                title: "Gagal",
+                                text: "Gagal memesan tempat duduk. Silakan coba lagi.",
+                            });
+                        },
+                    }
+                );
+            }
+        });
     };
 
     return (
         <UserLayout>
             <div>
-                <h2 className="pt-20 mb-5 font-bold text-center text-xl text-midnight ">
+                <h2 className="pt-20 mb-5 font-bold text-center text-xl text-midnight">
                     Pilih Tempat Duduk
                 </h2>
-                <div className="grid lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-1 gap-2 px-4">
+                <p className="text-midnight ml-4">Note : Pilih Tempat Ranjang Sesuai No. Seat</p>
+                <div>
+                    <button
+                        onClick={reserveSeats}
+                        className="my-5 mx-5 btn btn-primary"
+                    >
+                        Pesan
+                    </button>
+                </div>
+                <div className="grid lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-1 gap-3 mx-4">
                     {seats.map((seat) => (
                         <div
                             key={seat.id}
+                            onClick={() => toggleSelectSeat(seat.id)}
                             className={`p-5 flex justify-center items-center rounded-lg max-w-xs shadow-lg text-midnight cursor-pointer ${
-                                seat.available ? "bg-green" : "bg-red"
+                                selectedSeats.includes(seat.id)
+                                    ? "bg-blue"
+                                    : seat.available
+                                    ? "bg-green"
+                                    : "bg-red"
                             }`}
                         >
                             No. Seat : {seat.name}
                             {!seat.available ? (
-                                <span className="ml-4 text-red-500">Tidak Tersedia</span>
+                                <span className="ml-4 text-red-500">
+                                    Tidak Tersedia
+                                </span>
+                            ) : selectedSeats.includes(seat.id) ? (
+                                <span className="ml-4 text-blue-500">
+                                    Dipilih
+                                </span>
                             ) : (
-                                <button
-                                    onClick={() => reserveSeat(seat.id)}
-                                    className="ml-4 btn flex justify-center items-center"
-                                >
-                                    Pesan
-                                </button>
+                                <span className="ml-4 text-green-500">
+                                    Tersedia
+                                </span>
                             )}
                         </div>
                     ))}
-                    <Link href='/order'>Kembali</Link>
                 </div>
+              
             </div>
         </UserLayout>
     );

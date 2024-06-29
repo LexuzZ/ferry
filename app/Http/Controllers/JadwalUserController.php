@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Booking;
 use App\Models\Jadwal;
 use App\Models\Kapal;
 use App\Models\Rute;
@@ -62,12 +63,14 @@ class JadwalUserController extends Controller
         $ticket = Ticket::with(['vehicles', 'passengers', 'rutes', 'kapals', 'jadwals'])
             ->where('user_id', $request->user()->id)
             ->get();
+
+            // dd($ticket);
         return Inertia::render('FormOrder',  [
             'jadwal' => $jadwal,
             'ticket' => $ticket,
             'reservedSeats' => $reservedSeats,
-        
-            
+
+
 
         ]);
     }
@@ -100,29 +103,5 @@ class JadwalUserController extends Controller
             ->where('user_id', $request->user()->id)
             ->firstOrFail();
         return Inertia::render('Tiket/PDFPage', ['ticket' => $ticket]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
     }
 }

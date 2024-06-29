@@ -27,43 +27,62 @@ class SeatController extends Controller
             'jadwal_id' => $jadwalId,
         ]);
     }
-    public function show($kapalId, $jadwalId)
-    {
-        $jadwal = Jadwal::with('kapals', 'seats')->findOrFail($jadwalId);
+    // public function show($kapalId, $jadwalId)
+    // {
+    //     $jadwal = Jadwal::with('kapals')->findOrFail($jadwalId);
 
-        $seats = $jadwal->seats->where('kapal_id', $kapalId);
-        $reservedSeats = $seats->where('available', false);
+    //     $seats = $jadwal->seats->where('kapal_id', $kapalId);
+    //     $reservedSeats = $seats->where('available', false);
 
-        return Inertia::render('FormOrder', [
-            'seats' => $seats,
-            'reservedSeats' => $reservedSeats,
-            'kapal_id' => $kapalId,
-            'jadwal_id' => $jadwalId,
-        ]);
-    }
-    public function reserve(Request $request, Seat $seat)
-    {
-        $request->validate([
-            'kapal_id' => 'required|exists:kapals,id',
-            'jadwal_id' => 'required|exists:jadwals,id',
-        ]);
+    //     return Inertia::render('FormOrder', [
+    //         'seats' => $seats,
+    //         'reservedSeats' => $reservedSeats,
+    //         'kapal_id' => $kapalId,
+    //         'jadwal_id' => $jadwalId,
+    //     ]);
+    // }
 
-        // Verifikasi apakah tempat duduk tersedia dan cocok dengan kapal_id dan jadwal_id
-        if ($seat->available && $seat->kapal_id == $request->kapal_id && $seat->jadwal_id == $request->jadwal_id) {
+
+    public function reserve(Request $request)
+{
+    $request->validate([
+        'kapal_id' => 'required|exists:kapals,id',
+        'jadwal_id' => 'required|exists:jadwals,id',
+        'seat_ids' => 'required|array',
+        'seat_ids.*' => 'exists:seats,id',
+    ]);
+
+    $seatIds = $request->input('seat_ids');
+    $kapalId = $request->input('kapal_id');
+    $jadwalId = $request->input('jadwal_id');
+
+    $seats = Seat::whereIn('id', $seatIds)
+        ->where('kapal_id', $kapalId)
+        ->where('jadwal_id', $jadwalId)
+        ->where('available', true)
+        ->get();
+
+    if ($seats->count() === count($seatIds)) {
+        foreach ($seats as $seat) {
             $seat->available = false;
             $seat->save();
-
-            Booking::create([
-                'user_id' => Auth::id(),
-                'seat_id' => $seat->id,
-            ]);
-
-            return redirect()->route('seats.index', ['kapal' => $seat->kapal_id, 'jadwal' => $seat->jadwal_id])
-                             ->with('success', 'Tempat duduk berhasil dipesan.');
         }
 
-        return redirect()->back()->with('error', 'Tempat duduk tidak tersedia atau tidak valid.');
+        Booking::create([
+            'user_id' => $request->user()->id,
+            'kapal_id' => $kapalId,
+            'jadwal_id' => $jadwalId,
+            'seat_ids' => $seatIds,
+        ]);
+
+        return redirect()->route('order.ticket', ['id' => $jadwalId])
+            ->with('success', 'Tempat duduk berhasil dipesan.');
     }
+
+    return redirect()->back()->with('error', 'Satu atau lebih tempat duduk tidak tersedia.');
+}
+
+   
 
 
     //
