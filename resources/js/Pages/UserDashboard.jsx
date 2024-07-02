@@ -137,24 +137,34 @@ export default function userDashboard() {
                                 >
                                     <div className="px-2 py-2 text-base text-white bg-blue">
                                         <h3>{j.nama_rute}</h3>
-                                        <p className="mb-2 text-base text-gray-400 font-normal">
+                                        <p className="mb-2 text-base text-midnight-400 font-normal">
                                             {j.nama_kapal}
                                         </p>
                                     </div>
-                                    <div className="text-left">
-                                        <p className="mb-2 mt-2 text-base text-midnight font-bold">
+                                    <div className="text-left text-xs">
+                                        <h3 className="mb-2 mt-2 text-base text-midnight font-bold">
                                             Detail Jadwal
-                                        </p>
-                                        <p className=" text-gray font-serif mb-2">
+                                        </h3>
+                                        <p className=" text-midnight font-serif mb-2">
+                                            Tanggal :
                                             {new Date(
                                                 j.tanggal
                                             ).toLocaleDateString()}
                                         </p>
-                                        <p className=" text-gray font-serif mb-2">
-                                            ETD : {j.tiba}
+                                        <p className=" text-midnight font-serif mb-2">
+                                            Tiba : {j.tiba}
                                         </p>
-                                        <p className=" text-gray font-serif mb-2">
-                                            ETA : {j.keberangkatan}
+                                        <p className=" text-midnight font-serif mb-2">
+                                            Keberangkatan : {j.keberangkatan}
+                                        </p>
+                                        <p className=" text-midnight font-serif mb-2">
+                                            Total Ranjang : {j.total_seats}
+                                        </p>
+                                        <p className=" text-midnight font-serif mb-2">
+                                            Tersedia : {j.total_available} Ranjang
+                                        </p>
+                                        <p className=" text-midnight font-serif mb-2">
+                                            Tidak Tersedia : {j.total_unavailable} Ranjang
                                         </p>
                                         <div className="bg-green">
                                             <Link

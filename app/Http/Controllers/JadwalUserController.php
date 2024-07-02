@@ -27,7 +27,35 @@ class JadwalUserController extends Controller
         $query = DB::table('jadwals')
             ->join('rutes', 'jadwals.rute_id', '=', 'rutes.id')
             ->join('kapals', 'jadwals.kapal_id', '=', 'kapals.id')
-            ->select('jadwals.*', 'rutes.nama_rute', 'kapals.nama_kapal');
+            ->leftJoin('seats', function ($join) {
+                $join->on('jadwals.id', '=', 'seats.jadwal_id')
+                    ->on('kapals.id', '=', 'seats.kapal_id');
+            })
+            ->select(
+                'jadwals.id',
+                'jadwals.rute_id',
+                'jadwals.kapal_id',
+                'jadwals.tanggal',
+                'jadwals.tiba',
+                'jadwals.keberangkatan',
+                'rutes.nama_rute',
+                'kapals.nama_kapal',
+                DB::raw('COUNT(seats.id) as total_seats'),
+                DB::raw('SUM(seats.available) as total_available_seats'),
+                DB::raw('SUM(CASE WHEN seats.available = 1 THEN 1 ELSE 0 END) as total_available'),
+                DB::raw('SUM(CASE WHEN seats.available = 0 THEN 1 ELSE 0 END) as total_unavailable')
+            )
+            ->groupBy(
+                'jadwals.id',
+                'jadwals.rute_id',
+                'jadwals.kapal_id',
+                'jadwals.tanggal',
+                'jadwals.tiba',
+                'jadwals.keberangkatan',
+                'rutes.nama_rute',
+                'kapals.nama_kapal'
+            );
+        // ->select('jadwals.*', 'rutes.nama_rute', 'kapals.nama_kapal');
 
         // Tambahkan filter berdasarkan parameter 'search'
         if ($request->has('search_rute') && $request->search_rute != '') {
@@ -51,7 +79,8 @@ class JadwalUserController extends Controller
             'rutes' => $rutes,
             'kapals' => $kapals,
             'filters' => $request->only(['search_rute', 'search_kapal', 'search_tanggal']),
-            'total' => $jadwal->total()
+            'total' => $jadwal->total(),
+
         ]);
     }
     public function order(Request $request, $id)
@@ -60,15 +89,39 @@ class JadwalUserController extends Controller
         $reservedSeats = $jadwal->seats->where('available', false);
 
 
-        $ticket = Ticket::with(['vehicles', 'passengers', 'rutes', 'kapals', 'jadwals'])
+        $tickets = Ticket::with([ 'rutes', 'kapals', 'jadwals'])
             ->where('user_id', $request->user()->id)
             ->get();
 
-            // dd($ticket);
+        $tickets->map(function ($ticket) {
+            $totalVehiclePrice = $ticket->vehicles->sum('price');
+            $totalPassengerPrice = $ticket->passengers->sum('price');
+            $totalPrice = $totalVehiclePrice + $totalPassengerPrice;
+
+            $totalDewasa = $ticket->passengers->where('category', 'dewasa')->count();
+            $totalAnak = $ticket->passengers->where('category', 'anak')->count();
+            $totalPenumpang = $totalDewasa + $totalAnak;
+            $totalSepedaMotor = $ticket->vehicles->where('type', 'sepeda_motor')->count();
+            $totalMobil = $ticket->vehicles->where('type', 'mobil')->count();
+            $totalTruk = $ticket->vehicles->where('type', 'truk')->count();
+            $totalKendaraan = $totalSepedaMotor + $totalMobil + $totalTruk;
+
+            // Menambahkan data tambahan ke dalam objek tiket
+            $ticket->totalVehiclePrice = $totalVehiclePrice;
+            $ticket->totalPassengerPrice = $totalPassengerPrice;
+            $ticket->totalPrice = $totalPrice;
+            $ticket->totalDewasa = $totalDewasa;
+            $ticket->totalAnak = $totalAnak;
+            $ticket->totalPenumpang = $totalPenumpang;
+            $ticket->totalKendaraan = $totalKendaraan;
+
+            return $ticket;
+        });
         return Inertia::render('FormOrder',  [
             'jadwal' => $jadwal,
-            'ticket' => $ticket,
+            'ticket' => $tickets,
             'reservedSeats' => $reservedSeats,
+
 
 
 
