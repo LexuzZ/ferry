@@ -1,13 +1,11 @@
 
 import Navbar from "@/Components/Navbar";
 import { Link, router, usePage } from "@inertiajs/react";
-import { useEffect, useState } from "react";
 
 const Detail = (props) => {
     const { auth, rute, kapal, jadwal } = usePage().props;
 
     return (
-        
         <div className="bg-grey min-h-screen">
             <Navbar user={props.auth.user} />
             <div className="pt-24 text-center text-2xl text-midnight font-serif">
@@ -38,7 +36,7 @@ const Detail = (props) => {
                                         <td>{j.tanggal}</td>
                                         <td>{j.tiba}</td>
                                         <td>{j.keberangkatan}</td>
-                                        <td><Link className="bg-navy px-2 rounded-md py-1"  href={route("login")}>Pesan</Link></td>
+                                        {/* <td><Link className="bg-navy px-2 rounded-md py-1"  href={route("login")}>Pesan</Link></td> */}
                                     </tr>
                                 ))}
                             </tbody>
