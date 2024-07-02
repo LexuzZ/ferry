@@ -5,7 +5,7 @@ import { Inertia } from "@inertiajs/inertia";
 import UserLayout from "@/Layouts/UserLayout";
 import Swal from "sweetalert2";
 
-const SeatSelection = ({ seats, reservedSeats, kapal_id, jadwal_id }) => {
+const SeatSelection = ({ seats, reservedSeats, kapal_id, jadwal_id, totalAvailableSeats, totalSeats, totalUnavailableSeats }) => {
     const [selectedSeats, setSelectedSeats] = useState([]);
 
     const toggleSelectSeat = (seatId) => {
@@ -66,6 +66,9 @@ const SeatSelection = ({ seats, reservedSeats, kapal_id, jadwal_id }) => {
                     Pilih Tempat Duduk
                 </h2>
                 <p className="text-midnight ml-4">Note : Pilih Tempat Ranjang Sesuai No. Seat</p>
+                <p className="text-midnight ml-4">Total Ranjang : {totalSeats}</p>
+                <p className="text-midnight ml-4">Tersedia : {totalAvailableSeats}</p>
+                <p className="text-midnight ml-4">Tidak Tersedia : {totalUnavailableSeats}</p>
                 <div>
                     <button
                         onClick={reserveSeats}

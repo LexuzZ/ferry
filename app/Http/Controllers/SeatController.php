@@ -19,12 +19,17 @@ class SeatController extends Controller
         $seats = Seat::where('kapal_id', $kapalId)
             ->where('jadwal_id', $jadwalId)
             ->get();
-
+        $totalSeats = $seats->count();
+        $totalAvailableSeats = $seats->where('available', true)->count();
+        $totalUnavailableSeats = $totalSeats - $totalAvailableSeats;
 
         return Inertia::render('Seats/Index', [
             'seats' => $seats,
             'kapal_id' => $kapalId,
             'jadwal_id' => $jadwalId,
+            'totalSeats' => $totalSeats,
+            'totalAvailableSeats' => $totalAvailableSeats,
+            'totalUnavailableSeats' => $totalUnavailableSeats,
         ]);
     }
     // public function show($kapalId, $jadwalId)
@@ -44,47 +49,47 @@ class SeatController extends Controller
 
 
     public function reserve(Request $request)
-{
-    $request->validate([
-        'kapal_id' => 'required|exists:kapals,id',
-        'jadwal_id' => 'required|exists:jadwals,id',
-        'seat_ids' => 'required|array',
-        'seat_ids.*' => 'exists:seats,id',
-    ]);
-
-    $seatIds = $request->input('seat_ids');
-    $kapalId = $request->input('kapal_id');
-    $jadwalId = $request->input('jadwal_id');
-
-    $seats = Seat::whereIn('id', $seatIds)
-        ->where('kapal_id', $kapalId)
-        ->where('jadwal_id', $jadwalId)
-        ->where('available', true)
-        ->get();
-
-    if ($seats->count() === count($seatIds)) {
-        foreach ($seats as $seat) {
-            $seat->available = false;
-            $seat->save();
-        }
-
-        Booking::create([
-            'user_id' => $request->user()->id,
-            'kapal_id' => $kapalId,
-            'jadwal_id' => $jadwalId,
-            'seat_ids' => $seatIds,
+    {
+        $request->validate([
+            'kapal_id' => 'required|exists:kapals,id',
+            'jadwal_id' => 'required|exists:jadwals,id',
+            'seat_ids' => 'required|array',
+            'seat_ids.*' => 'exists:seats,id',
         ]);
 
-        return redirect()->route('order.ticket', ['id' => $jadwalId])
-            ->with('success', 'Tempat duduk berhasil dipesan.');
+        $seatIds = $request->input('seat_ids');
+        $kapalId = $request->input('kapal_id');
+        $jadwalId = $request->input('jadwal_id');
+
+        $seats = Seat::whereIn('id', $seatIds)
+            ->where('kapal_id', $kapalId)
+            ->where('jadwal_id', $jadwalId)
+            ->where('available', true)
+            ->get();
+
+        if ($seats->count() === count($seatIds)) {
+            foreach ($seats as $seat) {
+                $seat->available = false;
+                $seat->save();
+            }
+
+            Booking::create([
+                'user_id' => $request->user()->id,
+                'kapal_id' => $kapalId,
+                'jadwal_id' => $jadwalId,
+                'seat_ids' => $seatIds,
+            ]);
+
+            return redirect()->route('order.ticket', ['id' => $jadwalId])
+                ->with('success', 'Tempat duduk berhasil dipesan.');
+        }
+
+        return redirect()->back()->with('error', 'Satu atau lebih tempat duduk tidak tersedia.');
     }
 
-    return redirect()->back()->with('error', 'Satu atau lebih tempat duduk tidak tersedia.');
-}
 
-   
 
 
     //
-   
+
 }
