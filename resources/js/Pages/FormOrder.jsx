@@ -5,8 +5,12 @@ import "../../css/orders.css";
 import { Inertia } from "@inertiajs/inertia";
 
 const FormOrder = () => {
-    const { jadwal, ticket, user, flash, jadwals, kapals, rutes,  reservedSeats  } =
-        usePage().props;
+    const {
+        jadwal,
+        ticket,
+        flash,
+        reservedSeats,
+    } = usePage().props;
 
     const { data, setData, post, errors } = useForm({
         jadwal_id: jadwal.id,
@@ -17,7 +21,6 @@ const FormOrder = () => {
         passengers: [{ category: "dewasa" }],
         vehicles: [{ type: "truk" }],
     });
-    
 
     const handlePassengerChange = (index, field, value) => {
         const newPassengers = data.passengers.slice();
@@ -101,7 +104,7 @@ const FormOrder = () => {
                                     </p>
                                     <p>{jadwal.tiba}</p>
                                     <p>{jadwal.keberangkatan}</p>
-                                    
+
                                     {reservedSeats.map((seat) => (
                                         <ul
                                             key={seat.id}
@@ -265,15 +268,15 @@ const FormOrder = () => {
                                                     </div>
                                                 )
                                             )}
-                                            <button
+                                            {/* <button
                                                 type="button"
                                                 onClick={addVehicle}
                                                 className="py-2 px-2 my-2 rounded-md font-serif bg-grey text-midnight hover:bg-transparent"
                                             >
                                                 Tambah Kendaraan
-                                            </button>
+                                            </button> */}
                                         </div>
-                                        <div className="" >
+                                        <div className="">
                                             <label
                                                 htmlFor="state "
                                                 className="text-midnight"
@@ -309,7 +312,62 @@ const FormOrder = () => {
                 Riwayat Order
             </h1>
             <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-2 py-12">
-                <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="overflow-x-auto text-gray text-center ">
+                    <table className="table">
+                        {/* head */}
+                        <thead>
+                            <tr className="text-center text-midnight font-serif">
+                                <th>Kode Tiket</th>
+                                <th>Rute</th>
+                                <th>Kapal</th>
+                                <th>Tanggal </th>
+                                <th>Tiba</th>
+                                <th>Keberangkatan</th>
+                                <th>Kendaraan</th>
+                                <th>Penumpang</th>
+                                <th>Total</th>
+
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {ticket.map((t) => (
+                                <tr key={t.id} className="text-center">
+                                    <td>{t.code}</td>
+                                    <td>{t.rutes.nama_rute}</td>
+                                    <td>{t.kapals.nama_kapal}</td>
+                                    <td>
+                                        {new Date(
+                                            t.jadwals.tanggal
+                                        ).toLocaleDateString()}
+                                    </td>
+                                    <td>{t.jadwals.tiba}</td>
+                                    <td>{t.jadwals.keberangkatan}</td>
+                                    <td>{t.totalKendaraan}</td>
+                                    <td>{t.totalPenumpang}</td>
+                                    {/* <td>{t.status}</td> */}
+                                    <td>
+                                        {new Intl.NumberFormat("id", {
+                                            style: "currency",
+                                            currency: "IDR",
+                                            maximumFractionDigits: 0,
+                                        }).format(t.totalPrice)}
+                                    </td>
+
+                                    <td>
+                                        <Link
+                                            className="btn btn-link "
+                                            href={`/payment/${t.id}`}
+                                        >
+                                            Checkout
+                                        </Link>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+                {/* <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {ticket.map((t) => (
                         <div className="card cart" key={t.id}>
                             <div className="">
@@ -347,60 +405,28 @@ const FormOrder = () => {
                                         PAYMENT
                                     </span>
                                     <div className="details mx-10">
-                                        <ul>
-                                            {t.passengers.map((p) => (
-                                                <li
-                                                    key={p.id}
-                                                    className=" text-gray"
-                                                >
-                                                    {p.category}
-                                                </li>
-                                            ))}
-                                        </ul>
-                                        <ul>
-                                            {t.passengers.map((p) => (
-                                                <li
-                                                    key={p.id}
-                                                    className=" text-gray"
-                                                >
-                                                    {new Intl.NumberFormat(
-                                                        "id",
-                                                        {
-                                                            style: "currency",
-                                                            currency: "IDR",
-                                                            maximumFractionDigits: 0,
-                                                        }
-                                                    ).format(p.price)}
-                                                </li>
-                                            ))}
-                                        </ul>
-                                        <ul>
-                                            {t.vehicles.map((p) => (
-                                                <li
-                                                    key={p.id}
-                                                    className=" text-gray"
-                                                >
-                                                    {p.type}
-                                                </li>
-                                            ))}
-                                        </ul>
-                                        <ul>
-                                            {t.vehicles.map((p) => (
-                                                <li
-                                                    key={p.id}
-                                                    className=" text-gray"
-                                                >
-                                                    {new Intl.NumberFormat(
-                                                        "id",
-                                                        {
-                                                            style: "currency",
-                                                            currency: "IDR",
-                                                            maximumFractionDigits: 0,
-                                                        }
-                                                    ).format(p.price)}
-                                                </li>
-                                            ))}
-                                        </ul>
+                                        <p>Penumpang : {t.totalPenumpang}</p>
+                                        <p>
+                                            Total :{" "}
+                                            {new Intl.NumberFormat("id", {
+                                                style: "currency",
+                                                currency: "IDR",
+                                                maximumFractionDigits: 0,
+                                            }).format(
+                                                t.totalPassengerPrice
+                                            )}{" "}
+                                        </p>
+                                        <p>Kendaraan : {t.totalKendaraan}</p>
+                                        <p>
+                                            Total :{" "}
+                                            {new Intl.NumberFormat("id", {
+                                                style: "currency",
+                                                currency: "IDR",
+                                                maximumFractionDigits: 0,
+                                            }).format(t.totalVehiclePrice)}
+                                        </p>
+
+                                       
                                     </div>
                                 </div>
                                 <div className="card checkout">
@@ -416,7 +442,7 @@ const FormOrder = () => {
                             </div>
                         </div>
                     ))}
-                </div>
+                </div> */}
             </section>
         </UserLayout>
     );
