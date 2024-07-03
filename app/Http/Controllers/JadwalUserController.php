@@ -86,7 +86,7 @@ class JadwalUserController extends Controller
     public function order(Request $request, $id)
     {
         $jadwal = Jadwal::with('rutes', 'kapals')->findOrFail($id);
-        $reservedSeats = $jadwal->seats->where('available', false);
+        $reservedSeats = $jadwal->seats->where('available', false)->values();
 
 
         $tickets = Ticket::with([ 'rutes', 'kapals', 'jadwals'])

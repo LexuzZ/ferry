@@ -73,14 +73,7 @@ class SeatController extends Controller
                 $seat->save();
             }
 
-            Booking::create([
-                'user_id' => $request->user()->id,
-                'kapal_id' => $kapalId,
-                'jadwal_id' => $jadwalId,
-                'seat_ids' => $seatIds,
-            ]);
-
-            return redirect()->route('order.ticket', ['id' => $jadwalId])
+            return redirect()->route('seats.index', ['kapal' => $kapalId, 'jadwal' => $jadwalId])
                 ->with('success', 'Tempat duduk berhasil dipesan.');
         }
 

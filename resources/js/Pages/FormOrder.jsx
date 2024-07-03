@@ -11,7 +11,7 @@ const FormOrder = () => {
         flash,
         reservedSeats,
     } = usePage().props;
-
+    console.log(reservedSeats);
     const { data, setData, post, errors } = useForm({
         jadwal_id: jadwal.id,
         kapal_id: jadwal.kapal_id,
@@ -87,7 +87,7 @@ const FormOrder = () => {
                             Kembali
                         </Link>
                         <form
-                            className="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6 mt-4"
+                            className="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6 mt-4 ms:mx-4 "
                             onSubmit={handleSubmit}
                         >
                             <div className="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
@@ -112,7 +112,7 @@ const FormOrder = () => {
                                             <li> No. Seat : {seat.name}</li>
                                         
                                         </ul>
-                                    ))}
+                                    ))} 
                                 </div>
 
                                 <div className="lg:col-span-2">
@@ -356,7 +356,7 @@ const FormOrder = () => {
 
                                     <td>
                                         <Link
-                                            className="btn btn-link "
+                                            className="btn btn-link text-midnight hover:text-green"
                                             href={`/payment/${t.id}`}
                                         >
                                             Checkout

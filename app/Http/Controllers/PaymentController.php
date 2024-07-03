@@ -16,6 +16,26 @@ class PaymentController extends Controller
 {
     public function create(Ticket $ticket)
     {
+        $totalVehiclePrice = $ticket->vehicles->sum('price');
+        $totalPassengerPrice = $ticket->passengers->sum('price');
+        $totalPrice = $totalVehiclePrice + $totalPassengerPrice;
+
+            $totalDewasa = $ticket->passengers->where('category', 'dewasa')->count();
+            $totalAnak = $ticket->passengers->where('category', 'anak')->count();
+            $totalPenumpang = $totalDewasa + $totalAnak;
+            $totalSepedaMotor = $ticket->vehicles->where('type', 'sepeda_motor')->count();
+            $totalMobil = $ticket->vehicles->where('type', 'mobil')->count();
+            $totalTruk = $ticket->vehicles->where('type', 'truk')->count();
+            $totalKendaraan = $totalSepedaMotor + $totalMobil + $totalTruk;
+
+            // Menambahkan data tambahan ke dalam objek tiket
+            $ticket->totalVehiclePrice = $totalVehiclePrice;
+            $ticket->totalPassengerPrice = $totalPassengerPrice;
+            $ticket->totalPrice = $totalPrice;
+            $ticket->totalDewasa = $totalDewasa;
+            $ticket->totalAnak = $totalAnak;
+            $ticket->totalPenumpang = $totalPenumpang;
+            $ticket->totalKendaraan = $totalKendaraan;
 
 
         // Set konfigurasi Midtrans

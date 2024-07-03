@@ -52,12 +52,12 @@ const Payment = ({ ticket, snapToken, user, passengers }) => {
                                 Damai Lautan Nusantara
                             </p>
                         </div>
-                        <div className="flex flex-col gap-3 border-b py-6 text-md font-mono">
+                        <div className="flex flex-col gap-3 border-b py-6 text-md font-normal">
                             <p className="flex justify-between">
                                 <span className="text-gray font-bold">
                                     Code Booking :
                                 </span>
-                                <span className="text-gray">{ticket.code}</span>
+                                <span className="text-gray ml-3">{ticket.code}</span>
                             </p>
                             <p className="flex justify-between">
                                 <span className="text-gray font-bold">
@@ -74,7 +74,7 @@ const Payment = ({ ticket, snapToken, user, passengers }) => {
                             </p>
                         </div>
                         <div className="flex flex-col gap-2 pb-6 pt-2 text-md">
-                            <table className="w-full text-left text-gray font-serif">
+                            <table className="w-full text-left text-gray font-normal">
                                 <thead>
                                     <tr className="flex">
                                         <th className="w-full py-2">
@@ -88,14 +88,7 @@ const Payment = ({ ticket, snapToken, user, passengers }) => {
                                 </thead>
                                 <tbody>
                                     <ul className="flex py-1">
-                                        {ticket.passengers.map((passenger) => (
-                                            <li
-                                                key={passenger.id}
-                                                className="flex-1"
-                                            >
-                                                {passenger.category}
-                                            </li>
-                                        ))}
+                                        <li className="flex-1">Penumpang : {ticket.totalPenumpang}</li>
                                         
                                             {new Intl.NumberFormat("id", {
                                                 style: "currency",
