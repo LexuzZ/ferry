@@ -45,6 +45,9 @@ const CetakTiket = ({ ticket }) => (
                 <Text style={styles.title}>Detail Tiket</Text>
                 <Text style={styles.text}>Kode Booking : {ticket.code}</Text>
                 <Text style={styles.text}>Nama Pemesan : {ticket.nama}</Text>
+                {ticket.transactions.map(t=>(
+                    <Text style={styles.text} key={t.id}>Status Pembayaran : {t.status}</Text>
+                ))}
                 <View style={styles.table}>
                     <View style={styles.tableRow}>
                         <View style={styles.tableCol}>
@@ -130,6 +133,7 @@ const CetakTiket = ({ ticket }) => (
                         }).format(t.amount)}
                     </Text>
                 ))}
+                <Text></Text>
             </View>
         </Page>
     </Document>

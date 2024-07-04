@@ -80,53 +80,49 @@ class PaymentController extends Controller
 
     public function callback(Request $request)
     {
-        $transaction = new Notification();
-        $data = $request->all();
-        $trxId = $data['ticket_id'];
-        $status = $data['status'];
-        $channelResponse = $data['channel_response_message'];
+        Config::$serverKey = config('services.midtrans.server_key');
 
-        $transaction = Transaction::find($trxId);
+        // Generate hash
+        $hashed = hash('sha512', $request->order_id.$request->status_code.$request->gross_amount.Config::$serverKey);
 
-        switch ($status) {
-            case 'settlement':
-                $transaction->update([
-                    'status' => 'proccess'
-                ]);
-                $transaction->update([
-                    'status' => 'success'
-                ]);
-                break;
+        // Validasi hash signature
+        if ($hashed == $request->signature_key) {
+            // Cek apakah terdapat transaction_id
+            if ($request->has('order_id')) {
+                $transaction = Transaction::where('ticket_id', $request->order_id)->first();
 
-            case 'expire':
-            case 'cancel':
-                $transaction->update([
-                    'status' => 'canceled'
-                ]);
-                $transaction->update([
-                    'status' => 'canceled'
-                ]);
-                break;
+                // Cek apakah transaksi ditemukan
+                if ($transaction) {
+                    // Memperbarui status transaksi berdasarkan status transaksi dari Midtrans
+                    switch ($request->transaction_status) {
+                        case 'capture':
+                        case 'settlement':
+                            $transaction->update(['status' => 'paid']);
+                            break;
 
-            default:
+                        case 'pending':
+                            $transaction->update(['status' => 'pending']);
+                            break;
 
-                break;
+                        case 'deny':
+                        case 'expire':
+                        case 'cancel':
+                            $transaction->update(['status' => 'unpaid']);
+                            break;
+
+                        default:
+                            return response()->json(['message' => 'Unknown transaction status'], 400);
+                    }
+
+                    return response()->json(['message' => 'Transaction status updated'], 200);
+                }
+
+                return response()->json(['message' => 'Transaction not found'], 404);
+            }
+
+            return response()->json(['message' => 'Transaction ID not provided'], 400);
         }
 
-        if ($channelResponse !== null && $channelResponse == "Approved") {
-            $transaction->update([
-                'status' => 'proccess'
-            ]);
-            $transaction->update([
-                'status' => 'success'
-            ]);
-        }
-
-        return response()->json(
-            [
-                'status' => 'success',
-                'message' => 'success'
-            ]
-        );
+        return response()->json(['message' => 'Invalid signature'], 403);
     }
 }

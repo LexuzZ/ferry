@@ -37,7 +37,6 @@ Route::get('welcome', function () {
 Route::get('/', [HomeController::class, 'index']);
 Route::get('{id}/detail', [HomeController::class, 'show']);
 // Route::get('/', [HomeController::class, 'userbooking'])->name('home.userbooking');
-Route::post('payment/callback', [PaymentController::class, 'store'])->name('payment.callback');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get("/redirectAuthenticatedUsers", [RedirectAuthenticatedUsersController::class, "home"])->name('redirectAuthenticatedUsers');

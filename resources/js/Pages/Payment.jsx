@@ -8,7 +8,7 @@ const Payment = ({ ticket, snapToken, user, passengers }) => {
     const handlePayment = () => {
         window.snap.pay(snapToken, {
             onSuccess: function (result) {
-                window.location.href = "/invoice/";
+                window.location.href = "/riwayat";
                 console.log("success", result);
             },
             onPending: function (result) {
