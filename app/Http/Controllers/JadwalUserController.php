@@ -6,6 +6,7 @@ use App\Models\Booking;
 use App\Models\Jadwal;
 use App\Models\Kapal;
 use App\Models\Rute;
+use App\Models\Seat;
 use App\Models\Ticket;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
@@ -86,8 +87,8 @@ class JadwalUserController extends Controller
     public function order(Request $request, $id)
     {
         $jadwal = Jadwal::with('rutes', 'kapals')->findOrFail($id);
-        $reservedSeats = $jadwal->seats->where('available', false)->values();
-
+        // $reservedSeats = $jadwal->seats->where('available', false)->values();
+        $reservedSeats = $jadwal->seats->where('user_id', $request->user()->id)->where('available', false)->values();
 
         $tickets = Ticket::with([ 'rutes', 'kapals', 'jadwals'])
             ->where('user_id', $request->user()->id)

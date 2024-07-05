@@ -52,9 +52,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Transaction::class);
     }
-    public function bookings()
+    public function seats()
     {
-        return $this->hasMany(Booking::class);
+        return $this->hasMany(Seat::class);
     }
    
     

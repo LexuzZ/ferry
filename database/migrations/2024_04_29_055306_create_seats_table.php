@@ -15,10 +15,12 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('kapal_id');
             $table->unsignedBigInteger('jadwal_id');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->string('name');
             $table->boolean('available')->default(true); // Menandai ketersediaan tempat duduk
             $table->foreign('kapal_id')->references('id')->on('kapals')->onDelete('cascade');
             $table->foreign('jadwal_id')->references('id')->on('jadwals')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

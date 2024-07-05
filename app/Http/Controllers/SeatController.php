@@ -60,6 +60,7 @@ class SeatController extends Controller
         $seatIds = $request->input('seat_ids');
         $kapalId = $request->input('kapal_id');
         $jadwalId = $request->input('jadwal_id');
+        $userId = $request->user()->id;
 
         $seats = Seat::whereIn('id', $seatIds)
             ->where('kapal_id', $kapalId)
@@ -70,6 +71,7 @@ class SeatController extends Controller
         if ($seats->count() === count($seatIds)) {
             foreach ($seats as $seat) {
                 $seat->available = false;
+                $seat->user_id = $userId;
                 $seat->save();
             }
 

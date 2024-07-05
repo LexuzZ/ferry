@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Seat extends Model
 {
     use HasFactory;
-    protected $fillable = ['kapal_id', 'jadwal_id','name', 'available']; // Kolom yang bisa diisi
+    protected $fillable = ['kapal_id', 'jadwal_id','user_id','name', 'available']; // Kolom yang bisa diisi
 
     public function kapals()
     {
@@ -18,10 +18,11 @@ class Seat extends Model
     {
         return $this->belongsTo(Jadwal::class);
     }
-    public function bookings()
+    public function users()
     {
-        return $this->hasMany(Booking::class);
+        return $this->belongsTo(User::class);
     }
+    
 
   
     

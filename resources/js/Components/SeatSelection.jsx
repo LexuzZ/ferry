@@ -58,6 +58,9 @@ const SeatSelection = ({ seats, reservedSeats, kapal_id, jadwal_id, totalAvailab
             }
         });
     };
+    const goToOrderPage = () => {
+        Inertia.get(route('order.ticket', { id: jadwal_id }));
+    };
 
     return (
         <UserLayout>
@@ -72,9 +75,15 @@ const SeatSelection = ({ seats, reservedSeats, kapal_id, jadwal_id, totalAvailab
                 <div>
                     <button
                         onClick={reserveSeats}
-                        className="my-5 mx-5 btn btn-primary"
+                        className="my-5 mx-5 btn bg-green text-midnight hover:text-white"
                     >
                         Pesan
+                    </button>
+                    <button
+                        onClick={goToOrderPage}
+                        className="my-5 btn bg-red text-white"
+                    >
+                        Kembali
                     </button>
                 </div>
                 <div className="grid lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-1 gap-3 mx-4">
