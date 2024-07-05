@@ -30,7 +30,7 @@ class SeatSeeder extends Seeder
                     Seat::create([
                         'kapal_id' => $kapal->id,
                         'jadwal_id' => $jadwal->id,
-                        'name' => 'Seat ' . $i,
+                        'name' => 'Ranjang ' . $i,
                         'available' => true,
                     ]);
                 }
