@@ -90,7 +90,7 @@ class JadwalUserController extends Controller
         // $reservedSeats = $jadwal->seats->where('available', false)->values();
         $reservedSeats = $jadwal->seats->where('user_id', $request->user()->id)->where('available', false)->values();
 
-        $tickets = Ticket::with([ 'rutes', 'kapals', 'jadwals'])
+        $tickets = Ticket::with(['rutes', 'kapals', 'jadwals'])
             ->where('user_id', $request->user()->id)
             ->get();
 
@@ -156,6 +156,15 @@ class JadwalUserController extends Controller
         $ticket = Ticket::with(['rutes', 'kapals', 'jadwals', 'vehicles', 'passengers', 'transactions'])->where('id', $id)
             ->where('user_id', $request->user()->id)
             ->firstOrFail();
-        return Inertia::render('Tiket/PDFPage', ['ticket' => $ticket]);
+        $userId = $request->user()->id;
+        $reservedSeats = Seat::where('user_id', $userId)
+            ->where('available', false)
+            ->where('jadwal_id', $ticket->jadwal_id)
+            ->where('kapal_id', $ticket->kapal_id)
+            ->get();
+        return Inertia::render('Tiket/PDFPage', [
+            'ticket' => $ticket,
+            'reservedSeats' => $reservedSeats,
+        ]);
     }
 }

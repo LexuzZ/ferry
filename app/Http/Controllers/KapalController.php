@@ -23,12 +23,7 @@ class KapalController extends Controller
     public function index()
     {
         //
-        $ships = Kapal::withCount('seats')
-        ->with(['seats' => function ($query) {
-            $query->selectRaw('kapal_id, COUNT(*) as total_seats, SUM(available) as total_available')
-                ->groupBy('kapal_id');
-        }])
-        ->get();
+        $ships = Kapal::all();
 
        
         // $kapals = Kapal::with('jadwals')->get();

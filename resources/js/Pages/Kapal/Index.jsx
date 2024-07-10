@@ -71,12 +71,7 @@ const Index = () => {
                             <th scope="col" className="px-6 py-3">
                                 Nama Kapal
                             </th>
-                            <th scope="col" className="px-6 py-3">
-                                Total Kapasitas
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                Kapasitas Tersedia
-                            </th>
+                            
                         </tr>
                     </thead>
                     <tbody>
@@ -96,16 +91,7 @@ const Index = () => {
                                         {kapal.nama_kapal}
                                     </th>
 
-                                    {kapal.seats.map((seat) => (
-                                        <th key={seat.kapal_id}>
-                                            {seat.total_seats} Seat
-                                        </th>
-                                    ))}
-                                    {kapal.seats.map((seat) => (
-                                        <th key={seat.id}>
-                                            {seat.total_available} Seat
-                                        </th>
-                                    ))}
+                                 
                                 </tr>
                             );
                         })}
@@ -113,81 +99,9 @@ const Index = () => {
                 </table>
             </div>
 
-            <div className="text-center text-midnight text-2xl font-serif py-4">
-                JADWAL KAPAL
-            </div>
+           
 
-            <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-6">
-                <table className="w-full text-sm text-center rtl:text-right text-midnight">
-                    <thead className="text-xs text-white uppercase bg-gray font-bold">
-                        <tr>
-                            <th scope="col" className="px-6 py-3">
-                                Nama Kapal
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                Tanggal
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                ETA
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                ETD
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {kapals.map((kapal) => {
-                            return (
-                                <tr key={kapal.id}>
-                                    <th
-                                        scope="row"
-                                        className=" py-4  text-midnight  font-medium whitespace-nowrap dark:text-black"
-                                    >
-                                        {kapal.nama_kapal}
-                                    </th>
-
-                                    <td
-                                        scope="row"
-                                        className=" py-4  text-midnight  font-medium whitespace-nowrap dark:text-black"
-                                    >
-                                        <ul>
-                                            {kapal.jadwals.map((jadwal) => (
-                                                <li key={jadwal.id}>
-                                                    {jadwal.tanggal}
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </td>
-                                    <td
-                                        scope="row"
-                                        className=" py-4  text-midnight  font-medium whitespace-nowrap dark:text-black"
-                                    >
-                                        <ul>
-                                            {kapal.jadwals.map((jadwal) => (
-                                                <li key={jadwal.id}>
-                                                    {jadwal.tiba}
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </td>
-                                    <td
-                                        scope="row"
-                                        className=" py-4  text-midnight  font-medium whitespace-nowrap dark:text-black"
-                                    >
-                                        <ul>
-                                            {kapal.jadwals.map((jadwal) => (
-                                                <li key={jadwal.id}>
-                                                    {jadwal.keberangkatan}
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </td>
-                                </tr>
-                            );
-                        })}
-                    </tbody>
-                </table>
-            </div>
+           
         </AdminLayout>
     );
 };

@@ -4,8 +4,8 @@ import { usePage } from "@inertiajs/inertia-react";
 import CetakTiket from "./CetakTiket";
 import UserLayout from "@/Layouts/UserLayout";
 
-const PDFPage = ({ ticket }) => {
-    console.log(ticket);
+const PDFPage = ({ ticket, reservedSeats }) => {
+    
 
     return (
         <UserLayout>
@@ -28,6 +28,7 @@ const PDFPage = ({ ticket }) => {
                         <span className="block font-bold">Rute</span>
                         <span className="block">{ticket.rutes.nama_rute}</span>
                     </div>
+                    
 
                     <div className="border-b pb-2 mb-2">
                         <span className="block font-bold">Berangkat</span>
@@ -64,7 +65,7 @@ const PDFPage = ({ ticket }) => {
                 </div>
                 <div className="text-center mt-6">
                     <PDFDownloadLink
-                        document={<CetakTiket ticket={ticket} />}
+                        document={<CetakTiket ticket={ticket} reservedSeats={reservedSeats}/>}
                         fileName="tiket.pdf"
                     >
                         {({ blob, url, loading, error }) =>

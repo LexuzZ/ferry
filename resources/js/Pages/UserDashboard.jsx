@@ -56,7 +56,7 @@ export default function userDashboard() {
                                                 }
                                             >
                                                 <option value="">
-                                                    Select Route
+                                                    Pilih Rute
                                                 </option>
                                                 {rutes.map((rute) => (
                                                     <option
@@ -83,7 +83,7 @@ export default function userDashboard() {
                                                 }
                                             >
                                                 <option value="">
-                                                    Select Ship
+                                                    Pilih Armada Kapal
                                                 </option>
                                                 {kapals.map((kapal) => (
                                                     <option

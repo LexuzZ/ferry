@@ -1,20 +1,39 @@
 import React from "react";
-import { Document, Page, StyleSheet, Text, View } from "@react-pdf/renderer";
+import {
+    Document,
+    Font,
+    Image,
+    Page,
+    StyleSheet,
+    Text,
+    View,
+} from "@react-pdf/renderer";
+import logo from "../../../../public/logo.png";
 
 const styles = StyleSheet.create({
-    page: { padding: 30 },
+    page: { padding: 30, fontSize: 12 },
     section: { margin: 10, padding: 10, flexGrow: 1 },
-    title: { fontSize: 24, textAlign: "justify", marginBottom: 10 },
-    text: { fontSize: 12, marginBottom: 10, textAlign: "justify" },
-    line: { height: 1, backgroundColor: "black", marginBottom: 10 },
-    hero: { textAlign: "center", marginBottom: 10, fontSize: 24 },
+    title: {
+        fontSize: 14,
+        textAlign: "center",
+        marginBottom: 5,
+        fontWeight: "bold",
+    },
+    subtitle: {
+        fontSize: 14,
+        textAlign: "left",
+        marginBottom: 5,
+        fontWeight: "bold",
+    },
+    text: { fontSize: 10, marginBottom: 2, textAlign: "left" },
+    line: { height: 1, backgroundColor: "black", marginBottom: 5 },
     table: {
         display: "table",
         width: "auto",
         borderStyle: "solid",
         borderWidth: 1,
         borderColor: "#000",
-        marginBottom: 10,
+        marginBottom: 5,
     },
     tableRow: { margin: "auto", flexDirection: "row" },
     tableCol: {
@@ -27,26 +46,29 @@ const styles = StyleSheet.create({
         margin: "auto",
         marginTop: 5,
         padding: 5,
-        fontSize: 12,
+        fontSize: 10,
         textAlign: "left",
     },
+    logo: { width: 50, height: 50, marginBottom: 5, alignSelf: "center" },
+    footer: { textAlign: "center", marginTop: 20, fontSize: 12 },
 });
 
-const CetakTiket = ({ ticket }) => (
+const CetakTiket = ({ ticket, reservedSeats }) => (
     <Document>
         <Page size="A4" style={styles.page}>
             <View style={styles.section}>
-                <Text style={styles.hero}>{ticket.rutes.nama_rute}</Text>
+                <Image style={styles.logo} src={logo} />
+                <Text style={styles.title}>Tiket Perjalanan</Text>
+                <Text style={styles.title}>Damai Lautan Nusantara</Text>
                 <View style={styles.line} />
-                <Text style={styles.hero}>Damai Lautan Nusantara</Text>
+                <Text style={styles.title}>{ticket.rutes.nama_rute}</Text>
                 <View style={styles.line} />
-                <Text style={styles.hero}>{ticket.jadwals.tanggal}</Text>
-                <View style={styles.line} />
-                <Text style={styles.title}>Detail Tiket</Text>
                 <Text style={styles.text}>Kode Booking : {ticket.code}</Text>
                 <Text style={styles.text}>Nama Pemesan : {ticket.nama}</Text>
-                {ticket.transactions.map(t=>(
-                    <Text style={styles.text} key={t.id}>Status Pembayaran : {t.status}</Text>
+                {ticket.transactions.map((t) => (
+                    <Text style={styles.text} key={t.id}>
+                        Status Pembayaran : {t.status}
+                    </Text>
                 ))}
                 <View style={styles.table}>
                     <View style={styles.tableRow}>
@@ -68,8 +90,8 @@ const CetakTiket = ({ ticket }) => (
                         <View style={styles.tableCol}>
                             <Text style={styles.tableCell}>
                                 {new Date(
-                                ticket.jadwals.tanggal
-                            ).toLocaleDateString()}
+                                    ticket.jadwals.tanggal
+                                ).toLocaleDateString()}
                             </Text>
                         </View>
                     </View>
@@ -99,10 +121,17 @@ const CetakTiket = ({ ticket }) => (
                     </View>
                 </View>
 
-                <Text style={styles.text}>Penumpang</Text>
+                <Text style={styles.subtitle}>Ranjang</Text>
+                {reservedSeats.map((seat) => (
+                    <Text key={seat.id} style={styles.text}>
+                        {seat.name}
+                    </Text>
+                ))}
+                <View style={styles.line} />
+                <Text style={styles.subtitle}>Penumpang</Text>
                 {ticket.passengers.map((p) => (
                     <Text key={p.id} style={styles.text}>
-                        {p.category}{" "}
+                        {p.category} :
                         {new Intl.NumberFormat("id", {
                             style: "currency",
                             currency: "IDR",
@@ -111,10 +140,10 @@ const CetakTiket = ({ ticket }) => (
                     </Text>
                 ))}
                 <View style={styles.line} />
-                <Text style={styles.text}>Kendaraan</Text>
+                <Text style={styles.subtitle}>Kendaraan</Text>
                 {ticket.vehicles.map((p) => (
                     <Text key={p.id} style={styles.text}>
-                        {p.type}{" "}
+                        {p.type} :
                         {new Intl.NumberFormat("id", {
                             style: "currency",
                             currency: "IDR",
@@ -133,7 +162,11 @@ const CetakTiket = ({ ticket }) => (
                         }).format(t.amount)}
                     </Text>
                 ))}
-                <Text></Text>
+                {/* <Text>{reservedSeats.name}</Text> */}
+                <View style={styles.line} />
+                <Text style={styles.footer}>
+                    Terima kasih telah menggunakan layanan kami.
+                </Text>
             </View>
         </Page>
     </Document>

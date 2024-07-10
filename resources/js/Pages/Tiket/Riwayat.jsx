@@ -3,6 +3,8 @@ import { Link, router, usePage } from "@inertiajs/react";
 import React, { useEffect, useState } from "react";
 import CetakTiket from "./CetakTiket";
 import { PDFDownloadLink } from "@react-pdf/renderer";
+import PaymentBadge from "@/Components/status";
+import { GrDocumentPdf } from "react-icons/gr";
 
 const Riwayat = () => {
     const { ticket, transaksi } = usePage().props;
@@ -11,28 +13,43 @@ const Riwayat = () => {
     return (
         <UserLayout>
             <div className="min-h-screen">
-                <div className="pt-24 text-center text-2xl text-midnight font-serif">
+                <div className="pt-24 text-center text-2xl text-midnight font-serif mb-5">
                     <h1>Riwayat Transaksi</h1>
                 </div>
 
-                <div className="overflow-x-auto text-gray text-center px-4">
-                    <table className="table">
+                <div className="overflow-x-auto rounded-lg  shadow mx-4 hidden md:block">
+                    <table className="w-full">
                         {/* head */}
-                        <thead>
-                            <tr className="text-center text-midnight font-serif">
-                                <th>Kode Tiket</th>
-                                <th>Status Pembayaran</th>
-                                <th>Total</th>
-
-                                <th>Action</th>
+                        <thead className="bg-navy border-b-2 border-midnight">
+                            <tr className="text-white font-serif">
+                                <th className="p-3 text-sm font-semibold tracking-wide">
+                                    Kode Tiket
+                                </th>
+                                <th className="p-3 text-sm font-semibold tracking-wide">
+                                    Status
+                                </th>
+                                <th className="p-3 text-sm font-semibold tracking-wide">
+                                    Total
+                                </th>
+                                <th className="p-3 text-sm font-semibold tracking-wide">
+                                    Action
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
                             {transaksi.map((t) => (
-                                <tr key={t.id} className="text-center">
-                                    <td>{t.tickets.code}</td>
-                                    <td>{t.status}</td>
+                                <tr
+                                    key={t.id}
+                                    className="text-center  bg-white"
+                                >
+                                    <td className="p-3 text-sm text-midnight whitespace-nowrap">
+                                        {t.tickets.code}
+                                    </td>
+
                                     <td>
+                                        <PaymentBadge status={t.status} />
+                                    </td>
+                                    <td className="p-3 text-sm text-midnight whitespace-nowrap">
                                         {new Intl.NumberFormat("id", {
                                             style: "currency",
                                             currency: "IDR",
@@ -45,33 +62,53 @@ const Riwayat = () => {
                                             href={`/riwayat/${t.tickets.id}/pdf`}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="btn btn-link "
+                                            className="btn btn-link hover:bg-midnight hover:underline"
                                         >
-                                            View PDF
+                                            <GrDocumentPdf size={20} />
                                         </Link>
                                     </td>
                                 </tr>
                             ))}
                         </tbody>
                     </table>
-                    {/* <div className="pt-24 text-center text-2xl text-midnight font-serif">
-                        <h1>Riwayat Rute</h1>
-                    </div>
-                    <div className="overflow-x-auto text-gray text-center px-4">
-                        <table className="table">
-                            <thead>
-                                <tr className="text-center text-midnight font-serif">
-                                    <th>Kode Tiket</th>
-                                    <th>Rute Penyebrangan</th>
-                                    <th>Nama Kapal</th>
-                                    <th>Tanggal Keberangkatan</th>
-                                    <th>Estimasi Tiba</th>
-                                </tr>
-                            </thead>
-                            <tbody></tbody>
-                        </table>
-                    </div> */}
                 </div>
+                {transaksi.map((t) => (
+                    <div className="grid grid-cols-1 gap-4 pb-4 md:hidden">
+                        <div className="bg-white p-4 mt-1  mx-4 space-y-3 rounded-lg shadow">
+                            <div className="flex items-center space-x-2 text-sm">
+                                <div>
+                                    <a
+                                        href="#"
+                                        className="text-gray font-bold hover:underline"
+                                    >
+                                        #{t.id}
+                                    </a>
+                                </div>
+                                <div className="text-midnight ">
+                                    {t.tickets.code}
+                                </div>
+                                <PaymentBadge status={t.status} />
+                            </div>
+                            <div className="text-midnight font-medium text-sm">
+                                {new Intl.NumberFormat("id", {
+                                    style: "currency",
+                                    currency: "IDR",
+                                    maximumFractionDigits: 0,
+                                }).format(t.amount)}
+                            </div>
+                            <div className="text-midnight font-medium text-sm">
+                                <Link
+                                    href={`/riwayat/${t.tickets.id}/pdf`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="  hover:underline"
+                                >
+                                    Cetak Tiket
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+                ))}
             </div>
         </UserLayout>
     );

@@ -57,7 +57,7 @@ export default function UserLayout({ children }) {
                                     </svg>
                                 </button>
                                 <a href="/" className="flex ms-2 md:me-24">
-                                    <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap text-bermuda">
+                                    <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap text-white">
                                         DLNFerry
                                     </span>
                                 </a>
@@ -84,7 +84,7 @@ export default function UserLayout({ children }) {
                                             <span className="inline-flex rounded-md dropdown dropdown-end">
                                                 <button
                                                     type="button"
-                                                    className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-cyan-50  hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
+                                                    className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white  hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
                                                 >
                                                     <span className="px-2">
                                                         {auth.user.name}
