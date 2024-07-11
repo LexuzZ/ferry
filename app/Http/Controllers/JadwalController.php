@@ -56,10 +56,7 @@ class JadwalController extends Controller
         ]);
         Jadwal::create($request->all());
         return redirect()->route('jadwals.index')->with('message', 'Info Jadwal berhasil disimpan');
-        // return Inertia::render('Jadwals/Show', [
-        //     'post' => $comment->post,
-        //     'comments' => $comment->post->comments,
-        // ])
+        
     }
 
     /**
