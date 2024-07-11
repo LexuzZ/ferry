@@ -98,6 +98,43 @@ class JadwalUserController extends Controller
             $totalVehiclePrice = $ticket->vehicles->sum('price');
             $totalPassengerPrice = $ticket->passengers->sum('price');
             $totalPrice = $totalVehiclePrice + $totalPassengerPrice;
+            $totalDewasa = $ticket->passengers->where('category', 'dewasa')->count();
+            $totalAnak = $ticket->passengers->where('category', 'anak')->count();
+            $totalPenumpang = $totalDewasa + $totalAnak;
+            $totalSepedaMotor = $ticket->vehicles->where('type', 'sepeda_motor')->count();
+            $totalMobil = $ticket->vehicles->where('type', 'mobil')->count();
+            $totalTruk = $ticket->vehicles->where('type', 'truk')->count();
+            $totalKendaraan = $totalSepedaMotor + $totalMobil + $totalTruk;
+            $ticket->totalVehiclePrice = $totalVehiclePrice;
+            $ticket->totalPassengerPrice = $totalPassengerPrice;
+            $ticket->totalPrice = $totalPrice;
+            $ticket->totalDewasa = $totalDewasa;
+            $ticket->totalAnak = $totalAnak;
+            $ticket->totalPenumpang = $totalPenumpang;
+            $ticket->totalKendaraan = $totalKendaraan;
+
+            return $ticket;
+        });
+        return Inertia::render('FormOrder',  [
+            'jadwal' => $jadwal,
+            'ticket' => $tickets,
+            'reservedSeats' => $reservedSeats,
+
+
+
+
+        ]);
+    }
+    public function history(Request $request)
+    {
+        $tickets = Ticket::with(['rutes', 'kapals', 'jadwals'])
+            ->where('user_id', $request->user()->id)
+            ->get();
+
+        $tickets->map(function ($ticket) {
+            $totalVehiclePrice = $ticket->vehicles->sum('price');
+            $totalPassengerPrice = $ticket->passengers->sum('price');
+            $totalPrice = $totalVehiclePrice + $totalPassengerPrice;
 
             $totalDewasa = $ticket->passengers->where('category', 'dewasa')->count();
             $totalAnak = $ticket->passengers->where('category', 'anak')->count();
@@ -118,14 +155,8 @@ class JadwalUserController extends Controller
 
             return $ticket;
         });
-        return Inertia::render('FormOrder',  [
-            'jadwal' => $jadwal,
+        return Inertia::render('RiwayatOrder',  [
             'ticket' => $tickets,
-            'reservedSeats' => $reservedSeats,
-
-
-
-
         ]);
     }
     public function riwayat(Request $request)
