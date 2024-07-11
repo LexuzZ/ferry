@@ -133,7 +133,7 @@ const Payment = ({ ticket, snapToken, user, passengers }) => {
                                     Bayar Sekarang
                                 </button>
                                 <Link
-                                    href={`/riwayat`}
+                                    href={`/history`}
                                     className="card-button flex items-center justify-center font-serif text-gray hover:bg-red"
                                 >
                                     Kembali
