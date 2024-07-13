@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,16 +16,40 @@ class UserController extends Controller
     public function index()
     {
         $userCount = User::count();
+        $userList = User::latest()->paginate(5);
+        $totalTransaction = Transaction::where('status', 'paid')->count();
+        $totalTransactionPending = Transaction::where('status', 'pending')->count();
+        $transaction = Transaction::with('tickets')->get();
         return Inertia::render('Dashboard', [
             'userCount' => $userCount,
+            'userList' => $userList,
+            'totalTransaction' => $totalTransaction,
+            'transactionPending' => $totalTransactionPending,
+            'transaction' => $transaction
 
         ]);
     }
-    // public function roles()
+    // public function download()
     // {
-    //    $roles = User::all();
-    //     return Inertia::render('Dashboard', ['roles' => $roles]);
+    //     // Contoh data yang akan diunduh
+    //     $data = Transaction::with('tickets')->get();
+
+    //     // Mengonversi data ke format CSV
+    //     $csvData = fopen('php://temp', 'r+');
+    //     foreach ($data as $row) {
+    //         fputcsv($csvData, $row);
+    //     }
+    //     rewind($csvData);
+        
+    //     // Mengembalikan response untuk mengunduh file CSV
+    //     return response()->streamDownload(function () use ($csvData) {
+    //         fpassthru($csvData);
+    //     }, 'data.csv', [
+    //         'Content-Type' => 'text/csv',
+    //         'Content-Disposition' => 'attachment; filename="data.csv"',
+    //     ]);
     // }
+   
 
     public function userlist()
     {
