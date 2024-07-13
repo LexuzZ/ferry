@@ -14,28 +14,30 @@ use Midtrans\Transaction as MidtransTransaction;
 
 class PaymentController extends Controller
 {
+
+   
     public function create(Ticket $ticket)
     {
         $totalVehiclePrice = $ticket->vehicles->sum('price');
         $totalPassengerPrice = $ticket->passengers->sum('price');
         $totalPrice = $totalVehiclePrice + $totalPassengerPrice;
 
-            $totalDewasa = $ticket->passengers->where('category', 'dewasa')->count();
-            $totalAnak = $ticket->passengers->where('category', 'anak')->count();
-            $totalPenumpang = $totalDewasa + $totalAnak;
-            $totalSepedaMotor = $ticket->vehicles->where('type', 'sepeda_motor')->count();
-            $totalMobil = $ticket->vehicles->where('type', 'mobil')->count();
-            $totalTruk = $ticket->vehicles->where('type', 'truk')->count();
-            $totalKendaraan = $totalSepedaMotor + $totalMobil + $totalTruk;
+        $totalDewasa = $ticket->passengers->where('category', 'dewasa')->count();
+        $totalAnak = $ticket->passengers->where('category', 'anak')->count();
+        $totalPenumpang = $totalDewasa + $totalAnak;
+        $totalSepedaMotor = $ticket->vehicles->where('type', 'sepeda_motor')->count();
+        $totalMobil = $ticket->vehicles->where('type', 'mobil')->count();
+        $totalTruk = $ticket->vehicles->where('type', 'truk')->count();
+        $totalKendaraan = $totalSepedaMotor + $totalMobil + $totalTruk;
 
-            // Menambahkan data tambahan ke dalam objek tiket
-            $ticket->totalVehiclePrice = $totalVehiclePrice;
-            $ticket->totalPassengerPrice = $totalPassengerPrice;
-            $ticket->totalPrice = $totalPrice;
-            $ticket->totalDewasa = $totalDewasa;
-            $ticket->totalAnak = $totalAnak;
-            $ticket->totalPenumpang = $totalPenumpang;
-            $ticket->totalKendaraan = $totalKendaraan;
+        // Menambahkan data tambahan ke dalam objek tiket
+        $ticket->totalVehiclePrice = $totalVehiclePrice;
+        $ticket->totalPassengerPrice = $totalPassengerPrice;
+        $ticket->totalPrice = $totalPrice;
+        $ticket->totalDewasa = $totalDewasa;
+        $ticket->totalAnak = $totalAnak;
+        $ticket->totalPenumpang = $totalPenumpang;
+        $ticket->totalKendaraan = $totalKendaraan;
 
 
         // Set konfigurasi Midtrans
@@ -83,7 +85,7 @@ class PaymentController extends Controller
         Config::$serverKey = config('services.midtrans.server_key');
 
         // Generate hash
-        $hashed = hash('sha512', $request->order_id.$request->status_code.$request->gross_amount.Config::$serverKey);
+        $hashed = hash('sha512', $request->order_id . $request->status_code . $request->gross_amount . Config::$serverKey);
 
         // Validasi hash signature
         if ($hashed == $request->signature_key) {
