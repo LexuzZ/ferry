@@ -3,6 +3,7 @@ import Pagination from "@/Components/Pagination";
 import React from "react";
 import { ImUsers } from "react-icons/im";
 import { Head, Link, router, useForm, usePage } from "@inertiajs/react";
+import Role from "@/Components/Role";
 
 export default function User() {
     const { data, users } = usePage().props;
@@ -48,7 +49,7 @@ export default function User() {
                                         scope="row"
                                         className=" py-4  text-midnight font-medium whitespace-nowrap dark:text-black"
                                     >
-                                        {user.role}
+                                       <Role role={user.role}/>
                                     </th>
                                 </tr>
                             );

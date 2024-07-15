@@ -59,6 +59,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/user', [UserController::class, 'userlist'])->name('user.store');
         Route::post('/rute', [RuteController::class, 'store'])->name('rutes.store');
         Route::post('/kapal', [KapalController::class, 'store'])->name('kapals.store');
+        Route::get('/donwload-data', [UserController::class, 'download'])->name('download.report');
     });
 
     Route::group(['middleware' => 'checkRole:user'], function () {
