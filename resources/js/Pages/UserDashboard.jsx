@@ -126,7 +126,7 @@ export default function userDashboard() {
 
                     {total === 0 ? (
                         <p className="text-center text-2xl mt-5 text-midnight">
-                            Tidak ada tiket
+                            Tidak ada tiket yang tersedia
                         </p>
                     ) : (
                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3">
