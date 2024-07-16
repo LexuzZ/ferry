@@ -6,6 +6,7 @@ use App\Http\Resources\Collection;
 use App\Models\Jadwal;
 use App\Models\Kapal;
 use App\Models\Rute;
+use App\Models\Ticket;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -23,6 +24,25 @@ class HomeController extends Controller
         return Inertia::render('Homepage', [
             'rutes' => $rutes,
            
+        ]);
+    }
+
+    // public function cekBooking(){
+    //     $cek = Ticket::with([ 'jadwals', 'rutes', 'kapals']);
+    //     return Inertia::render('CodeBooking', ['cek' =>$cek]);
+    // }
+    public function search(Request $request)
+    {
+        $code = $request->input('code');
+
+        $ticket = Ticket::with(['jadwals', 'rutes', 'kapals'])->where('code', $code)->first();
+
+        if (!$ticket) {
+            return redirect()->back()->withErrors(['message' => 'Ticket not found.']);
+        }
+
+        return Inertia::render('CodeBooking', [
+            'ticket' => $ticket,
         ]);
     }
 
