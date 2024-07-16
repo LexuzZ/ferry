@@ -2,24 +2,10 @@ import { Link } from "@inertiajs/react";
 import logo from "../../../public/logo.png";
 import { useState } from "react";
 import { Inertia } from "@inertiajs/inertia";
-const Navbar = ({ user, ticket }) => {
-    const [code, setCode] = useState("");
-
-    const handleSearch = (e) => {
-        e.preventDefault();
-        Inertia.get("/tickets/search", { code });
-    };
+const Navbar = ({ user }) => {
+    
     return (
-        // <div className="navbar bg-navy">
-        //     <div className="flex-1">
-        //         <a className="text-white text-xl">
-        //             PT Damai Lautan Nusantara
-        //         </a>
-        //     </div>
-        //     <div className="flex-none gap-2">
-        //
-        //     </div>
-        // </div>
+        
         <>
             {/* component */}
             <nav className=" bg-white  flex  justify-between items-center mx-auto px-8 h-20 text-midnight">

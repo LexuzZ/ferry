@@ -8,11 +8,16 @@ import dln3 from "../../../public/dln3.jpg";
 import dln2 from "../../../public/dln2.jpg";
 import dln1 from "../../../public/dln1.jpg";
 import axios from "axios";
-
+import { Inertia } from "@inertiajs/inertia";
 
 export default function Homepage(props) {
     const { rutes, jadwal, kapal } = usePage().props;
-    console.log(rutes);
+    const [code, setCode] = useState("");
+
+    const handleSearch = (e) => {
+        e.preventDefault();
+        Inertia.get("/tickets/search", { code });
+    };
 
     return (
         <div className=" min-h-screen  text-black text-2xl bg-grey">
@@ -20,10 +25,7 @@ export default function Homepage(props) {
             <Navbar user={props.auth.user} />
             <div className="carousel w-full bg-neutral">
                 <div id="slide1" className="carousel-item relative w-full">
-                    <img
-                        src={dln4}
-                        className="w-full"
-                    />
+                    <img src={dln4} className="w-full" />
                     <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
                         <a href="#slide4" className="btn btn-circle ">
                             ❮
@@ -34,10 +36,7 @@ export default function Homepage(props) {
                     </div>
                 </div>
                 <div id="slide2" className="carousel-item relative w-full">
-                    <img
-                        src={dln3}
-                        className="w-full"
-                    />
+                    <img src={dln3} className="w-full" />
                     <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
                         <a href="#slide1" className="btn btn-circle">
                             ❮
@@ -48,10 +47,7 @@ export default function Homepage(props) {
                     </div>
                 </div>
                 <div id="slide3" className="carousel-item relative w-full">
-                    <img
-                        src={dln2}
-                        className="w-full"
-                    />
+                    <img src={dln2} className="w-full" />
                     <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
                         <a href="#slide2" className="btn btn-circle">
                             ❮
@@ -62,10 +58,7 @@ export default function Homepage(props) {
                     </div>
                 </div>
                 <div id="slide4" className="carousel-item relative w-full">
-                    <img
-                        src={dln1}
-                        className="w-full"
-                    />
+                    <img src={dln1} className="w-full" />
                     <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
                         <a href="#slide3" className="btn btn-circle">
                             ❮
@@ -76,10 +69,23 @@ export default function Homepage(props) {
                     </div>
                 </div>
             </div>
-            <>
-  {/* component */}
-  
-</>
+            <div className="ml-10 pt-5">
+                <h1 className="text-midnight font-serif">Cari Tiket Anda</h1>
+                <form onSubmit={handleSearch}>
+                    <input
+                        type="text"
+                        value={code}
+                        onChange={(e) => setCode(e.target.value)}
+                        placeholder="Masukkan code tiket"
+                        className="rounded-md input-bordered "
+                    />
+                    <button type="submit" className="btn btn-sm bg-navy hover:bg-sea text-white ml-3">
+                       Search
+                    </button>
+                </form>
+            </div>
+
+            
 
             <NewsLists rutes={props.rutes.data} />
 
