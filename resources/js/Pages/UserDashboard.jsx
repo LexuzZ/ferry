@@ -31,7 +31,7 @@ export default function userDashboard() {
             <div className="pt-20  min-h-screen px-4">
                 <section className="max-w-6xl mx-auto  sm:px-6 lg:px-4 ">
                     <div className="text-center pb-4">
-                        <h2 className="text-base font-bold mb-1 ml-10 text-midnight flex items-center justify-start">
+                        <h2 className="text-xl font-bold font-serif mb-1 ml-10 text-midnight flex items-center justify-start">
                             Cari Tiket Sekarang
                         </h2>
                         <form
@@ -135,7 +135,7 @@ export default function userDashboard() {
                                     key={j.id}
                                     className="w-full bg-white rounded-lg sahdow-lg p-3 flex flex-col justify-start"
                                 >
-                                    <div className="px-2 py-2 text-base text-white bg-blue">
+                                    <div className="px-2 py-2 text-base text-white bg-navy">
                                         <h3>{j.nama_rute}</h3>
                                         <p className="mb-2 text-base text-midnight-400 font-normal">
                                             {j.nama_kapal}

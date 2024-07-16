@@ -26,11 +26,19 @@ class SeatSeeder extends Seeder
 
         foreach ($kapals as $kapal) {
             foreach ($jadwals as $jadwal) {
-                for ($i = 1; $i <= 200; $i++) { // 200 tempat duduk per jadwal
+                for ($i = 1; $i <= 100; $i++) {
                     Seat::create([
                         'kapal_id' => $kapal->id,
                         'jadwal_id' => $jadwal->id,
-                        'name' => 'Ranjang ' . $i,
+                        'name' => $i . 'A',
+                        'available' => true,
+                    ]);
+                }
+                for ($i = 1; $i <= 100; $i++) {
+                    Seat::create([
+                        'kapal_id' => $kapal->id,
+                        'jadwal_id' => $jadwal->id,
+                        'name' => $i . 'B',
                         'available' => true,
                     ]);
                 }

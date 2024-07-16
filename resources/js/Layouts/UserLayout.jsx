@@ -3,23 +3,23 @@ import React, { useEffect } from "react";
 import Dropdown from "@/Components/Dropdown";
 import NavLink from "@/Components/NavLink";
 import Swal from "sweetalert2";
-
+import logo from "../../../public/logo.png";
 
 export default function UserLayout({ children }) {
     const { auth, flash } = usePage().props;
     useEffect(() => {
         if (flash.success) {
             Swal.fire({
-                icon: 'success',
-                title: 'Berhasil',
+                icon: "success",
+                title: "Berhasil",
                 text: flash.success,
             });
         }
 
         if (flash.error) {
             Swal.fire({
-                icon: 'error',
-                title: 'Gagal',
+                icon: "error",
+                title: "Gagal",
                 text: flash.error,
             });
         }
@@ -28,11 +28,11 @@ export default function UserLayout({ children }) {
     return (
         <>
             <div className="min-h-screen bg-grey">
-                <nav className="fixed top-0 z-50 w-full  border-b border-gray-200 bg-navy dark:border-gray-700">
+                <nav className="fixed top-0 z-50 w-full  border-b border-gray-200 bg-white dark:border-gray-700">
                     <div className="px-3 py-3 lg:px-5 lg:pl-3">
                         <div className="flex items-center justify-between">
                             <div className="flex items-center justify-start rtl:justify-end">
-                                <button
+                                {/* <button
                                     data-drawer-target="logo-sidebar"
                                     data-drawer-toggle="logo-sidebar"
                                     aria-controls="logo-sidebar"
@@ -55,9 +55,23 @@ export default function UserLayout({ children }) {
                                             d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"
                                         />
                                     </svg>
-                                </button>
-                                <a href="/" className="flex ms-2 md:me-24">
-                                    <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap text-white">
+                                </button> */}
+                                <details className="sm:hidden dropdown bg-grey">
+                                    <summary className="btn m-1">Menu</summary>
+                                    <ul className=" menu dropdown-content bg-grey rounded-box z-[1] w-52 p-2 shadow">
+                                        <li>
+                                            <a>Item 1</a>
+                                        </li>
+                                        <li>
+                                            <a>Item 2</a>
+                                        </li>
+                                    </ul>
+                                </details>
+                                <a
+                                    href="/"
+                                    className="ms-2 md:me-24 hidden md:block"
+                                >
+                                    <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap text-midnight ">
                                         DLNFerry
                                     </span>
                                 </a>
@@ -91,7 +105,7 @@ export default function UserLayout({ children }) {
                                             <span className="inline-flex rounded-md dropdown dropdown-end">
                                                 <button
                                                     type="button"
-                                                    className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white  hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
+                                                    className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-midnight  hover:bg-navy hover:text-white focus:outline-none transition ease-in-out duration-150"
                                                 >
                                                     <span className="px-2">
                                                         {auth.user.name}

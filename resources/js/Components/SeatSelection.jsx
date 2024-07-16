@@ -64,10 +64,7 @@ const SeatSelection = ({ seats, reservedSeats, kapal_id, jadwal_id, totalAvailab
 
     return (
         <UserLayout>
-            <div>
-                <h2 className="pt-20 mb-5 font-bold text-center text-xl text-midnight">
-                    Pilih Tempat Duduk
-                </h2>
+            <div className="pt-20 pb-10">
                 <p className="text-midnight ml-4">Note : Pilih Tempat Ranjang Sesuai No. Seat</p>
                 <p className="text-midnight ml-4">Total Ranjang : {totalSeats}</p>
                 <p className="text-midnight ml-4">Tersedia : {totalAvailableSeats}</p>
@@ -86,7 +83,7 @@ const SeatSelection = ({ seats, reservedSeats, kapal_id, jadwal_id, totalAvailab
                         Kembali
                     </button>
                 </div>
-                <div className="grid lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-1 gap-3 mx-4">
+                <div className="grid lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-1 gap-4 mx-4 ">
                     {seats.map((seat) => (
                         <div
                             key={seat.id}

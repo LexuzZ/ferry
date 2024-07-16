@@ -70,7 +70,7 @@ const FormOrder = () => {
                     </div>
                 </div>
             )}
-            <div className="flex items-center  justify-center min-h-screen pt-24">
+            <div className="flex items-center sm:mx-2  justify-center min-h-screen pt-24">
                 <div className="container max-w-screen-lg mx-auto">
                     <div>
                         <h2 className="font-semibold text-xl text-gray">

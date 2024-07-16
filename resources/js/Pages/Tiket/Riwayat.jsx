@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import CetakTiket from "./CetakTiket";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import PaymentBadge from "@/Components/status";
-import { GrDocumentPdf } from "react-icons/gr";
+import { PiPrinter } from "react-icons/pi";
 
 const Riwayat = () => {
     const { ticket, transaksi } = usePage().props;
@@ -62,9 +62,9 @@ const Riwayat = () => {
                                             href={`/riwayat/${t.tickets.id}/pdf`}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="btn btn-link hover:bg-midnight hover:underline"
+                                            className="btn btn-ghost bg-white text-gray hover:underline text-sm"
                                         >
-                                            <GrDocumentPdf size={20} />
+                                            Print <PiPrinter size={20} />
                                         </Link>
                                     </td>
                                 </tr>
@@ -101,9 +101,9 @@ const Riwayat = () => {
                                     href={`/riwayat/${t.tickets.id}/pdf`}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="  hover:underline"
+                                    className="btn btn-ghost  hover:underline text-gray"
                                 >
-                                    Cetak Tiket
+                                    Print <PiPrinter size={20} />
                                 </Link>
                             </div>
                         </div>
