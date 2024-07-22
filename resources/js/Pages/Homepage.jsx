@@ -77,21 +77,18 @@ export default function Homepage(props) {
                         value={code}
                         onChange={(e) => setCode(e.target.value)}
                         placeholder="Masukkan code tiket"
-                        className="rounded-md input-bordered "
+                        className="rounded-md input-bordered text-midnight"
                     />
-                    <button type="submit" className="btn btn-sm bg-navy hover:bg-sea text-white ml-3">
-                       Search
+                    <button
+                        type="submit"
+                        className="btn btn-sm bg-navy hover:bg-sea text-white ml-3"
+                    >
+                        Search
                     </button>
                 </form>
             </div>
 
-            
-
             <NewsLists rutes={props.rutes.data} />
-
-            {/* <Ship kapal={props.kapal}/> */}
-            {/* <h1>{rute.id}</h1> */}
-            {/* <Detail/> */}
         </div>
     );
 }

@@ -31,7 +31,7 @@ export default function userDashboard() {
             <div className="pt-20  min-h-screen px-4">
                 <section className="max-w-6xl mx-auto  sm:px-6 lg:px-4 ">
                     <div className="text-center pb-4">
-                        <h2 className="text-xl font-bold font-serif mb-1 ml-10 text-midnight flex items-center justify-start">
+                        <h2 className="text-xl font-bold font-serif mb-1 pt-3 ml-16 lg:ml-10 text-midnight flex items-center justify-start">
                             Cari Tiket Sekarang
                         </h2>
                         <form
@@ -161,10 +161,12 @@ export default function userDashboard() {
                                             Total Ranjang : {j.total_seats}
                                         </p>
                                         <p className=" text-midnight font-serif mb-2">
-                                            Tersedia : {j.total_available} Ranjang
+                                            Tersedia : {j.total_available}{" "}
+                                            Ranjang
                                         </p>
                                         <p className=" text-midnight font-serif mb-2">
-                                            Tidak Tersedia : {j.total_unavailable} Ranjang
+                                            Tidak Tersedia :{" "}
+                                            {j.total_unavailable} Ranjang
                                         </p>
                                         <div className="bg-green">
                                             <Link
