@@ -29,7 +29,7 @@ const Navbar = ({ user }) => {
                 {/* login */}
                 <div className="flex-initial">
                     <div className="flex justify-end items-center relative">
-                        <div className="flex mr-4 items-center">
+                        {/* <div className="flex mr-4 items-center">
                             <a
                                 className="inline-block py-2 px-3 hover:bg-gray-200 rounded-full"
                                 href="#"
@@ -38,7 +38,7 @@ const Navbar = ({ user }) => {
                                     Beranda
                                 </div>
                             </a>
-                        </div>
+                        </div> */}
 
                         <div className="dropdown dropdown-end">
                             <div
