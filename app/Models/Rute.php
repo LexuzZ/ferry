@@ -19,7 +19,7 @@ class Rute extends Model
 
     public function kapals()
     {
-        return $this->hasMany(Kapal::class);
+        return $this->hasMany(Kapal::class, 'rute_id');
     }
     public function tickets()
     {

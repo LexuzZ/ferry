@@ -55,18 +55,7 @@ const Index = ({ rutes, ships }) => {
                             <th scope="col" className="px-6 py-3">
                                 Rute
                             </th>
-                            <th scope="col" className="px-6 py-3">
-                                Kapal
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                Tanggal
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                ETA
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                ETd
-                            </th>
+                            
 
                             <th scope="col" className=" py-3">
                                 Action
@@ -89,55 +78,7 @@ const Index = ({ rutes, ships }) => {
                                     {rute.nama_rute}
                                 </td>
 
-                                <td
-                                    scope="row"
-                                    className=" py-4  text-midnight  font-medium whitespace-nowrap dark:text-black"
-                                >
-                                    <ul>
-                                        {rute.kapals.map((kapal) => (
-                                            <li key={kapal.id}>
-                                                {kapal.nama_kapal}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </td>
-                                <td
-                                    scope="row"
-                                    className=" py-4  text-midnight  font-medium whitespace-nowrap dark:text-black"
-                                >
-                                    <ul>
-                                        {rute.jadwals.map((jadwal) => (
-                                            <li key={jadwal.id}>
-                                                {jadwal.tanggal}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </td>
-                                <td
-                                    scope="row"
-                                    className=" py-4  text-midnight  font-medium whitespace-nowrap dark:text-black"
-                                >
-                                    <ul>
-                                        {rute.jadwals.map((jadwal) => (
-                                            <li key={jadwal.id}>
-                                                {jadwal.tiba}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </td>
-
-                                <td
-                                    scope="row"
-                                    className=" py-4  text-midnight  font-medium whitespace-nowrap dark:text-black"
-                                >
-                                    <ul>
-                                        {rute.jadwals.map((jadwal) => (
-                                            <li key={jadwal.id}>
-                                                {jadwal.keberangkatan}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </td>
+                               
 
                                 <td class="action">
                                     <Link

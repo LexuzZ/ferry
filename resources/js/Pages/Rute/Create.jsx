@@ -6,9 +6,7 @@ import "../../../css/action.css";
 import "../../../css/trash.css";
 
 const Create = () => {
-    const { flash, errors, kapal, jadwal, rutes } = usePage().props;
-   
-    console.log(rutes);
+    const { flash, errors,  rutes } = usePage().props;
 
     const {
         data,
@@ -16,8 +14,6 @@ const Create = () => {
         reset,
         post: submit,
     } = useForm({
-        jadwal_id: "",
-        kapal_id: "",
         nama_rute: "",
     });
 
@@ -56,63 +52,8 @@ const Create = () => {
             )}
             <div className="flex items-center justify-center mt-5">
                 <div className="w-full max-w-sm p-4 bg-bermuda border border-gray rounded-lg shadow sm:p-6 md:p-8 dark:bg-white dark:border-gray">
-                    {/* <form className="max-w-md mx-auto" onSubmit={handleSubmit}>
-                        <div>
-                            <label
-                                for="email"
-                                className="block mb-2 text-sm font-medium text-midnight"
-                            >
-                                Jadwal ID
-                            </label>
-                            <select
-                                className="select select-bordered w-full max-w-xs"
-                                onChange={(e) =>
-                                    setData("jadwal_id", e.target.value)
-                                }
-                                value={data.jadwal_id}
-                            >
-                                <option value="" disabled selected>
-                                    Pilih Rute Asal
-                                </option>
-                                {jadwal.map((k) => (
-                                    <option key={k.id} value={k.id}>
-                                        {k.jadwal_id}
-                                    </option>
-                                ))}
-                            </select>
-
-                            <p className="text-red text-sm mt-2">
-                                {errors.jadwal_id}
-                            </p>
-                        </div>
-                        <div>
-                            <label
-                                for="email"
-                                className="block mb-2 text-sm font-medium text-midnight"
-                            >
-                                Kapal ID
-                            </label>
-                            <select
-                                className="select select-bordered w-full max-w-xs"
-                                onChange={(e) =>
-                                    setData("kapal_id", e.target.value)
-                                }
-                                value={data.kapal_id}
-                            >
-                                <option value="" disabled selected>
-                                    Pilih Kapal
-                                </option>
-                                {rute.map((k) => (
-                                    <option key={k.id} value={k.id}>
-                                        {k.kapal_id} 
-                                    </option>
-                                ))}
-                            </select>
-
-                            <p className="text-red text-sm mt-2">
-                                {errors.kapal_id}
-                            </p>
-                        </div>
+                    <form className="max-w-md mx-auto" onSubmit={handleSubmit}>
+                    
 
                         <div>
                             <label
@@ -121,22 +62,17 @@ const Create = () => {
                             >
                                 Rute Perjalanan
                             </label>
-                            <select
-                                className="select select-bordered w-full max-w-xs"
-                                onChange={(e) =>
-                                    setData("nama_rute", e.target.value)
-                                }
-                                value={data.nama_rute}
-                            >
-                                <option value="" disabled selected>
-                                    Pilih Rute Tujuan
-                                </option>
-                                {rute.map((k) => (
-                                    <option key={k.id} value={k.id}>
-                                      {k.id} -  {k.nama_rute}
-                                    </option>
-                                ))}
-                            </select>
+                            <input
+                                    type="text"
+                                    // id="default-search"
+                                    className=" border text-midnight border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                    placeholder="Tambah nama rute ..."
+                                    // required
+                                    onChange={(e) =>
+                                        setData("nama_rute", e.target.value)
+                                    }
+                                    value={data.nama_rute}
+                                />
 
                             <p className="text-red text-sm mt-2">
                                 {errors.nama_rute}
@@ -145,22 +81,22 @@ const Create = () => {
 
                         <button
                             type="submit"
-                            className="mt-4 me-3 text-white bg-metal hover:bg-blue hover:text-bermuda focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                            className="mt-4 me-3 text-white bg-green hover:bg-blue hover:text-bermuda focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                         >
                             Save
                         </button>
                         <Link
                             href="/rute"
-                            className="mt-4 text-white bg-metal hover:bg-blue hover:text-bermuda focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                            className="mt-4 text-white bg-red hover:bg-blue hover:text-bermuda focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                         >
                             Kembali
                         </Link>
-                    </form> */}
-                    {/* {errors.nama_kapal && (
+                    </form>
+                    {errors.nama_kapal && (
                     <p className="text-red-800 text-sm mt-2">
                         {errors.nama_kapal}
                     </p>
-                )} */}
+                )}
                 </div>
             </div>
         </AdminLayout>

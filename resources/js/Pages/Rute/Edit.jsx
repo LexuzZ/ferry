@@ -22,8 +22,8 @@ const Edit = ({ rute }) => {
 
     return (
         <AdminLayout>
-            <div className="text-center text-midnight text-2xl font-bold py-4">
-                Update Rute {data.jadwal_id}
+            <div className="text-center text-midnight text-2xl font-serif py-4">
+                Update Rute {data.nama_rute}
             </div>
             {flash.message && (
                 <div
@@ -47,7 +47,7 @@ const Edit = ({ rute }) => {
                 </div>
             )}
             <div className="flex items-center justify-center">
-                <div className="w-full max-w-sm p-4 bg-bermuda border border-gray rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray dark:border-gray">
+                <div className="w-full max-w-sm p-4 bg-bermuda border border-gray rounded-lg shadow sm:p-6 md:p-8 ">
                     <form className="max-w-md mx-auto" onSubmit={handleUpdate}>
                         <div>
                             <label
@@ -60,14 +60,14 @@ const Edit = ({ rute }) => {
                                 <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none"></div>
                                 <label
                                     for="email"
-                                    className="block mb-2 text-sm font-medium text-bermuda"
+                                    className="block mb-2 text-sm font-serif text-midnight"
                                 >
                                     Rute
                                 </label>
                                 <input
                                     type="text"
                                     // id="default-search"
-                                    className="bg-sea border border-gray-300 text-midnight text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                    className="bg-white border border-gray-300 text-midnight text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-grey"
                                     placeholder="enter ..."
                                     // required
                                     onChange={(e) =>
@@ -80,26 +80,16 @@ const Edit = ({ rute }) => {
                                 </p>
                             </div>
                         </div>
-                      
+
                         <button
                             type="submit"
-                            className="mt-4 text-bermuda bg-navy hover:bg-blue hover:text-bermuda focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                            className="mt-4 text-white bg-green hover:bg-blue hover:text-bermuda focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                         >
                             {processing ? "Processing..." : "UPDATE"}
                         </button>
                     </form>
-                    {/* {errors.nama_kapal && (
-                    <p className="text-red-800 text-sm mt-2">
-                        {errors.nama_kapal}
-                    </p>
-                )} */}
                 </div>
             </div>
-
-            {/* <div className="mt-4 flex justify-center">
-                {" "}
-                <Pagination jadwals={jadwals} />
-            </div> */}
         </AdminLayout>
     );
 };

@@ -17,18 +17,10 @@ class RuteController extends Controller
     public function index()
     {
         //
-        $rutes = Rute::with('jadwals', 'kapals')->get();
-        $ships = Kapal::withCount('seats')
-            ->with(['seats' => function ($query) {
-                $query->selectRaw('kapal_id, COUNT(*) as total_seats, SUM(available) as total_available')
-                    ->groupBy('kapal_id');
-            }])
-            ->get();
-
-
+        $rutes = Rute::all();
         return Inertia::render('Rute/Index', [
             'rutes' => $rutes,
-            'ships' => $ships,
+
         ]);
     }
 
@@ -43,11 +35,7 @@ class RuteController extends Controller
      */
     public function create()
     {
-        //
-
-
-
-        $rutes = Rute::with('jadwals', 'kapals')->get();
+        $rutes = Rute::all();
         return Inertia::render('Rute/Create', ['rutes' => $rutes]);
     }
 
@@ -58,15 +46,9 @@ class RuteController extends Controller
     {
         //
         $request->validate([
-            'jadwal_id' => 'required',
-            'kapal_id' => 'required',
             'nama_rute' => 'required',
-
-
         ], [
-            'jadwal_id.required' => "ID Jadwal tidak boleh kosong",
-            'kapal_id.required' => "ID kapal tidak boleh kosong",
-            'nama_rute.required' => "Rute nama_rute tidak boleh kosong",
+            'nama_rute.required' => "nama rute tidak boleh kosong",
 
         ]);
         Rute::create($request->all());
