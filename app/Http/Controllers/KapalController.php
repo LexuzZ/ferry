@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kapal;
+use App\Models\Rute;
 use App\Models\Seat;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -23,10 +24,7 @@ class KapalController extends Controller
     public function index()
     {
         //
-        $ships = Kapal::all();
-
-       
-        // $kapals = Kapal::with('jadwals')->get();
+        $ships = Kapal::with('rutes')->get();
         return Inertia::render('Kapal/Index', [
             'ships' => $ships
         ]);
@@ -38,10 +36,8 @@ class KapalController extends Controller
     public function create()
     {
         //
-
-        return Inertia::render('Kapal/Create', [
-            
-        ]);
+        $rutes = Rute::all();
+        return Inertia::render('Kapal/Create', ['rutes' => $rutes]);
     }
 
     /**
@@ -51,19 +47,14 @@ class KapalController extends Controller
     {
         //
         $request->validate([
-
+            'rute_id' => 'required|exists:rutes,id',
             'nama_kapal' => 'required',
-            'jadwal_id' => 'required',
-
-
-
         ], [
             'nama_kapal.required' => "nama kapal tidak boleh kosong",
 
         ]);
         Kapal::create($request->all());
         return redirect()->route('kapal.index')->with('message', 'data kapal berhasil disimpan');
-      
     }
 
     /**
