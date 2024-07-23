@@ -1,4 +1,3 @@
-
 import Navbar from "@/Components/Navbar";
 import { Link, router, usePage } from "@inertiajs/react";
 
@@ -6,15 +5,14 @@ const Detail = (props) => {
     const { auth, rute, kapal, jadwal } = usePage().props;
 
     return (
-        <div className="bg-grey min-h-screen">
+        <div className="bg-grey min-h-screen w-full">
             <Navbar user={props.auth.user} />
-            <div className="pt-24 text-center text-2xl text-midnight font-serif">
+            <div className="pt-16 text-center text-2xl text-midnight font-serif">
                 <h1>Detail Rute</h1>
             </div>
 
-            <div className="card card-side  shadow-xl  text-midnight">
+            <div className="card card-side  shadow  text-midnight">
                 <div className="card-body">
-                    
                     <h2 className="card-title ">{rute.nama_rute}</h2>
                     {rute.kapals.map((k) => (
                         <p key={k.id}>{k.nama_kapal}</p>
@@ -32,7 +30,10 @@ const Detail = (props) => {
                             </thead>
                             <tbody className="text-center">
                                 {rute.jadwals.map((j) => (
-                                    <tr key={j.id} className="hover hover:text-white">
+                                    <tr
+                                        key={j.id}
+                                        className="hover hover:text-gray"
+                                    >
                                         <td>{j.tanggal}</td>
                                         <td>{j.tiba}</td>
                                         <td>{j.keberangkatan}</td>
@@ -44,7 +45,9 @@ const Detail = (props) => {
                     </div>
 
                     <div className="card-actions justify-end">
-                        <Link className="btn btn-primary" href="/">Kembali</Link>
+                        <Link className="btn btn-primary" href="/">
+                            Kembali
+                        </Link>
                     </div>
                 </div>
             </div>

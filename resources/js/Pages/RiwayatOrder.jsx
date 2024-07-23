@@ -36,7 +36,7 @@ const RiwayatOrder = () => {
                 </div>
             )}
 
-            <h1 className="text-center pt-20 text-2xl mb-4 uppercase font-serif font-semibold text-midnight">
+            <h1 className="text-center pt-24 text-2xl mb-4  font-serif  text-midnight">
                 Riwayat Order
             </h1>
 

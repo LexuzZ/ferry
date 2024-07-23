@@ -9,8 +9,8 @@ const PDFPage = ({ ticket, reservedSeats }) => {
 
     return (
         <UserLayout>
-            <div className="pt-16 text-midnight">
-                <h1 className="text-2xl font-bold text-center mb-6 ">
+            <div className="pt-24 text-midnight pb-3 px-2">
+                <h1 className="text-2xl font-serif text-center mb-6 ">
                     Detail Tiket
                 </h1>
                 <div className="border p-4 rounded-lg shadow-lg max-w-md mx-auto">
