@@ -12,17 +12,17 @@ const Detail = (props) => {
                 <h1>Detail Rute</h1>
             </div>
 
-            <div className="card card-side  shadow-xl mx-24 text-midnight">
+            <div className="card card-side  shadow-xl  text-midnight">
                 <div className="card-body">
                     
-                    <h2 className="card-title">{rute.nama_rute}</h2>
+                    <h2 className="card-title ">{rute.nama_rute}</h2>
                     {rute.kapals.map((k) => (
                         <p key={k.id}>{k.nama_kapal}</p>
                     ))}
-                    <div className="overflow-x-auto">
-                        <table className="table">
+                    <div className="overflow-x-auto rounded-lg  shadow text-sm ">
+                        <table className="w-full">
                             {/* head */}
-                            <thead className="text-center text-midnight uppercase">
+                            <thead className="text-center border-b-1 border-midnight">
                                 <tr>
                                     <th>Tanggal</th>
                                     <th>Estimasi Tiba</th>

@@ -49,9 +49,12 @@ export default function UserLayout({ children }) {
                                                 Pesanan Saya
                                             </Link>
                                         </li>
+                                        <li>
+                                            <Link href={route("history.order")}>Riwayat Pesanan</Link>
+                                        </li>
                                     </ul>
                                 </details>
-                                <div className="sm:hidden ml-48 w-full sm:w-auto">
+                                <div className="sm:hidden ml-36 w-full sm:w-auto">
                                     <Dropdown>
                                         <Dropdown.Trigger>
                                             <span className="inline-flex rounded-md dropdown dropdown-end">

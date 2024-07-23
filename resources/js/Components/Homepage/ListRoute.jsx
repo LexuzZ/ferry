@@ -35,7 +35,7 @@ const isRute = (rutes) => {
                                     href={`${rute.id}/detail`}
                                     className="bg-gray text-sm text-white px-3 py-1 rounded-md"
                                 >
-                                    Cari Jadwal
+                                    Cari 
                                 </Link>
                             </td>
                         </tr>
