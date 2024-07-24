@@ -6,7 +6,6 @@ import "../../../css/action.css";
 
 const Jadwal = ({ jadwals }) => {
     const { flash, errors } = usePage().props;
-    console.log(jadwals);
 
     const deletePost = async (id) => {
         router.delete(`/jadwals/${id}`);

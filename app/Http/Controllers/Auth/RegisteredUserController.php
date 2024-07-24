@@ -41,6 +41,11 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
+        if ($request->role !== 'user') {
+            Alert::error('Registration Failed', 'Only users with the role "user" can register.');
+            return redirect()->back();
+        }
+
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,

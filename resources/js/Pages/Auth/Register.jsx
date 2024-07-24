@@ -10,7 +10,7 @@ export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
         name: "",
         email: "",
-        role: "",
+        role: "user",
         password: "",
         password_confirmation: "",
     });
@@ -74,10 +74,7 @@ export default function Register() {
                         className="select block w-full mt-1 rounded-md bg-grey text-midnight"
                         onChange={(e) => setData("role", e.target.value)}
                     >
-                        <option value="">-Pilih Role-</option>
                         <option value="user">User</option>
-                        <option value="admin">Admin</option>
-                        <option value="guest">Guest</option>
                     </select>
                 </div>
 
