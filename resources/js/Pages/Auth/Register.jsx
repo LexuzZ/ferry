@@ -71,7 +71,7 @@ export default function Register() {
                     <select
                         name="role" /* make sure this and data.role is the same */
                         id="role"
-                        className="block w-full mt-1 rounded-md"
+                        className="select block w-full mt-1 rounded-md bg-grey text-midnight"
                         onChange={(e) => setData("role", e.target.value)}
                     >
                         <option value="">-Pilih Role-</option>
@@ -126,7 +126,7 @@ export default function Register() {
                 <div className="flex items-center justify-end mt-4">
                     <Link
                         href={route("login")}
-                        className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                        className="underline text-sm text-metal hover:text-midnight rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                     >
                         Already registered?
                     </Link>

@@ -13,7 +13,7 @@ const Jadwal = ({ jadwals }) => {
     };
     return (
         <AdminLayout>
-            <div className="text-center text-midnight text-2xl font-bold py-4 uppercase">
+            <div className="text-center text-midnight text-2xl font-serif py-8 uppercase">
                 Informasi Jadwal
             </div>
             <Link

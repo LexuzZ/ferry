@@ -11,20 +11,20 @@ const Detail = (props) => {
                 <h1>Detail Rute</h1>
             </div>
 
-            <div className="card card-side  shadow  text-midnight">
+            <div className="card card-side  pt-10  text-midnight">
                 <div className="card-body">
                     <h2 className="card-title ">{rute.nama_rute}</h2>
                     {rute.kapals.map((k) => (
                         <p key={k.id}>{k.nama_kapal}</p>
                     ))}
-                    <div className="overflow-x-auto rounded-lg  shadow text-sm ">
+                    <div className="overflow-x-auto rounded-lg  text-sm ">
                         <table className="w-full">
                             {/* head */}
                             <thead className="text-center border-b-1 border-midnight">
                                 <tr>
                                     <th>Tanggal</th>
-                                    <th>Estimasi Tiba</th>
-                                    <th>Estimasi Keberangkatan</th>
+                                    <th>Est. Tiba</th>
+                                    <th>Est. Keberangkatan</th>
                                     <th> </th>
                                 </tr>
                             </thead>
@@ -34,7 +34,7 @@ const Detail = (props) => {
                                         key={j.id}
                                         className="hover hover:text-gray"
                                     >
-                                        <td>{j.tanggal}</td>
+                                        <td>{new Date(j.tanggal).toLocaleDateString()}</td>
                                         <td>{j.tiba}</td>
                                         <td>{j.keberangkatan}</td>
                                         {/* <td><Link className="bg-navy px-2 rounded-md py-1"  href={route("login")}>Pesan</Link></td> */}

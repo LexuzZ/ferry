@@ -28,7 +28,7 @@ const Index = () => {
     };
     return (
         <AdminLayout>
-            <div className="text-center text-midnight text-2xl font-serif py-4">
+            <div className="text-center text-midnight text-2xl font-serif py-8">
                 INFORMASI KAPAL
             </div>
             <Link
