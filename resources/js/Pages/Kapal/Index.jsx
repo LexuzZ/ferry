@@ -2,8 +2,8 @@ import Pagination from "@/Components/Pagination";
 import AdminLayout from "@/Layouts/AdminLayout";
 import { Head, Link, router, useForm, usePage } from "@inertiajs/react";
 import React from "react";
-import "../../../css/action.css";
-import "../../../css/trash.css";
+import { CiEdit } from "react-icons/ci";
+import { BsTrash } from "react-icons/bs";
 
 const Index = () => {
     const { flash, errors, kapals, ships, userJadwals } = usePage().props;
@@ -35,7 +35,7 @@ const Index = () => {
                 href="/kapal/create"
                 className="relative inline-flex items-center justify-center p-0.5 mb-2 ms-4 overflow-hidden text-sm font-medium hover:bg-blue text-midnight rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800"
             >
-                <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-gray   hover:text-midnight dark:bg-blue-900 rounded-md group-hover:bg-opacity-0">
+                <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-gray   hover:bg-blue  rounded-md ">
                     Tambah Kapal
                 </span>
             </Link>
@@ -66,12 +66,11 @@ const Index = () => {
                     <thead className="text-xs text-white uppercase bg-gray font-bold">
                         <tr>
                             <th scope="col" className="px-6 py-3">
-                                ID
-                            </th>
-                            <th scope="col" className="px-6 py-3">
                                 Nama Kapal
                             </th>
-                            
+                            <th scope="col" className="px-6 py-3">
+                                Action
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -80,28 +79,67 @@ const Index = () => {
                                 <tr key={kapal.id}>
                                     <th
                                         scope="row"
-                                        className=" py-4  text-midnight  font-medium whitespace-nowrap dark:text-black"
-                                    >
-                                        {kapal.id}
-                                    </th>
-                                    <th
-                                        scope="row"
-                                        className=" py-4  text-midnight  font-medium whitespace-nowrap dark:text-black"
+                                        className="py-4  text-midnight  font-medium whitespace-nowrap dark:text-black"
                                     >
                                         {kapal.nama_kapal}
                                     </th>
+                                    <td>
+                                        <Link
+                                            // href={`jadwals/edit/${jadwal.id}`}
+                                            className="btn me-5 bg-orange text-midnight hover:bg-yellow"
+                                        >
+                                            <CiEdit size={15} />
+                                        </Link>
 
-                                 
+                                        <div
+                                            className="btn bg-red text-midnight hover:bg-orange"
+                                            onClick={() =>
+                                                document
+                                                    .getElementById(
+                                                        "my_modal_1"
+                                                    )
+                                                    .showModal()
+                                            }
+                                        >
+                                            <BsTrash size={15} />
+                                        </div>
+                                        <dialog
+                                            id="my_modal_1"
+                                            className="modal"
+                                        >
+                                            <div className="modal-box bg-cyan-50">
+                                                <h3 className="font-bold text-lg">
+                                                    Hello!
+                                                </h3>
+                                                <p className="py-4 font-bold text-base">
+                                                    Apakah yakin menghapus data?
+                                                </p>
+                                                <div className="modal-action ">
+                                                    <form method="dialog">
+                                                        <button
+                                                            // onClick={() =>
+                                                            //     deletePost(
+                                                            //         jadwal.id
+                                                            //     )
+                                                            // }
+                                                            className="btn btn-error m-2"
+                                                        >
+                                                            Hapus
+                                                        </button>
+                                                        <button className="btn btn-ghost">
+                                                            Tutup
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </dialog>
+                                    </td>
                                 </tr>
                             );
                         })}
                     </tbody>
                 </table>
             </div>
-
-           
-
-           
         </AdminLayout>
     );
 };

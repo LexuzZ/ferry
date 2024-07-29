@@ -3,6 +3,8 @@ import { Head, Link, router, useForm, usePage } from "@inertiajs/react";
 import React from "react";
 import "../../../css/trash.css";
 import "../../../css/action.css";
+import { CiEdit } from "react-icons/ci";
+import { BsTrash } from "react-icons/bs";
 
 const Jadwal = ({ jadwals }) => {
     const { flash, errors } = usePage().props;
@@ -19,7 +21,7 @@ const Jadwal = ({ jadwals }) => {
                 href={`jadwals/create`}
                 className="relative inline-flex items-center justify-center p-0.5 mb-2 ms-4 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800"
             >
-                <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-navy dark:bg-blue-900 rounded-md group-hover:bg-opacity-0">
+                <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-gray hover:bg-blue  rounded-md ">
                     Tambah
                 </span>
             </Link>
@@ -46,7 +48,7 @@ const Jadwal = ({ jadwals }) => {
             )}
 
             <div className=" overflow-x-auto shadow-md sm:rounded-lg mt-6">
-                <table className="table table-md">
+                <table className="w-full text-sm text-center rtl:text-right text-midnight">
                     <thead className="text-xs text-center text-white uppercase bg-gray font-bold">
                         <tr className="">
                             <th scope="col" className="px-6 py-3">
@@ -68,32 +70,28 @@ const Jadwal = ({ jadwals }) => {
                         {jadwals.map((jadwal, i) => {
                             return (
                                 <tr key={i} className="text-center">
-                                    <td className=" py-4  text-midnight  font-medium whitespace-nowrap dark:text-black">
-                                        {jadwal.tanggal}
+                                    <td className=" py-4 text-midnight  font-medium whitespace-nowrap dark:text-black">
+                                        {new Date(
+                                            jadwal.tanggal
+                                        ).toLocaleDateString()}
                                     </td>
-                                    <td className=" py-4  text-midnight  font-medium whitespace-nowrap dark:text-black">
+                                    <td className="   text-midnight  font-medium whitespace-nowrap dark:text-black">
                                         {jadwal.tiba}
                                     </td>
-                                    <td className=" py-4  text-midnight  font-medium whitespace-nowrap dark:text-black">
+                                    <td className="   text-midnight  font-medium whitespace-nowrap dark:text-black">
                                         {jadwal.keberangkatan}
                                     </td>
 
-                                    <td class="action">
+                                    <td>
                                         <Link
                                             href={`jadwals/edit/${jadwal.id}`}
-                                            class="Btn"
+                                            className="btn me-5 bg-orange text-midnight hover:bg-yellow"
                                         >
-                                            Edit
-                                            <svg
-                                                class="svg"
-                                                viewBox="0 0 512 512"
-                                            >
-                                                <path d="M410.3 231l11.3-11.3-33.9-33.9-62.1-62.1L291.7 89.8l-11.3 11.3-22.6 22.6L58.6 322.9c-10.4 10.4-18 23.3-22.2 37.4L1 480.7c-2.5 8.4-.2 17.5 6.1 23.7s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L387.7 253.7 410.3 231zM160 399.4l-9.1 22.7c-4 3.1-8.5 5.4-13.3 6.9L59.4 452l23-78.1c1.4-4.9 3.8-9.4 6.9-13.3l22.7-9.1v32c0 8.8 7.2 16 16 16h32zM362.7 18.7L348.3 33.2 325.7 55.8 314.3 67.1l33.9 33.9 62.1 62.1 33.9 33.9 11.3-11.3 22.6-22.6 14.5-14.5c25-25 25-65.5 0-90.5L453.3 18.7c-25-25-65.5-25-90.5 0zm-47.4 168l-144 144c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6l144-144c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z"></path>
-                                            </svg>
+                                            <CiEdit size={15} />
                                         </Link>
 
                                         <div
-                                            class="del"
+                                            className="btn bg-red text-midnight hover:bg-orange"
                                             onClick={() =>
                                                 document
                                                     .getElementById(
@@ -102,7 +100,7 @@ const Jadwal = ({ jadwals }) => {
                                                     .showModal()
                                             }
                                         >
-                                            <div>Delete</div>
+                                            <BsTrash size={15} />
                                         </div>
                                         <dialog
                                             id="my_modal_1"

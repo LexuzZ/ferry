@@ -116,7 +116,7 @@ export default function userDashboard() {
                                     </div>
                                 </div>
                                 <div className="flex justify-center">
-                                    <button className="p-2 border w-1/4 rounded-md bg-metal text-white">
+                                    <button className="p-2 border w-1/4 rounded-md bg-metal text-white hover:bg-tahiti">
                                         Search
                                     </button>
                                 </div>
@@ -135,7 +135,7 @@ export default function userDashboard() {
                                     key={j.id}
                                     className="w-full bg-white rounded-lg sahdow-lg p-3 flex flex-col justify-start"
                                 >
-                                    <div className="px-2 py-2 text-base text-white bg-navy">
+                                    <div className="px-2 py-2 text-base text-white bg-gray">
                                         <h3>{j.nama_rute}</h3>
                                         <p className="mb-2 text-base text-midnight-400 font-normal">
                                             {j.nama_kapal}

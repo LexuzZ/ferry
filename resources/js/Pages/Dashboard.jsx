@@ -298,7 +298,7 @@ export default function Dashboard() {
                     </div> */}
                 </div>
                 <div className="grid grid-cols-1 lg:grid-cols-1 gap-4 mb-6">
-                    <div className="bg-white border border-gray shadow-md  p-6 rounded-md">
+                    <div className="bg-white shadow-md  p-6 rounded-md">
                         <div className="flex justify-start  items-center">
                             <div className="font-bold text-midnight ">
                                 Laporan Transaksi
@@ -310,7 +310,7 @@ export default function Dashboard() {
                             </div>
                         </div>
                         <div className="overflow-x-auto">
-                            <table className="w-full min-w-[460px]">
+                            <table className="w-full min-w-[460px]  text-sm text-center rtl:text-right text-midnight">
                                 <thead>
                                     <tr>
                                         <th className="text-[12px] uppercase tracking-wide font-medium text-white py-2 px-4 bg-gray text-left rounded-tl-md rounded-bl-md">

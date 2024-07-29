@@ -6,7 +6,7 @@ const isRute = (rutes) => {
         <div className="flex items-center justify-start mt-10 mx-4 sm:mx-10 text-midnight font-serif">
             Informasi Jadwal
         </div>
-        <div className="overflow-x-auto shadow-md sm:rounded-lg mt-4 mx-4 sm:mx-10 pb-5">
+        <div className="overflow-x-auto shadow-md sm:rounded-lg mt-4 mx-4 sm:mx-10 ">
             <table className="min-w-full text-center">
                 <thead className="text-xs text-white uppercase bg-gray font-bold">
                     <tr>

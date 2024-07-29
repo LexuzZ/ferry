@@ -39,7 +39,7 @@ export default function Register() {
                         id="name"
                         name="name"
                         value={data.name}
-                        className="mt-1 block w-full"
+                        className="mt-1 block w-full text-midnight"
                         autoComplete="name"
                         isFocused={true}
                         onChange={(e) => setData("name", e.target.value)}
@@ -57,7 +57,7 @@ export default function Register() {
                         type="email"
                         name="email"
                         value={data.email}
-                        className="mt-1 block w-full"
+                        className="mt-1 block w-full text-midnight" 
                         autoComplete="username"
                         onChange={(e) => setData("email", e.target.value)}
                         required
@@ -65,18 +65,19 @@ export default function Register() {
 
                     <InputError message={errors.email} className="mt-2" />
                 </div>
-                <div className="mt-4">
+                {/* <div className="mt-4">
                     <InputLabel forInput="role" value="Role" />
 
                     <select
-                        name="role" /* make sure this and data.role is the same */
+                        name="role" 
                         id="role"
-                        className="select block w-full mt-1 rounded-md bg-grey text-midnight"
+                        className="select block w-full mt-1 rounded-md text-midnight"
+                        disabled
                         onChange={(e) => setData("role", e.target.value)}
                     >
                         <option value="user">User</option>
                     </select>
-                </div>
+                </div> */}
 
                 <div className="mt-4">
                     <InputLabel htmlFor="password" value="Password" />
@@ -86,7 +87,7 @@ export default function Register() {
                         type="password"
                         name="password"
                         value={data.password}
-                        className="mt-1 block w-full"
+                        className="mt-1 block w-full text-midnight"
                         autoComplete="new-password"
                         onChange={(e) => setData("password", e.target.value)}
                         required
@@ -106,7 +107,7 @@ export default function Register() {
                         type="password"
                         name="password_confirmation"
                         value={data.password_confirmation}
-                        className="mt-1 block w-full"
+                        className="mt-1 block w-full text-midnight"
                         autoComplete="new-password"
                         onChange={(e) =>
                             setData("password_confirmation", e.target.value)

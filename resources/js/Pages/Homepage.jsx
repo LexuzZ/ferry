@@ -87,8 +87,9 @@ export default function Homepage(props) {
                     </button>
                 </form>
             </div>
-
-            <NewsLists rutes={props.rutes.data} />
+            <div className="py-5">
+                <NewsLists rutes={props.rutes.data} />
+            </div>
         </div>
     );
 }

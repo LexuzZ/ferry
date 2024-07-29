@@ -9,7 +9,7 @@ const AdminLayout = ({ children }) => {
     return (
         <>
             <div className="min-h-screen bg-grey">
-                <nav className="fixed top-0 z-50 w-full  border-b border-gray-200 bg-navy dark:border-gray-700">
+                <nav className="fixed top-0 z-50 w-full  border-b border-gray-200 bg-gray dark:border-gray-700">
                     <div className="px-3 py-3 lg:px-5 lg:pl-3">
                         <div className="flex items-center justify-between">
                             <div className="flex items-center justify-start rtl:justify-end">
@@ -118,7 +118,7 @@ const AdminLayout = ({ children }) => {
                 </nav>
                 <aside
                     id="logo-sidebar"
-                    className="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full   border-navy sm:translate-x-0 bg-navy"
+                    className="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full   border-navy sm:translate-x-0 bg-gray"
                     aria-label="Sidebar"
                 >
                     <div className="h-full px-3 pb-4 overflow-y-auto">

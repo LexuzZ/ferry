@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import { Inertia } from "@inertiajs/inertia";
 import UserLayout from "@/Layouts/UserLayout";
 import Swal from "sweetalert2";
+import { MdAirlineSeatIndividualSuite } from "react-icons/md";
+
 
 const SeatSelection = ({ seats, reservedSeats, kapal_id, jadwal_id, totalAvailableSeats, totalSeats, totalUnavailableSeats }) => {
     const [selectedSeats, setSelectedSeats] = useState([]);
@@ -96,7 +98,7 @@ const SeatSelection = ({ seats, reservedSeats, kapal_id, jadwal_id, totalAvailab
                                     : "bg-red"
                             }`}
                         >
-                            No. Seat : {seat.name}
+                            <MdAirlineSeatIndividualSuite size={20} className="me-4"/> {seat.name}
                             {!seat.available ? (
                                 <span className="ml-4 text-red-500">
                                     Tidak Tersedia
