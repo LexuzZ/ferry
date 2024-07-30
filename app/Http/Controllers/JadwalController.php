@@ -18,7 +18,7 @@ class JadwalController extends Controller
     public function index()
     {
 
-        $jadwals = Jadwal::with('kapals')->get();
+        $jadwals = Jadwal::with('kapals', 'rutes')->get();
        
         return Inertia::render('Jadwal/Index', [
             'jadwals' => $jadwals
@@ -33,8 +33,10 @@ class JadwalController extends Controller
         //
 
         $rute = Rute::all();
+        $kapal = Kapal::all();
         return Inertia::render('Jadwal/Create', [
             'rute' => $rute,
+            'kapal' => $kapal
         ]);
     }
 
@@ -48,6 +50,8 @@ class JadwalController extends Controller
             'tanggal' => 'required',
             'tiba' => 'required',
             'keberangkatan' => 'required',
+            'rute_id' => 'required|exists:rutes,id',
+            'kapal_id' => 'required|exists:kapals,id',
 
         ], [
             'required' => "data ini tidak boleh kosong",
@@ -93,6 +97,8 @@ class JadwalController extends Controller
             'tanggal' => 'required',
             'tiba' => 'required',
             'keberangkatan' => 'required',
+            'rute_id' => 'required|exists:rutes,id',
+            'kapal_id' => 'required|exists:kapals,id',
         ], [
             'required' => "data ini tidak boleh kosong",
         ]);

@@ -12,7 +12,8 @@ const Jadwal = () => {
         tanggal: "",
         tiba: "",
         keberangkatan: "",
-        nama_rute: "",
+        rute_id: "",
+        kapal_id:"",
     });
     const storeInfo = (e) => {
         e.preventDefault();
@@ -59,25 +60,51 @@ const Jadwal = () => {
                                 for="email"
                                 className="block mb-2 text-sm font-medium text-midnight"
                             >
-                                Pelabuhan Asal
+                                Rute Pelayaran
                             </label>
                             <select
-                                className="select select-bordered w-full max-w-xs"
+                                className="select w-full bg-white text-midnight"
                                 onChange={(e) =>
-                                    setData("nama_rute", e.target.value)
+                                    setData("rute_id", e.target.value)
                                 }
-                                value={data.nama_rute}
+                                value={data.rute_id}
                             >
                                 <option value="" disabled selected>Pilih Rute Asal</option>
-                                {rute.map((k) => (
-                                    <option key={k.id} value={k.id}>
-                                        {k.nama_rute}
+                                {rute.map((rute) => (
+                                    <option key={rute.id} value={rute.id}>
+                                        {rute.nama_rute}
                                     </option>
                                 ))}
                             </select>
 
                             <p className="text-red text-sm mt-2">
-                                {errors.asal}
+                                {errors.rute_id}
+                            </p>
+                        </div>
+                        <div>
+                            <label
+                                for="email"
+                                className="block mb-2 text-sm font-medium text-midnight"
+                            >
+                                Armada Kapal
+                            </label>
+                            <select
+                                className="select w-full bg-white text-midnight"
+                                onChange={(e) =>
+                                    setData("kapal_id", e.target.value)
+                                }
+                                value={data.kapal_id}
+                            >
+                                <option value="" disabled selected>Pilih Rute Asal</option>
+                                {kapal.map((kapal) => (
+                                    <option key={kapal.id} value={kapal.id}>
+                                        {kapal.nama_kapal}
+                                    </option>
+                                ))}
+                            </select>
+
+                            <p className="text-red text-sm mt-2">
+                                {errors.kapal_id}
                             </p>
                         </div>
                        
@@ -99,7 +126,7 @@ const Jadwal = () => {
                                 <input
                                     type="date"
                                     // id="default-search"
-                                    className="bg-sea border text-midnight border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                    className="bg-gray border text-midnight border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                     placeholder="enter ..."
                                     // required
                                     onChange={(e) =>
@@ -130,7 +157,7 @@ const Jadwal = () => {
                                 <input
                                     type="time"
                                     // id="default-search"
-                                    className="bg-sea border border-gray-300 text-midnight text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                    className="bg-gray border border-gray-300 text-midnight text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                     placeholder="enter ..."
                                     // required
                                     onChange={(e) =>
@@ -161,7 +188,7 @@ const Jadwal = () => {
                                 <input
                                     type="time"
                                     // id="default-search"
-                                    className="bg-sea border border-gray-300 text-midnight text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                    className="bg-gray border border-gray-300 text-midnight text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                     placeholder="enter ..."
                                     // required
                                     onChange={(e) =>

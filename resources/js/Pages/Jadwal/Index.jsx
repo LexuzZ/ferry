@@ -55,10 +55,16 @@ const Jadwal = ({ jadwals }) => {
                                 Tanggal
                             </th>
                             <th scope="col" className="px-6 py-3">
-                                ETA
+                                Tiba
                             </th>
                             <th scope="col" className="px-6 py-3">
-                                ETD
+                                Keberangkatan
+                            </th>
+                            <th scope="col" className="px-6 py-3">
+                                Armada
+                            </th>
+                            <th scope="col" className="px-6 py-3">
+                                Rute
                             </th>
 
                             <th scope="col" className="px-6 py-3">
@@ -81,17 +87,23 @@ const Jadwal = ({ jadwals }) => {
                                     <td className="   text-midnight  font-medium whitespace-nowrap dark:text-black">
                                         {jadwal.keberangkatan}
                                     </td>
+                                    <td className="   text-midnight  font-medium whitespace-nowrap dark:text-black">
+                                        {jadwal.kapals.nama_kapal}
+                                    </td>
+                                    <td className="   text-midnight  font-medium whitespace-nowrap dark:text-black">
+                                        {jadwal.rutes.nama_rute}
+                                    </td>
 
                                     <td>
                                         <Link
                                             href={`jadwals/edit/${jadwal.id}`}
-                                            className="btn me-5 bg-orange text-midnight hover:bg-yellow"
+                                            className="btn me-5 bg-orange text-white hover:bg-yellow"
                                         >
                                             <CiEdit size={15} />
                                         </Link>
 
                                         <div
-                                            className="btn bg-red text-midnight hover:bg-orange"
+                                            className="btn bg-red text-white hover:bg-orange"
                                             onClick={() =>
                                                 document
                                                     .getElementById(

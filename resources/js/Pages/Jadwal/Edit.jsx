@@ -5,13 +5,12 @@ import "../../../css/trash.css";
 import "../../../css/action.css";
 
 const Edit = ({ jadwal, rute, kapal }) => {
-    console.log(rute);
-    console.log(kapal);
+    
     const { flash, errors } = usePage().props;
     const [processing, setProcessing] = useState(false);
     const { data, setData } = useForm({
-        nama_rute: jadwal.nama_rute,
-        nama_kapal: jadwal.nama_kapal,
+        rute_id: jadwal.rute_id,
+        kapal_id: jadwal.kapal_id,
         tanggal: jadwal.tanggal,
         tiba: jadwal.tiba,
         keberangkatan: jadwal.keberangkatan,
@@ -21,8 +20,8 @@ const Edit = ({ jadwal, rute, kapal }) => {
         e.preventDefault();
         router.post(`/jadwals/edit/${jadwal.id}`, {
             _method: "patch",
-            nama_rute: data.nama_rute,
-            nama_kapal: data.nama_kapal,
+            rute_id: data.rute_id,
+            kapal_id: data.kapal_id,
             tanggal: data.tanggal,
             tiba: data.tiba,
             keberangkatan: data.keberangkatan,
@@ -56,7 +55,7 @@ const Edit = ({ jadwal, rute, kapal }) => {
                 </div>
             )}
             <div className="flex items-center justify-center">
-                <div className="w-full max-w-sm p-4 bg-midnight border rounded-lg shadow sm:p-6 md:p-8 dark:bg-white ">
+                <div className="w-full max-w-sm p-4 bg-grey border rounded-lg shadow sm:p-6 md:p-8  ">
                     <form className="max-w-md mx-auto" onSubmit={handleUpdate}>
                         <div>
                             <label
@@ -66,31 +65,59 @@ const Edit = ({ jadwal, rute, kapal }) => {
                                 Nama Kapal
                             </label>
                             <select
-                                className="select select-bordered w-full focus:ring-gray bg-grey text-midnight max-w-xs"
+                                className="select w-full bg-white text-midnight"
                                 onChange={(e) =>
-                                    setData("nama_kapal", e.target.value)
+                                    setData("kapal_id", e.target.value)
                                 }
-                                value={data.nama_kapal}
+                                value={data.kapal_id}
                             >
                                 <option value="" disabled selected>
                                     Pilih Kapal
                                 </option>
-                                {kapal.map((k) => (
-                                    <option key={k.id} value={k.id}>
-                                        {k.nama_kapal}
+                                {kapal.map((kapal) => (
+                                    <option key={kapal.id} value={kapal.id}>
+                                        {kapal.nama_kapal}
                                     </option>
                                 ))}
                             </select>
 
                             <p className="text-red text-sm mt-2">
-                                {errors.nama_kapal}
+                                {errors.kapal_id}
+                            </p>
+                        </div>
+                        <div>
+                            <label
+                                for="email"
+                                className="block mb-2 text-sm font-medium text-midnight"
+                            >
+                                Nama Rute
+                            </label>
+                            <select
+                                className="select w-full bg-white text-midnight"
+                                onChange={(e) =>
+                                    setData("rute_id", e.target.value)
+                                }
+                                value={data.rute_id}
+                            >
+                                <option value="" disabled selected>
+                                    Pilih Rute
+                                </option>
+                                {rute.map((rute) => (
+                                    <option key={rute.id} value={rute.id}>
+                                        {rute.nama_rute}
+                                    </option>
+                                ))}
+                            </select>
+
+                            <p className="text-red text-sm mt-2">
+                                {errors.rute_id}
                             </p>
                         </div>
 
                         <div>
                             <label
                                 for="default-search"
-                                className="mb-2 text-sm font-medium text-gray sr-only dark:text-midnight"
+                                className="mb-2 text-sm font-medium sr-only text-midnight"
                             >
                                 Search
                             </label>
@@ -105,7 +132,7 @@ const Edit = ({ jadwal, rute, kapal }) => {
                                 <input
                                     type="date"
                                     // id="default-search"
-                                    className="bg-grey border text-midnight border-gray  text-sm rounded-lg focus:ring-blue focus:border-blue block w-full p-2.5 "
+                                    className="bg-white border text-midnight border-gray  text-sm rounded-lg focus:ring-blue focus:border-blue block w-full p-2.5 "
                                     placeholder="enter ..."
                                     // required
                                     onChange={(e) =>
@@ -121,7 +148,7 @@ const Edit = ({ jadwal, rute, kapal }) => {
                         <div>
                             <label
                                 for="default-search"
-                                className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
+                                className="mb-2 text-sm font-medium text-gray-900 sr-only "
                             >
                                 Search
                             </label>
@@ -136,7 +163,7 @@ const Edit = ({ jadwal, rute, kapal }) => {
                                 <input
                                     type="time"
                                     // id="default-search"
-                                    className="bg-grey border text-midnight border-gray  text-sm rounded-lg focus:ring-blue focus:border-blue block w-full p-2.5 "
+                                    className="bg-white border text-midnight border-gray  text-sm rounded-lg focus:ring-blue focus:border-blue block w-full p-2.5 "
                                     placeholder="enter ..."
                                     // required
                                     onChange={(e) =>
@@ -157,7 +184,6 @@ const Edit = ({ jadwal, rute, kapal }) => {
                                 Search
                             </label>
                             <div className="relative">
-                                <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none"></div>
                                 <label
                                     for="email"
                                     className="block mb-2 text-sm font-medium text-midnight"
@@ -166,8 +192,8 @@ const Edit = ({ jadwal, rute, kapal }) => {
                                 </label>
                                 <input
                                     type="time"
-                                    // id="default-search"
-                                    className="bg-grey border text-midnight border-gray  text-sm rounded-lg focus:ring-blue focus:border-blue block w-full p-2.5 "
+                                    id="default-search"
+                                    className="bg-grey border text-midnight   text-sm rounded-lg focus:ring-blue focus:border-blue block w-full p-2.5 "
                                     placeholder="enter ..."
                                     // required
                                     onChange={(e) =>
@@ -187,11 +213,8 @@ const Edit = ({ jadwal, rute, kapal }) => {
                             {processing ? "Processing..." : "UPDATE"}
                         </button>
                     </form>
-                    
                 </div>
             </div>
-
-            
         </AdminLayout>
     );
 };
