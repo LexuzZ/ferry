@@ -4,9 +4,29 @@ import { Head, Link, router, useForm, usePage } from "@inertiajs/react";
 import React from "react";
 import { CiEdit } from "react-icons/ci";
 import { BsTrash } from "react-icons/bs";
+import { Inertia } from "@inertiajs/inertia";
+import Swal from "sweetalert2";
 
 const Index = ({ rutes, ships }) => {
     const { flash, errors } = usePage().props;
+
+    const handleDelete = (id) => {
+        Swal.fire({
+            title: "Apakah Anda yakin?",
+            text: "Anda tidak dapat mengembalikan ini!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Ya, hapus!",
+            cancelButtonText: "Batal",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Inertia.delete(`/rute/${id}`);
+                Swal.fire("Terhapus!", "Rute telah dihapus.", "success");
+            }
+        });
+    };
 
     return (
         <AdminLayout>
@@ -69,48 +89,17 @@ const Index = ({ rutes, ships }) => {
                                 <td className=" ">
                                     <Link
                                         href={`rute/edit/${rute.id}`}
-                                        className="btn me-5 bg-orange text-midnight hover:bg-yellow"
+                                        className="btn me-5 bg-orange text-white hover:bg-yellow"
                                     >
-                                        <CiEdit size={15} />
+                                        <CiEdit size={20} />
                                     </Link>
 
                                     <div
-                                        className="btn bg-red text-midnight hover:bg-orange"
-                                        onClick={() =>
-                                            document
-                                                .getElementById("my_modal_1")
-                                                .showModal()
-                                        }
+                                        className="btn bg-red text-white hover:bg-orange"
+                                        onClick={() => handleDelete(rute.id)}
                                     >
-                                        <BsTrash size={15} />
+                                        <BsTrash size={20}/>
                                     </div>
-                                    <dialog id="my_modal_1" className="modal">
-                                        <div className="modal-box bg-cyan-50">
-                                            <h3 className="font-bold text-lg">
-                                                Hello!
-                                            </h3>
-                                            <p className="py-4 font-bold text-base">
-                                                Apakah yakin menghapus data?
-                                            </p>
-                                            <div className="modal-action ">
-                                                <form method="dialog">
-                                                    <button
-                                                        onClick={() =>
-                                                            deletePost(
-                                                                jadwal.id
-                                                            )
-                                                        }
-                                                        className="btn btn-error m-2"
-                                                    >
-                                                        Hapus
-                                                    </button>
-                                                    <button className="btn btn-ghost">
-                                                        Tutup
-                                                    </button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </dialog>
                                 </td>
                             </tr>
                         ))}

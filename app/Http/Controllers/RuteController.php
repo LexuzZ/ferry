@@ -105,11 +105,10 @@ class RuteController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy( $id)
     {
-        //
-        $rute = Rute::findOrFail($id); // mencari data berdasarkan id
+        $rute = Rute::findOrFail($id);
         $rute->delete();
-        return back()->with('message', 'Info Jadwal berhasil dihapus');
+        return back()->with('message', 'Data Rute berhasil dihapus');
     }
 }

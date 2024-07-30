@@ -14,7 +14,7 @@ class Kapal extends Model
     ];
     public function rutes()
     {
-        return $this->belongsTo(Rute::class);
+        return $this->belongsTo(Rute::class, 'rute_id');
     }
     public function jadwals()
     {
