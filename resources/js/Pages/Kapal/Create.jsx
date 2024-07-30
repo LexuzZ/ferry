@@ -52,7 +52,7 @@ const Create = () => {
                 </div>
             )}
             <div className="flex items-center justify-center">
-                <div className="w-full max-w-sm p-4 bg-bermuda border border-gray rounded-lg shadow sm:p-6 md:p-8  dark:border-gray">
+                <div className="w-full max-w-sm p-4 bg-grey border border-gray rounded-lg shadow sm:p-6 md:p-8  dark:border-gray">
                     <form className="max-w-md mx-auto" onSubmit={handleSubmit}>
                         <div>
                             <label
@@ -62,7 +62,7 @@ const Create = () => {
                                 Rute
                             </label>
                             <select
-                            className="select w-full bg-white"
+                            className="select w-full bg-white text-midnight"
                                 value={data.rute_id}
                                 onChange={(e) =>
                                     setData("rute_id", e.target.value)

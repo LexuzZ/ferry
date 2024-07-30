@@ -1,14 +1,13 @@
 import AdminLayout from "@/Layouts/AdminLayout";
 import { Head, Link, router, useForm, usePage } from "@inertiajs/react";
 import React, { useState } from "react";
-import "../../../css/trash.css";
-import "../../../css/action.css";
 
-const Edit = ({ kapal }) => {
+const Edit = ({ kapal, rutes }) => {
     const { flash, errors } = usePage().props;
     const [processing, setProcessing] = useState(false);
     const { data, setData } = useForm({
         nama_kapal: kapal.nama_kapal,
+        rute_id: kapal.rute_id,
     });
     const handleUpdate = (e) => {
         setProcessing(true);
@@ -17,13 +16,14 @@ const Edit = ({ kapal }) => {
             _method: "patch",
 
             nama_kapal: data.nama_kapal,
+            rute_id: data.rute_id,
         });
     };
 
     return (
         <AdminLayout>
-            <div className="text-center text-midnight text-2xl font-bold py-4">
-                Update Jadwal jadwal_id {data.nama_kapal}
+            <div className="text-center text-midnight text-2xl font-serif py-4">
+                Update {data.nama_kapal}
             </div>
             {flash.message && (
                 <div
@@ -47,9 +47,30 @@ const Edit = ({ kapal }) => {
                 </div>
             )}
             <div className="flex items-center justify-center">
-                <div className="w-full max-w-sm p-4 bg-bermuda border border-gray rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray dark:border-gray">
+                <div className="w-full max-w-sm p-4 bg-grey border border-gray rounded-lg shadow sm:p-6 md:p-8  dark:border-gray">
                     <form className="max-w-md mx-auto" onSubmit={handleUpdate}>
-                      
+                        <div>
+                            <label
+                                for="email"
+                                className="block mb-2 text-sm font-medium text-midnight"
+                            >
+                                Rute
+                            </label>
+                            <select
+                                className="select w-full bg-white text-midnight"
+                                value={data.rute_id}
+                                onChange={(e) =>
+                                    setData("rute_id", e.target.value)
+                                }
+                            >
+                                {rutes.map((rute) => (
+                                    <option key={rute.id} value={rute.id}>
+                                        {rute.nama_rute}
+                                    </option>
+                                ))}
+                            </select>
+                            {errors.rute_id && <span>{errors.rute_id}</span>}
+                        </div>
                         <div>
                             <label
                                 for="default-search"
@@ -61,14 +82,14 @@ const Edit = ({ kapal }) => {
                                 <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none"></div>
                                 <label
                                     for="email"
-                                    className="block mb-2 text-sm font-medium text-bermuda"
+                                    className="block mb-2 text-sm font-medium text-midnight mt-2"
                                 >
-                                    tujuan
+                                    Armada Kapal
                                 </label>
                                 <input
                                     type="text"
                                     // id="default-search"
-                                    className="bg-sea border border-gray-300 text-midnight text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                    className="bg-white border border-gray-300 text-midnight text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                     placeholder="enter ..."
                                     // required
                                     onChange={(e) =>
@@ -83,23 +104,13 @@ const Edit = ({ kapal }) => {
                         </div>
                         <button
                             type="submit"
-                            className="mt-4 text-bermuda bg-navy hover:bg-blue hover:text-bermuda focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                            className="mt-4 text-white bg-green hover:bg-blue hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                         >
                             {processing ? "Processing..." : "UPDATE"}
                         </button>
                     </form>
-                    {/* {errors.nama_kapal && (
-                    <p className="text-red-800 text-sm mt-2">
-                        {errors.nama_kapal}
-                    </p>
-                )} */}
                 </div>
             </div>
-
-            {/* <div className="mt-4 flex justify-center">
-                {" "}
-                <Pagination jadwals={jadwals} />
-            </div> */}
         </AdminLayout>
     );
 };

@@ -4,6 +4,8 @@ import { Head, Link, router, useForm, usePage } from "@inertiajs/react";
 import React from "react";
 import { CiEdit } from "react-icons/ci";
 import { BsTrash } from "react-icons/bs";
+import Swal from "sweetalert2";
+import { Inertia } from "@inertiajs/inertia";
 
 const Index = () => {
     const { flash, errors, kapals, ships, userJadwals } = usePage().props;
@@ -23,8 +25,22 @@ const Index = () => {
         e.preventDefault();
         submit(route("kapals.store"));
     };
-    const deletePost = async (id) => {
-        router.delete(`/kapal/${id}`);
+    const handleDelete = (id) => {
+        Swal.fire({
+            title: "Apakah Anda yakin?",
+            text: "Anda tidak dapat mengembalikan ini!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Ya, hapus!",
+            cancelButtonText: "Batal",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Inertia.delete(`/kapal/${id}`);
+                Swal.fire("Terhapus!", "Rute telah dihapus.", "success");
+            }
+        });
     };
     return (
         <AdminLayout>
@@ -66,7 +82,10 @@ const Index = () => {
                     <thead className="text-xs text-white uppercase bg-gray font-bold">
                         <tr>
                             <th scope="col" className="px-6 py-3">
-                                Nama Kapal
+                                Armada
+                            </th>
+                            <th scope="col" className="px-6 py-3">
+                                Rute
                             </th>
                             <th scope="col" className="px-6 py-3">
                                 Action
@@ -83,56 +102,28 @@ const Index = () => {
                                     >
                                         {kapal.nama_kapal}
                                     </th>
+                                    <th
+                                        scope="row"
+                                        className="py-4  text-midnight  font-medium whitespace-nowrap dark:text-black"
+                                    >
+                                        {kapal.rutes.nama_rute}
+                                    </th> 
                                     <td>
                                         <Link
-                                            // href={`jadwals/edit/${jadwal.id}`}
-                                            className="btn me-5 bg-orange text-midnight hover:bg-yellow"
+                                            href={`kapal/edit/${kapal.id}`}
+                                            className="btn me-5 bg-orange text-white hover:bg-yellow"
                                         >
-                                            <CiEdit size={15} />
+                                            <CiEdit size={20} />
                                         </Link>
 
                                         <div
-                                            className="btn bg-red text-midnight hover:bg-orange"
+                                            className="btn bg-red text-white hover:bg-orange"
                                             onClick={() =>
-                                                document
-                                                    .getElementById(
-                                                        "my_modal_1"
-                                                    )
-                                                    .showModal()
+                                                handleDelete(kapal.id)
                                             }
                                         >
-                                            <BsTrash size={15} />
+                                            <BsTrash size={20} />
                                         </div>
-                                        <dialog
-                                            id="my_modal_1"
-                                            className="modal"
-                                        >
-                                            <div className="modal-box bg-cyan-50">
-                                                <h3 className="font-bold text-lg">
-                                                    Hello!
-                                                </h3>
-                                                <p className="py-4 font-bold text-base">
-                                                    Apakah yakin menghapus data?
-                                                </p>
-                                                <div className="modal-action ">
-                                                    <form method="dialog">
-                                                        <button
-                                                            // onClick={() =>
-                                                            //     deletePost(
-                                                            //         jadwal.id
-                                                            //     )
-                                                            // }
-                                                            className="btn btn-error m-2"
-                                                        >
-                                                            Hapus
-                                                        </button>
-                                                        <button className="btn btn-ghost">
-                                                            Tutup
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </dialog>
                                     </td>
                                 </tr>
                             );
