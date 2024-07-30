@@ -51,10 +51,12 @@ Route::group(['middleware' => 'auth'], function () {
         Route::patch('/jadwals/edit/{jadwal}', [JadwalController::class, 'update'])->name('jadwals.update');
         Route::get('/rute/edit/{rute}', [RuteController::class, 'edit'])->name('rute.edit');
         Route::patch('/rute/edit/{rute}', [RuteController::class, 'update'])->name('rute.update');
+        Route::delete('rute/{id}', [RuteController::class, 'destroy'])->name('rute.destroy');
         Route::get('/kapal', [KapalController::class, 'index'])->name('kapal.index');
         Route::get('/kapal/create', [KapalController::class, 'create'])->name('kapals.create');
         Route::get('/kapal/edit/{kapal}', [KapalController::class, 'edit'])->name('kapals.edit');
         Route::patch('/kapal/edit/{kapal}', [KapalController::class, 'update'])->name('kapals.update');
+        Route::delete('kapal/{id}', [KapalController::class, 'destroy'])->name('kapal.destroy');
         Route::get('/rute', [RuteController::class, 'index'])->name('rute.index');
         Route::get('/rute/create', [RuteController::class, 'create'])->name('rute.create');
         Route::get('/dashboard', [UserController::class, 'index'])->name('user.count');
