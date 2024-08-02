@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Passenger;
 use App\Models\Ticket;
 use App\Models\Transaction;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Midtrans\Config;
@@ -79,6 +80,20 @@ class PaymentController extends Controller
 
         ]);
     }
+
+    // public function midtrans(Request $request): JsonResponse
+    // {
+    //     $data = $request;
+
+    //     $this->updateStatus($data);
+
+    //     return response()->json(
+    //         [
+    //             'status' => 'success',
+    //             'message' => 'success'
+    //         ]
+    //     );
+    // }
 
     public function callback(Request $request)
     {

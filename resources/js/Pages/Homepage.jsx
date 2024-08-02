@@ -69,14 +69,14 @@ export default function Homepage(props) {
                     </div>
                 </div>
             </div>
-            <div className="ml-10 pt-5">
+            <div className="ml-5 pt-5">
                 <h1 className="text-midnight font-serif">Cari Tiket Anda</h1>
                 <form onSubmit={handleSearch}>
                     <input
                         type="text"
                         value={code}
                         onChange={(e) => setCode(e.target.value)}
-                        placeholder="Masukkan code tiket"
+                        placeholder="Masukkan Kode Tiket "
                         className="rounded-md input-bordered text-midnight"
                     />
                     <button

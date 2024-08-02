@@ -71,7 +71,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('userDashboard', [JadwalUserController::class, 'index'])->name('userDashboard');
         Route::get('userJadwal/{id}/detail', [RuteController::class, 'show'])->name('rute.show');
         Route::get('order/{id}', [JadwalUserController::class, 'order'])->name('order.ticket');
-        Route::get('order', [TicketController::class, 'index'])->name('home');
+        // Route::get('order', [TicketController::class, 'index'])->name('home');
         Route::post('order', [TicketController::class, 'store'])->name('ticket.store');
         Route::get('history', [JadwalUserController::class, 'history'])->name('history.order');
         Route::get('riwayat', [JadwalUserController::class, 'riwayat'])->name('jadwal.riwayat');

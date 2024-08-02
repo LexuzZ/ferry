@@ -1,17 +1,17 @@
 import UserLayout from "@/Layouts/UserLayout";
 import { Link, router, useForm, usePage } from "@inertiajs/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../../css/orders.css";
 import { Inertia } from "@inertiajs/inertia";
 
 const FormOrder = () => {
-    const {
-        jadwal,
-        ticket,
-        flash,
-        reservedSeats,
-    } = usePage().props;
-    console.log(reservedSeats);
+    const { jadwal, ticket, flash, reservedSeats, auth } = usePage().props;
+
+    useEffect(() => {
+        if (!auth.user) {
+            Inertia.get(route("login"));
+        }
+    }, [auth.user]);
     const { data, setData, post, errors } = useForm({
         jadwal_id: jadwal.id,
         kapal_id: jadwal.kapal_id,
@@ -40,6 +40,11 @@ const FormOrder = () => {
 
     const addVehicle = () => {
         setData("vehicles", [...data.vehicles, { type: "mobil" }]);
+    };
+    const removeVehicle = (index) => {
+        const newVehicles = [...data.vehicles];
+        newVehicles.splice(index, 1);
+        setData("vehicles", newVehicles);
     };
 
     const handleSubmit = (e) => {
@@ -106,13 +111,10 @@ const FormOrder = () => {
                                     <p>{jadwal.keberangkatan}</p>
 
                                     {reservedSeats.map((seat) => (
-                                        <ul
-                                            key={seat.id}
-                                         >
+                                        <ul key={seat.id}>
                                             <li> No. Seat : {seat.name}</li>
-                                        
                                         </ul>
-                                    ))} 
+                                    ))}
                                 </div>
 
                                 <div className="lg:col-span-2">
@@ -187,7 +189,6 @@ const FormOrder = () => {
                                                                 )
                                                             }
                                                         >
-                                                            
                                                             <option value="dewasa">
                                                                 Dewasa
                                                             </option>
@@ -223,16 +224,16 @@ const FormOrder = () => {
                                         </div>
                                         <div className="md:col-span-2">
                                             <label
-                                                htmlFor="state"
+                                                htmlFor="vehicles"
                                                 className="text-midnight"
                                             >
-                                                Kendaraan / Vehicles
+                                                Kendaraan / Vehicles (Optional)
                                             </label>
                                             {data.vehicles.map(
                                                 (vehicle, index) => (
                                                     <div key={index}>
                                                         <select
-                                                            className="select w-full mb-2  max-w-xs bg-grey text-midnight flex items-center justify-center"
+                                                            className="select w-full max-w-xs mb-2 appearance-none outline-none text-midnight bg-grey"
                                                             value={vehicle.type}
                                                             onChange={(e) =>
                                                                 handleVehicleChange(
@@ -243,16 +244,27 @@ const FormOrder = () => {
                                                                 )
                                                             }
                                                         >
-                                                            <option value="mobil">
-                                                                Mobil
-                                                            </option>
                                                             <option value="sepeda_motor">
                                                                 Sepeda Motor
+                                                            </option>
+                                                            <option value="mobil">
+                                                                Mobil
                                                             </option>
                                                             <option value="truk">
                                                                 Truk
                                                             </option>
                                                         </select>
+                                                        <button
+                                                            type="button"
+                                                            onClick={() =>
+                                                                removeVehicle(
+                                                                    index
+                                                                )
+                                                            }
+                                                            className="py-2 px-2 rounded-md font-serif bg-red text-white hover:bg-darkred"
+                                                        >
+                                                            Hapus Kendaraan
+                                                        </button>
                                                         {errors.vehicles &&
                                                             errors.vehicles[
                                                                 index
@@ -269,13 +281,15 @@ const FormOrder = () => {
                                                     </div>
                                                 )
                                             )}
-                                            {/* <button
-                                                type="button"
-                                                onClick={addVehicle}
-                                                className="py-2 px-2 my-2 rounded-md font-serif bg-grey text-midnight hover:bg-transparent"
-                                            >
-                                                Tambah Kendaraan
-                                            </button> */}
+                                            <div className="my-2">
+                                                <button
+                                                    type="button"
+                                                    onClick={addVehicle}
+                                                    className="py-2 px-2 rounded-md font-serif bg-grey text-midnight hover:bg-transparent"
+                                                >
+                                                    Tambah Kendaraan
+                                                </button>
+                                            </div>
                                         </div>
                                         <div className="">
                                             <label
@@ -309,7 +323,6 @@ const FormOrder = () => {
                     </div>
                 </div>
             </div>
-           
         </UserLayout>
     );
 };
