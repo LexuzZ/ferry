@@ -5,6 +5,7 @@ import CetakTiket from "./CetakTiket";
 import UserLayout from "@/Layouts/UserLayout";
 
 const PDFPage = ({ ticket, reservedSeats }) => {
+    const isPaid = ticket.transactions.some(t => t.status === 'paid');
     
 
     return (
@@ -64,7 +65,32 @@ const PDFPage = ({ ticket, reservedSeats }) => {
                     </div>
                 </div>
                 <div className="text-center mt-6">
-                    <PDFDownloadLink
+                {isPaid ? (
+                        <PDFDownloadLink
+                            document={<CetakTiket ticket={ticket} reservedSeats={reservedSeats} />}
+                            fileName="tiket.pdf"
+                        >
+                            {({ blob, url, loading, error }) =>
+                                loading ? (
+                                    <button
+                                        className="bg-blue text-white py-2 px-4 rounded"
+                                        disabled
+                                    >
+                                        Loading document...
+                                    </button>
+                                ) : (
+                                    <button className="bg-green text-white py-2 px-4 rounded hover:bg-blue">
+                                        Download PDF
+                                    </button>
+                                )
+                            }
+                        </PDFDownloadLink>
+                    ) : (
+                        <span className="text-red-500">
+                            Tiket belum dibayar. Tidak dapat mengunduh PDF.
+                        </span>
+                    )}
+                    {/* <PDFDownloadLink
                         document={<CetakTiket ticket={ticket} reservedSeats={reservedSeats}/>}
                         fileName="tiket.pdf"
                     >
@@ -82,7 +108,7 @@ const PDFPage = ({ ticket, reservedSeats }) => {
                                 </button>
                             )
                         }
-                    </PDFDownloadLink>
+                    </PDFDownloadLink> */}
                 </div>
             </div>
         </UserLayout>

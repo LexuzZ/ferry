@@ -29,7 +29,7 @@ class TicketController extends Controller
             'nama' => 'required|string',
             'ktp' => 'required|string',
             'passengers' => 'required|array',
-            'vehicles' => 'required|array',
+            'vehicles' => 'nullable|array',
         ]);
 
         $ticket = Ticket::create([

@@ -187,6 +187,11 @@ class JadwalUserController extends Controller
         $ticket = Ticket::with(['rutes', 'kapals', 'jadwals', 'vehicles', 'passengers', 'transactions'])->where('id', $id)
             ->where('user_id', $request->user()->id)
             ->firstOrFail();
+        $isPaid = $ticket->transactions->contains('status', 'paid');
+
+        if (!$isPaid) {
+            return back()->with('error', 'Tiket belum dibayar. Tidak dapat mencetak tiket.');
+        }
         $userId = $request->user()->id;
         $reservedSeats = Seat::where('user_id', $userId)
             ->where('available', false)

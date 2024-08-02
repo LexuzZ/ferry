@@ -21,4 +21,8 @@ class Transaction extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    const STATUS_UNPAID = 'unpaid';
+    const STATUS_PENDING = 'pending';
+    const STATUS_PAID = 'paid';
 }
