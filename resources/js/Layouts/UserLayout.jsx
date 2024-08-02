@@ -54,13 +54,13 @@ export default function UserLayout({ children }) {
                                         </li>
                                     </ul>
                                 </details>
-                                <div className="sm:hidden ml-36 w-full sm:w-auto">
+                                <div className="sm:hidden ml-40 w-full sm:w-auto">
                                     <Dropdown>
                                         <Dropdown.Trigger>
                                             <span className="inline-flex rounded-md dropdown dropdown-end">
                                                 <button
                                                     type="button"
-                                                    className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-midnight  hover:bg-gray hover:text-white focus:outline-none transition ease-in-out duration-150"
+                                                    className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-midnight  hover:bg-grey  focus:outline-none transition ease-in-out duration-150"
                                                 >
                                                     <span className="px-2">
                                                         {auth.user.name}
@@ -123,7 +123,7 @@ export default function UserLayout({ children }) {
                                             <span className="inline-flex rounded-md dropdown dropdown-end">
                                                 <button
                                                     type="button"
-                                                    className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-midnight  hover:bg-gray hover:text-white focus:outline-none transition ease-in-out duration-150"
+                                                    className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-midnight  hover:bg-grey focus:outline-none transition ease-in-out duration-150"
                                                 >
                                                     <span className="px-2">
                                                         {auth.user.name}

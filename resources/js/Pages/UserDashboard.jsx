@@ -31,7 +31,7 @@ export default function userDashboard() {
             <div className="pt-20  min-h-screen px-4">
                 <section className="max-w-6xl mx-auto  sm:px-6 lg:px-4 ">
                     <div className="text-center pb-4">
-                        <h2 className="text-xl font-bold font-serif mb-1 pt-3 ml-16 lg:ml-10 text-midnight flex items-center justify-start">
+                        <h2 className="text-xl font-serif mb-1 pt-3 ml-16 lg:ml-10 text-midnight flex items-center justify-start">
                             Cari Tiket Sekarang
                         </h2>
                         <form
@@ -74,7 +74,7 @@ export default function userDashboard() {
                                                 className="text-midnight ml-2"
                                             />
                                             <select
-                                                className=" bg-grey ml-3 select select-bordered text-midnight"
+                                                className=" bg-grey  select select-bordered text-midnight"
                                                 value={searchKapal}
                                                 onChange={(e) =>
                                                     setSearchKapal(
@@ -116,7 +116,7 @@ export default function userDashboard() {
                                     </div>
                                 </div>
                                 <div className="flex justify-center">
-                                    <button className="p-2 border w-1/4 rounded-md bg-metal text-white hover:bg-tahiti">
+                                    <button className="btn btn-sm border w-1/4 rounded-md bg-metal text-white hover:bg-green">
                                         Search
                                     </button>
                                 </div>

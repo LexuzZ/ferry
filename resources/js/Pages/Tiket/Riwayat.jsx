@@ -20,7 +20,7 @@ const Riwayat = () => {
                 <div className="overflow-x-auto rounded-lg  shadow mx-4 hidden md:block">
                     <table className="w-full">
                         {/* head */}
-                        <thead className="bg-navy border-b-2 border-midnight">
+                        <thead className="bg-gray border-b-2 ">
                             <tr className="text-white font-serif">
                                 <th className="p-3 text-sm font-semibold tracking-wide">
                                     Kode Tiket
@@ -40,7 +40,7 @@ const Riwayat = () => {
                             {transaksi.map((t) => (
                                 <tr
                                     key={t.id}
-                                    className="text-center  bg-white"
+                                    className="text-center  bg-grey"
                                 >
                                     <td className="p-3 text-sm text-midnight whitespace-nowrap">
                                         {t.tickets.code}
@@ -62,7 +62,7 @@ const Riwayat = () => {
                                             href={`/riwayat/${t.tickets.id}/pdf`}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="btn btn-ghost bg-white text-gray hover:underline text-sm"
+                                            className="btn btn-sm hover:bg-orange bg-green text-white font-bold hover:underline text-sm"
                                         >
                                             Print <PiPrinter size={20} />
                                         </Link>
@@ -101,7 +101,7 @@ const Riwayat = () => {
                                     href={`/riwayat/${t.tickets.id}/pdf`}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="btn btn-ghost  hover:underline text-gray"
+                                    className="btn btn-sm hover:bg-orange bg-green text-white font-bold hover:underline text-sm"
                                 >
                                     Print <PiPrinter size={20} />
                                 </Link>

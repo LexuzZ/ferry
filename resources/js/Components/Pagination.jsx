@@ -15,11 +15,11 @@ export default function Pagination({ jadwal }) {
                                 href={link.url}
                                 class={`flex items-center justify-center px-4 h-10 ms-0 leading-tight  ${
                                     link.active
-                                        ? "bg-midnight "
-                                        : "bg-navy text-midnight"
-                                }  border border-e-0 border-gray  text-white  dark:hover:bg-gray ${
+                                        ? "bg-midnight text-white"
+                                        : "bg-white text-midnight"
+                                }  border border-e-0 border-midnight  text-midnight hover:text-white hover:bg-gray ${
                                     i == 0 && "rounded-s-lg"
-                                } ${i == links.length - 1 && "rounded-e-lg"} ${
+                                } ${i == links.length - 1 && "rounded-e-md"} ${
                                     links.current
                                 } ${i==0 && currentPage == 1 && "hidden"} ${currentPage == lastPage && i == links.length - 1 && "hidden"}`}
                             >

@@ -300,26 +300,26 @@ export default function Dashboard() {
                 <div className="grid grid-cols-1 lg:grid-cols-1 gap-4 mb-6">
                     <div className="bg-white shadow-md  p-6 rounded-md">
                         <div className="flex justify-start  items-center">
-                            <div className="font-bold text-midnight ">
+                            <div className="font-bold text-midnight mb-4">
                                 Laporan Transaksi
                             </div>
                         </div>
-                        <div className="flex items-center justify-end">
+                        {/* <div className="flex items-center justify-end">
                             <div className="btn btn-link hover:text-midnight">
                                 <DownloadButton />
                             </div>
-                        </div>
+                        </div> */}
                         <div className="overflow-x-auto">
                             <table className="w-full min-w-[460px]  text-sm text-center rtl:text-right text-midnight">
                                 <thead>
                                     <tr>
-                                        <th className="text-[12px] uppercase tracking-wide font-medium text-white py-2 px-4 bg-gray text-left rounded-tl-md rounded-bl-md">
+                                        <th className="text-[12px] uppercase tracking-wide font-medium text-white py-2 px-4 bg-gray  rounded-tl-md rounded-bl-md">
                                             Penumpang
                                         </th>
-                                        <th className="text-[12px] uppercase tracking-wide font-medium text-white py-2 px-4 bg-gray text-left">
+                                        <th className="text-[12px] uppercase tracking-wide font-medium text-white py-2 px-4 bg-gray ">
                                             Total
                                         </th>
-                                        <th className="text-[12px] uppercase tracking-wide font-medium text-white py-2 px-4 bg-gray text-left rounded-tr-md rounded-br-md">
+                                        <th className="text-[12px] uppercase tracking-wide font-medium text-white py-2 px-4 bg-gray  rounded-tr-md rounded-br-md">
                                             Status Pembayaran
                                         </th>
                                     </tr>
