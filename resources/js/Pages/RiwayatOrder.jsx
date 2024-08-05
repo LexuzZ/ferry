@@ -73,9 +73,7 @@ const RiwayatOrder = () => {
                                 Total
                             </th>
 
-                            <th className="p-3 text-sm font font-semibold tracking-wide font-serif">
-                                Action
-                            </th>
+                           
                         </tr>
                     </thead>
                     <tbody>
@@ -116,16 +114,16 @@ const RiwayatOrder = () => {
                                     }).format(t.totalPrice)}
                                 </td>
 
-                                <td className="p-3 text-sm text-midnight whitespace-nowrap">
-                                    <Link
-                                        className="btn btn-link text-midnight hover:underline"
-                                        href={`/payment/${t.id}`}
-                                    >
-                                        <PiShoppingCartSimpleDuotone
-                                            size={20}
-                                        />
-                                    </Link>
-                                </td>
+                                // <td className="p-3 text-sm text-midnight whitespace-nowrap">
+                                //     <Link
+                                //         className="btn btn-link text-midnight hover:underline"
+                                //         href={`/payment/${t.id}`}
+                                //     >
+                                //         <PiShoppingCartSimpleDuotone
+                                //             size={20}
+                                //         />
+                                //     </Link>
+                                // </td>
                             </tr>
                         ))}
                     </tbody>
