@@ -72,8 +72,6 @@ const RiwayatOrder = () => {
                             <th className="p-3 text-sm font font-semibold tracking-wide font-serif">
                                 Total
                             </th>
-
-                           
                         </tr>
                     </thead>
                     <tbody>
@@ -113,17 +111,6 @@ const RiwayatOrder = () => {
                                         maximumFractionDigits: 0,
                                     }).format(t.totalPrice)}
                                 </td>
-
-                                // <td className="p-3 text-sm text-midnight whitespace-nowrap">
-                                //     <Link
-                                //         className="btn btn-link text-midnight hover:underline"
-                                //         href={`/payment/${t.id}`}
-                                //     >
-                                //         <PiShoppingCartSimpleDuotone
-                                //             size={20}
-                                //         />
-                                //     </Link>
-                                // </td>
                             </tr>
                         ))}
                     </tbody>
@@ -193,9 +180,7 @@ const RiwayatOrder = () => {
                             Kendaraan
                         </div>
                         <div className="flex text-midnight font-normal text-sm">
-                            <div className="w-1/2 ">
-                                Tipe Kendaraan
-                            </div>
+                            <div className="w-1/2 ">Tipe Kendaraan</div>
                             {t.vehicles.map((v) => (
                                 <div className="w-1/2">{v.type}</div>
                             ))}
