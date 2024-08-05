@@ -65,7 +65,7 @@ const Create = () => {
                             <input
                                     type="text"
                                     // id="default-search"
-                                    className=" border text-midnight  text-sm rounded-lg focus:ring-blue focus:border-blue block w-full p-2.5   "
+                                    className=" border bg-grey text-midnight  text-sm rounded-lg focus:ring-blue focus:border-blue block w-full p-2.5   "
                                     placeholder="Tambah nama rute ..."
                                     // required
                                     onChange={(e) =>

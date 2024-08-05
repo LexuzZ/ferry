@@ -43,8 +43,8 @@ const RiwayatOrder = () => {
             <div className="overflow-x-auto rounded-lg mx-4 shadow  hidden md:block">
                 <table className="w-full">
                     {/* head */}
-                    <thead className="bg-navy border-b-2 border-midnight">
-                        <tr className="text-white font-serif">
+                    <thead className="bg-white border-b-2 ">
+                        <tr className="text-midnight font-serif">
                             <th className="p-3 text-sm font font-semibold tracking-wide font-serif">
                                 Kode Tiket
                             </th>

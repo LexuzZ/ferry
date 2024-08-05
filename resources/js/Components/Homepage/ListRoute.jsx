@@ -8,7 +8,7 @@ const isRute = (rutes) => {
         </div>
         <div className="overflow-x-auto shadow-md sm:rounded-lg mt-4 mx-4 sm:mx-10 ">
             <table className="min-w-full text-center">
-                <thead className="text-xs text-white uppercase bg-gray font-bold">
+                <thead className="text-xs text-midnight bg-white border-b-2 uppercase  font-bold">
                     <tr>
                         <th scope="col" className="px-4 py-3">
                             ID
@@ -21,7 +21,7 @@ const isRute = (rutes) => {
                         </th>
                     </tr>
                 </thead>
-                <tbody className="bg-silver text-center">
+                <tbody className="text-midnight bg-white text-center">
                     {rutes.map((rute) => (
                         <tr key={rute.id} className="hover:bg-gray-100">
                             <td className="px-4 py-4 text-midnight text-sm font-medium whitespace-nowrap">
@@ -33,7 +33,7 @@ const isRute = (rutes) => {
                             <td className="px-4 py-4">
                                 <Link
                                     href={`${rute.id}/detail`}
-                                    className="bg-gray text-sm text-white px-3 py-1 rounded-md"
+                                    className="bg-navy text-sm text-white px-4 py-2 rounded-md"
                                 >
                                     Cari 
                                 </Link>

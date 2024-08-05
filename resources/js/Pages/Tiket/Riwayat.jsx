@@ -20,8 +20,8 @@ const Riwayat = () => {
                 <div className="overflow-x-auto rounded-lg  shadow mx-4 hidden md:block">
                     <table className="w-full">
                         {/* head */}
-                        <thead className="bg-gray border-b-2 ">
-                            <tr className="text-white font-serif">
+                        <thead className="bg-white border-b-2 ">
+                            <tr className="text-midnight font-serif">
                                 <th className="p-3 text-sm font-semibold tracking-wide">
                                     Kode Tiket
                                 </th>
@@ -40,7 +40,7 @@ const Riwayat = () => {
                             {transaksi.map((t) => (
                                 <tr
                                     key={t.id}
-                                    className="text-center  bg-grey"
+                                    className="text-center  bg-white"
                                 >
                                     <td className="p-3 text-sm text-midnight whitespace-nowrap">
                                         {t.tickets.code}

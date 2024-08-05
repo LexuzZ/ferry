@@ -30,7 +30,7 @@ const Edit = ({ jadwal, rute, kapal }) => {
 
     return (
         <AdminLayout>
-            <div className="text-center text-midnight text-2xl font-serif py-8">
+            <div className="text-center text-midnight text-2xl font-serif py-2">
                 Update Jadwal {new Date(data.tanggal).toLocaleDateString()}
             </div>
             {flash.message && (
@@ -55,7 +55,7 @@ const Edit = ({ jadwal, rute, kapal }) => {
                 </div>
             )}
             <div className="flex items-center justify-center">
-                <div className="w-full max-w-sm p-4 bg-grey border rounded-lg shadow sm:p-6 md:p-8  ">
+                <div className="w-full max-w-sm p-4 bg-white border rounded-lg shadow sm:p-6 md:p-8  ">
                     <form className="max-w-md mx-auto" onSubmit={handleUpdate}>
                         <div>
                             <label
@@ -65,7 +65,7 @@ const Edit = ({ jadwal, rute, kapal }) => {
                                 Nama Kapal
                             </label>
                             <select
-                                className="select w-full bg-white text-midnight"
+                                className="select w-full bg-grey text-midnight"
                                 onChange={(e) =>
                                     setData("kapal_id", e.target.value)
                                 }
@@ -93,7 +93,7 @@ const Edit = ({ jadwal, rute, kapal }) => {
                                 Nama Rute
                             </label>
                             <select
-                                className="select w-full bg-white text-midnight"
+                                className="select w-full bg-grey text-midnight"
                                 onChange={(e) =>
                                     setData("rute_id", e.target.value)
                                 }
@@ -132,7 +132,7 @@ const Edit = ({ jadwal, rute, kapal }) => {
                                 <input
                                     type="date"
                                     // id="default-search"
-                                    className="bg-white border text-midnight border-gray  text-sm rounded-lg focus:ring-blue focus:border-blue block w-full p-2.5 "
+                                    className="bg-grey border text-midnight border-gray  text-sm rounded-lg focus:ring-blue focus:border-blue block w-full p-2.5 "
                                     placeholder="enter ..."
                                     // required
                                     onChange={(e) =>
@@ -163,7 +163,7 @@ const Edit = ({ jadwal, rute, kapal }) => {
                                 <input
                                     type="time"
                                     // id="default-search"
-                                    className="bg-white border text-midnight border-gray  text-sm rounded-lg focus:ring-blue focus:border-blue block w-full p-2.5 "
+                                    className="bg-grey border text-midnight border-gray  text-sm rounded-lg focus:ring-blue focus:border-blue block w-full p-2.5 "
                                     placeholder="enter ..."
                                     // required
                                     onChange={(e) =>
@@ -179,7 +179,7 @@ const Edit = ({ jadwal, rute, kapal }) => {
                         <div>
                             <label
                                 for="default-search"
-                                className="mb-2 text-sm font-medium text-midnight sr-only dark:text-white"
+                                className="mb-2 text-sm font-medium text-midnight sr-only "
                             >
                                 Search
                             </label>

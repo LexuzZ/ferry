@@ -12,7 +12,7 @@ const Detail = (props) => {
                 <h1>Detail Rute</h1>
             </div>
 
-            <div className="card card-side shadow-lg  text-midnight">
+            <div className="card card-side shadow mt-4 mx-4 bg-white text-midnight">
                 <div className="card-body">
                     <h2 className="card-title hidden md:block">
                         {rute.nama_rute}
@@ -23,9 +23,9 @@ const Detail = (props) => {
                         </p>
                     ))}
                     <div className="overflow-x-auto rounded-lg   mx-4 hidden md:block">
-                        <table className="w-full">
+                        <table className="w-full ">
                             {/* head */}
-                            <thead className="text-center border-b-1 border-midnight">
+                            <thead className="text-center border-b-2 ">
                                 <tr>
                                     <th className="p-3 text-sm font-semibold tracking-wide">
                                         Tanggal
@@ -56,8 +56,8 @@ const Detail = (props) => {
                                         <td className="p-3 text-sm text-midnight whitespace-nowrap">
                                             {j.keberangkatan}
                                         </td>
-                                        <td className="btn btn-sm hover:bg-orange bg-green text-white font-bold hover:underline text-sm ">
-                                            <Link href={`/order/${j.id}`}>
+                                        <td className="btn btn-sm m-3  hover:bg-orange bg-green text-white font-bold hover:underline text-sm ">
+                                            <Link href={`/order/${j.id}`} >
                                                 Pesan
                                             </Link>
                                         </td>

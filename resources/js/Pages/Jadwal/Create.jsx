@@ -53,7 +53,7 @@ const Jadwal = () => {
                 </div>
             )}
             <div className="flex items-center justify-center">
-                <div className="w-full max-w-sm p-4 bg-bermuda border border-gray rounded-lg shadow sm:p-6 md:p-8 dark:bg-grey dark:border-gray">
+                <div className="w-full max-w-sm p-4 bg-white border border-gray rounded-lg shadow sm:p-6 md:p-8  ">
                     <form className="max-w-md mx-auto" onSubmit={storeInfo}>
                         <div>
                             <label
@@ -63,7 +63,7 @@ const Jadwal = () => {
                                 Rute Pelayaran
                             </label>
                             <select
-                                className="select w-full bg-white text-midnight"
+                                className="select w-full bg-grey text-midnight"
                                 onChange={(e) =>
                                     setData("rute_id", e.target.value)
                                 }
@@ -89,7 +89,7 @@ const Jadwal = () => {
                                 Armada Kapal
                             </label>
                             <select
-                                className="select w-full bg-white text-midnight"
+                                className="select w-full bg-grey text-midnight"
                                 onChange={(e) =>
                                     setData("kapal_id", e.target.value)
                                 }
@@ -111,7 +111,7 @@ const Jadwal = () => {
                         <div>
                             <label
                                 for="default-search"
-                                className="mb-2 text-sm font-medium text-gray sr-only dark:text-bermuda"
+                                className="mb-2 text-sm font-medium text-midnight sr-only "
                             >
                                 Search
                             </label>
@@ -126,7 +126,7 @@ const Jadwal = () => {
                                 <input
                                     type="date"
                                     // id="default-search"
-                                    className="bg-gray border text-midnight border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                    className="bg-grey border text-midnight border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                     placeholder="enter ..."
                                     // required
                                     onChange={(e) =>
@@ -142,7 +142,7 @@ const Jadwal = () => {
                         <div>
                             <label
                                 for="default-search"
-                                className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
+                                className="mb-2 text-sm font-medium text-midnight sr-only "
                             >
                                 Search
                             </label>
@@ -157,7 +157,7 @@ const Jadwal = () => {
                                 <input
                                     type="time"
                                     // id="default-search"
-                                    className="bg-gray border border-gray-300 text-midnight text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                    className="bg-grey border border-gray-300 text-midnight text-sm rounded-lg focus:ring-blue focus:border-blue block w-full p-2.5 "
                                     placeholder="enter ..."
                                     // required
                                     onChange={(e) =>
@@ -173,12 +173,12 @@ const Jadwal = () => {
                         <div>
                             <label
                                 for="default-search"
-                                className="mb-2 text-sm font-medium text-midnight sr-only dark:text-white"
+                                className="mb-2 text-sm font-medium text-midnight sr-only "
                             >
                                 Search
                             </label>
                             <div className="relative">
-                                <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none"></div>
+                                {/* <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none"></div> */}
                                 <label
                                     for="email"
                                     className="block mb-2 text-sm font-medium text-midnight"
@@ -188,7 +188,7 @@ const Jadwal = () => {
                                 <input
                                     type="time"
                                     // id="default-search"
-                                    className="bg-gray border border-gray-300 text-midnight text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                    className="bg-grey border  text-midnight text-sm rounded-lg focus:ring-blue focus:border-blue block w-full p-2.5 "
                                     placeholder="enter ..."
                                     // required
                                     onChange={(e) =>

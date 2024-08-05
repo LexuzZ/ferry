@@ -47,7 +47,7 @@ const Edit = ({ kapal, rutes }) => {
                 </div>
             )}
             <div className="flex items-center justify-center">
-                <div className="w-full max-w-sm p-4 bg-grey border border-gray rounded-lg shadow sm:p-6 md:p-8  dark:border-gray">
+                <div className="w-full max-w-sm p-4 bg-white border border-gray rounded-lg shadow sm:p-6 md:p-8  dark:border-gray">
                     <form className="max-w-md mx-auto" onSubmit={handleUpdate}>
                         <div>
                             <label
@@ -57,7 +57,7 @@ const Edit = ({ kapal, rutes }) => {
                                 Rute
                             </label>
                             <select
-                                className="select w-full bg-white text-midnight"
+                                className="select w-full bg-grey text-midnight"
                                 value={data.rute_id}
                                 onChange={(e) =>
                                     setData("rute_id", e.target.value)
@@ -74,7 +74,7 @@ const Edit = ({ kapal, rutes }) => {
                         <div>
                             <label
                                 for="default-search"
-                                className="mb-2 text-sm font-medium text-midnight sr-only dark:text-white"
+                                className="mb-2 text-sm font-medium text-midnight sr-only "
                             >
                                 Search
                             </label>
@@ -89,7 +89,7 @@ const Edit = ({ kapal, rutes }) => {
                                 <input
                                     type="text"
                                     // id="default-search"
-                                    className="bg-white border border-gray-300 text-midnight text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                                    className="bg-grey border border-gray-300 text-midnight text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                     placeholder="enter ..."
                                     // required
                                     onChange={(e) =>

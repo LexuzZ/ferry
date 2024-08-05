@@ -47,12 +47,12 @@ const Edit = ({ rute }) => {
                 </div>
             )}
             <div className="flex items-center justify-center">
-                <div className="w-full max-w-sm p-4 bg-bermuda border border-gray rounded-lg shadow sm:p-6 md:p-8 ">
+                <div className="w-full max-w-sm p-4 bg-white border border-gray rounded-lg shadow sm:p-6 md:p-8 ">
                     <form className="max-w-md mx-auto" onSubmit={handleUpdate}>
                         <div>
                             <label
                                 for="default-search"
-                                className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
+                                className="mb-2 text-sm font-medium text-gray-900 sr-only "
                             >
                                 Search
                             </label>
@@ -67,7 +67,7 @@ const Edit = ({ rute }) => {
                                 <input
                                     type="text"
                                     // id="default-search"
-                                    className="bg-white border border-gray-300 text-midnight text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                                    className="bg-grey border border-gray-300 text-midnight text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                     placeholder="enter ..."
                                     // required
                                     onChange={(e) =>

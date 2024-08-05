@@ -52,7 +52,7 @@ const Create = () => {
                 </div>
             )}
             <div className="flex items-center justify-center">
-                <div className="w-full max-w-sm p-4 bg-grey border border-gray rounded-lg shadow sm:p-6 md:p-8  dark:border-gray">
+                <div className="w-full max-w-sm p-4 bg-white border border-gray rounded-lg shadow sm:p-6 md:p-8  dark:border-gray">
                     <form className="max-w-md mx-auto" onSubmit={handleSubmit}>
                         <div>
                             <label
@@ -62,7 +62,7 @@ const Create = () => {
                                 Rute
                             </label>
                             <select
-                            className="select w-full bg-white text-midnight"
+                            className="select w-full bg-grey text-midnight"
                                 value={data.rute_id}
                                 onChange={(e) =>
                                     setData("rute_id", e.target.value)
@@ -91,7 +91,7 @@ const Create = () => {
                             <input
                                 type="text"
                                 // id="default-search"
-                                className=" border text-midnight border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                className=" border text-midnight bg-grey text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                 placeholder="Tambah nama kapal ..."
                                 // required
                                 onChange={(e) =>
