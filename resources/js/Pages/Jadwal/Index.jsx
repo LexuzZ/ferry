@@ -5,12 +5,29 @@ import "../../../css/trash.css";
 import "../../../css/action.css";
 import { CiEdit } from "react-icons/ci";
 import { BsTrash } from "react-icons/bs";
+import Swal from "sweetalert2";
+import { Inertia } from "@inertiajs/inertia";
 
 const Jadwal = ({ jadwals }) => {
     const { flash, errors } = usePage().props;
 
-    const deletePost = async (id) => {
-        router.delete(`/jadwals/${id}`);
+   
+    const handleDelete = (id) => {
+        Swal.fire({
+            title: "Apakah Anda yakin?",
+            text: "Anda tidak dapat mengembalikan ini!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Ya, hapus!",
+            cancelButtonText: "Batal",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Inertia.delete(`/jadwals/${id}`);
+                Swal.fire("Terhapus!", "jadwal telah dihapus.", "success");
+            }
+        });
     };
     return (
         <AdminLayout>
@@ -105,45 +122,11 @@ const Jadwal = ({ jadwals }) => {
                                         <div
                                             className="btn bg-red text-white hover:bg-orange"
                                             onClick={() =>
-                                                document
-                                                    .getElementById(
-                                                        "my_modal_1"
-                                                    )
-                                                    .showModal()
+                                                handleDelete(jadwal.id)
                                             }
                                         >
                                             <BsTrash size={15} />
                                         </div>
-                                        <dialog
-                                            id="my_modal_1"
-                                            className="modal"
-                                        >
-                                            <div className="modal-box bg-cyan-50">
-                                                <h3 className="font-bold text-lg">
-                                                    Hello!
-                                                </h3>
-                                                <p className="py-4 font-bold text-base">
-                                                    Apakah yakin menghapus data?
-                                                </p>
-                                                <div className="modal-action ">
-                                                    <form method="dialog">
-                                                        <button
-                                                            onClick={() =>
-                                                                deletePost(
-                                                                    jadwal.id
-                                                                )
-                                                            }
-                                                            className="btn btn-error m-2"
-                                                        >
-                                                            Hapus
-                                                        </button>
-                                                        <button className="btn btn-ghost">
-                                                            Tutup
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </dialog>
                                     </td>
                                 </tr>
                             );
