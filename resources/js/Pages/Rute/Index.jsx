@@ -30,7 +30,8 @@ const Index = ({ rutes, ships }) => {
 
     return (
         <AdminLayout>
-            <div className="text-center text-midnight text-2xl font-serif py-8">
+            <div className="min-h-screen">
+            <div className="text-center uppercase text-midnight text-2xl font-serif pt-8 pb-2">
                 Informasi Rute
             </div>
 
@@ -64,7 +65,7 @@ const Index = ({ rutes, ships }) => {
                 </div>
             )}
 
-            <div className=" overflow-x-auto shadow-md sm:rounded-lg mt-6">
+            <div className=" overflow-x-auto shadow-md sm:rounded-lg">
                 <table className="w-full text-sm text-center rtl:text-right text-midnight">
                     <thead className="text-xs text-white text-center uppercase bg-gray font-bold">
                         <tr>
@@ -79,26 +80,26 @@ const Index = ({ rutes, ships }) => {
                     </thead>
                     <tbody className="text-center">
                         {rutes.map((rute) => (
-                            <tr key={rute.id}>
+                            <tr key={rute.id} className="bg-white">
                                 <td
                                     scope="row"
                                     className=" py-4 text-midnight  font-medium whitespace-nowrap dark:text-black"
                                 >
                                     {rute.nama_rute}
                                 </td>
-                                <td className=" ">
+                                <td className="px-2 py-1">
                                     <Link
                                         href={`rute/edit/${rute.id}`}
-                                        className="btn me-5 bg-orange text-white hover:bg-yellow"
+                                        className="btn btn-sm mx-2 bg-orange text-white hover:bg-yellow"
                                     >
-                                        <CiEdit size={20} />
+                                        Edit
                                     </Link>
 
                                     <div
-                                        className="btn bg-red text-white hover:bg-orange"
+                                        className="btn btn-sm bg-red text-white hover:bg-orange"
                                         onClick={() => handleDelete(rute.id)}
                                     >
-                                        <BsTrash size={20}/>
+                                        Hapus
                                     </div>
                                 </td>
                             </tr>
@@ -106,6 +107,8 @@ const Index = ({ rutes, ships }) => {
                     </tbody>
                 </table>
             </div>
+            </div>
+           
         </AdminLayout>
     );
 };

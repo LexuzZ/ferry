@@ -112,7 +112,7 @@ const Detail = (props) => {
                         ))}
                     </div>
 
-                    <div className="card-actions mt-4 mr-5 justify-end md:mr-20">
+                    <div className="card-actions mt-4  justify-end md:mr-20 lg:mr-28">
                         <Link
                             className="btn btn-sm bg-red text-sm text-white"
                             href="/"

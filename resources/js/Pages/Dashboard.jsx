@@ -40,7 +40,7 @@ export default function Dashboard() {
                         <div className="stat-title text-midnight">
                             Total User
                         </div>
-                        <div className="stat-value text-gray">{userCount}</div>
+                        <div className="stat-value text-midnight">{userCount}</div>
                     </div>
 
                     <div className="stat">
@@ -93,13 +93,13 @@ export default function Dashboard() {
                         </div>
                     </div>
                 </div>
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6 pt-4">
+                <div className="grid grid-cols-1 lg:grid-cols-1 gap-6 mb-6 pt-4">
                     <div className="p-6 relative flex flex-col min-w-0 mb-4 lg:mb-0 break-words bg-white  w-full shadow-lg rounded">
                         <div className="rounded-t mb-0 px-0 border-0">
                             <div className="flex flex-wrap items-center px-4 py-2">
                                 <div className="relative w-full max-w-full flex-grow flex-1">
-                                    <h3 className="font-semibold text-base text-gray dark:text-gray">
-                                        Users
+                                    <h3 className="font-semibold text-base text-midnight">
+                                        Manajemen Pengguna
                                     </h3>
                                 </div>
                             </div>
@@ -107,20 +107,20 @@ export default function Dashboard() {
                                 <table className="items-center w-full bg-transparent border-collapse">
                                     <thead>
                                         <tr>
-                                            <th className="px-4 bg-white  text-white dark:text-gray align-middle border border-solid border-gray dark:border-gray py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center">
+                                            <th className="px-4 bg-gray  text-white align-middle border border-solid border-white dark:border-white py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center">
                                                 Nama
                                             </th>
-                                            <th className="px-4 bg-white  text-white dark:text-gray align-middle border border-solid border-gray dark:border-gray py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center">
+                                            <th className="px-4 bg-gray  text-white align-middle border border-solid border-white dark:border-white py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center">
                                                 Role
                                             </th>
-                                            <th className="px-4 bg-white  text-white dark:text-gray align-middle border border-solid border-gray dark:border-gray py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px" />
+                                            <th className="px-4 bg-gray  text-white align-middle border border-solid border-white dark:border-white py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px" />
                                         </tr>
                                     </thead>
                                     <tbody>
                                         {userList.data.map((user) => (
                                             <tr
                                                 key={user.id}
-                                                className="text-midnight dark:text-gray"
+                                                className="text-midnight font-medium "
                                             >
                                                 <td className="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-center">
                                                     {user.name}
@@ -135,167 +135,7 @@ export default function Dashboard() {
                             </div>
                         </div>
                     </div>
-                    {/* <div className="bg-white border border-gray shadow-md shadow-black/5 p-6 rounded-md">
-                        <div className="flex justify-between mb-4 items-start">
-                            <div className="font-medium">Activities</div>
-                            <div className="dropdown">
-                                <button
-                                    type="button"
-                                    className="dropdown-toggle text-gray hover:text-gray"
-                                >
-                                    <i className="ri-more-fill" />
-                                </button>
-                                <ul className="dropdown-menu shadow-md shadow-black/5 z-30 hidden py-1.5 rounded-md bg-white border border-gray w-full max-w-[140px]">
-                                    <li>
-                                        <a
-                                            href="#"
-                                            className="flex items-center text-[13px] py-1.5 px-4 text-gray hover:text-blue hover:bg-gray"
-                                        >
-                                            Profile
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a
-                                            href="#"
-                                            className="flex items-center text-[13px] py-1.5 px-4 text-gray hover:text-blue hover:bg-gray"
-                                        >
-                                            Settings
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a
-                                            href="#"
-                                            className="flex items-center text-[13px] py-1.5 px-4 text-gray hover:text-blue hover:bg-gray"
-                                        >
-                                            Logout
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div className="overflow-hidden">
-                            <table className="w-full min-w-[540px]">
-                                <tbody>
-                                    <tr>
-                                        <td className="py-2 px-4 border-b border-b-gray">
-                                            <div className="flex items-center">
-                                                <a
-                                                    href="#"
-                                                    className="text-gray text-sm font-medium hover:text-blue ml-2 truncate"
-                                                >
-                                                    Lorem Ipsum
-                                                </a>
-                                            </div>
-                                        </td>
-                                        <td className="py-2 px-4 border-b border-b-gray">
-                                            <span className="text-[13px] font-medium text-gray">
-                                                02-02-2024
-                                            </span>
-                                        </td>
-                                        <td className="py-2 px-4 border-b border-b-gray">
-                                            <span className="text-[13px] font-medium text-gray">
-                                                17.45
-                                            </span>
-                                        </td>
-                                        <td className="py-2 px-4 border-b border-b-gray">
-                                            <div className="dropdown">
-                                                <button
-                                                    type="button"
-                                                    className="dropdown-toggle text-gray hover:text-gray text-sm w-6 h-6 rounded flex items-center justify-center bg-gray"
-                                                >
-                                                    <i className="ri-more-2-fill" />
-                                                </button>
-                                                <ul className="dropdown-menu shadow-md shadow-black/5 z-30 hidden py-1.5 rounded-md bg-white border border-gray w-full max-w-[140px]">
-                                                    <li>
-                                                        <a
-                                                            href="#"
-                                                            className="flex items-center text-[13px] py-1.5 px-4 text-gray hover:text-blue hover:bg-gray"
-                                                        >
-                                                            Profile
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a
-                                                            href="#"
-                                                            className="flex items-center text-[13px] py-1.5 px-4 text-gray hover:text-blue hover:bg-gray"
-                                                        >
-                                                            Settings
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a
-                                                            href="#"
-                                                            className="flex items-center text-[13px] py-1.5 px-4 text-gray hover:text-blue hover:bg-gray"
-                                                        >
-                                                            Logout
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td className="py-2 px-4 border-b border-b-gray">
-                                            <div className="flex items-center">
-                                                <a
-                                                    href="#"
-                                                    className="text-gray text-sm font-medium hover:text-blue ml-2 truncate"
-                                                >
-                                                    Lorem Ipsum
-                                                </a>
-                                            </div>
-                                        </td>
-                                        <td className="py-2 px-4 border-b border-b-gray">
-                                            <span className="text-[13px] font-medium text-gray">
-                                                02-02-2024
-                                            </span>
-                                        </td>
-                                        <td className="py-2 px-4 border-b border-b-gray">
-                                            <span className="text-[13px] font-medium text-gray">
-                                                17.45
-                                            </span>
-                                        </td>
-                                        <td className="py-2 px-4 border-b border-b-gray">
-                                            <div className="dropdown">
-                                                <button
-                                                    type="button"
-                                                    className="dropdown-toggle text-gray hover:text-gray text-sm w-6 h-6 rounded flex items-center justify-center bg-gray"
-                                                >
-                                                    <i className="ri-more-2-fill" />
-                                                </button>
-                                                <ul className="dropdown-menu shadow-md shadow-black/5 z-30 hidden py-1.5 rounded-md bg-white border border-gray w-full max-w-[140px]">
-                                                    <li>
-                                                        <a
-                                                            href="#"
-                                                            className="flex items-center text-[13px] py-1.5 px-4 text-gray hover:text-blue hover:bg-gray"
-                                                        >
-                                                            Profile
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a
-                                                            href="#"
-                                                            className="flex items-center text-[13px] py-1.5 px-4 text-gray hover:text-blue hover:bg-gray"
-                                                        >
-                                                            Settings
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a
-                                                            href="#"
-                                                            className="flex items-center text-[13px] py-1.5 px-4 text-gray hover:text-blue hover:bg-gray"
-                                                        >
-                                                            Logout
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div> */}
+                   
                 </div>
                 <div className="grid grid-cols-1 lg:grid-cols-1 gap-4 mb-6">
                     <div className="bg-white shadow-md  p-6 rounded-md">
@@ -305,12 +145,12 @@ export default function Dashboard() {
                             </div>
                         </div>
                         {/* <div className="flex items-center justify-end">
-                            <div className="btn btn-link hover:text-midnight">
+                            <div className="btn btn-link hover:text-white">
                                 <DownloadButton />
                             </div>
                         </div> */}
                         <div className="overflow-x-auto">
-                            <table className="w-full min-w-[460px]  text-sm text-center rtl:text-right text-midnight">
+                            <table className="w-full min-w-[460px]  text-sm text-center rtl:text-right text-white">
                                 <thead>
                                     <tr>
                                         <th className="text-[12px] uppercase tracking-wide font-medium text-white py-2 px-4 bg-gray  rounded-tl-md rounded-bl-md">
@@ -327,7 +167,7 @@ export default function Dashboard() {
                                 <tbody>
                                     {transaction.map((t) => (
                                         <tr key={t.id}>
-                                            <td className="py-2 px-4 border-b text-midnight border-b-gray ">
+                                            <td className="py-2 px-4 border-b text-white border-b-white ">
                                                 <Link
                                                     // href={`/riwayat/${t.tickets.id}/pdf`}
                                                     target="_blank"
@@ -337,14 +177,14 @@ export default function Dashboard() {
                                                     {t.tickets.nama}
                                                 </Link>
                                             </td>
-                                            <td className="py-2 px-4 border-b text-midnight border-b-gray">
+                                            <td className="py-2 px-4 border-b text-midnight border-b-white">
                                                 {new Intl.NumberFormat("id", {
                                                     style: "currency",
                                                     currency: "IDR",
                                                     maximumFractionDigits: 0,
                                                 }).format(t.amount)}
                                             </td>
-                                            <td className="py-2 px-4 border-b border-b-gray">
+                                            <td className="py-2 px-4 border-b border-b-white">
                                                 <PaymentBadge
                                                     status={t.status}
                                                 />

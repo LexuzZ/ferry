@@ -10,11 +10,11 @@ const PDFPage = ({ ticket, reservedSeats }) => {
 
     return (
         <UserLayout>
-            <div className="pt-24 text-midnight pb-3 px-2">
+            <div className="pt-24 text-midnight w-full pb-3 px-2 ">
                 <h1 className="text-2xl font-serif text-center mb-6 ">
                     Detail Tiket
                 </h1>
-                <div className="border p-4 rounded-lg shadow-lg max-w-md mx-auto">
+                <div className="border p-4 rounded-lg shadow-lg max-w-md mx-auto bg-white">
                     <div className="border-b pb-2 mb-2">
                         <span className="block font-bold">Armada </span>
                         <span className="block">
@@ -49,7 +49,7 @@ const PDFPage = ({ ticket, reservedSeats }) => {
                             , {ticket.jadwals.tiba} WIB
                         </span>
                     </div>
-                    <div className="pt-2 bg-navy">
+                    <div className="pt-2 bg-midnight text-white">
                         <span className="block font-bold ml-3">
                             Harga Tiket
                         </span>

@@ -74,7 +74,7 @@ const SeatSelection = ({ seats, reservedSeats, kapal_id, jadwal_id, totalAvailab
                 <div>
                     <button
                         onClick={reserveSeats}
-                        className="my-5 mx-5 btn bg-green text-midnight hover:text-white"
+                        className="my-5 mx-5 btn bg-green text-white hover:text-midnight"
                     >
                         Pesan
                     </button>
@@ -90,25 +90,25 @@ const SeatSelection = ({ seats, reservedSeats, kapal_id, jadwal_id, totalAvailab
                         <div
                             key={seat.id}
                             onClick={() => toggleSelectSeat(seat.id)}
-                            className={`p-5 flex justify-center items-center rounded-lg max-w-xs shadow-lg text-midnight cursor-pointer ${
+                            className={`p-5 flex justify-center items-center rounded-lg max-w-xs shadow-lg text-white cursor-pointer ${
                                 selectedSeats.includes(seat.id)
-                                    ? "bg-blue"
+                                    ? "bg-gray"
                                     : seat.available
                                     ? "bg-green"
                                     : "bg-red"
                             }`}
                         >
-                            <MdAirlineSeatIndividualSuite size={20} className="me-4"/> {seat.name}
+                            <MdAirlineSeatIndividualSuite size={20} className="me-4 text-white"/> {seat.name}
                             {!seat.available ? (
-                                <span className="ml-4 text-red-500">
+                                <span className="ml-4 text-white">
                                     Tidak Tersedia
                                 </span>
                             ) : selectedSeats.includes(seat.id) ? (
-                                <span className="ml-4 text-blue-500">
+                                <span className="ml-4 text-white">
                                     Dipilih
                                 </span>
                             ) : (
-                                <span className="ml-4 text-green-500">
+                                <span className="ml-4 text-white">
                                     Tersedia
                                 </span>
                             )}

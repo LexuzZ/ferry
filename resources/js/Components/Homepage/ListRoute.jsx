@@ -3,12 +3,12 @@ import { Link, router } from "@inertiajs/react";
 const isRute = (rutes) => {
     return (
         <div>
-        <div className="flex items-center justify-start mt-10 mx-4 sm:mx-10 text-midnight font-serif">
+        <div className="flex items-center justify-start  mx-4 sm:mx-10 text-midnight font-serif">
             Informasi Jadwal
         </div>
         <div className="overflow-x-auto shadow-md sm:rounded-lg mt-4 mx-4 sm:mx-10 ">
             <table className="min-w-full text-center">
-                <thead className="text-xs text-midnight bg-white border-b-2 uppercase  font-bold">
+                <thead className="text-xs text-white bg-gray  border-b-2 uppercase  font-bold">
                     <tr>
                         <th scope="col" className="px-4 py-3">
                             ID
@@ -33,7 +33,7 @@ const isRute = (rutes) => {
                             <td className="px-4 py-4">
                                 <Link
                                     href={`${rute.id}/detail`}
-                                    className="bg-navy text-sm text-white px-4 py-2 rounded-md"
+                                    className="bg-gray text-sm text-white px-4 py-2 rounded-md"
                                 >
                                     Cari 
                                 </Link>

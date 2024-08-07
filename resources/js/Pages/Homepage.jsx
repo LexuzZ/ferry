@@ -69,7 +69,7 @@ export default function Homepage(props) {
                     </div>
                 </div>
             </div>
-            <div className="ml-5 pt-5">
+            <div className="lg:ml-10 md:ml-5 ml-5">
                 <h1 className="text-midnight font-serif">Cari Tiket Anda</h1>
                 <form onSubmit={handleSearch}>
                     <input
@@ -81,7 +81,7 @@ export default function Homepage(props) {
                     />
                     <button
                         type="submit"
-                        className="btn btn-sm bg-navy hover:bg-sea text-white ml-3"
+                        className="btn btn-sm rounded-lg bg-gray hover:bg-midnight text-white ml-3"
                     >
                         Search
                     </button>
